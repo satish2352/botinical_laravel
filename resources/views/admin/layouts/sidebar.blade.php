@@ -1,3 +1,4 @@
+<?php $data_for_url = session('data_for_url'); ?>
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
@@ -9,7 +10,6 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
 
                 <ul class="metismenu" id="menu1">
-                    @if (session()->get('role_id') == config('constants.ROLE_ID.SUPER'))
                     <li class="{{ Request::is('list-organizations', 'organizations-list-employees', 'list-departments', 'list-roles') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-organizations') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
@@ -32,7 +32,6 @@
                             </li>
                         </ul>
                     </li>
-                    @endif
                 </ul>
             </nav>
         </div>

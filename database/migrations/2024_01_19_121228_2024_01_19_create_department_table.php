@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('price');
-            $table->string('contact');
+       Schema::create('tbl_departments', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('department_name');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
-      });
+
+        });
     }
 
     /**
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase');
+         Schema::dropIfExists('tbl_departments');
     }
 };

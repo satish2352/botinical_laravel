@@ -4,6 +4,9 @@
     label {
         margin-top: 20px;
     }
+    .error{
+	color: red !important;
+}
 </style>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -18,22 +21,17 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="all-form-element-inner">
-                            @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                <form action="{{ route('store-departments') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('store-departments') }}" method="POST" id="addDesignsForm"
+                                enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group-inner">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                             <label for="company_name">Department Name:</label>
                                             <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Enter department name">
+                                            @if ($errors->has('department_name'))
+                                            <span class="red-text"><?php echo $errors->first('department_name', ':message'); ?></span>
+                                        @endif
                                         </div>
                                     </div>
                                         <div class="login-btn-inner">
@@ -61,5 +59,33 @@
     <script src="js/password-meter/pwstrength-bootstrap.min.js"></script>
     <script src="js/password-meter/zxcvbn.js"></script>
     <script src="js/password-meter/password-meter-active.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script>
+var i = 0;
+
+
+
+</script>
+<script>
+jQuery.noConflict();
+jQuery(document).ready(function($) {
+    $("#addDesignsForm").validate({
+        rules: {          
+            department_name: {
+                required: true
+            },
+                      
+        },
+        messages: {
+            department_name: {
+                required: "Please Enter Department Name.",
+            },              
+                    
+        },
+    });
+});
+</script>
   
 @endsection
