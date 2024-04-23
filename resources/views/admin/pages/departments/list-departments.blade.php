@@ -4,7 +4,8 @@
 <style>
 .fixed-table-loading {
     display: none;
-}
+} 
+/*
 #table thead th {
     white-space: nowrap;
 }
@@ -18,7 +19,7 @@ padding-left: 20px !important;
     padding-right: 5px !important;
     font-size: 14px;
     text-align: left;
-}
+} */
 </style>
 
 <div class="data-table-area mg-tb-15">
@@ -28,11 +29,11 @@ padding-left: 20px !important;
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h1>Employees <span class="table-project-n">Data</span> Table</h1>
+                            <h1>Departments <span class="table-project-n">Data</span> Table</h1>
                                 <div class="form-group-inner login-btn-inner row">
                                     <div class="col-lg-2" >
                                         <div class="login-horizental cancel-wp pull-left">
-                                                <a href="{{ route('add-employees') }}" ><button class="btn btn-sm btn-primary login-submit-cs" type="submit" href="{{route('add-organizations')}}">Add Employees</button></a>
+                                                <a href="{{ route('add-departments') }}" ><button class="btn btn-sm btn-primary login-submit-cs" type="submit" href="{{route('add-departments')}}">Add Departments</button></a>
                                         </div>
                                     </div>
                                 <div class="col-lg-10"></div>
@@ -76,32 +77,20 @@ padding-left: 20px !important;
                                     data-toolbar="#toolbar">
                                     <thead>
                                         <tr>
-                                            <th data-field="id">Sr.No.</th>
-                                            <th data-field="employee_name" data-editable="true">Employee Name</th>
-                                            <th data-field="company_name" data-editable="true">Company Name</th>
-                                            <th data-field="email" data-editable="true">Email</th>
-                                            <th data-field="mobile_number" data-editable="true">Mobile Number</th>
-                                            <th data-field="address" data-editable="true">Address</th>
-                                            <th data-field="image" data-editable="false">Image</th>
-                                            <!-- <th data-field="is_active" data-editable="true">Is Active</th> -->
+                                             <th data-field="id">Sr.No.</th>
+                                            <th data-field="employee_name" data-editable="true">Departments Name</th>
                                             <th data-field="action">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($getOutput as $data)
                                         <tr>
-                                            
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ucwords($data->employee_name)}}</td>
-                                            <td>{{ucwords($data->company_name)}}</td>
-                                            <td>{{ucwords($data->emp_email)}}</td>
-                                            <td>{{ucwords($data->emp_mobile_number)}}</td>
-                                            <td>{{ucwords($data->emp_address)}}</td>
-                                            <td><img style="max-width:250px; max-height:150px;" src="{{ Config::get('DocumentConstant.EMPLOYEES_VIEW') . $data->emp_image }}" alt="{{ strip_tags($data['employee_name']) }} Image" /></td>
+                                            <td>{{ucwords($data->department_name)}}</td>
                                             <td>
                                                 <div style="display: flex; align-items: center;">
-                                                    <a href="{{route('edit-employees', base64_encode($data->emp_id))}}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                                    <a href="{{route('delete-employees', base64_encode($data->emp_id))}} "><button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
+                                                    <a href="{{route('edit-departments', base64_encode($data->id))}}"><button data-toggle="tooltip" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                                                    <a href="{{route('delete-departments', base64_encode($data->id))}} "><button data-toggle="tooltip" title="Trash" class="pd-setting-ed"><i class="fa fa-trash" aria-hidden="true"></i></button></a>
                                                 </div>
                                             </td>
                                            </tr>

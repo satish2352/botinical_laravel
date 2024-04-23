@@ -23,10 +23,6 @@ return [
 
     // 'DB_BACKUP'	 => "/all_web_data/DBBackup//",
 
-    'ROLE_ID' => [
-        'SUPER'             => 111,
-       
-    ],
     
   
 

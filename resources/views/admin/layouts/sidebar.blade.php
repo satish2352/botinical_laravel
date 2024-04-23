@@ -23,6 +23,13 @@
                                     <span class="mini-sub-pro">List Roles</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item {{ Request::is('list-departments') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-departments') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">List Department</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     @endif
