@@ -16,12 +16,7 @@
                             <span class="mini-click-non">Organizations</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
-                            <li class="nav-item {{ Request::is('list-departments') ? 'active' : '' }}">
-                                <a title="Inbox" href="{{ route('list-departments') }}">
-                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
-                                    <span class="mini-sub-pro">List Departments</span>
-                                </a>
-                            </li>
+                           
                             <li class="nav-item {{ Request::is('list-roles') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-roles') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
