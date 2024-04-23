@@ -61,6 +61,8 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="{{ asset('js/vendor/modernizr-2.8.3.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </head>
 
 <body>
