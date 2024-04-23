@@ -10,10 +10,10 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
 
                 <ul class="metismenu" id="menu1">
-                    <li class="{{ Request::is('list-organizations', 'organizations-list-employees', 'list-departments', 'list-roles') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-organizations') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Organizations</span>
+                            <span class="mini-click-non">Master</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
                            

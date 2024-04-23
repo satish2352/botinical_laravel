@@ -17,7 +17,7 @@ class RoleSeeder extends Seeder
         RolesModel::create(
             [
                 'id'=> 1,
-                'role_name' => 'Head',
+                'role_name' => 'Admin',
             ]);
         RolesModel::create(
             [
