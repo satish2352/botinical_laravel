@@ -9,7 +9,7 @@ use Session;
 use Validator;
 use Config;
 use Carbon;
-use App\Models\OrganizationModel;
+
 class DepartmentController extends Controller
 { 
     public function __construct(){
@@ -79,8 +79,7 @@ class DepartmentController extends Controller
   public function edit(Request $request){
     $edit_data_id = base64_decode($request->id);
     $editData = $this->service->getById($edit_data_id);
-    $data=OrganizationModel::orderby('updated_at','desc')->get();
-    return view('admin.pages.departments.edit-departments', compact('editData','data'));
+    return view('admin.pages.departments.edit-departments', compact('editData'));
 }
 
 

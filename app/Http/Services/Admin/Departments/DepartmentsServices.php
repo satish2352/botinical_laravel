@@ -2,9 +2,7 @@
 namespace App\Http\Services\Admin\Departments;
 use App\Http\Repository\Admin\Departments\DepartmentsRepository;
 use Carbon\Carbon;
-use App\Models\ {
-    EmployeesModel
-    };
+
 
 use Config;
 class DepartmentsServices
