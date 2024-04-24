@@ -5,6 +5,7 @@
             margin-top: 20px;
         }
     </style>
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="sparkline12-list">
@@ -90,6 +91,7 @@
             </div>
         </div>
     </div>
+</div>    
     <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
     <script src="{{ asset('js/password-meter/pwstrength-bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/password-meter/zxcvbn.js') }}"></script>

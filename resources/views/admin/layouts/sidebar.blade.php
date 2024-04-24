@@ -4,7 +4,7 @@
         <div class="sidebar-header">
             <a href="index.html"><img class="main-logo" src="{{ asset('website/assets/img/logo/LANSCAPE LOG.png') }}"
                     alt=""></a>
-            <strong><img src="{{ asset('img/logo/logo.png') }}" alt=""></strong>
+            <strong><img src="{{ asset('website/assets/img/logo/LANSCAPE LOG.png') }}" alt=""></strong>
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
