@@ -10,7 +10,7 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
 
                 <ul class="metismenu" id="menu1">
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles') ? 'active' : '' }}">
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Master</span>
@@ -30,6 +30,28 @@
                                     <span class="mini-sub-pro">List Department</span>
                                 </a>
                             </li>
+
+                            <li class="nav-item {{ Request::is('list-district') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-district') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">List District</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ Request::is('list-taluka') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-taluka') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">List Taluka</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item {{ Request::is('list-village') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-village') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">List Village</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
                 </ul>

@@ -55,6 +55,27 @@
 <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css') }}">
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/flatpickr') }}"></script>
 
+
+<script>
+    $('.delete-btn').click(function(e) {
+alert('kkkkkkkk');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#delete_id").val($(this).attr("data-id"));
+                $("#deleteform").submit();
+            }
+        })
+
+    });
+</script>
 </body>
 
 </html>

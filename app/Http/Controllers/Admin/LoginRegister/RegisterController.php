@@ -77,6 +77,28 @@ class RegisterController extends Controller {
 
     }
 
+    public function getTaluka(Request $request)
+    {
+        $districtId = $request->input('districtId');
+
+        $taluka = TblArea::where('parent_id', $districtId)
+                    ->orderBy('name', 'asc')
+                    ->get(['location_id', 'name']);
+              return response()->json(['taluka' => $taluka]);
+
+    }
+
+    public function getVillage(Request $request)
+    {
+        $talukaId = $request->input('talukaId');
+
+        $village = TblArea::where('parent_id', $talukaId)
+                    ->orderBy('name', 'asc')
+                    ->get(['location_id', 'name']);
+              return response()->json(['village' => $village]);
+
+    }
+
     public function editUsers(Request $request){
         $user_data = $this->service->editUsers($request);
         return view('admin.pages.users.edit-users',compact('user_data'));
