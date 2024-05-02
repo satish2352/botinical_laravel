@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('u_email')->unique();
-            $table->string('u_password');
+            $table->string('mobile_number')->unique();
+            $table->string('email')->nullable();
+            // $table->string('password');
             $table->unsignedBigInteger('role_id');
             $table->string('f_name')->nullable();
             $table->string('m_name')->nullable();
             $table->string('l_name')->nullable();
-            $table->string('number')->nullable();
-            $table->string('designation')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('date_of_birth')->nullable();
             $table->string('address')->nullable();
-            $table->string('state')->nullable();
-            $table->string('city')->nullable();
-            $table->string('pincode')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('user_otp')->nullable();
             $table->string('ip_address')->nullable();
             $table->rememberToken();
             $table->boolean('is_active')->default(true);

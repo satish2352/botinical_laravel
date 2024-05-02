@@ -524,7 +524,7 @@ class AreaRepository
 
 	public function checkDupCredentials($request)
 	{
-		return User::where('u_email', '=', $request['email'])
+		return User::where('email', '=', $request['email'])
 			// ->orWhere('u_uname','=',$request['u_uname'])
 			->select('id')->get();
 	}

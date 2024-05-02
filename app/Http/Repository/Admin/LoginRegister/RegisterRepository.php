@@ -22,7 +22,7 @@ class RegisterRepository
 						})
 						// ->where('users.is_active','=',true)
 						->select('roles.role_name',
-								'users.u_email',
+								'users.email',
 								'users.f_name',
 								'users.m_name',
 								'users.l_name',
@@ -54,9 +54,9 @@ class RegisterRepository
 	// {
 	// 	$ipAddress = getIPAddress($request);
 	// 	$user_data = new User();
-	// 	$user_data->u_email = $request['u_email'];
+	// 	$user_data->email = $request['email'];
 	// 	// $user_data->u_uname = $request['u_uname'];
-	// 	$user_data->u_password = bcrypt($request['u_password']);
+	// 	$user_data->password = bcrypt($request['password']);
 	// 	$user_data->role_id = $request['role_id'];
 	// 	$user_data->f_name = $request['f_name'];
 	// 	$user_data->m_name = $request['m_name'];
@@ -80,9 +80,9 @@ class RegisterRepository
 	{
 		$ipAddress = getIPAddress($request);
 		$user_data = new User();
-		$user_data->u_email = $request['u_email'];
+		$user_data->email = $request['email'];
 		// $user_data->u_uname = $request['u_uname'];
-		$user_data->u_password = bcrypt($request['u_password']);
+		$user_data->password = bcrypt($request['password']);
 		$user_data->role_id = $request['role_id'];
 		$user_data->f_name = $request['f_name'];
 		$user_data->m_name = $request['m_name'];
@@ -220,7 +220,7 @@ class RegisterRepository
 
 	public function checkDupCredentials($request)
 	{
-		return User::where('u_email', '=', $request['u_email'])
+		return User::where('email', '=', $request['email'])
 			// ->orWhere('u_uname','=',$request['u_uname'])
 			->select('id')->get();
 	}
@@ -251,8 +251,8 @@ class RegisterRepository
 			->select(
 				'roles.id as role_id',
 				// 'users.u_uname',
-				'users.u_password',
-				'users.u_email',
+				'users.password',
+				'users.email',
 				'users.f_name',
 				'users.m_name',
 				'users.l_name',
@@ -278,8 +278,8 @@ class RegisterRepository
 					// ->where('users.is_active','=',true)
 					->select('roles.id as role_id',
 							// 'users.u_uname',
-							'users.u_password',
-							'users.u_email',
+							'users.password',
+							'users.email',
 							'users.f_name',
 							'users.m_name',
 							'users.l_name',
@@ -349,7 +349,7 @@ class RegisterRepository
 				->leftJoin('tbl_area as state_user', 'users.state', '=', 'state_user.location_id')
 				->leftJoin('tbl_area as city_user', 'users.city', '=', 'city_user.location_id')
 				->where('users.id', $id)
-				->select('users.f_name','users.m_name','users.l_name','users.u_email','users.number','users.designation','users.address','users.pincode','users.user_profile','roles.role_name','state_user.name as state','city_user.name as city')
+				->select('users.f_name','users.m_name','users.l_name','users.email','users.number','users.designation','users.address','users.pincode','users.user_profile','roles.role_name','state_user.name as state','city_user.name as city')
 				->first();
 	
 			if ($user) {
@@ -397,7 +397,7 @@ class RegisterRepository
 	{
 		$user_detail = User::where('is_active', true)
 			->where('id', session()->get('user_id'))
-			->select('id', 'f_name', 'm_name', 'l_name', 'u_email', 'u_password', 'number', 'designation','user_profile')
+			->select('id', 'f_name', 'm_name', 'l_name', 'email', 'password', 'number', 'designation','user_profile')
 			->first();
 		return $user_detail;
 	}
@@ -427,7 +427,7 @@ class RegisterRepository
 			// 	$update_data['user_profile'] = $newImagePathOrFilename;
 			// }
 
-			if (($request->number != $request->old_number) && !isset($request->u_password)) {
+			if (($request->number != $request->old_number) && !isset($request->password)) {
 				$this->sendOTPEMAIL($otp, $request);
 				info("only mobile change");
 				$return_data['password_change'] = 'no';
@@ -435,20 +435,20 @@ class RegisterRepository
 				$return_data['mobile_change'] = 'yes';
 				$return_data['user_id'] = $request->edit_user_id;
 				$return_data['new_mobile_number'] = $request->number;
-				$return_data['u_password_new'] = '';
+				$return_data['password_new'] = '';
 				$return_data['msg'] = "OTP sent on registered on email";
 				$return_data['msg_alert'] = "green";
 
 			}
 
-			if ((isset($request->u_password) && $request->u_password !== '') && ($request->number == $request->old_number)) {
+			if ((isset($request->password) && $request->password !== '') && ($request->number == $request->old_number)) {
 				info("only password change");
-				// $update_data['u_password'] = bcrypt($request->u_password);
+				// $update_data['password'] = bcrypt($request->password);
 				$return_data['password_change'] = 'yes';
 				$return_data['mobile_change'] = 'no';
 				$update_data['otp'] = $otp;
 				$return_data['user_id'] = $request->edit_user_id;
-				$return_data['u_password_new'] = bcrypt($request->u_password);
+				$return_data['password_new'] = bcrypt($request->password);
 				$return_data['new_mobile_number'] = '';
 				$return_data['msg'] = "OTP sent on registered on email";
 				$return_data['msg_alert'] = "green";
@@ -456,10 +456,10 @@ class RegisterRepository
 				$this->sendOTPEMAIL($otp, $request);
 			}
 
-			if ((isset($request->u_password) && $request->u_password !== '') && ($request->number != $request->old_number)) {
+			if ((isset($request->password) && $request->password !== '') && ($request->number != $request->old_number)) {
 				info("only password and mobile number changed");
 				$update_data['otp'] = $otp;
-				$return_data['u_password_new'] = bcrypt($request->u_password);
+				$return_data['password_new'] = bcrypt($request->password);
 				$return_data['password_change'] = 'yes';
 				$return_data['mobile_change'] = 'yes';
 				$return_data['user_id'] = $request->edit_user_id;
@@ -493,7 +493,7 @@ class RegisterRepository
 			$email_data = [
 				'otp' => $otp,
 			];
-			$toEmail = $request->u_email;
+			$toEmail = $request->email;
 			$senderSubject = 'Disaster Management OTP ' . date('d-m-Y H:i:s');
 			$fromEmail = env('MAIL_USERNAME');
 			Mail::send('admin.email.emailotp', ['email_data' => $email_data], function ($message) use ($toEmail, $fromEmail, $senderSubject) {

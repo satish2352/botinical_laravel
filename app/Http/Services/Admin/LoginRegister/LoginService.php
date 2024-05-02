@@ -21,11 +21,11 @@ class LoginService
         if($response['user_details']) {
             // use bcrypt for login
             $password = $request['password'];
-            if (Hash::check($password, $response['user_details']['u_password'])) {
+            if (Hash::check($password, $response['user_details']['password'])) {
 
                 $request->session()->put('user_id',$response['user_details']['id']);
                 $request->session()->put('role_id',$response['user_details']['role_id']);
-                $request->session()->put('u_email',$response['user_details']['u_email']);
+                $request->session()->put('email',$response['user_details']['email']);
                 $json = ['status'=>'success','msg'=>$response['user_details'],'role_id'=>$response['user_details']['role_id']];
             } else {
                 $json = ['status'=>'failed','msg'=>'These credentials do not match our records.'];

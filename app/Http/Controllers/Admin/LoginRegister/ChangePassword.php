@@ -44,7 +44,7 @@ class ChangePassword extends Controller
             return redirect()->back()->with('error', 'New Password & Confirm Password not match  !');
         }
     User::where('id', $userId)->update([
-            'u_password' => bcrypt($request->new_password),
+            'password' => bcrypt($request->new_password),
         ]);
         return redirect()->back()->with('success', 'Password updated successfully!');
     }
