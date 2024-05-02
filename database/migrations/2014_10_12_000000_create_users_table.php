@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('mobile_number')->unique();
             $table->string('email')->nullable();
             // $table->string('password');
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->string('f_name')->nullable();
             $table->string('m_name')->nullable();
             $table->string('l_name')->nullable();

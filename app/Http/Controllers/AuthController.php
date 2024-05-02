@@ -44,8 +44,17 @@ class AuthController extends Controller
             ]);
             
             // Find or create the user
-            $user = User::firstOrNew(['mobile_number' => $credentials['mobile_number']]);
+            // $user = User::firstOrNew(['mobile_number' => $credentials['mobile_number']]);
             
+             // Check if user exists with the provided mobile number
+            $user = User::where('mobile_number', $credentials['mobile_number'])->first();
+            
+            if(!$user) {
+                // If user doesn't exist, create a new one
+                $user = new User();
+                $user->mobile_number = $credentials['mobile_number'];
+            }
+
             // $otp = mt_rand(1000, 9999); 
             $otp = "1234";
             $user->user_otp = $otp;
