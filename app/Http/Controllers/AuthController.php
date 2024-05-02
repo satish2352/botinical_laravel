@@ -37,16 +37,69 @@ class AuthController extends Controller
 
     //     return $this->respondWithToken($token);
     // }
+    // public function login(Request $request){
+    //     try {
+    //         // $credentials = request()->validate([
+    //         //     'mobile_number' => ['required', 'string', 'digits:10', 'regex:/^[6-9]\d{9}$/']
+    //         // ]);
+                  
+    //         $all_data_validation = [
+    //             'mobile_number' => ['required', 'digits:10', 'regex:/^[6789]\d{9}$/'],
+    //         ];
+
+    //         $customMessages = [
+    //             'mobile_number.required' => 'Mobile number is required.',
+    //             'mobile_number.digits' => 'Mobile number must be 10 digits.',
+    //             'mobile_number.regex' => 'Mobile number must start with 9, 8, 7 or 6.',
+    //         ];
+    
+    //         $validator = Validator::make($request->all(), $all_data_validation, $customMessages);
+          
+    //        if ($validator->fails()) {
+    //             $errors = $validator->errors()->all();
+    //             $errorMessage = implode(" \n ", $errors);
+    //             return response()->json([
+    //                 'status' => 'false',
+    //                 'message' => 'Validation Fail: ' . $errorMessage,
+    //             ], 200);
+    //         }
+    
+    //         // Check if user exists with the provided mobile number
+    //         $user = User::where('mobile_number', $credentials['mobile_number'])->first();
+            
+    //         if(!$user) {
+    //             // If user doesn't exist, create a new one
+    //             $user = new User();
+    //             $user->mobile_number = $credentials['mobile_number'];
+    //         }
+    
+    //         // $otp = mt_rand(1000, 9999); 
+    //         $otp = "1234";
+    //         $user->user_otp = $otp;
+    //         $user->save();
+            
+    //         $token = auth()->login($user);
+    
+    //         $user->update(['remember_token' => $token]);
+            
+    //         return response()->json([
+    //             'status' => 'true',
+    //             'message' => 'Login successful',
+    //             'data' => $user,
+    //             'token' => $token,
+    //             'token_type' => 'bearer',
+    //             'expires_in' => auth()->factory()->getTTL() * 60
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['status' => 'false','message' => 'Login fail', 'error' => $e->getMessage()], 500);
+    //     }
+    // }
     public function login(Request $request){
         try {
-            // $credentials = request()->validate([
-            //     'mobile_number' => ['required', 'string', 'digits:10', 'regex:/^[6-9]\d{9}$/']
-            // ]);
-                  
             $all_data_validation = [
                 'mobile_number' => ['required', 'digits:10', 'regex:/^[6789]\d{9}$/'],
             ];
-
+    
             $customMessages = [
                 'mobile_number.required' => 'Mobile number is required.',
                 'mobile_number.digits' => 'Mobile number must be 10 digits.',
@@ -54,8 +107,8 @@ class AuthController extends Controller
             ];
     
             $validator = Validator::make($request->all(), $all_data_validation, $customMessages);
-          
-           if ($validator->fails()) {
+    
+            if ($validator->fails()) {
                 $errors = $validator->errors()->all();
                 $errorMessage = implode(" \n ", $errors);
                 return response()->json([
@@ -64,24 +117,26 @@ class AuthController extends Controller
                 ], 200);
             }
     
+            // Fetch mobile number directly from request
+            $mobileNumber = $request->input('mobile_number');
+    
             // Check if user exists with the provided mobile number
-            $user = User::where('mobile_number', $credentials['mobile_number'])->first();
-            
+            $user = User::where('mobile_number', $mobileNumber)->first();
+    
             if(!$user) {
                 // If user doesn't exist, create a new one
                 $user = new User();
-                $user->mobile_number = $credentials['mobile_number'];
+                $user->mobile_number = $mobileNumber;
             }
     
-            // $otp = mt_rand(1000, 9999); 
-            $otp = "1234";
+            $otp = "1234"; // Generate your OTP here
             $user->user_otp = $otp;
             $user->save();
-            
+    
             $token = auth()->login($user);
     
             $user->update(['remember_token' => $token]);
-            
+    
             return response()->json([
                 'status' => 'true',
                 'message' => 'Login successful',
