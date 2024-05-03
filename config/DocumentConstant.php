@@ -3,22 +3,13 @@
 namespace App\Constants;
 
 return [
-
-    // 'ORGANIZATION_ADD'	         => "/all_web_data/images/organization/",
-    // 'ORGANIZATION_DELETE'	         => '/all_web_data/images/organization/',
-    // 'ORGANIZATION_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/organization/',
-
-    // 'EMPLOYEES_ADD'	         => "/all_web_data/images/employees/",
-    // 'EMPLOYEES_DELETE'	         => '/all_web_data/images/employees/',
-    // 'EMPLOYEES_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/employees/',
-
-    // 'EMPLOYEES_HR_ADD'	         => "/all_web_data/images/hr/",
-    // 'EMPLOYEES_HR_DELETE'	         => '/all_web_data/images/hr/',
-    // 'EMPLOYEES_HR_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/hr/',
-
-    'DESIGNS_ADD'	         => "/all_web_data/images/designs/",
-    'DESIGNS_DELETE'	         => '/all_web_data/images/designs/',
-    'DESIGNS_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/designs/',
+    'ABOUTUS_ADD'	         => "/all_web_data/images/aboutus/",
+    'ABOUTUS_DELETE'	         => '/all_web_data/images/aboutus/',
+    'ABOUTUS_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/aboutus/',
+    
+    'AMENITIES_ADD'	         => "/all_web_data/images/amenities/",
+    'AMENITIES_DELETE'	         => '/all_web_data/images/amenities/',
+    'AMENITIES_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/amenities/',
 
 
     // 'DB_BACKUP'	 => "/all_web_data/DBBackup//",
