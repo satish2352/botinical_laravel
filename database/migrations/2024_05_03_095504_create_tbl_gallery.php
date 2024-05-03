@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_charges', function (Blueprint $table) {
+        Schema::create('tbl_gallery', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('english_name');
-            $table->string('marathi_name');
-            $table->string('english_price');
-            $table->string('marathi_price');
+            $table->string('image');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_charges');
+        Schema::dropIfExists('tbl_gallery');
     }
 };

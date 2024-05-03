@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_amenities', function (Blueprint $table) {
+        Schema::create('tbl_flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('amenities_category_id');
             $table->string('english_name');
             $table->string('marathi_name');
             $table->text('english_description');
@@ -40,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_amenities');
+        Schema::dropIfExists('tbl_flowers');
     }
 };

@@ -13,20 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_amenities', function (Blueprint $table) {
+        Schema::create('tbl_contact_information', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('amenities_category_id');
             $table->string('english_name');
             $table->string('marathi_name');
-            $table->text('english_description');
-            $table->text('marathi_description');
-            $table->string('image');
-            $table->string('english_audio_link');
-            $table->string('marathi_audio_link');
-            $table->string('english_video_upload');
-            $table->string('marathi_video_upload');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('email');
+            $table->text('english_address');
+            $table->text('marathi_address');
+            $table->text('english_message');
+            $table->text('marathi_message');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_amenities');
+        Schema::dropIfExists('tbl_contact_information');
     }
 };

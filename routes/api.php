@@ -4,6 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\AboutUsListController;
+use App\Http\Controllers\Api\AmenitiesController;
+use App\Http\Controllers\Api\ContactInformationController;
+use App\Http\Controllers\Api\FlowersController;
+use App\Http\Controllers\Api\GalleryController;
+use App\Http\Controllers\Api\TressController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,9 +38,9 @@ Route::group([
     Route::middleware('auth:api')->group(function () {
         Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
-        Route::post('/get-amenities-list', [AboutUsListController::class, 'getAllAmenitiesList']);
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
-      
+        Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
+
 
         
         
