@@ -376,7 +376,7 @@ class AreaRepository
 		// $user_data->u_uname = $request['u_uname'];
 		$user_data->password = bcrypt($request['password']);
 		$user_data->role_id = $request['role_id'];
-		$user_data->f_name = $request['f_name'];
+		$user_data->full_name = $request['full_name'];
 		$user_data->m_name = $request['m_name'];
 		$user_data->l_name = $request['l_name'];
 		$user_data->number = $request['number'];
@@ -417,7 +417,7 @@ class AreaRepository
 						->update([
 							// 'u_uname' => $request['u_uname'],
 							'role_id' => $request['role_id'],
-							'f_name' => $request['f_name'],
+							'full_name' => $request['full_name'],
 							'm_name' => $request['m_name'],
 							'l_name' => $request['l_name'],
 							'number' => $request['number'],
@@ -553,7 +553,7 @@ class AreaRepository
 				// 'users.u_uname',
 				'users.password',
 				'users.email',
-				'users.f_name',
+				'users.full_name',
 				'users.m_name',
 				'users.l_name',
 				'users.number',
@@ -586,7 +586,7 @@ class AreaRepository
 							// 'users.u_uname',
 							'users.password',
 							'users.email',
-							'users.f_name',
+							'users.full_name',
 							'users.m_name',
 							'users.l_name',
 							'users.number',
@@ -662,7 +662,7 @@ class AreaRepository
 				->leftJoin('tbl_area as taluka_user', 'users.taluka', '=', 'taluka_user.location_id')
 				->leftJoin('tbl_area as village_user', 'users.village', '=', 'village_user.location_id')
 				->where('users.id', $id)
-				->select('users.f_name','users.m_name','users.l_name','users.email','users.number','users.aadhar_no',
+				->select('users.full_name','users.m_name','users.l_name','users.email','users.number','users.aadhar_no',
 				'users.address','users.pincode','users.user_profile','roles.role_name',
 				'district_user.name as district','taluka_user.name as taluka','village_user.name as village')
 				->first();
@@ -712,7 +712,7 @@ class AreaRepository
 	{
 		$user_detail = User::where('is_active', true)
 			->where('id', session()->get('user_id'))
-			->select('id', 'f_name', 'm_name', 'l_name', 'email', 'password', 'number', 'designation','user_profile')
+			->select('id', 'full_name', 'm_name', 'l_name', 'email', 'password', 'number', 'designation','user_profile')
 			->first();
 		return $user_detail;
 	}
@@ -727,7 +727,7 @@ class AreaRepository
 
 			
 			$update_data = [
-				'f_name' => $request->f_name,
+				'full_name' => $request->full_name,
 				'm_name' => $request->m_name,
 				'l_name' => $request->l_name,
 				'designation' => $request->designation,

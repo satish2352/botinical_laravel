@@ -138,6 +138,7 @@ class AuthController extends Controller
                     return response()->json( [
                         'status' => 'true',
                         'message' => 'OTP verification successful. Login successful!',
+                        'data'=>$user,
                         'token' => $token,
                         'token_type' => 'bearer',
                         'expires_in' => auth()->factory()->getTTL() * 60
@@ -156,9 +157,7 @@ class AuthController extends Controller
             $user = auth()->user()->id;
 
             $all_data_validation = [
-                'f_name' => 'required',
-                'm_name' => 'required',
-                'l_name' => 'required',
+                'full_name' => 'required',
                 'date_of_birth' => 'required|date_format:d/m/Y',
                 'email' => 'required',
                 'gender' => 'required',
@@ -168,9 +167,7 @@ class AuthController extends Controller
             ];
     
             $customMessages = [
-                'f_name.required'=>'first name is required',
-                'm_name.required'=>'middle name is required',
-                'l_name.required'=>'last name is required',
+                'full_name.required'=>'full name is required',
                 'email.required'=>'email name is required.',
                 'date_of_birth.required'=>'date of birth is required',
                 'date_of_birth.date_format'=>'date of birth must be in the format d/m/Y.',
@@ -201,9 +198,7 @@ class AuthController extends Controller
             }
           
             $labour_data->id = $user;
-            $labour_data->f_name = $request->f_name;
-            $labour_data->m_name = $request->m_name;
-            $labour_data->l_name = $request->l_name;
+            $labour_data->full_name = $request->full_name;
             $labour_data->date_of_birth = $request->date_of_birth;
             $labour_data->email = $request->email;
             $labour_data->gender = $request->gender;

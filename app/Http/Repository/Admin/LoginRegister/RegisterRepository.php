@@ -23,7 +23,7 @@ class RegisterRepository
 						// ->where('users.is_active','=',true)
 						->select('roles.role_name',
 								'users.email',
-								'users.f_name',
+								'users.full_name',
 								'users.m_name',
 								'users.l_name',
 								'users.number',
@@ -58,7 +58,7 @@ class RegisterRepository
 	// 	// $user_data->u_uname = $request['u_uname'];
 	// 	$user_data->password = bcrypt($request['password']);
 	// 	$user_data->role_id = $request['role_id'];
-	// 	$user_data->f_name = $request['f_name'];
+	// 	$user_data->full_name = $request['full_name'];
 	// 	$user_data->m_name = $request['m_name'];
 	// 	$user_data->l_name = $request['l_name'];
 	// 	$user_data->number = $request['number'];
@@ -84,7 +84,7 @@ class RegisterRepository
 		// $user_data->u_uname = $request['u_uname'];
 		$user_data->password = bcrypt($request['password']);
 		$user_data->role_id = $request['role_id'];
-		$user_data->f_name = $request['f_name'];
+		$user_data->full_name = $request['full_name'];
 		$user_data->m_name = $request['m_name'];
 		$user_data->l_name = $request['l_name'];
 		$user_data->number = $request['number'];
@@ -118,7 +118,7 @@ class RegisterRepository
 						->update([
 							// 'u_uname' => $request['u_uname'],
 							'role_id' => $request['role_id'],
-							'f_name' => $request['f_name'],
+							'full_name' => $request['full_name'],
 							'm_name' => $request['m_name'],
 							'l_name' => $request['l_name'],
 							'number' => $request['number'],
@@ -253,7 +253,7 @@ class RegisterRepository
 				// 'users.u_uname',
 				'users.password',
 				'users.email',
-				'users.f_name',
+				'users.full_name',
 				'users.m_name',
 				'users.l_name',
 				'users.number',
@@ -280,7 +280,7 @@ class RegisterRepository
 							// 'users.u_uname',
 							'users.password',
 							'users.email',
-							'users.f_name',
+							'users.full_name',
 							'users.m_name',
 							'users.l_name',
 							'users.number',
@@ -349,7 +349,7 @@ class RegisterRepository
 				->leftJoin('tbl_area as state_user', 'users.state', '=', 'state_user.location_id')
 				->leftJoin('tbl_area as city_user', 'users.city', '=', 'city_user.location_id')
 				->where('users.id', $id)
-				->select('users.f_name','users.m_name','users.l_name','users.email','users.number','users.designation','users.address','users.pincode','users.user_profile','roles.role_name','state_user.name as state','city_user.name as city')
+				->select('users.full_name','users.m_name','users.l_name','users.email','users.number','users.designation','users.address','users.pincode','users.user_profile','roles.role_name','state_user.name as state','city_user.name as city')
 				->first();
 	
 			if ($user) {
@@ -397,7 +397,7 @@ class RegisterRepository
 	{
 		$user_detail = User::where('is_active', true)
 			->where('id', session()->get('user_id'))
-			->select('id', 'f_name', 'm_name', 'l_name', 'email', 'password', 'number', 'designation','user_profile')
+			->select('id', 'full_name', 'm_name', 'l_name', 'email', 'password', 'number', 'designation','user_profile')
 			->first();
 		return $user_detail;
 	}
@@ -412,7 +412,7 @@ class RegisterRepository
 
 			
 			$update_data = [
-				'f_name' => $request->f_name,
+				'full_name' => $request->full_name,
 				'm_name' => $request->m_name,
 				'l_name' => $request->l_name,
 				'designation' => $request->designation,

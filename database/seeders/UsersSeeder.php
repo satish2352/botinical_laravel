@@ -21,7 +21,7 @@ class UsersSeeder extends Seeder
                 // 'u_uname' => 'admin@gmail.com',
                 // 'password' => bcrypt('admin@gmail.com'),
                 'role_id' => 1,
-                'f_name' => 'fname',
+                'full_name' => 'fname',
                 'm_name' => 'mname',
                 'l_name' => 'lname',
                 'gender' => 'female',
