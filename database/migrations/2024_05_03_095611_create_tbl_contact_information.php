@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('tbl_contact_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('english_name');
-            $table->string('marathi_name');
+            $table->string('hindi_name');
             $table->string('email');
             $table->text('english_address');
-            $table->text('marathi_address');
+            $table->text('hindi_address');
             $table->text('english_message');
-            $table->text('marathi_message');
+            $table->text('hindi_message');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

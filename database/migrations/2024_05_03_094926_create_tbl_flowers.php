@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('tbl_flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('english_name');
-            $table->string('marathi_name');
+            $table->string('hindi_name');
             $table->text('english_description');
-            $table->text('marathi_description');
+            $table->text('hindi_description');
             $table->string('image');
             $table->string('english_audio_link');
-            $table->string('marathi_audio_link');
+            $table->string('hindi_audio_link');
             $table->string('english_video_upload');
-            $table->string('marathi_video_upload');
+            $table->string('hindi_video_upload');
             $table->string('latitude');
             $table->string('longitude');
             $table->string('is_deleted')->default(false);

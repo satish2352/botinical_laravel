@@ -39,9 +39,13 @@ Route::group([
         Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
+        Route::post('/get-amenities-category', [AmenitiesController::class, 'getAmenitiesCategory']);
         Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
+        Route::post('/get-tress-list', [TressController::class, 'getTressList']);
+        Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
+        
 
-
+        
         
         
         });

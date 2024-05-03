@@ -9,8 +9,7 @@ use App\Models\ {
     AboutUs,
     Amenities,
     Charges
-}
-;
+};
 
 class AboutUsListController extends Controller {
     public function getAllAboutUsList( Request $request ) {

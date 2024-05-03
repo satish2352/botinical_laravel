@@ -18,10 +18,22 @@ class Authenticate extends Middleware
     //         return route('login');
     //     }
     // }
-     protected function redirectTo($request)
-    {
-        return $request->expectsJson() ? null :  response()->json([
-            'data' => 'Wrong token provided'
-        ], 404);
+    //  protected function redirectTo($request)
+    // {
+    //     return $request->expectsJson() ? null :  response()->json([
+    //         'data' => 'Wrong token provided'
+    //     ], 404);
+    // }
+
+    protected function redirectTo($request)
+{
+    if ($request->expectsJson()) {
+        return response()->json([
+            'error' => 'Unauthenticated.'
+        ], 401);
+    } else {
+        return route('login');
     }
+}
+
 }

@@ -22,8 +22,6 @@ class UsersSeeder extends Seeder
                 // 'password' => bcrypt('admin@gmail.com'),
                 'role_id' => 1,
                 'full_name' => 'fname',
-                'm_name' => 'mname',
-                'l_name' => 'lname',
                 'gender' => 'female',
                 'date_of_birth' => '04/02/2022',
                 'address' => 'nashik',

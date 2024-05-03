@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('tbl_charges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('english_name');
-            $table->string('marathi_name');
+            $table->string('hindi_name');
             $table->string('english_price');
-            $table->string('marathi_price');
+            $table->string('hindi_price');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

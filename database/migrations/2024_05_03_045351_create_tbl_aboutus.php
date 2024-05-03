@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('tbl_aboutus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('english_name');
-            $table->string('marathi_name');
+            $table->string('hindi_name');
             $table->text('english_description');
-            $table->text('marathi_description');
+            $table->text('hindi_description');
             $table->string('image');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
