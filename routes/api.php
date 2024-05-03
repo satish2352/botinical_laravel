@@ -29,8 +29,15 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 
+    Route::middleware('auth:api')->group(function () {
+        Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
+        
+        
+        });
+
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+     // return $request->user();
+// });
