@@ -17,19 +17,21 @@ class ZoneAreaController extends Controller
         try {
             $language = $request->input('language', 'english');
     
-            
-            $data_output = ZonesArea::where('is_active', true);
+            $zone_id = $request->input('zone_id');
+
+            $basic_query_object = ZonesArea::where('is_active', true)
+                             ->where('id', $zone_id);
     
             if ($language == 'hindi') {
-                $data_output = $data_output->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
+                $data_output = $basic_query_object->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
             } else {
-                $data_output = $data_output->select('english_name', 'english_description', 'english_audio_link', 'english_video_upload', 'image', 'latitude', 'longitude');
+                $data_output = $basic_query_object->select('english_name', 'english_description', 'english_audio_link', 'english_video_upload', 'image', 'latitude', 'longitude');
             }
     
             $data_output = $data_output->get();
     
-            foreach ($data_output as &$galleryimage) {
-                $galleryimage['image'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $galleryimage['image'];
+            foreach ($data_output as &$zoneimage) {
+                $zoneimage['image'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image'];
             }
     
             return response()->json(['status' => true, 'message' => 'All data retrieved successfully', 'data' => $data_output], 200);

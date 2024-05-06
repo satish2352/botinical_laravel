@@ -19,6 +19,9 @@ return [
     'FLOWERS_DELETE'	         => '/all_web_data/images/flowers/',
     'FLOWERS_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/flowers/',
 
+    'TRESS_ADD'	         => "/all_web_data/images/tress/",
+    'TRESS_DELETE'	         => '/all_web_data/images/tress/',
+    'TRESS_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/tress/',
 
     'GALLERY_ADD'	         => "/all_web_data/images/gallery/",
     'GALLERY_DELETE'	         => '/all_web_data/images/gallery/',

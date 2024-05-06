@@ -15,16 +15,38 @@ class TressController extends Controller
     public function getTressList(Request $request) {
         try {
             $language = $request->input('language', 'english'); 
-            
-            $data_output = Tress::where('is_active','=',true);
-            if ($language == 'hindi') {
-                $data_output =  $data_output->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
-            } else {
-                $data_output = $data_output->select('english_name', 'english_description', 'english_audio_link', 'english_video_upload', 'image', 'latitude', 'longitude');
-            }
-            $data_output =  $data_output->get()
-                            ->toArray();
+
+            $tress_id = $request->input( 'tress_id' );
+
+            $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
+            $rowperpage = DEFAULT_LENGTH;
+            $start = ( $page - 1 ) * $rowperpage;
+
+            $basic_query_object = Tress::where('is_active','=',true)
+                                        ->where('id', $tress_id);
+
+             $totalRecords = $basic_query_object->select( 'tbl_trees.id' )->get()->count();                
                             
+            if ($language == 'hindi') {
+                $data_output =  $basic_query_object->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
+            } else {
+                $data_output = $basic_query_object->select('english_name', 'english_description', 'english_audio_link', 'english_video_upload', 'image', 'latitude', 'longitude');
+            }
+
+            $data_output =  $basic_query_object->skip($start)
+            ->take($rowperpage)->get()
+            ->toArray();
+            dd( $data_output);
+            foreach ( $data_output as &$tressimage ) {
+                $tressimage[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image' ];
+            }
+                
+            if ( sizeof( $data_output ) > 0 ) {
+                $totalPages = ceil( $totalRecords/$rowperpage );
+            } else {
+                $totalPages = 0;
+            }
+
             return response()->json([
                 'status' => 'true',
                 'message' => 'All data retrieved successfully',
