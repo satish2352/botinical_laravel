@@ -26,7 +26,7 @@ class AuthController extends Controller
 
 public function __construct()
 {
-    $this->middleware('auth:api', ['except' => ['login']]);
+    $this->middleware('auth:api', ['except' => ['login', 'verifyOTP']]);
 }
 
 
@@ -47,8 +47,7 @@ public function __construct()
     //     return $this->respondWithToken( $token );
     // }
 
-    public function login( Request $request )
- {
+    public function login( Request $request ){
         try {
             $all_data_validation = [
                 'mobile_number' => [ 'required', 'digits:10', 'regex:/^[6789]\d{9}$/' ],
@@ -108,7 +107,6 @@ public function __construct()
 
         public function verifyOTP( Request $request ){
             try {
-                
                 // Validate the request data
                 $request->validate( [
                     'mobile_number' => 'required|string',
