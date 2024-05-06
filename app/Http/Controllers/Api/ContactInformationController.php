@@ -17,7 +17,6 @@ class ContactInformationController extends Controller
 
             $contact_info_id = $request->input( 'contact_info_id' );
         
-
             $basic_query_object = ContactInformation::where( 'is_active', '=', true )
                                                       ->where('id', $contact_info_id);
 

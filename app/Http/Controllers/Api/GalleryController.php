@@ -19,11 +19,11 @@ class GalleryController extends Controller
             $rowperpage = DEFAULT_LENGTH;
             $start = ( $page - 1 ) * $rowperpage;
 
-            $basic_query_object = Gallery::where( 'is_active', '=', true );
+            $basic_query_object = Gallery::where('is_active', '=', true);
 
-            $totalRecords = $basic_query_object->select( 'tbl_gallery.id' )->get()->count();
+            $totalRecords = $basic_query_object->select('tbl_gallery.id')->get()->count();
 
-            $data_output =   $basic_query_object->select( 'image' );
+            $data_output =   $basic_query_object->select('image');
 
             $data_output =  $data_output->skip($start)
             ->take( $rowperpage )->get()

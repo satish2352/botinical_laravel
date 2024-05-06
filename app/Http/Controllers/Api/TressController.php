@@ -21,10 +21,11 @@ class TressController extends Controller
             $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
             $rowperpage = DEFAULT_LENGTH;
             $start = ( $page - 1 ) * $rowperpage;
-
-            $basic_query_object = Tress::where('is_active','=',true)
-                                        ->where('id', $tress_id);
-
+                                        
+            $basic_query_object = Tress::where('is_active', true)
+            ->when($tress_id, function ($query) use ($tress_id) {
+                $query->where('id', $tress_id);
+            });
              $totalRecords = $basic_query_object->select( 'tbl_trees.id' )->get()->count();                
                             
             if ($language == 'hindi') {

@@ -21,8 +21,10 @@ class FlowersController extends Controller {
             $rowperpage = DEFAULT_LENGTH;
             $start = ( $page - 1 ) * $rowperpage;
 
-            $basic_query_object = Flowers::where( 'is_active', '=', true )
-                                        ->where('id', $flowers_id);
+            $basic_query_object = Flowers::where('is_active', true)
+            ->when($flowers_id, function ($query) use ($flowers_id) {
+                $query->where('id', $flowers_id);
+            });
 
             $totalRecords = $basic_query_object->select('tbl_flowers.id')->get()->count();
 

@@ -20,7 +20,9 @@ class ZoneAreaController extends Controller
             $zone_id = $request->input('zone_id');
 
             $basic_query_object = ZonesArea::where('is_active', true)
-                             ->where('id', $zone_id);
+            ->when($zone_id, function ($query) use ($zone_id) {
+                $query->where('id', $zone_id);
+            });                 
     
             if ($language == 'hindi') {
                 $data_output = $basic_query_object->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
