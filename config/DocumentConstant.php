@@ -20,7 +20,14 @@ return [
     'FLOWERS_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/flowers/',
 
 
+    'GALLERY_ADD'	         => "/all_web_data/images/gallery/",
+    'GALLERY_DELETE'	         => '/all_web_data/images/gallery/',
+    'GALLERY_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/gallery/',
 
+
+    'ZONESAREA_ADD'	         => "/all_web_data/images/zonesarea/",
+    'ZONESAREA_DELETE'	         => '/all_web_data/images/zonesarea/',
+    'ZONESAREA_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/zonesarea/',
     // 'DB_BACKUP'	 => "/all_web_data/DBBackup//",
 
     

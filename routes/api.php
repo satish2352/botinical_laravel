@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\ContactInformationController;
 use App\Http\Controllers\Api\FlowersController;
 use App\Http\Controllers\Api\GalleryController;
 use App\Http\Controllers\Api\TressController;
+use App\Http\Controllers\Api\FacilitiesController;
+use App\Http\Controllers\Api\ZoneAreaController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,6 +46,13 @@ Route::group([
         Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
         Route::post('/get-tress-list', [TressController::class, 'getTressList']);
         Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
+        Route::post('/get-gallery', [GalleryController::class, 'getGallery']);
+
+        Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
+        Route::post('/get-zone-area', [ZoneAreaController::class, 'getZoneArea']);
+        
+        
+
         
 
         

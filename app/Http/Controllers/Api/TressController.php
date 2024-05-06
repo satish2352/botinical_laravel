@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use App\Models\ {
@@ -26,6 +27,9 @@ class TressController extends Controller
             return response()->json([
                 'status' => 'true',
                 'message' => 'All data retrieved successfully',
+                'totalRecords' => $totalRecords,
+                'totalPages'=>$totalPages, 
+                'page_no_to_hilight'=>$page,
                 'data' => $data_output
             ], 200);
         } catch (\Exception $e) {
