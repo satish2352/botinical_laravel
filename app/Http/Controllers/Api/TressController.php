@@ -15,6 +15,7 @@ class TressController extends Controller
     public function getTressList(Request $request) {
         try {
             $language = $request->input('language', 'english'); 
+            
             $data_output = Tress::where('is_active','=',true);
             if ($language == 'hindi') {
                 $data_output =  $data_output->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
