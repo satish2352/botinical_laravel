@@ -63,9 +63,9 @@ Route::group([
 
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
       
-
+        Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
         
-      
+        
 
         
         
