@@ -52,7 +52,7 @@ class ZoneAreaController extends Controller
         }
     }
 
-    public function getParticularTressAudio( Request $request ) {
+    public function getParticularZoneAreaAudio( Request $request ) {
         try {
             $language = $request->input( 'language', 'english' );
             
@@ -91,7 +91,7 @@ class ZoneAreaController extends Controller
         }
     }
 
-    public function getParticularTressVideo( Request $request ) {
+    public function getParticularZoneAreaVideo( Request $request ) {
         try {
             $language = $request->input( 'language', 'english' );
             
