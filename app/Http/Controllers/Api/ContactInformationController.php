@@ -21,16 +21,16 @@ class ContactInformationController extends Controller
                                                       ->where('id', $contact_info_id);
 
                         if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select( 'hindi_name', 'hindi_price' );
+                $data_output =   $basic_query_object->select( 'hindi_name', 'email', 'hindi_address', 'english_message' );
             } else {
-                $data_output =  $basic_query_object->select( 'english_name', 'english_price' );
+                $data_output =  $basic_query_object->select( 'english_name', 'email', 'english_address', 'english_address' );
             }
 
             $data_output =  $data_output->get()->toArray();
 
             return response()->json( [ 'status' => 'true', 'message' => 'All data retrieved successfully','data' => $data_output ], 200 );
         } catch ( \Exception $e ) {
-            return response()->json( [ 'status' => 'false', 'message' => 'Charges List Fail', 'error' => $e->getMessage() ], 500 );
+            return response()->json( [ 'status' => 'false', 'message' => 'Contact Information Fail', 'error' => $e->getMessage() ], 500 );
         }
     }
 }

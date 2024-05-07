@@ -11,6 +11,7 @@ use App\Models\ {
 };
 
 class FlowersController extends Controller {
+
     public function getFlowersList( Request $request ) {
         try {
             $language = $request->input( 'language', 'english' );
@@ -38,8 +39,19 @@ class FlowersController extends Controller {
             ->take($rowperpage)->get()
             ->toArray();
 
-            foreach ( $data_output as &$amenity ) {
-                $amenity[ 'image' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $amenity[ 'image' ];
+            foreach ( $data_output as &$flowerdetail ) {
+                $flowerdetail[ 'image' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $flowerdetail[ 'image' ];
+                if ($language == 'hindi') {
+                    $flowerdetail['hindi_audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['hindi_audio_link'];
+                } else {
+                    $flowerdetail['english_audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['english_audio_link'];
+                }
+                if ($language == 'hindi') {
+                    $flowerdetail['hindi_video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['hindi_video_upload'];
+                } else {
+                    $flowerdetail['english_video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['english_video_upload'];
+                }
+
             }
 
             if ( sizeof( $data_output ) > 0 ) {
@@ -64,4 +76,81 @@ class FlowersController extends Controller {
             ], 500 );
         }
     }
+
+    public function getParticularFlowersAudio( Request $request ) {
+        try {
+            $language = $request->input( 'language', 'english' );
+            
+            $flowers_id = $request->input( 'flowers_id' );
+
+            $basic_query_object = Flowers::where('is_active', true)
+            ->where('id', $flowers_id);
+
+            if ( $language == 'hindi' ) {
+                $data_output =   $basic_query_object->select('id','hindi_audio_link');
+            } else {
+                $data_output =  $basic_query_object->select('id','english_audio_link');
+            }
+
+            $data_output =  $data_output->get()->toArray();
+
+            foreach ( $data_output as &$flowerdetail ) {
+                if ($language == 'hindi') {
+                    $flowerdetail['hindi_audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['hindi_audio_link'];
+                } else {
+                    $flowerdetail['english_audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['english_audio_link'];
+                }
+            }
+
+            return response()->json( [
+                'status' => 'true',
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200 );
+        } catch ( \Exception $e ) {
+            return response()->json( [
+                'status' => 'false',
+                'message' => 'Audio Getting Fail',
+                'error' => $e->getMessage()
+            ], 500 );
+        }
+    }
+    public function getParticularFlowersVideo( Request $request ) {
+        try {
+            $language = $request->input( 'language', 'english' );
+            
+            $flowers_id = $request->input( 'flowers_id' );
+
+            $basic_query_object = Flowers::where('is_active', true)
+            ->where('id', $flowers_id);
+
+            if ( $language == 'hindi' ) {
+                $data_output =   $basic_query_object->select('id','hindi_video_upload');
+            } else {
+                $data_output =  $basic_query_object->select('id','english_video_upload');
+            }
+
+            $data_output =  $data_output->get()->toArray();
+
+            foreach ( $data_output as &$flowerdetail ) {
+                if ($language == 'hindi') {
+                    $flowerdetail['hindi_video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['hindi_video_upload'];
+                } else {
+                    $flowerdetail['english_video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['english_video_upload'];
+                }
+            }
+
+            return response()->json( [
+                'status' => 'true',
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200 );
+        } catch ( \Exception $e ) {
+            return response()->json( [
+                'status' => 'false',
+                'message' => 'Video Getting Fail',
+                'error' => $e->getMessage()
+            ], 500 );
+        }
+    }   
 }

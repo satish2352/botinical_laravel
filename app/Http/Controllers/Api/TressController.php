@@ -37,9 +37,19 @@ class TressController extends Controller
             $data_output =  $basic_query_object->skip($start)
             ->take($rowperpage)->get()
             ->toArray();
-            dd( $data_output);
+           
             foreach ( $data_output as &$tressimage ) {
                 $tressimage[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image' ];
+                if ($language == 'hindi') {
+                    $tressimage['hindi_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['hindi_audio_link'];
+                } else {
+                    $tressimage['english_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['english_audio_link'];
+                }
+                if ($language == 'hindi') {
+                    $tressimage['hindi_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['hindi_video_upload'];
+                } else {
+                    $tressimage['english_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['english_video_upload'];
+                }
             }
                 
             if ( sizeof( $data_output ) > 0 ) {
@@ -64,4 +74,82 @@ class TressController extends Controller
             ], 500);
         }
     }
+
+    public function getParticularTressAudio( Request $request ) {
+        try {
+            $language = $request->input( 'language', 'english' );
+            
+            $tress_id = $request->input( 'tress_id' );
+
+            $basic_query_object = Tress::where('is_active', true)
+            ->where('id', $tress_id);
+
+            if ( $language == 'hindi' ) {
+                $data_output =   $basic_query_object->select('id','hindi_audio_link');
+            } else {
+                $data_output =  $basic_query_object->select('id','english_audio_link');
+            }
+
+            $data_output =  $data_output->get()->toArray();
+
+            foreach ( $data_output as &$flowerdetail ) {
+                if ($language == 'hindi') {
+                    $flowerdetail['hindi_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['hindi_audio_link'];
+                } else {
+                    $flowerdetail['english_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['english_audio_link'];
+                }
+            }
+
+            return response()->json( [
+                'status' => 'true',
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200 );
+        } catch ( \Exception $e ) {
+            return response()->json( [
+                'status' => 'false',
+                'message' => 'Audio Getting Fail',
+                'error' => $e->getMessage()
+            ], 500 );
+        }
+    }
+
+    public function getParticularTressVideo( Request $request ) {
+        try {
+            $language = $request->input( 'language', 'english' );
+            
+            $tress_id = $request->input( 'tress_id' );
+
+            $basic_query_object = Tress::where('is_active', true)
+            ->where('id', $tress_id);
+
+            if ( $language == 'hindi' ) {
+                $data_output =   $basic_query_object->select('id','hindi_video_upload');
+            } else {
+                $data_output =  $basic_query_object->select('id','english_video_upload');
+            }
+
+            $data_output =  $data_output->get()->toArray();
+
+            foreach ( $data_output as &$flowerdetail ) {
+                if ($language == 'hindi') {
+                    $flowerdetail['hindi_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['hindi_video_upload'];
+                } else {
+                    $flowerdetail['english_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['english_video_upload'];
+                }
+            }
+
+            return response()->json( [
+                'status' => 'true',
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200 );
+        } catch ( \Exception $e ) {
+            return response()->json( [
+                'status' => 'false',
+                'message' => 'Video Getting Fail',
+                'error' => $e->getMessage()
+            ], 500 );
+        }
+    } 
 }

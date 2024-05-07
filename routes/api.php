@@ -44,12 +44,29 @@ Route::group([
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
         Route::post('/get-amenities-category', [AmenitiesController::class, 'getAmenitiesCategory']);
         Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
+         // =========Tress===================
         Route::post('/get-tress-list', [TressController::class, 'getTressList']);
+        Route::post('/get-tress-audio', [TressController::class, 'getParticularTressAudio']);
+        Route::post('/get-tress-video', [TressController::class, 'getParticularTressVideo']);
+
+        // =========Flowers===================
         Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
+        Route::post('/get-flowers-audio', [FlowersController::class, 'getParticularFlowersAudio']);
+        Route::post('/get-flowers-video', [FlowersController::class, 'getParticularFlowersVideo']);
+
+        // =========ZoneArea===================
+        Route::post('/get-zone-area', [ZoneAreaController::class, 'getZoneArea']);
+        Route::post('/get-zone-area-audio', [ZoneAreaController::class, 'getParticularZoneAreaAudio']);
+        Route::post('/get-zone-area-video', [ZoneAreaController::class, 'getParticularZoneAreaVideo']);
+
         Route::post('/get-gallery', [GalleryController::class, 'getGallery']);
 
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
-        Route::post('/get-zone-area', [ZoneAreaController::class, 'getZoneArea']);
+      
+
+        
+      
+
         
         
 
