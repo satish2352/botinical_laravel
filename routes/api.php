@@ -62,6 +62,8 @@ Route::group([
         Route::post('/get-gallery', [GalleryController::class, 'getGallery']);
 
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
+          
+        Route::post('/add-contactus-form', [ContactInformationController::class, 'addContactUs']);
       
         Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
         

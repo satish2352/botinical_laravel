@@ -29,9 +29,21 @@ class TressController extends Controller
              $totalRecords = $basic_query_object->select( 'tbl_trees.id' )->get()->count();                
                             
             if ($language == 'hindi') {
-                $data_output =  $basic_query_object->select('hindi_name', 'hindi_description', 'hindi_audio_link', 'hindi_video_upload', 'image', 'latitude', 'longitude');
+                $data_output =  $basic_query_object->select('id', 'hindi_name as name',
+                'hindi_description as description',
+                'hindi_audio_link as audio_link',
+                'hindi_video_upload as video_upload',
+                'image',
+                'latitude',
+                'longitude');
             } else {
-                $data_output = $basic_query_object->select('english_name', 'english_description', 'english_audio_link', 'english_video_upload', 'image', 'latitude', 'longitude');
+                $data_output = $basic_query_object->select('id', 'english_name as name',
+                'english_description as description',
+                'english_audio_link as audio_link',
+                'english_video_upload as video_upload',
+                'image',
+                'latitude',
+                'longitude');
             }
 
             $data_output =  $basic_query_object->skip($start)
