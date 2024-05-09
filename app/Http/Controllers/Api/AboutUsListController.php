@@ -27,9 +27,9 @@ class AboutUsListController extends Controller {
             $totalRecords = $basic_query_object->select( 'tbl_aboutus.id' )->get()->count();
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select( 'hindi_name', 'hindi_description', 'image' );
+                $data_output =   $basic_query_object->select( 'hindi_name as name', 'hindi_description as description', 'image' );
             } else {
-                $data_output =  $basic_query_object->select( 'english_name', 'english_description', 'image' );
+                $data_output =  $basic_query_object->select( 'english_name as name', 'english_description as description', 'image' );
             }
 
             $data_output =  $data_output->skip( $start )
@@ -69,9 +69,9 @@ class AboutUsListController extends Controller {
             $totalRecords = $basic_query_object->select( 'tbl_charges.id' )->get()->count();
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select( 'hindi_name', 'hindi_price' );
+                $data_output =   $basic_query_object->select( 'hindi_name as name', 'hindi_price as price' );
             } else {
-                $data_output =  $basic_query_object->select( 'english_name', 'english_price' );
+                $data_output =  $basic_query_object->select( 'english_name as name', 'english_price as price' );
             }
 
             $data_output =  $data_output->skip( $start )

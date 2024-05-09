@@ -33,7 +33,7 @@ class TressController extends Controller
                 'hindi_description as description',
                 'hindi_audio_link as audio_link',
                 'hindi_video_upload as video_upload',
-                'image',
+                'hindi_image as image',
                 'latitude',
                 'longitude');
             } else {
@@ -41,7 +41,7 @@ class TressController extends Controller
                 'english_description as description',
                 'english_audio_link as audio_link',
                 'english_video_upload as video_upload',
-                'image',
+                'english_image as image',
                 'latitude',
                 'longitude');
             }
@@ -51,16 +51,20 @@ class TressController extends Controller
             ->toArray();
            
             foreach ( $data_output as &$tressimage ) {
-                $tressimage[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image' ];
                 if ($language == 'hindi') {
-                    $tressimage['hindi_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['hindi_audio_link'];
+                    $tressimage['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['image'];
                 } else {
-                    $tressimage['english_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['english_audio_link'];
+                    $tressimage['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['image'];
                 }
                 if ($language == 'hindi') {
-                    $tressimage['hindi_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['hindi_video_upload'];
+                    $tressimage['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['audio_link'];
                 } else {
-                    $tressimage['english_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['english_video_upload'];
+                    $tressimage['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['audio_link'];
+                }
+                if ($language == 'hindi') {
+                    $tressimage['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['video_upload'];
+                } else {
+                    $tressimage['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['video_upload'];
                 }
             }
                 
@@ -97,18 +101,18 @@ class TressController extends Controller
             ->where('id', $tress_id);
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select('id','hindi_audio_link');
+                $data_output =   $basic_query_object->select('id','hindi_audio_link as audio_link');
             } else {
-                $data_output =  $basic_query_object->select('id','english_audio_link');
+                $data_output =  $basic_query_object->select('id','english_audio_link as audio_link');
             }
 
             $data_output =  $data_output->get()->toArray();
 
             foreach ( $data_output as &$flowerdetail ) {
                 if ($language == 'hindi') {
-                    $flowerdetail['hindi_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['hindi_audio_link'];
+                    $flowerdetail['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['audio_link'];
                 } else {
-                    $flowerdetail['english_audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['english_audio_link'];
+                    $flowerdetail['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['audio_link'];
                 }
             }
 
@@ -136,18 +140,18 @@ class TressController extends Controller
             ->where('id', $tress_id);
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select('id','hindi_video_upload');
+                $data_output =   $basic_query_object->select('id','hindi_video_upload as video_upload');
             } else {
-                $data_output =  $basic_query_object->select('id','english_video_upload');
+                $data_output =  $basic_query_object->select('id','english_video_upload as video_upload');
             }
 
             $data_output =  $data_output->get()->toArray();
 
             foreach ( $data_output as &$flowerdetail ) {
                 if ($language == 'hindi') {
-                    $flowerdetail['hindi_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['hindi_video_upload'];
+                    $flowerdetail['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['video_upload'];
                 } else {
-                    $flowerdetail['english_video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['english_video_upload'];
+                    $flowerdetail['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $flowerdetail['video_upload'];
                 }
             }
 

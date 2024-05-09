@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Validator;
 use App\Models\ {
-    ContactInformation
+    ContactInformation,
+    ContactEnquiry
 }
 ;
 
@@ -17,18 +19,18 @@ class ContactInformationController extends Controller
     {
         try {
             $all_data_validation = [
-                'english_name' => 'required',
+                'full_name' => 'required',
                 'email' => 'required|email',
-                'english_address' => 'required',
-                'english_message' => 'required',
+                'address' => 'required',
+                'message' => 'required',
             ];
     
             $customMessages = [
-                'english_name.required' => 'Full name is required.',
+                'full_name.required' => 'Full name is required.',
                 'email.required' => 'Email is required.',
                 'email.email' => 'Invalid email format.',
-                'english_address.required' => 'Address is required.',
-                'english_message.required' => 'Message is required.',
+                'address.required' => 'Address is required.',
+                'message.required' => 'Message is required.',
             ];
     
             $validator = Validator::make($request->all(), $all_data_validation, $customMessages);
@@ -43,12 +45,11 @@ class ContactInformationController extends Controller
     
             $user = auth()->user();
     
-            $contact_info = new ContactInformation();
-            $contact_info->user_id = $user->id;
-            $contact_info->english_name = $request->english_name;
+            $contact_info = new ContactEnquiry();
+            $contact_info->full_name = $request->full_name;
             $contact_info->email = $request->email;
-            $contact_info->english_address = $request->english_address;
-            $contact_info->english_message = $request->english_message;
+            $contact_info->address = $request->address;
+            $contact_info->message = $request->message;
     
             $contact_info->save();
     
@@ -75,9 +76,9 @@ class ContactInformationController extends Controller
                 ->where( 'id', $contact_info_id );
 
                 if ( $language == 'hindi' ) {
-                    $data_output =   $basic_query_object->select( 'hindi_name', 'email', 'hindi_address', 'english_message' );
+                    $data_output =   $basic_query_object->select('hindi_address as address', 'email',  'hindi_director_number as director_number', 'hindi_officer_number as officer_number');
                 } else {
-                    $data_output =  $basic_query_object->select( 'english_name', 'email', 'english_address', 'english_address' );
+                    $data_output =  $basic_query_object->select('english_address as address', 'email', 'english_director_number as director_number', 'english_officer_number as officer_number');
                 }
 
                 $data_output =  $data_output->get()->toArray();

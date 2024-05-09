@@ -54,6 +54,57 @@
 
                         </ul>
                     </li>
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Facilities Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Ticket Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Zone Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-tress', 'organizations-list-employees', 'list-departments', 'list-tress', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Trees Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Flowers Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Amenities Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">User Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Reporting and Analytics</span>
+                        </a>
+                    </li> 
+
+
+
                 </ul>
             </nav>
         </div>

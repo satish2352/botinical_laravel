@@ -42,8 +42,13 @@ Route::group([
         Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
+
+         // =========Amenities===================
+
         Route::post('/get-amenities-category', [AmenitiesController::class, 'getAmenitiesCategory']);
         Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
+        Route::post('/get-amenities-audio', [AmenitiesController::class, 'getParticularAmenitiesAudio']);
+        Route::post('/get-amenities-video', [AmenitiesController::class, 'getParticularAmenitiesVideo']);
          // =========Tress===================
         Route::post('/get-tress-list', [TressController::class, 'getTressList']);
         Route::post('/get-tress-audio', [TressController::class, 'getParticularTressAudio']);
@@ -67,16 +72,7 @@ Route::group([
       
         Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
         
-        
 
-        
-        
-
-        
-
-        
-        
-        
         });
 
 });

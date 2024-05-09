@@ -12,6 +12,7 @@
     </div>
 </div>
 
+
 <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/wow.min.js') }}"></script>
@@ -75,6 +76,91 @@ alert('kkkkkkkk');
         })
 
     });
+</script>
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('.english_description'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('.marathi_description'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script>
+    $(document).ready(() => {
+        $("#image").change(function() {
+            $('#english').css('display', 'none');
+            $("#english_imgPreview").show();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#english_imgPreview")
+                        .attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+
+<script>
+    // $('.delete-btn').click(function(e) {
+    $(document).on('click', '.delete-btn', function(e) {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $("#delete_id").val($(this).attr("data-id"));
+                $("#deleteform").submit();
+            }
+        })
+
+    });
+</script>
+
+<script>
+    $(document).on('click', '.show-btn', function(e) {
+    $("#show_id").val($(this).attr("data-id"));
+    $("#showform").submit();
+});
+
+</script>
+
+
+<script>
+    $('.edit-btn').click(function(e) {
+        $("#edit_id").val($(this).attr("data-id"));
+        $("#editform").submit();
+     })
+ </script>
+<script>
+  
+        $(document).on('click', '.edit-user-btn', function(e) {
+        $("#edit_user_id").val($(this).attr("data-id"));
+        $("#edituserform").submit();
+    })
+</script>
+
+<script>
+        $(document).on('click', '.active-btn', function(e) {
+        $("#active_id").val($(this).attr("data-id"));
+        $("#activeform").submit();
+    })
 </script>
 </body>
 

@@ -85,7 +85,15 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/taluka', ['as' => 'taluka', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@getTaluka']);
     Route::get('/village', ['as' => 'village', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@getVillage']);
 
-   
+    Route::any('/list-tress', ['as' => 'list-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@index']);
+    Route::any('/add-tress', ['as' => 'add-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@add']);
+    Route::any('/store-tress', ['as' => 'store-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@store']);
+    Route::any('/edit-tress/{edit_id}', ['as' => 'edit-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@edit']);
+    Route::any('/update-tress', ['as' => 'update-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@update']);
+    Route::post('/show-tress', ['as' => 'show-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@show']);
+    Route::any('/delete-tress/{id}', ['as' => 'delete-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@destroy']);
+    Route::post('/update-active-tress', ['as' => 'update-active-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@updateOne']);
+
 });
 
 
