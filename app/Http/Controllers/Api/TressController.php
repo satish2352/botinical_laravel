@@ -41,7 +41,7 @@ class TressController extends Controller
                 'english_description as description',
                 'english_audio_link as audio_link',
                 'english_video_upload as video_upload',
-                'english_image as image',
+                'image',
                 'latitude',
                 'longitude');
             }
@@ -51,11 +51,7 @@ class TressController extends Controller
             ->toArray();
            
             foreach ( $data_output as &$tressimage ) {
-                if ($language == 'hindi') {
-                    $tressimage['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['image'];
-                } else {
-                    $tressimage['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['image'];
-                }
+                $flowerdetail[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $flowerdetail[ 'image' ];
                 if ($language == 'hindi') {
                     $tressimage['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['audio_link'];
                 } else {
