@@ -95,9 +95,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password">Password</label>
-                                {{-- <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control"> --}}
-                                <input type="password" title="Please enter your password" placeholder="******" required value name="password" id="password" class="form-control" autocomplete="current-password">
-
+                                <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
                                 <span class="help-block small">Your strong password</span>
                             </div>
                             
