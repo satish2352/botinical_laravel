@@ -51,7 +51,7 @@ class TressController extends Controller
             ->toArray();
            
             foreach ( $data_output as &$tressimage ) {
-                $tressimage[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $flowerdetail[ 'image' ];
+                $tressimage[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image' ];
                 if ($language == 'hindi') {
                     $tressimage['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['audio_link'];
                 } else {
