@@ -43,13 +43,15 @@ Route::group(['middleware' => ['admin']], function () {
     // Route::get('/forms', ['as' => 'forms', 'uses' => 'App\Http\Controllers\Admin\Forms\FormsController@index']);
     Route::get('/admin-log-out', ['as' => 'log-out', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\LoginController@logout']);
 
-    Route::any('/list-departments', ['as' => 'list-departments', 'uses' => 'App\Http\Controllers\Admin\Departments\DepartmentController@index']);
-    Route::any('/add-departments', ['as' => 'add-departments', 'uses' => 'App\Http\Controllers\Admin\Departments\DepartmentController@add']);
-    Route::any('/store-departments', ['as' => 'store-departments', 'uses' => 'App\Http\Controllers\Admin\Departments\DepartmentController@store']);
-    Route::any('/edit-departments/{id}', ['as' => 'edit-departments', 'uses' => 'App\Http\Controllers\Admin\Departments\DepartmentController@edit']);
-    Route::any('/update-departments', ['as' => 'update-departments', 'uses' => 'App\Http\Controllers\Admin\Departments\DepartmentController@update']);
-    Route::any('/delete-departments/{id}', ['as' => 'delete-departments', 'uses' => 'App\Http\Controllers\Admin\Departments\DepartmentController@destroy']);
-   
+    Route::any('/list-amenities-category', ['as' => 'list-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@index']);
+    Route::any('/add-amenities-category', ['as' => 'add-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@add']);
+    Route::any('/store-amenities-category', ['as' => 'store-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@store']);
+    Route::any('/edit-amenities-category/{edit_id}', ['as' => 'edit-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@edit']);
+    Route::any('/update-amenities-category', ['as' => 'update-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@update']);
+    Route::post('/delete-amenities-category', ['as' => 'delete-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@destroy']);
+    Route::post('/update-one-amenities-category', ['as' => 'update-one-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@updateOneCategory']);
+
+
     Route::any('/list-roles', ['as' => 'list-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@index']);
     Route::any('/add-roles', ['as' => 'add-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@add']);
     Route::any('/store-roles', ['as' => 'store-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@store']);
@@ -91,9 +93,39 @@ Route::group(['middleware' => ['admin']], function () {
     Route::any('/edit-tress/{edit_id}', ['as' => 'edit-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@edit']);
     Route::any('/update-tress', ['as' => 'update-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@update']);
     Route::post('/show-tress', ['as' => 'show-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@show']);
-    Route::any('/delete-tress/{id}', ['as' => 'delete-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@destroy']);
+    Route::post('/delete-tress', ['as' => 'delete-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@destroy']);
     Route::post('/update-active-tress', ['as' => 'update-active-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@updateOne']);
 
+    Route::any('/list-flowers', ['as' => 'list-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@index']);
+    Route::any('/add-flowers', ['as' => 'add-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@add']);
+    Route::any('/store-flowers', ['as' => 'store-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@store']);
+    Route::any('/edit-flowers/{edit_id}', ['as' => 'edit-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@edit']);
+    Route::any('/update-flowers', ['as' => 'update-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@update']);
+    Route::post('/show-flowers', ['as' => 'show-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@show']);
+    Route::post('/delete-flowers', ['as' => 'delete-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@destroy']);
+    Route::post('/update-active-flowers', ['as' => 'update-active-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@updateOne']);
+
+
+    Route::any('/list-zone-area', ['as' => 'list-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@index']);
+    Route::any('/add-zone-area', ['as' => 'add-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@add']);
+    Route::any('/store-zone-area', ['as' => 'store-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@store']);
+    Route::any('/edit-zone-area/{edit_id}', ['as' => 'edit-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@edit']);
+    Route::any('/update-zone-area', ['as' => 'update-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@update']);
+    Route::post('/show-zone-area', ['as' => 'show-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@show']);
+    Route::post('/delete-zone-area', ['as' => 'delete-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@destroy']);
+    Route::post('/update-active-zone-area', ['as' => 'update-active-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@updateOne']);
+
+
+    Route::any('/list-amenities', ['as' => 'list-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@index']);
+    Route::any('/add-amenities', ['as' => 'add-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@add']);
+    Route::any('/store-amenities', ['as' => 'store-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@store']);
+    Route::any('/edit-amenities/{edit_id}', ['as' => 'edit-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@edit']);
+    Route::any('/update-amenities', ['as' => 'update-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@update']);
+    Route::post('/show-amenities', ['as' => 'show-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@show']);
+    Route::post('/delete-amenities', ['as' => 'delete-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@destroy']);
+    Route::post('/update-active-amenities', ['as' => 'update-active-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@updateOne']);
+
+    
 });
 
 

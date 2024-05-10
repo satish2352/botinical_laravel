@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('mobile_number')->unique();
             $table->string('email')->nullable();
-            // $table->string('password');
+            $table->string('password')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->string('full_name')->nullable();
             $table->string('gender')->nullable();

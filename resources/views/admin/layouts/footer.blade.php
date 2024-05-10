@@ -11,7 +11,8 @@
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 
 <script src="{{ asset('js/vendor/jquery-1.11.3.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -87,7 +88,7 @@ alert('kkkkkkkk');
 </script>
 <script>
     ClassicEditor
-        .create(document.querySelector('.marathi_description'))
+        .create(document.querySelector('.hindi_description'))
         .catch(error => {
             console.error(error);
         });
@@ -102,12 +103,71 @@ alert('kkkkkkkk');
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
-                    $("#english_imgPreview")
-                        .attr("src", event.target.result);
+                    $("#english_imgPreview").attr("src", event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         });
+
+        $("#english_audio_link").change(function() {
+            $('#englishaudio').css('display', 'none');
+            $("#english_audioPreview").show();
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    const audioSrc = event.target.result;
+                    $("#english_audioPreview").html(`<audio controls><source src="${audioSrc}" type="audio/mpeg"></audio>`);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $("#hindi_audio_link").change(function() {
+            $('#hindiaudio').css('display', 'none');
+            $("#hindi_audioPreview").show();
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    const audioSrc = event.target.result;
+                    $("#hindi_audioPreview").html(`<audio controls><source src="${audioSrc}" type="audio/mpeg"></audio>`);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $("#english_video_upload").change(function() {
+            $('#englishvideo').css('display', 'none');
+            $("#english_videoPreview").show();
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    const videoSrc = event.target.result;
+                    $("#english_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $("#hindi_video_upload").change(function() {
+            $('#hindivideo').css('display', 'none');
+            $("#hindi_videoPreview").show();
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    const videoSrc = event.target.result;
+                    $("#hindi_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+
+
+          
     });
 </script>
 

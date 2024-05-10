@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+        <div class="row paddingbottom">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="sparkline12-list">
                     <div class=" " style="display: flex; justify-content:space-between">
@@ -10,7 +10,7 @@
                         </h3>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="background-color: #fff;">
-                                <li class="breadcrumb-item"><a href="{{ route('list-tress') }}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('list-tress') }}">Tress</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"> Tress </li>
                             </ol>
                         </nav>
@@ -38,7 +38,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="hindi_name">नाव </label>&nbsp<span
+                                                        <label for="hindi_name">नाम </label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="hindi_name" id="hindi_name"
                                                             placeholder="नाव प्रविष्ट करा " name="hindi_name"
@@ -64,7 +64,7 @@
                                                         <label for="hindi_description"> वर्णन </label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <textarea class="form-control hindi_description" name="hindi_description" id="hindi_description"
-                                                            placeholder="वर्णन प्रविष्ट करा">{{ old('hindi_description') }}</textarea>
+                                                            placeholder="विवरण दर्ज करें">{{ old('hindi_description') }}</textarea>
                                                         @if ($errors->has('hindi_description'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_description', ':message'); ?></span>
                                                         @endif
@@ -177,8 +177,6 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script>
         jQuery.noConflict();
         jQuery(document).ready(function($) {
@@ -234,7 +232,7 @@
                         required: "Please Enter Name.",
                     },
                     hindi_name: {
-                        required: "कृपया शीर्षक प्रविष्ट करा.",
+                        required: "कृपया नाम दर्ज करें |",
                     },
                     english_description: {
                         required: "Please Enter Description.",
@@ -277,6 +275,14 @@
                     },
 
                 },
+            });
+
+             // Event listener for file inputs to remove validation messages
+             $('input[type="file"]').change(function() {
+                var input = $(this);
+                var fieldName = input.attr('name');
+                var errorLabel = $('label.error[for="' + fieldName + '"]');
+                errorLabel.remove();
             });
         });
     </script>

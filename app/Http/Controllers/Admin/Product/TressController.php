@@ -31,34 +31,56 @@ class TressController extends Controller
     }
 
     public function store(Request $request){
+
         $rules = [
-            // 'english_name' => 'required|max:255',
-            // 'marathi_name' => 'required|max:255',
-            // 'english_description' => 'required',
-            // 'marathi_description' => 'required',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg|max:'.Config::get("AllFileValidation.TRESS_IMAGE_MAX_SIZE").'|min:'.Config::get("AllFileValidation.TRESS_IMAGE_MIN_SIZE").'',
-            // 'latitude' =>'required',
-            // 'longitude' =>'required',
+            'english_name' => 'required|max:255',
+            'hindi_name' => 'required|max:255',
+            'english_description' => 'required',
+            'hindi_description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:' . Config::get("AllFileValidation.TRESS_IMAGE_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.TRESS_IMAGE_MIN_SIZE"),
+            'english_audio_link' => 'required|mimes:mp3|max:' . Config::get("AllFileValidation.AUDIO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.AUDIO_MIN_SIZE"),
+            'hindi_audio_link' => 'required|mimes:mp3|max:' . Config::get("AllFileValidation.AUDIO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.AUDIO_MIN_SIZE"),
+            'english_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.VIDEO_MIN_SIZE"),
+            'hindi_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.VIDEO_MIN_SIZE"),
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
         ];
-
-        $messages = [    
-            // 'english_name.required'=>'Please enter name.',
-            // // 'english_name.regex' => 'Please  enter text only.',
-            // 'english_name.max'   => 'Please  enter text length upto 255 character only.',
-            // 'marathi_name.required'=>'कृपया शीर्षक प्रविष्ट करा.',
-            // 'marathi_name.max'   => 'कृपया केवळ २५५ वर्णांपर्यंत मजकूराची लांबी प्रविष्ट करा.',     
-            // 'english_description.required' => 'Please enter description.',
-            // 'marathi_description.required' => 'कृपया वर्णन प्रविष्ट करा.',
-            // 'image.required' => 'The image is required.',
-            // 'image.image' => 'The image must be a valid image file.',
-            // 'image.mimes' => 'The image must be in JPEG, PNG, JPG format.',
-            // 'image.max' => 'The image size must not exceed '.Config::get("AllFileValidation.TRESS_IMAGE_MAX_SIZE").'KB .',
-            // 'image.min' => 'The image size must not be less than '.Config::get("AllFileValidation.TRESS_IMAGE_MIN_SIZE").'KB .',
-            // // 'image.dimensions' => 'The image dimensions must be between 1500x500 and 2000x1000 pixels.',
-            // 'latitude.required'=>'Please enter latitude.',
-            // 'longitude.regex'=>'Please enter valid latitude.',
+        
+        $messages = [
+            'english_name.required' => 'Please enter the name.',
+            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            'hindi_name.required' => 'कृपया नाम दर्ज करें |',
+            'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
+            'english_description.required' => 'Please enter the description.',
+            'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
+            'image.required' => 'The image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image.max' => 'The image size must not exceed ' . Config::get("AllFileValidation.TRESS_IMAGE_MAX_SIZE") . ' KB.',
+            'image.min' => 'The image size must be at least ' . Config::get("AllFileValidation.TRESS_IMAGE_MIN_SIZE") . ' KB.',
+            'english_audio_link.required' => 'Please upload the English audio file.',
+            'hindi_audio_link.required' => 'हिंदी ऑडियो फ़ाइल अपलोड करें।',
+            'english_audio_link.mimes' => 'The English audio must be in MP3 format.',
+            'hindi_audio_link.mimes' => 'हिंदी ऑडियो MP3 प्रारूप में होना चाहिए।',
+            'english_audio_link.max' => 'The English audio size must not exceed ' . Config::get("AllFileValidation.AUDIO_MAX_SIZE") . ' KB.',
+            'english_audio_link.min' => 'The English audio size must be at least ' . Config::get("AllFileValidation.AUDIO_MIN_SIZE") . ' KB.',
+            'hindi_audio_link.max' => 'हिंदी ऑडियो आकार ' . Config::get("AllFileValidation.AUDIO_MAX_SIZE") . ' KB से अधिक नहीं होना चाहिए।',
+            'hindi_audio_link.min' => 'हिंदी ऑडियो आकार कम से कम ' . Config::get("AllFileValidation.AUDIO_MIN_SIZE") . ' KB होना चाहिए।',
+            'english_video_upload.required' => 'Please upload the English video file.',
+            'hindi_video_upload.required' => 'हिंदी वीडियो फ़ाइल अपलोड करें।',
+            'english_video_upload.mimetypes' => 'The English video must be in MP4 format.',
+            'hindi_video_upload.mimetypes' => 'हिंदी वीडियो MP4 प्रारूप में होना चाहिए।',
+            'english_video_upload.max' => 'The English video size must not exceed ' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . ' KB.',
+            'english_video_upload.min' => 'The English video size must be at least ' . Config::get("AllFileValidation.VIDEO_MIN_SIZE") . ' KB.',
+            'hindi_video_upload.max' => 'हिंदी वीडियो आकार ' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . ' KB से अधिक नहीं होना चाहिए।',
+            'hindi_video_upload.min' => 'हिंदी वीडियो आकार कम से कम ' . Config::get("AllFileValidation.VIDEO_MIN_SIZE") . ' KB होना चाहिए।',
+            'latitude.required' => 'Please enter the latitude.',
+            'latitude.numeric' => 'Latitude must be a number.',
+            'latitude.between' => 'Latitude must be between -90 and 90.',
+            'longitude.required' => 'Please enter the longitude.',
+            'longitude.numeric' => 'Longitude must be a number.',
+            'longitude.between' => 'Longitude must be between -180 and 180.',
         ];
-
         try {
             $validation = Validator::make($request->all(), $rules, $messages);
             
@@ -103,41 +125,66 @@ class TressController extends Controller
     
     public function update(Request $request){
         $rules = [
-            // 'english_name' => 'required|max:255',
-            // 'marathi_name' => 'required|max:255',
-            // 'english_description' => 'required',
-            // 'marathi_description' => 'required',
-            // 'url' => ['required','regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
+            'english_name' => 'required|max:255',
+            'hindi_name' => 'required|max:255',
+            'english_description' => 'required',
+            'hindi_description' => 'required',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
         ];
 
         if($request->has('image')) {
             $rules['image'] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get("AllFileValidation.SLIDER_IMAGE_MAX_SIZE").'|min:'.Config::get("AllFileValidation.SLIDER_IMAGE_MIN_SIZE");
         }
-        // if($request->has('marathi_image')) {
-        //     $rules['marathi_image'] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get("AllFileValidation.SLIDER_IMAGE_MAX_SIZE").'|dimensions:min_width=1500,min_height=500,max_width=2000,max_height=1000|min:'.Config::get("AllFileValidation.SLIDER_IMAGE_MIN_SIZE");
-        // }
+        if($request->has('english_audio_link')) {
+            $rules['english_audio_link'] = 'required|mimes:mp3|max:'. Config::get("AllFileValidation.AUDIO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.AUDIO_MIN_SIZE");
+        }
+        if($request->has('hindi_audio_link')) {
+            $rules['hindi_audio_link'] = 'required|mimes:mp3|max:'. Config::get("AllFileValidation.AUDIO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.AUDIO_MIN_SIZE");
+        }
+        if($request->has('english_video_upload')) {
+            $rules['english_video_upload'] = 'required|mimetypes:video/mp4|max:' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.VIDEO_MIN_SIZE");
+        }
+        if($request->has('hindi_video_upload')) {
+            $rules['hindi_video_upload'] = 'required|mimetypes:video/mp4|max:' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.VIDEO_MIN_SIZE");
+        }
         $messages = [   
-            // 'english_name.required'=>'Please enter name.',
-            // // 'english_name.regex' => 'Please  enter text only.',
-            // 'english_name.max'   => 'Please  enter text length upto 255 character only.',
-            // 'marathi_name.required'=>'कृपया शीर्षक प्रविष्ट करा.',
-            // 'marathi_name.max'   => 'कृपया केवळ २५५ वर्णांपर्यंत मजकूराची लांबी प्रविष्ट करा.',     
-            // 'english_description.required' => 'Please enter description.',
-            // 'marathi_description.required' => 'कृपया वर्णन प्रविष्ट करा.',
-            // 'english_image.required' => 'The image is required.',
-            // 'english_image.image' => 'The image must be a valid image file.',
-            // 'english_image.mimes' => 'The image must be in JPEG, PNG, JPG format.',
-            // 'english_image.max' => 'The image size must not exceed '.Config::get("AllFileValidation.SLIDER_IMAGE_MAX_SIZE").'KB .',
-            // 'english_image.min' => 'The image size must not be less than '.Config::get("AllFileValidation.SLIDER_IMAGE_MIN_SIZE").'KB .',
-            // 'english_image.dimensions' => 'The image dimensions must be between 1500x500 and 2000x1000 pixels.',
-            // 'marathi_image.required' => 'कृपया छायाचित्र आवश्यक आहे.',
-            // 'marathi_image.image' => 'कृपया छायाचित्र फाइल कायदेशीर असणे आवश्यक आहे.',
-            // 'marathi_image.mimes' => 'कृपया छायाचित्र JPEG, PNG, JPG स्वरूपात असणे आवश्यक आहे.',
-            // 'marathi_image.max' => 'कृपया प्रतिमेचा आकार जास्त नसावा.'.Config::get("AllFileValidation.SLIDER_IMAGE_MAX_SIZE").'KB .',
-            // 'marathi_image.min' => 'कृपया प्रतिमेचा आकार पेक्षा कमी नसावा.'.Config::get("AllFileValidation.SLIDER_IMAGE_MIN_SIZE").'KB .',
-            // 'marathi_image.dimensions' => 'कृपया छायाचित्र 1500x500 आणि 2000x1000 पिक्सेल दरम्यान असणे आवश्यक आहे.',
-            // 'url.required'=>'Please enter url.',
-            // 'url.regex'=>'Please valid url.',
+            'english_name.required' => 'Please enter the name.',
+            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            'hindi_name.required' => 'कृपया नाम दर्ज करें |',
+            'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
+            'english_description.required' => 'Please enter the description.',
+            'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
+
+            'latitude.required' => 'Please enter the latitude.',
+            'latitude.numeric' => 'Latitude must be a number.',
+            'latitude.between' => 'Latitude must be between -90 and 90.',
+            'longitude.required' => 'Please enter the longitude.',
+            'longitude.numeric' => 'Longitude must be a number.',
+            'longitude.between' => 'Longitude must be between -180 and 180.',
+
+            'image.required' => 'The image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image.max' => 'The image size must not exceed ' . Config::get("AllFileValidation.TRESS_IMAGE_MAX_SIZE") . ' KB.',
+            'image.min' => 'The image size must be at least ' . Config::get("AllFileValidation.TRESS_IMAGE_MIN_SIZE") . ' KB.',
+            'english_audio_link.required' => 'Please upload the English audio file.',
+            'hindi_audio_link.required' => 'हिंदी ऑडियो फ़ाइल अपलोड करें।',
+            'english_audio_link.mimes' => 'The English audio must be in MP3 format.',
+            'hindi_audio_link.mimes' => 'हिंदी ऑडियो MP3 प्रारूप में होना चाहिए।',
+            'english_audio_link.max' => 'The English audio size must not exceed ' . Config::get("AllFileValidation.AUDIO_MAX_SIZE") . ' KB.',
+            'english_audio_link.min' => 'The English audio size must be at least ' . Config::get("AllFileValidation.AUDIO_MIN_SIZE") . ' KB.',
+            'hindi_audio_link.max' => 'हिंदी ऑडियो आकार ' . Config::get("AllFileValidation.AUDIO_MAX_SIZE") . ' KB से अधिक नहीं होना चाहिए।',
+            'hindi_audio_link.min' => 'हिंदी ऑडियो आकार कम से कम ' . Config::get("AllFileValidation.AUDIO_MIN_SIZE") . ' KB होना चाहिए।',
+            'english_video_upload.required' => 'Please upload the English video file.',
+            'hindi_video_upload.required' => 'हिंदी वीडियो फ़ाइल अपलोड करें।',
+            'english_video_upload.mimetypes' => 'The English video must be in MP4 format.',
+            'hindi_video_upload.mimetypes' => 'हिंदी वीडियो MP4 प्रारूप में होना चाहिए।',
+            'english_video_upload.max' => 'The English video size must not exceed ' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . ' KB.',
+            'english_video_upload.min' => 'The English video size must be at least ' . Config::get("AllFileValidation.VIDEO_MIN_SIZE") . ' KB.',
+            'hindi_video_upload.max' => 'हिंदी वीडियो आकार ' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . ' KB से अधिक नहीं होना चाहिए।',
+            'hindi_video_upload.min' => 'हिंदी वीडियो आकार कम से कम ' . Config::get("AllFileValidation.VIDEO_MIN_SIZE") . ' KB होना चाहिए।',
+        
         ];
 
         try {
@@ -152,7 +199,7 @@ class TressController extends Controller
                     $msg = $update_slide['msg'];
                     $status = $update_slide['status'];
                     if ($status == 'success') {
-                        return redirect('list-slide')->with(compact('msg', 'status'));
+                        return redirect('list-tress')->with(compact('msg', 'status'));
                     } else {
                         return redirect()->back()
                             ->withInput()
@@ -179,12 +226,12 @@ class TressController extends Controller
 
     public function destroy(Request $request){
         try {
-            $delete_slide = $this->service->deleteById($request->delete_id);
-            if ($delete_slide) {
-                $msg = $delete_slide['msg'];
-                $status = $delete_slide['status'];
+            $delete_data = $this->service->deleteById($request->delete_id);
+            if ($delete_data) {
+                $msg = $delete_data['msg'];
+                $status = $delete_data['status'];
                 if ($status == 'success') {
-                    return redirect('list-slide')->with(compact('msg', 'status'));
+                    return redirect('list-tress')->with(compact('msg', 'status'));
                 } else {
                     return redirect()->back()
                         ->withInput()

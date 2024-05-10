@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('hindi_name');
             $table->text('english_description');
             $table->text('hindi_description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('english_audio_link');
             $table->string('hindi_audio_link');
             $table->string('english_video_upload');

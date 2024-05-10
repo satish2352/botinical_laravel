@@ -286,6 +286,9 @@ textarea {
     display: flex;
     justify-content: center;
 }
+.red-text{
+    color: red !important;
+}
 .rowpadd{
     padding-top: 10px;
 }
@@ -347,3 +350,8 @@ textarea {
     .slider.round:before {
       border-radius: 50%;
     }
+    .paddingbottom{
+        padding-bottom: 90px;
+        padding-top: 27px;
+    }
+    

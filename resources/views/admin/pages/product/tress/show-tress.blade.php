@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="row ">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
-                                            <label>शीर्षक :</label>
+                                            <label>नाम :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <label>{{ strip_tags($tress->hindi_name) }}</label>
@@ -71,7 +71,6 @@
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <audio controls>
                                                 <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->english_audio_link }}" type="audio/mpeg">
-                                                Your browser does not support the audio element.
                                             </audio>
                                         </div>
                                     </div>
@@ -82,7 +81,6 @@
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <audio controls>
                                                 <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->hindi_audio_link }}" type="audio/mpeg">
-                                                Your browser does not support the audio element.
                                             </audio>
                                         </div>
                                     </div>
@@ -94,7 +92,6 @@
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <video width="300" height="150" controls>
                                                 <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->english_video_upload }}" type="video/mp4">
-                                                Your browser does not support the video element.
                                             </video>
                                         </div>
                                     </div>
@@ -105,7 +102,6 @@
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <video width="300" height="150" controls>
                                                 <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->hindi_video_upload }}" type="video/mp4">
-                                                Your browser does not support the video element.
                                             </video>
                                         </div>
                                     </div>

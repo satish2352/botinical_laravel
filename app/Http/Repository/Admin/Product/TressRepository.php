@@ -116,7 +116,7 @@ class TressRepository  {
             $data_output->english_description = $request['english_description'];
             $data_output->hindi_description = $request['hindi_description'];
             $data_output->latitude = $request['latitude'];
-            $slides->longitude = $request['longitude'];
+            $data_output->longitude = $request['longitude'];
             
             $data_output->save();
             $last_insert_id = $data_output->id;
@@ -169,17 +169,27 @@ class TressRepository  {
 
     public function deleteById($id){
             try {
-                $slider = Tress::find($id);
-                if ($slider) {
-                    if (file_exists_s3(Config::get('DocumentConstant.SLIDER_DELETE') . $slider->english_image)){
-                        removeImage(Config::get('DocumentConstant.SLIDER_DELETE') . $slider->english_image);
+                $tress = Tress::find($id);
+                if ($tress) {
+                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $tress->image)){
+                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $tress->image);
                     }
-                    if (file_exists_s3(Config::get('DocumentConstant.SLIDER_DELETE') . $slider->marathi_image)){
-                        removeImage(Config::get('DocumentConstant.SLIDER_DELETE') . $slider->marathi_image);
+                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $tress->english_audio_link)){
+                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $tress->english_audio_link);
                     }
-                    $slider->delete();
+                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $tress->hindi_audio_link)){
+                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $tress->hindi_audio_link);
+                    }
+                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $tress->english_video_upload)){
+                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $tress->english_video_upload);
+                    }
+                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $tress->hindi_video_upload)){
+                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $tress->hindi_video_upload);
+                    }
                     
-                    return $slider;
+                    $tress->delete();
+                    
+                    return $tress;
                 } else {
                     return null;
                 }

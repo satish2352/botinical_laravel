@@ -10,7 +10,7 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
 
                 <ul class="metismenu" id="menu1">
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Master</span>
@@ -20,14 +20,14 @@
                             <li class="nav-item {{ Request::is('list-roles') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-roles') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
-                                    <span class="mini-sub-pro">List Roles</span>
+                                    <span class="mini-sub-pro">Roles</span>
                                 </a>
                             </li>
 
-                            <li class="nav-item {{ Request::is('list-departments') ? 'active' : '' }}">
-                                <a title="Inbox" href="{{ route('list-departments') }}">
+                            <li class="nav-item {{ Request::is('list-amenities-category') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-amenities-category') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
-                                    <span class="mini-sub-pro">List Department</span>
+                                    <span class="mini-sub-pro">Amenities Category</span>
                                 </a>
                             </li>
 
@@ -54,49 +54,49 @@
 
                         </ul>
                     </li>
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Facilities Management</span>
-                        </a>
-                    </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Ticket Management</span>
-                        </a>
-                    </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-zone-area') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-zone-area') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Zone Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-tress', 'organizations-list-employees', 'list-departments', 'list-tress', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                    <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Trees Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-flowers') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-flowers') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Flowers Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-amenities') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Amenities Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                    <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Facilities Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Ticket Management</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">User Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees', 'list-departments', 'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                    <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Reporting and Analytics</span>
