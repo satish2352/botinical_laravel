@@ -135,7 +135,7 @@ class AmenitiesRepository  {
             $previousHindiVideo = $data_output->hindi_video_upload;
 
             // Update the fields from the request
-            $add_data->amenities_category_id = $request['amenities_category_id'];
+            $data_output->amenities_category_id = $request['amenities_category_id'];
             $data_output->english_name = $request['english_name'];
             $data_output->hindi_name = $request['hindi_name'];
             $data_output->english_description = $request['english_description'];

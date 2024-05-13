@@ -6,11 +6,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="sparkline12-list">
                 <div class=" " style="display: flex; justify-content:space-between">
-                    <h3 class="page-title">amenities
+                    <h3 class="page-title">Amenities
                     </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" style="background-color: #fff;">
-                            <li class="breadcrumb-item"><a href="{{ route('list-amenities') }}">amenities</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('list-amenities') }}">Amenities</a></li>
                             <li class="breadcrumb-item active" aria-current="page"> Amenities </li>
                         </ol>
                     </nav>
@@ -24,6 +24,57 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="amenities_category_id">Category</label>&nbsp<span
+                                                class="red-text">*</span>
+                                            <select class="form-control" id="amenities_category_id" name="amenities_category_id">
+                                                <option selected>Select</option>
+
+                                               
+                                                @foreach ($dataOutputCategory as $role)
+                                                <option value="{{ $role['id'] }}"
+                                                    @if ($role['id'] == $dataOutputCategory['amenities_category_id']) <?php echo 'selected'; ?> @endif>
+                                                    {{ $role['english_name'] }}</option>
+                                            @endforeach
+                                                {{-- @foreach ($dataOutputCategory as $data)
+                                                    @if (old('amenities_category_id') == $data['id'])
+                        
+
+                                                            <option value="{{ $data['id'] }}"
+                                                            @if ($data['id'] == $dataOutputCategory['amenities_category_id']) <?php echo 'selected'; ?> @endif>
+                                                            {{ $data['hindi_name'] }}
+                                                            ({{ $data['english_name'] }})</option>
+                                                    @else
+                                                        <option value="{{ $data['id'] }}">{{ $data['hindi_name'] }}
+                                                            ({{ $data['english_name'] }})
+                                                        </option>
+                                                    @endif
+                                                @endforeach --}}
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+ 
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="image"> Image</label>
+                                            <input type="file" name="image" class="form-control"
+                                                id="image" accept="image/*" placeholder="image">
+                                           
+                                        </div>
+                                        <img id="english"
+                                            src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->image }}"
+                                            class="img-fluid img-thumbnail" width="150">
+                                        <img id="english_imgPreview" src="#" alt="pic"
+                                            class="img-fluid img-thumbnail" width="150" style="display:none">
+                                            @if ($errors->has('image'))
+                                            <div class="red-text"><?php echo $errors->first('image', ':message'); ?>
+                                            </div>
+                                        @endif
+                                        </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="english_name">Name </label>&nbsp<span class="red-text">*</span>
@@ -160,12 +211,12 @@
                                            
                                         </div>
                                         <div id="englishvideo" >
-                                             <video width="300" height="150" controls>
+                                             <video id="english_videoPreview" width="300" height="150" controls>
                                                 <source src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->english_video_upload }}" type="video/mp4">
                                             </video>
                                         </div>
                                         <div id="english_videoPreview" style="display:none">
-                                             <video width="300" height="150" controls>
+                                             <video id="hindi_videoPreview" width="300" height="150" controls>
                                                 <source  src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->english_video_upload }}" type="video/mp4">
                                             </video>
                                         </div>  
@@ -200,23 +251,7 @@
                                           
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="image"> Image</label>
-                                            <input type="file" name="image" class="form-control"
-                                                id="image" accept="image/*" placeholder="image">
-                                           
-                                        </div>
-                                        <img id="english"
-                                            src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->image }}"
-                                            class="img-fluid img-thumbnail" width="150">
-                                        <img id="english_imgPreview" src="#" alt="pic"
-                                            class="img-fluid img-thumbnail" width="150" style="display:none">
-                                            @if ($errors->has('image'))
-                                            <div class="red-text"><?php echo $errors->first('image', ':message'); ?>
-                                            </div>
-                                        @endif
-                                        </div>
+                                  
                                     <div class="col-md-12 col-sm-12 text-center">
                                         <button type="submit" class="btn btn-sm btn-success" >
                                             Save &amp; Update

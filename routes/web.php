@@ -125,6 +125,16 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/delete-amenities', ['as' => 'delete-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@destroy']);
     Route::post('/update-active-amenities', ['as' => 'update-active-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@updateOne']);
 
+
+    Route::any('/list-ticket', ['as' => 'list-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@index']);
+    Route::any('/add-ticket', ['as' => 'add-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@add']);
+    Route::any('/store-ticket', ['as' => 'store-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@store']);
+    Route::any('/edit-ticket/{edit_id}', ['as' => 'edit-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@edit']);
+    Route::any('/update-ticket', ['as' => 'update-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@update']);
+    Route::post('/show-ticket', ['as' => 'show-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@show']);
+    Route::post('/delete-ticket', ['as' => 'delete-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@destroy']);
+    Route::post('/update-active-ticket', ['as' => 'update-active-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@updateOne']);
+
     
 });
 

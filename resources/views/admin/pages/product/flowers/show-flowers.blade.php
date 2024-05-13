@@ -90,7 +90,7 @@
                                             <label> Video :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <video width="300" height="150" controls>
+                                            <video id="english_videoPreview" width="300" height="150" controls>
                                                 <source src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}" type="video/mp4">
                                             </video>
                                         </div>

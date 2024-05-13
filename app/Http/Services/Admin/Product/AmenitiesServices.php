@@ -70,7 +70,7 @@ class AmenitiesServices
     public function updateAll($request){
         try {
             $return_data = $this->repo->updateAll($request);
-            
+           
             $path = Config::get('DocumentConstant.AMENITIES_ADD');
             if ($request->hasFile('image')) {
                 if ($return_data['image']) {

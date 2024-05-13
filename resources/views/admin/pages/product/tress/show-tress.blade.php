@@ -83,16 +83,17 @@
                                                 <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->hindi_audio_link }}" type="audio/mpeg">
                                             </audio>
                                         </div>
-                                    </div>
-                                    
+                                    </div>                                    
                                     <div class="row rowpadd">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
                                             <label> Video :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <video width="300" height="150" controls>
-                                                <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->english_video_upload }}" type="video/mp4">
-                                            </video>
+                                            <div id="english_videoPreview">
+                                                <video id="english_videoPreview" width="300" height="150" controls>
+                                                    <source src="" type="video/mp4">
+                                                </video>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row rowpadd">
@@ -100,9 +101,11 @@
                                             <label> वीडियो :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <video width="300" height="150" controls>
-                                                <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->hindi_video_upload }}" type="video/mp4">
-                                            </video>
+                                            <div id="hindi_videoPreview">
+                                                <video  id="hindi_videoPreview" width="300" height="150" controls>
+                                                    <source src="" type="video/mp4">
+                                                </video>
+                                            </div>
                                         </div>
                                     </div>
                                     

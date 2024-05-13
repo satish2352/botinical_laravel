@@ -137,34 +137,61 @@ alert('kkkkkkkk');
             }
         });
 
+        // $("#english_video_upload").change(function() {
+        //     $('#englishvideo').css('display', 'none');
+        //     $("#english_videoPreview").show();
+        //     const file = this.files[0];
+        //     if (file) {
+        //         let reader = new FileReader();
+        //         reader.onload = function(event) {
+        //             const videoSrc = event.target.result;
+        //             $("#english_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
+        //         };
+        //         reader.readAsDataURL(file);
+        //     }
+        // });
+
+        // $("#hindi_video_upload").change(function() {
+        //     $('#hindivideo').css('display', 'none');
+        //     $("#hindi_videoPreview").show();
+        //     const file = this.files[0];
+        //     if (file) {
+        //         let reader = new FileReader();
+        //         reader.onload = function(event) {
+        //             const videoSrc = event.target.result;
+        //             $("#hindi_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
+        //         };
+        //         reader.readAsDataURL(file);
+        //     }
+        // });
+
         $("#english_video_upload").change(function() {
-            $('#englishvideo').css('display', 'none');
-            $("#english_videoPreview").show();
-            const file = this.files[0];
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    const videoSrc = event.target.result;
-                    $("#english_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+    $('#englishvideo').css('display', 'none');
+    $("#english_videoPreview").show();
+    const file = this.files[0];
+    if (file) {
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            const videoSrc = event.target.result;
+            $("#english_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
-        $("#hindi_video_upload").change(function() {
-            $('#hindivideo').css('display', 'none');
-            $("#hindi_videoPreview").show();
-            const file = this.files[0];
-            if (file) {
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    const videoSrc = event.target.result;
-                    $("#hindi_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
+$("#hindi_video_upload").change(function() {
+    $('#hindivideo').css('display', 'none');
+    $("#hindi_videoPreview").show();
+    const file = this.files[0];
+    if (file) {
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            const videoSrc = event.target.result;
+            $("#hindi_videoPreview").html(`<video width="320" height="240" controls><source src="${videoSrc}" type="video/mp4"></video>`);
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
 
           

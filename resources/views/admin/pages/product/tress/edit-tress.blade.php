@@ -160,7 +160,7 @@
                                            
                                         </div>
                                         <div id="englishvideo" >
-                                             <video width="300" height="150" controls>
+                                             <video id="english_videoPreview" width="300" height="150" controls>
                                                 <source src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->english_video_upload }}" type="video/mp4">
                                             </video>
                                         </div>

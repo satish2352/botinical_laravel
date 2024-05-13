@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('rules_terms');
-            $table->string('ticket_cost');
+            $table->string('ticket_cost')->nullable();
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
