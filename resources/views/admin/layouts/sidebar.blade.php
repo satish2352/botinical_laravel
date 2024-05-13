@@ -90,6 +90,30 @@
                             <span class="mini-click-non">Ticket Management</span>
                         </a>
                     </li> 
+                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Gallery</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Charges</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Contact Detail</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Contact Enquiry</span>
+                        </a>
+                    </li> 
                     <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>

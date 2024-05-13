@@ -23,7 +23,7 @@ class GalleryController extends Controller
 
             $totalRecords = $basic_query_object->select('tbl_gallery.id')->get()->count();
 
-            $data_output =   $basic_query_object->select('image');
+            $data_output =   $basic_query_object->select('id', 'image');
 
             $data_output =  $data_output->skip($start)
             ->take( $rowperpage )->get()
