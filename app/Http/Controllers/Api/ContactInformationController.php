@@ -70,10 +70,10 @@ class ContactInformationController extends Controller
             try {
                 $language = $request->input( 'language', 'english' );
 
-                $contact_info_id = $request->input( 'contact_info_id' );
+                // $contact_info_id = $request->input( 'contact_info_id' );
 
-                $basic_query_object = ContactInformation::where( 'is_active', '=', true )
-                ->where( 'id', $contact_info_id );
+                $basic_query_object = ContactInformation::where( 'is_active', '=', true );
+                // ->where( 'id', $contact_info_id );
 
                 if ( $language == 'hindi' ) {
                     $data_output =   $basic_query_object->select('hindi_address as address', 'email',  'hindi_director_number as director_number', 'hindi_officer_number as officer_number');
