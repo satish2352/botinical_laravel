@@ -19,9 +19,9 @@ class AmenitiesController extends Controller
             $language = $request->input('language', 'english'); 
             $data_output = CategoryAmenities::where('is_active','=',true);
             if ($language == 'hindi') {
-                $data_output =  $data_output->select('id','hindi_name as name');
+                $data_output =  $data_output->select('id','hindi_name as name', 'icon');
             } else {
-                $data_output = $data_output->select('id','english_name as name');
+                $data_output = $data_output->select('id','english_name as name', 'icon');
             }
             $data_output =  $data_output->get()
                             ->toArray();
@@ -144,9 +144,9 @@ class AmenitiesController extends Controller
             ->where('id', $amenities_id);
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select('id','hindi_audio_link as audio_link', 'icon');
+                $data_output =   $basic_query_object->select('id','hindi_audio_link as audio_link');
             } else {
-                $data_output =  $basic_query_object->select('id','english_audio_link as audio_link', 'icon');
+                $data_output =  $basic_query_object->select('id','english_audio_link as audio_link');
             }
 
             $data_output =  $data_output->get()->toArray();
