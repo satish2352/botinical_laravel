@@ -31,6 +31,10 @@ return [
     'ZONESAREA_ADD'	         => "/all_web_data/images/zonesarea/",
     'ZONESAREA_DELETE'	         => '/all_web_data/images/zonesarea/',
     'ZONESAREA_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/zonesarea/',
+
+    'FACILITIES_ADD'	         => "/all_web_data/images/facilities/",
+    'FACILITIES_DELETE'	         => '/all_web_data/images/facilities/',
+    'FACILITIES_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/facilities/',
     // 'DB_BACKUP'	 => "/all_web_data/DBBackup//",
 
     
