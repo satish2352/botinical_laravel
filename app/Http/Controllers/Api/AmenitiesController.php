@@ -144,9 +144,9 @@ class AmenitiesController extends Controller
             ->where('id', $amenities_id);
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select('id','hindi_audio_link as audio_link');
+                $data_output =   $basic_query_object->select('id','hindi_audio_link as audio_link', 'icon');
             } else {
-                $data_output =  $basic_query_object->select('id','english_audio_link as audio_link');
+                $data_output =  $basic_query_object->select('id','english_audio_link as audio_link', 'icon');
             }
 
             $data_output =  $data_output->get()->toArray();
