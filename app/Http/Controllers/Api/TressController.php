@@ -33,7 +33,7 @@ class TressController extends Controller
                 'hindi_description as description',
                 'hindi_audio_link as audio_link',
                 'hindi_video_upload as video_upload',
-                'hindi_image as image',
+                'image',
                 'latitude',
                 'longitude');
             } else {
