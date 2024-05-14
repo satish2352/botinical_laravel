@@ -19,9 +19,9 @@ class AmenitiesController extends Controller
             $language = $request->input('language', 'english'); 
             $data_output = CategoryAmenities::where('is_active','=',true);
             if ($language == 'hindi') {
-                $data_output =  $data_output->select('hindi_name as name');
+                $data_output =  $data_output->select('id','hindi_name as name');
             } else {
-                $data_output = $data_output->select('english_name as name');
+                $data_output = $data_output->select('id','english_name as name');
             }
             $data_output =  $data_output->get()
                             ->toArray();
