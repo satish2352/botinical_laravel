@@ -135,7 +135,33 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/delete-ticket', ['as' => 'delete-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@destroy']);
     Route::post('/update-active-ticket', ['as' => 'update-active-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@updateOne']);
 
-    
+    Route::any('/list-charges', ['as' => 'list-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@index']);
+    Route::any('/add-charges', ['as' => 'add-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@add']);
+    Route::any('/store-charges', ['as' => 'store-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@store']);
+    Route::any('/edit-charges/{edit_id}', ['as' => 'edit-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@edit']);
+    Route::any('/update-charges', ['as' => 'update-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@update']);
+    Route::post('/show-charges', ['as' => 'show-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@show']);
+    Route::post('/delete-charges', ['as' => 'delete-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@destroy']);
+    Route::post('/update-active-charges', ['as' => 'update-active-charges', 'uses' => 'App\Http\Controllers\Admin\Charges\ChargesController@updateOne']);
+
+
+    Route::any('/list-gallery', ['as' => 'list-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@index']);
+    Route::any('/add-gallery', ['as' => 'add-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@add']);
+    Route::any('/store-gallery', ['as' => 'store-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@store']);
+    Route::any('/edit-gallery/{edit_id}', ['as' => 'edit-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@edit']);
+    Route::any('/update-gallery', ['as' => 'update-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@update']);
+    Route::post('/show-gallery', ['as' => 'show-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@show']);
+    Route::post('/delete-gallery', ['as' => 'delete-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@destroy']);
+    Route::post('/update-active-gallery', ['as' => 'update-active-gallery', 'uses' => 'App\Http\Controllers\Admin\Gallery\GalleryController@updateOne']);
+
+    Route::any('/list-aboutus', ['as' => 'list-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@index']);
+    Route::any('/add-aboutus', ['as' => 'add-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@add']);
+    Route::any('/store-aboutus', ['as' => 'store-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@store']);
+    Route::any('/edit-aboutus/{edit_id}', ['as' => 'edit-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@edit']);
+    Route::any('/update-aboutus', ['as' => 'update-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@update']);
+    Route::post('/show-aboutus', ['as' => 'show-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@show']);
+    Route::post('/delete-aboutus', ['as' => 'delete-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@destroy']);
+    Route::post('/update-active-aboutus', ['as' => 'update-active-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@updateOne']);
 });
 
 

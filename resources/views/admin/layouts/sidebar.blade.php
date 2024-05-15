@@ -54,6 +54,12 @@
 
                         </ul>
                     </li>
+                    <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">About Us</span>
+                        </a>
+                    </li> 
                     <li class="{{ Request::is('list-zone-area') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-zone-area') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
@@ -90,14 +96,14 @@
                             <span class="mini-click-non">Ticket Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-gallery') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-gallery') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Gallery</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-charges') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-charges') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Charges</span>
                         </a>

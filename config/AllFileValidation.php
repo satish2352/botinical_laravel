@@ -3,6 +3,9 @@
 namespace App\Constants;
 
 return [
+    'ABOUT_US_IMAGE_MAX_SIZE'=>'2048',
+    'ABOUT_US_IMAGE_MIN_SIZE'=>'10',
+
     'TRESS_IMAGE_MAX_SIZE'=>'2048',
     'TRESS_IMAGE_MIN_SIZE'=>'10',
 
@@ -21,5 +24,8 @@ return [
 
     'AMENITIES_IMAGE_MAX_SIZE'=>'2048',
     'AMENITIES_IMAGE_MIN_SIZE'=>'10',
+
+    'GALLERY_IMAGE_MAX_SIZE'=>'2048',
+    'GALLERY_IMAGE_MIN_SIZE'=>'10',
     
 ];

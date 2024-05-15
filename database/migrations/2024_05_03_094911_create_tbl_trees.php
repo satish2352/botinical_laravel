@@ -17,6 +17,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('english_name');
             $table->string('hindi_name');
+            $table->string('english_botnical_name');
+            $table->string('hindi_botnical_name');
+            $table->string('english_common_name');
+            $table->string('hindi_common_name');
             $table->text('english_description');
             $table->text('hindi_description');
             $table->string('image')->nullable();

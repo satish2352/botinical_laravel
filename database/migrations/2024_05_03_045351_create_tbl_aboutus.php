@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('hindi_name');
             $table->text('english_description');
             $table->text('hindi_description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

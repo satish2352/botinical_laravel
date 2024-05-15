@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tbl_gallery', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
