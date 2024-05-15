@@ -50,6 +50,55 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="english_botnical_name">Botnical Name</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="english_botnical_name"
+                                                            id="english_botnical_name" placeholder="Enter the Name"
+                                                            name="english_botnical_name" value="{{ old('english_botnical_name') }}">
+                                                        @if ($errors->has('english_botnical_name'))
+                                                            <span class="red-text"><?php echo $errors->first('english_botnical_name', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="hindi_botnical_name">वानस्पतिक नाम </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="hindi_botnical_name" id="hindi_botnical_name"
+                                                            placeholder="वानस्पतिक नाम दर्ज करें" name="hindi_botnical_name"
+                                                            value="{{ old('hindi_botnical_name') }}">
+                                                        @if ($errors->has('hindi_botnical_name'))
+                                                            <span class="red-text"><?php echo $errors->first('hindi_botnical_name', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="english_common_name">Common Name</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="english_common_name"
+                                                            id="english_common_name" placeholder="Enter the Name"
+                                                            name="english_common_name" value="{{ old('english_common_name') }}">
+                                                        @if ($errors->has('english_common_name'))
+                                                            <span class="red-text"><?php echo $errors->first('english_common_name', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="hindi_common_name">साधारण नाम </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="hindi_common_name" id="hindi_common_name"
+                                                            placeholder="साधारण नाम दर्ज करें" name="hindi_common_name"
+                                                            value="{{ old('hindi_common_name') }}">
+                                                        @if ($errors->has('hindi_common_name'))
+                                                            <span class="red-text"><?php echo $errors->first('hindi_common_name', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="english_description">Description</label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <textarea class="form-control english_description" name="english_description" id="english_description"

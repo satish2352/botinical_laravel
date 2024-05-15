@@ -72,7 +72,11 @@
                                                 <th>शीर्षक </th>
                                                 <th>Description </th>
                                                 <th>वर्णन </th>
-                                                <th>Image </th>
+                                                <th>Botnical Name </th>
+                                                <th>वानस्पतिक नाम </th>
+                                                <th>Common Name </th>
+                                                <th>साधारण नाम </th>
+                                                {{-- <th>Image </th> --}}
                                                 <th>Status </th>
                                                 <th> Action </th>
                                             </tr>
@@ -85,10 +89,14 @@
                                                     <td>{{ strip_tags($item->hindi_name) }}</td>
                                                     <td>{{ strip_tags($item->english_description) }}</td>
                                                     <td>{{ strip_tags($item->hindi_description) }}</td>
-                                                    <td> <img class="img-size"
+                                                    <td>{{ strip_tags($item->english_botnical_name) }}</td>
+                                                    <td>{{ strip_tags($item->hindi_botnical_name) }}</td>
+                                                    <td>{{ strip_tags($item->english_common_name) }}</td>
+                                                    <td>{{ strip_tags($item->hindi_common_name) }}</td>
+                                                    {{-- <td> <img class="img-size"
                                                             src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $item->image }}"
                                                             alt=" {{ strip_tags($item['english_name']) }} Image" style="width:100px; height:100px;" />
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
                                                         <label class="switch">
                                                             <input data-id="{{ $item->id }}" type="checkbox"

@@ -25,6 +25,10 @@ class TressRepository  {
             $add_data = new Tress();
             $add_data->english_name = $request['english_name'];
             $add_data->hindi_name = $request['hindi_name'];
+            $add_data->english_botnical_name = $request['english_botnical_name'];
+            $add_data->hindi_botnical_name = $request['hindi_botnical_name'];
+            $add_data->english_common_name = $request['english_common_name'];
+            $add_data->hindi_common_name = $request['hindi_common_name'];
             $add_data->english_description = $request['english_description'];
             $add_data->hindi_description = $request['hindi_description'];
             $add_data->latitude = $request['latitude'];
@@ -113,6 +117,10 @@ class TressRepository  {
             // Update the fields from the request
             $data_output->english_name = $request['english_name'];
             $data_output->hindi_name = $request['hindi_name'];
+            $data_output->english_botnical_name = $request['english_botnical_name'];
+            $data_output->hindi_botnical_name = $request['hindi_botnical_name'];
+            $data_output->english_common_name = $request['english_common_name'];
+            $data_output->hindi_common_name = $request['hindi_common_name'];
             $data_output->english_description = $request['english_description'];
             $data_output->hindi_description = $request['hindi_description'];
             $data_output->latitude = $request['latitude'];
