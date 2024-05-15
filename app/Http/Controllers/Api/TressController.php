@@ -35,7 +35,7 @@ class TressController extends Controller
                 'hindi_video_upload as video_upload',
                 'image',
                 'latitude',
-                'longitude', 'hindi_botnical_name','hindi_common_name');
+                'longitude', 'hindi_botnical_name as botnical_name','hindi_common_name as common_name');
             } else {
                 $data_output = $basic_query_object->select('id', 'english_name as name',
                 'english_description as description',
@@ -43,7 +43,7 @@ class TressController extends Controller
                 'english_video_upload as video_upload',
                 'image',
                 'latitude',
-                'longitude', 'english_botnical_name', 'english_common_name');
+                'longitude', 'english_botnical_name as botnical_name', 'english_common_name as common_name');
             }
 
             $data_output =  $basic_query_object->skip($start)

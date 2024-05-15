@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'mobile_number' => '9527090946',
                 // 'u_uname' => 'admin@gmail.com',
-                // 'password' => bcrypt('admin@gmail.com'),
+                'password' => bcrypt('admin@gmail.com'),
                 'role_id' => 1,
                 'full_name' => 'fname',
                 'gender' => 'female',
