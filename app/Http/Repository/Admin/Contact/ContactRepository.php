@@ -21,8 +21,6 @@ class ContactRepository  {
     public function deleteById($id){
         try {
             $data_output = ContactEnquiry::find($id);
-            dd($data_output);
-            die();
             $data_output->delete();
                 
             return $data_output;

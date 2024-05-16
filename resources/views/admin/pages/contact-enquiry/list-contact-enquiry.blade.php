@@ -115,5 +115,28 @@
         @csrf
         <input type="hidden" name="delete_id" id="delete_id" value="">
     </form>
-   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('.delete-btn').click(function(e) {
+    
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#delete_id").val($(this).attr("data-id"));
+                    $("#deleteform").submit();
+                }
+            })
+    
+        });
+    </script>
+    
 @endsection

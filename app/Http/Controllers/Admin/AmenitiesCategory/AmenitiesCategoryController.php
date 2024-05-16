@@ -137,11 +137,10 @@ class AmenitiesCategoryController extends Controller
                 return $e;
             }
         }
+
         public function destroy(Request $request){
             try {
                 $delete_data = $this->service->deleteById($request->delete_id);
-                dd($delete_data);
-                die();
                 if ($delete_data) {
                     $msg = $delete_data['msg'];
                     $status = $delete_data['status'];
@@ -156,5 +155,5 @@ class AmenitiesCategoryController extends Controller
             } catch (\Exception $e) {
                 return $e;
             }
-        }        
+        } 
 }

@@ -62,7 +62,6 @@ class AmenitiesCategoryServices
     {
         return $this->repo->updateOneCategory($id);
     }
-    
     public function deleteById($id)
     {
         try {

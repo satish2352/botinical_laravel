@@ -128,9 +128,6 @@ padding-left: 20px !important;
                                 </table>
                             </div>
 
-
-
-                          
                         </div>
                     </div>
                 </div>
@@ -147,4 +144,54 @@ padding-left: 20px !important;
         @csrf
         <input type="hidden" name="active_id" id="active_id" value="">
     </form>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('.delete-btn').click(function(e) {
+    
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $("#delete_id").val($(this).attr("data-id"));
+                    $("#deleteform").submit();
+                }
+            })
+    
+        });
+    </script>
+    
+    
+    <script>
+        
+        $('.show-btn').click(function(e) {
+            alert('hii');
+            $("#show_id").val($(this).attr("data-id"));
+            $("#showform").submit();
+        })
+    </script>
+    
+    <script>
+        $('.edit-user-btn').click(function(e) {
+            $("#edit_user_id").val($(this).attr("data-id"));
+            $("#edituserform").submit();
+        })
+    </script>
+    
+    <script>
+        $('.active-btn').click(function(e) {
+            $("#active_id").val($(this).attr("data-id"));
+            $("#activeform").submit();
+        })
+    </script>
 @endsection

@@ -117,26 +117,15 @@ public function updateOneCategory($request) {
     }
 }
 
-
-    public function deleteById($id)
-    {
-        try {
-            // $data_output = CategoryAmenities::destroy($id);
-            $data_output = CategoryAmenities::find($id);
-          dd($data_output);
-          die();
-            if ($data_output) {
-                return $data_output;
-            } else {
-                return null;
-            }
-        } catch (\Exception $e) {
-            return $e;
-            return [
-                'msg' => 'Failed to delete Main Menu.',
-                'status' => 'error'
-            ];
-        }
+public function deleteById($id){
+    try {
+        $data_output = CategoryAmenities::find($id);
+        $data_output->delete();
+            
+        return $data_output;
+    } catch (\Exception $e) {
+        return $e;
     }
-
+}
+   
 }

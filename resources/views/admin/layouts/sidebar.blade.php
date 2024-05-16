@@ -8,9 +8,14 @@
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
-
                 <ul class="metismenu" id="menu1">
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                    <li class="{{ Request::is('list-contact-information') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-contact-information') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Dashboard</span>
+                        </a>
+                    </li> 
+                    <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Master</span>
@@ -30,7 +35,12 @@
                                     <span class="mini-sub-pro">Amenities Category</span>
                                 </a>
                             </li>
-
+                            <li class="{{ Request::is('list-charges') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-charges') }}" aria-expanded="false">
+                                    <i class="fa big-icon fa-envelope icon-wrap"></i>
+                                    <span class="mini-click-non">Charges</span>
+                                </a>
+                            </li> 
                             {{-- <li class="nav-item {{ Request::is('list-district') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-district') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
@@ -68,22 +78,37 @@
                     </li> 
                     <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
-                            <i class="fa fa-tree icon-wrap"></i>
-                            <span class="mini-click-non">Trees Management</span>
-                        </a>
-                    </li> 
-                    <li class="{{ Request::is('list-flowers') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-flowers') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Flowers Management</span>
+                            <span class="mini-click-non">Product</span>
                         </a>
-                    </li> 
-                    <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-amenities') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Amenities Management</span>
-                        </a>
-                    </li> 
+                        <ul class="submenu-angle" aria-expanded="false">                          
+                           
+                            <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
+                                    <i class="fa fa-tree icon-wrap"></i>
+                                    <span class="mini-click-non">Trees Management</span>
+                                </a>
+                            </li> 
+                            <li class="{{ Request::is('list-flowers') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-flowers') }}" aria-expanded="false">
+                                    <i class="fa big-icon fa-envelope icon-wrap"></i>
+                                    <span class="mini-click-non">Flowers Management</span>
+                                </a>
+                            </li> 
+                            <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-amenities') }}" aria-expanded="false">
+                                    <i class="fa big-icon fa-envelope icon-wrap"></i>
+                                    <span class="mini-click-non">Amenities Management</span>
+                                </a>
+                            </li> 
+
+                        </ul>
+                    </li>
+
+
+
+
+                   
                     <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
@@ -102,16 +127,11 @@
                             <span class="mini-click-non">Gallery</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-charges') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-charges') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Charges</span>
-                        </a>
-                    </li> 
+                 
                     <li class="{{ Request::is('list-contact-information') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-contact-information') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Contact Detail</span>
+                            <span class="mini-click-non">Contact Details</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-contact-enquiry') ? 'active' : '' }}">
