@@ -68,6 +68,7 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Sr.No.</th>
+                                                <th>Category Name </th>
                                                 <th>Title </th>
                                                 <th>शीर्षक </th>
                                                 <th>Description </th>
@@ -81,6 +82,7 @@
                                             @foreach ($amenities as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ strip_tags($item->english_name) }}  ({{ strip_tags($item->hindi_name) }})</td>
                                                     <td>{{ strip_tags($item->amenities_english_name) }}</td>
                                                     <td>{{ strip_tags($item->amenities_hindi_name) }}</td>
                                                     <td>{{ strip_tags($item->english_description) }}</td>

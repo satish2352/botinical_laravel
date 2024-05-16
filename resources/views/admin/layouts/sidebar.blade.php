@@ -9,15 +9,15 @@
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
-                    <li class="{{ Request::is('list-contact-information') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-contact-information') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                    <li class="{{ Request::is('/dashboard') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('/dashboard') }}" aria-expanded="false">
+                            <i class="fa fa-home icon-wrap"></i>
                             <span class="mini-click-non">Dashboard</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-bars icon-wrap"></i>
                             <span class="mini-click-non">Master</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
@@ -66,7 +66,7 @@
                     </li>
                     <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-user icon-wrap"></i>
                             <span class="mini-click-non">About Us</span>
                         </a>
                     </li> 
