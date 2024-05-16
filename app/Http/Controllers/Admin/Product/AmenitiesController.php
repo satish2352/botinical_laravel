@@ -8,22 +8,15 @@ use App\Http\Services\Admin\Product\AmenitiesServices;
 use Validator;
 use Illuminate\Validation\Rule;
 use Config;
-
+use App\Models\ {
+    CategoryAmenities
+    };
 class AmenitiesController extends Controller
 {
 
     public function __construct(){
     $this->service = new AmenitiesServices();
     }
-
-    // public function index(){
-    //     try {
-    //         $amenities = $this->service->getAll();
-    //         return view('admin.pages.product.amenities.list-amenities', compact('amenities'));
-    //     } catch (\Exception $e) {
-    //         return $e;
-    //     }
-    // }
 
     public function index(){
         try {
@@ -37,7 +30,8 @@ class AmenitiesController extends Controller
     
 
     public function add(){
-        $dataOutputCategory = $this->service->getAll(); 
+        // $dataOutputCategory = $this->service->getAll(); 
+        $dataOutputCategory = CategoryAmenities::get();
         return view('admin.pages.product.amenities.add-amenities', compact('dataOutputCategory'));
     }
 
@@ -131,7 +125,7 @@ class AmenitiesController extends Controller
     public function edit(Request $request){
         $edit_data_id = base64_decode($request->edit_id);      
         $amenities = $this->service->getById($edit_data_id);
-        $dataOutputCategory = $this->service->getAll(); 
+        $dataOutputCategory = CategoryAmenities::where('is_active', true)->get();
         return view('admin.pages.product.amenities.edit-amenities', compact('amenities', 'dataOutputCategory'));
     }
     

@@ -12,14 +12,7 @@ use App\Models\ {
 use Config;
 
 class AmenitiesRepository  {
-	// public function getAll(){
-    //     try {
-    //         return Amenities::all();
-    //     } catch (\Exception $e) {
-    //         return $e;
-    //     }
-    // }
-
+	
     public function getAll()
     {
         try {
@@ -27,11 +20,13 @@ class AmenitiesRepository  {
             ->select(
                 'tbl_amenities.english_name as amenities_english_name', 
                 'tbl_amenities.hindi_name as amenities_hindi_name', 
+                'tbl_amenities.english_description', 
+                'tbl_amenities.hindi_description', 
+                'tbl_amenities.image', 
                 'tbl_amenities_category.english_name',
                 'tbl_amenities_category.hindi_name',
                 'tbl_amenities_category.id',
                 )
-            // ->where('tbl_amenities_category.active', true)
             ->get();          
              return $dataOutputCategory;
         } catch (\Exception $e) {

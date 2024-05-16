@@ -81,8 +81,8 @@
                                             @foreach ($amenities as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ strip_tags($item->english_name) }}</td>
-                                                    <td>{{ strip_tags($item->hindi_name) }}</td>
+                                                    <td>{{ strip_tags($item->amenities_english_name) }}</td>
+                                                    <td>{{ strip_tags($item->amenities_hindi_name) }}</td>
                                                     <td>{{ strip_tags($item->english_description) }}</td>
                                                     <td>{{ strip_tags($item->hindi_description) }}</td>
                                                     <td> <img class="img-size"

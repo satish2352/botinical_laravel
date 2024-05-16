@@ -26,17 +26,49 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
+                                          <label for="Service">Product:</label> &nbsp<span class="red-text">*</span>
+                                          <select class="form-control mb-2" name="amenities_category_id" id="amenities_category_id">
+                                            <option value="" default>Select Product</option>
+                                            @foreach ($dataOutputCategory as $service)
+                                            <option value="{{ $service->id }}" @if ($editData->amenities_category_id == $service->id) {{ 'selected' }}
+                                              @endif>
+                                              {{ $service->english_name }}
+                                            </option>
+                                            @endforeach
+                                          </select>
+                                          @if ($errors->has('amenities_category_id'))
+                                          <span class="red-text">
+                                            <?php echo $errors->first('amenities_category_id', ':message'); ?>
+                                          </span>
+                                          @endif
+                                        </div>
+                                      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
                                             <label for="amenities_category_id">Category</label>&nbsp<span
                                                 class="red-text">*</span>
                                             <select class="form-control" id="amenities_category_id" name="amenities_category_id">
                                                 <option selected>Select</option>
 
                                                
-                                                @foreach ($dataOutputCategory as $role)
+                                                {{-- @foreach ($dataOutputCategory as $role)
                                                 <option value="{{ $role['id'] }}"
                                                     @if ($role['id'] == $dataOutputCategory['amenities_category_id']) <?php echo 'selected'; ?> @endif>
                                                     {{ $role['english_name'] }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                                 {{-- @foreach ($dataOutputCategory as $data)
                                                     @if (old('amenities_category_id') == $data['id'])
                         
