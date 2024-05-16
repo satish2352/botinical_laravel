@@ -241,14 +241,14 @@
                                                         <div id="englishvideo">
                                                             <video width="300" height="150" controls>
                                                                 <source
-                                                                    src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}"
+                                                                    src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->english_video_upload }}"
                                                                     type="video/mp4">
                                                             </video>
                                                         </div>
                                                         <div id="english_videoPreview" style="display:none">
                                                             <video width="300" height="150" controls>
                                                                 <source
-                                                                    src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}"
+                                                                    src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->english_video_upload }}"
                                                                     type="video/mp4">
                                                             </video>
                                                         </div>

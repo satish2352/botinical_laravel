@@ -30,7 +30,7 @@
                                           <select class="form-control mb-2" name="amenities_category_id" id="amenities_category_id">
                                             <option value="" default>Select Product</option>
                                             @foreach ($dataOutputCategory as $service)
-                                            <option value="{{ $service->id }}" @if ($editData->amenities_category_id == $service->id) {{ 'selected' }}
+                                            <option value="{{ $service->id }}" @if ($amenities->amenities_category_id == $service->id) {{ 'selected' }}
                                               @endif>
                                               {{ $service->english_name }}
                                             </option>
@@ -43,53 +43,6 @@
                                           @endif
                                         </div>
                                       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="amenities_category_id">Category</label>&nbsp<span
-                                                class="red-text">*</span>
-                                            <select class="form-control" id="amenities_category_id" name="amenities_category_id">
-                                                <option selected>Select</option>
-
-                                               
-                                                {{-- @foreach ($dataOutputCategory as $role)
-                                                <option value="{{ $role['id'] }}"
-                                                    @if ($role['id'] == $dataOutputCategory['amenities_category_id']) <?php echo 'selected'; ?> @endif>
-                                                    {{ $role['english_name'] }}</option>
-                                            @endforeach --}}
-                                                {{-- @foreach ($dataOutputCategory as $data)
-                                                    @if (old('amenities_category_id') == $data['id'])
-                        
-
-                                                            <option value="{{ $data['id'] }}"
-                                                            @if ($data['id'] == $dataOutputCategory['amenities_category_id']) <?php echo 'selected'; ?> @endif>
-                                                            {{ $data['hindi_name'] }}
-                                                            ({{ $data['english_name'] }})</option>
-                                                    @else
-                                                        <option value="{{ $data['id'] }}">{{ $data['hindi_name'] }}
-                                                            ({{ $data['english_name'] }})
-                                                        </option>
-                                                    @endif
-                                                @endforeach --}}
-                                            </select>
-                                        </div>
-                                    </div>
-
-
- 
-
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="image"> Image</label>
@@ -234,28 +187,35 @@
                                         @endif
                                         </div>
                                     </div>
-                                    
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="english_video_upload">Video Upload </label>
-                                            <input type="file" name="english_video_upload" id="english_video_upload"accept="video/*"
-                                                class="form-control">
-                                           
+                                            <label for="english_video_upload">Video Uploa</label>&nbsp<span
+                                                class="red-text">*</span><br>
+                                            <input type="file" name="english_video_upload"
+                                                id="english_video_upload" accept="video/*"
+                                                value="{{ old('english_video_upload') }}"
+                                                class="form-control mb-2">
+
+                                            <div id="englishvideo">
+                                                <video width="300" height="150" controls>
+                                                    <source
+                                                        src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->english_video_upload }}"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                            <div id="english_videoPreview" style="display:none">
+                                                <video width="300" height="150" controls>
+                                                    <source
+                                                        src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->english_video_upload }}"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+
+                                            @if ($errors->has('english_video_upload'))
+                                                <span class="red-text"><?php echo $errors->first('english_video_upload', ':message'); ?></span>
+                                            @endif
+
                                         </div>
-                                        <div id="englishvideo" >
-                                             <video id="english_videoPreview" width="300" height="150" controls>
-                                                <source src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->english_video_upload }}" type="video/mp4">
-                                            </video>
-                                        </div>
-                                        <div id="english_videoPreview" style="display:none">
-                                             <video id="hindi_videoPreview" width="300" height="150" controls>
-                                                <source  src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->english_video_upload }}" type="video/mp4">
-                                            </video>
-                                        </div>  
-                                        @if ($errors->has('english_video_upload'))
-                                        <div class="red-text"><?php echo $errors->first('english_video_upload', ':message'); ?>
-                                        </div>
-                                        @endif                                    
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
