@@ -229,34 +229,35 @@
                                                         @endif
                                                     </div>
                                                 </div>
-
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_video_upload">Video Upload </label>
+                                                        <label for="english_video_upload">Video Uploa</label>&nbsp<span
+                                                            class="red-text">*</span><br>
                                                         <input type="file" name="english_video_upload"
-                                                            id="english_video_upload"accept="video/*"
-                                                            class="form-control">
+                                                            id="english_video_upload" accept="video/*"
+                                                            value="{{ old('english_video_upload') }}"
+                                                            class="form-control mb-2">
+
+                                                        <div id="englishvideo">
+                                                            <video width="300" height="150" controls>
+                                                                <source
+                                                                    src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}"
+                                                                    type="video/mp4">
+                                                            </video>
+                                                        </div>
+                                                        <div id="english_videoPreview" style="display:none">
+                                                            <video width="300" height="150" controls>
+                                                                <source
+                                                                    src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}"
+                                                                    type="video/mp4">
+                                                            </video>
+                                                        </div>
+
+                                                        @if ($errors->has('english_video_upload'))
+                                                            <span class="red-text"><?php echo $errors->first('english_video_upload', ':message'); ?></span>
+                                                        @endif
 
                                                     </div>
-                                                    <div id="englishvideo">
-                                                        <video id="english_videoPreview" width="300" height="150"
-                                                            controls>
-                                                            <source
-                                                                src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}"
-                                                                type="video/mp4">
-                                                        </video>
-                                                    </div>
-                                                    <div id="english_videoPreview" style="display:none">
-                                                        <video width="300" height="150" controls>
-                                                            <source
-                                                                src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->english_video_upload }}"
-                                                                type="video/mp4">
-                                                        </video>
-                                                    </div>
-                                                    @if ($errors->has('english_video_upload'))
-                                                        <div class="red-text"><?php echo $errors->first('english_video_upload', ':message'); ?>
-                                                        </div>
-                                                    @endif
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
