@@ -84,6 +84,7 @@ padding-left: 20px !important;
                                             <th data-field="id">Sr.No.</th>
                                             <th>Title </th>
                                             <th>शीर्षक </th>
+                                            <th>Icon Name </th>
                                             <th>Status </th>
                                             <th> Action </th>
                                         </tr>
@@ -94,7 +95,7 @@ padding-left: 20px !important;
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ strip_tags($item->english_name) }}</td>
                                                 <td>{{ strip_tags($item->hindi_name) }}</td>
-                                               
+                                                <td>{{ strip_tags($item->icon) }}</td>
                                                 <td>
                                                     <label class="switch">
                                                         <input data-id="{{ $item->id }}" type="checkbox"
