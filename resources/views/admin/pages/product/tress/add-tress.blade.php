@@ -236,6 +236,18 @@
                     hindi_name: {
                         required: true,
                     },
+                    english_botnical_name: {
+                        required: true
+                    },
+                    hindi_botnical_name: {
+                        required: true,
+                    },
+                    english_common_name: {
+                        required: true
+                    },
+                    hindi_common_name: {
+                        required: true,
+                    },
                     english_description: {
                         required: true
                     },
@@ -281,6 +293,18 @@
                     },
                     hindi_name: {
                         required: "कृपया नाम दर्ज करें |",
+                    },
+                    english_botnical_name: {
+                        required: "Please Enter Botnical Name.",
+                    },
+                    hindi_botnical_name: {
+                        required: "कृपया वानस्पतिक नाम दर्ज करें. |",
+                    },
+                    english_common_name: {
+                        required: "Please Enter Common Name.",
+                    },
+                    hindi_common_name: {
+                        required: "कृपया सामान्य नाम दर्ज करें. |",
                     },
                     english_description: {
                         required: "Please Enter Description.",

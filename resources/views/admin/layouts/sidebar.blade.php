@@ -31,7 +31,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item {{ Request::is('list-district') ? 'active' : '' }}">
+                            {{-- <li class="nav-item {{ Request::is('list-district') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-district') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
                                     <span class="mini-sub-pro">List District</span>
@@ -50,7 +50,7 @@
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
                                     <span class="mini-sub-pro">List Village</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                         </ul>
                     </li>
@@ -68,7 +68,7 @@
                     </li> 
                     <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-tree icon-wrap"></i>
                             <span class="mini-click-non">Trees Management</span>
                         </a>
                     </li> 
@@ -108,14 +108,14 @@
                             <span class="mini-click-non">Charges</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-contact-information') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-contact-information') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Contact Detail</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                    <li class="{{ Request::is('list-contact-enquiry') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-contact-enquiry') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Contact Enquiry</span>
                         </a>
@@ -175,68 +175,7 @@
                                 </div>
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                     <div class="header-right-info">
-                                        <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                            <li class="nav-item dropdown">
-                                                <a href="#" data-toggle="dropdown" role="button"
-                                                    aria-expanded="false" class="nav-link dropdown-toggle"><i
-                                                        class="fa fa-envelope-o adminpro-chat-pro"
-                                                        aria-hidden="true"></i><span class="indicator-ms"></span></a>
-                                                <div role="menu"
-                                                    class="author-message-top dropdown-menu animated zoomIn">
-                                                    <div class="message-single-top">
-                                                        <h1>Message</h1>
-                                                    </div>
-                                                    <ul class="message-menu">
-                                                        <li>
-                                                            <a href="#">
-                                                                <div class="message-img">
-                                                                    <img src="{{ asset('img/contact/1.jpg') }}"
-                                                                        alt="">
-                                                                </div>
-                                                                <div class="message-content">
-                                                                    <span class="message-date">16 Sept</span>
-                                                                    <h2>Advanda Cro</h2>
-                                                                    <p>Please done this project as soon possible.</p>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-
-                                                    </ul>
-                                                    <div class="message-view">
-                                                        <a href="#">View All Messages</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" data-toggle="dropdown"
-                                                    role="button" aria-expanded="false"
-                                                    class="nav-link dropdown-toggle"><i class="fa fa-bell-o"
-                                                        aria-hidden="true"></i><span class="indicator-nt"></span>
-                                                </a>
-                                                <div role="menu" class="notification-author dropdown-menu animated zoomIn">
-                                                    <div class="notification-single-top">
-                                                        <h1>Notifications</h1>
-                                                    </div>
-                                                    <ul class="notification-menu">
-                                                        <li>
-                                                            <a href="#">
-                                                                <div class="notification-icon">
-                                                                    <i class="fa fa-check adminpro-checked-pro admin-check-pro"
-                                                                        aria-hidden="true"></i>
-                                                                </div>
-                                                                <div class="notification-content">
-                                                                    <span class="notification-date">16 Sept</span>
-                                                                    <h2>Advanda Cro</h2>
-                                                                    <p>Please done this project as soon possible.</p>
-                                                                </div>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="notification-view">
-                                                        <a href="#">View All Notification</a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                        <ul class="nav navbar-nav mai-top-nav header-right-menu">                                          
                                             <li class="nav-item">
                                                 <a href="#" data-toggle="dropdown" role="button"
                                                     aria-expanded="false" class="nav-link dropdown-toggle">

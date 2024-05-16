@@ -54,7 +54,8 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="english_botnical_name"
                                                             id="english_botnical_name" placeholder="Enter the Name"
-                                                            name="english_botnical_name" value="{{ old('english_botnical_name') }}">
+                                                            name="english_botnical_name"
+                                                            value="{{ old('english_botnical_name') }}">
                                                         @if ($errors->has('english_botnical_name'))
                                                             <span class="red-text"><?php echo $errors->first('english_botnical_name', ':message'); ?></span>
                                                         @endif
@@ -64,8 +65,9 @@
                                                     <div class="form-group">
                                                         <label for="hindi_botnical_name">वानस्पतिक नाम </label>&nbsp<span
                                                             class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="hindi_botnical_name" id="hindi_botnical_name"
-                                                            placeholder="वानस्पतिक नाम दर्ज करें" name="hindi_botnical_name"
+                                                        <input class="form-control mb-2" name="hindi_botnical_name"
+                                                            id="hindi_botnical_name" placeholder="वानस्पतिक नाम दर्ज करें"
+                                                            name="hindi_botnical_name"
                                                             value="{{ old('hindi_botnical_name') }}">
                                                         @if ($errors->has('hindi_botnical_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_botnical_name', ':message'); ?></span>
@@ -78,7 +80,8 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="english_common_name"
                                                             id="english_common_name" placeholder="Enter the Name"
-                                                            name="english_common_name" value="{{ old('english_common_name') }}">
+                                                            name="english_common_name"
+                                                            value="{{ old('english_common_name') }}">
                                                         @if ($errors->has('english_common_name'))
                                                             <span class="red-text"><?php echo $errors->first('english_common_name', ':message'); ?></span>
                                                         @endif
@@ -88,9 +91,9 @@
                                                     <div class="form-group">
                                                         <label for="hindi_common_name">साधारण नाम </label>&nbsp<span
                                                             class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="hindi_common_name" id="hindi_common_name"
-                                                            placeholder="साधारण नाम दर्ज करें" name="hindi_common_name"
-                                                            value="{{ old('hindi_common_name') }}">
+                                                        <input class="form-control mb-2" name="hindi_common_name"
+                                                            id="hindi_common_name" placeholder="साधारण नाम दर्ज करें"
+                                                            name="hindi_common_name" value="{{ old('hindi_common_name') }}">
                                                         @if ($errors->has('hindi_common_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_common_name', ':message'); ?></span>
                                                         @endif
@@ -136,8 +139,9 @@
                                                     <div class="form-group">
                                                         <label for="hindi_audio_link">ऑडियो अपलोड </label>&nbsp<span
                                                             class="red-text">*</span><br>
-                                                        <input type="file" name="hindi_audio_link" id="hindi_audio_link"
-                                                            accept="audio/*" value="{{ old('hindi_audio_link') }}"
+                                                        <input type="file" name="hindi_audio_link"
+                                                            id="hindi_audio_link" accept="audio/*"
+                                                            value="{{ old('hindi_audio_link') }}"
                                                             class="form-control mb-2">
                                                         @if ($errors->has('hindi_audio_link'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_audio_link', ':message'); ?></span>
@@ -237,6 +241,18 @@
                     hindi_name: {
                         required: true,
                     },
+                    english_botnical_name: {
+                        required: true
+                    },
+                    hindi_botnical_name: {
+                        required: true,
+                    },
+                    english_common_name: {
+                        required: true
+                    },
+                    hindi_common_name: {
+                        required: true,
+                    },
                     english_description: {
                         required: true
                     },
@@ -283,6 +299,18 @@
                     hindi_name: {
                         required: "कृपया नाम दर्ज करें |",
                     },
+                    english_botnical_name: {
+                        required: "Please Enter Botnical Name.",
+                    },
+                    hindi_botnical_name: {
+                        required: "कृपया वानस्पतिक नाम दर्ज करें. |",
+                    },
+                    english_common_name: {
+                        required: "Please Enter Common Name.",
+                    },
+                    hindi_common_name: {
+                        required: "कृपया सामान्य नाम दर्ज करें. |",
+                    },
                     english_description: {
                         required: "Please Enter Description.",
                     },
@@ -311,7 +339,7 @@
                         extension: "केवल MP3 ऑडियो फ़ाइलें अनुमत हैं।",
                         fileSize: "फ़ाइल का आकार 10 KB और 1 MB के बीच होना चाहिए।",
                     },
-                   
+
                     english_video_upload: {
                         required: "Please upload a Video file MP4.",
                         extension: "Only MP4 video files are allowed.",
@@ -326,8 +354,8 @@
                 },
             });
 
-             // Event listener for file inputs to remove validation messages
-             $('input[type="file"]').change(function() {
+            // Event listener for file inputs to remove validation messages
+            $('input[type="file"]').change(function() {
                 var input = $(this);
                 var fieldName = input.attr('name');
                 var errorLabel = $('label.error[for="' + fieldName + '"]');

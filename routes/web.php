@@ -162,6 +162,15 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/show-aboutus', ['as' => 'show-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@show']);
     Route::post('/delete-aboutus', ['as' => 'delete-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@destroy']);
     Route::post('/update-active-aboutus', ['as' => 'update-active-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@updateOne']);
+
+    Route::any('/list-contact-enquiry', ['as' => 'list-contact-enquiry', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactEnquiryController@index']);
+    Route::post('/delete-contact-enquiry', ['as' => 'delete-contact-enquiry', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactEnquiryController@destroy']);
+
+    Route::any('/list-contact-information', ['as' => 'list-contact-information', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactInformationController@index']);
+    Route::any('/edit-contact-information/{edit_id}', ['as' => 'edit-contact-information', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactInformationController@edit']);
+    Route::any('/update-contact-information', ['as' => 'update-contact-information', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactInformationController@update']);
+
+
 });
 
 
