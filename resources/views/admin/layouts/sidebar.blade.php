@@ -22,12 +22,12 @@
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
                            
-                            <li class="nav-item {{ Request::is('list-roles') ? 'active' : '' }}">
+                            {{-- <li class="nav-item {{ Request::is('list-roles') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-roles') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
                                     <span class="mini-sub-pro">Roles</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item {{ Request::is('list-amenities-category') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-amenities-category') }}">
@@ -206,6 +206,12 @@
                                                 </a>
                                                 <ul role="menu"
                                                     class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+
+
+                                                   <li> <a class="" href="{{ url('change-password') }}">
+                                                        <i class="fa fa-user"></i>
+                                                        Change Password
+                                                    </a></li>
 
                                                     <li><a href="{{ route('log-out') }}"><span
                                                                 class="fa fa-lock author-log-ic"></span>Log Out</a>
