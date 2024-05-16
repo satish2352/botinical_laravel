@@ -197,104 +197,274 @@
     <?php 
     // $data_for_url = session('data_for_url'); 
     ?>
-    {{-- <div class="main-panel">
-        <div class="content-wrapper mt-6"> --}}
-            {{-- <div class="page-header">
-                <h3 class="page-title">
-                    Dashboard
-                </h3>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                    </ol>
-                </nav>
-            </div> --}}
+  
             <div class="data-table-area mg-tb-15">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="sparkline13-list">
-                              
-            <div class="row">
-                @if (isset($status) && $return_data['status'] == 'success')
-                    <div class="alert alert-success" role="alert">
-                        {{ $return_data['msg'] }}
-                    </div>
-                @endif
-
-                {{-- <div class="col-12 grid-margin">
-                    <div class="card"> --}}
-                        <div class="card-body">
-                            <div class="container dash-height">
-                                <div class="col-md-12">
-                                    {{-- @if (session('sess_user_type') == 1 && session('sess_user_type') == 2) --}}
-                                    {{-- @if ($sess_user_role == 1 || $sess_user_role == 2) --}}
-                                  
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <a 
-                                                {{-- href="{{ route('list-users') }}" --}}
-                                                >
-                                                    <div class="card">
-                                                        <div class="card-body"
-                                                            style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
-                                                            <div class="card-statistic-3 p-4">
-                                                                <div class="mb-4">
-                                                                    <h6 class="mb-0 dash_card_title">User Count</h6>
-                                                                </div>
-                                                                <div class="row align-items-center mb-2 d-flex">
-                                                                    <div class="col-8">
-                                                                        <h2
-                                                                            class="d-flex align-items-center mb-0 dash_count">
-                                                                            </h2>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <a 
-                                                {{-- href="{{ route('list-todays-approved-labours') }}" --}}
-                                                >
-                                                    <div class="card">
-                                                        <div class="card-body"
-                                                            style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
-                                                            <div class="card-statistic-3 p-4">
-                                                                <div class="mb-4">
-                                                                    <h6 class="mb-0 dash_card_title">Today's Count</h6>
-                                                                </div>
-                                                                <div class="row align-items-center mb-2 d-flex">
-                                                                    <div class="col-8">
-                                                                        <h2
-                                                                            class="d-flex align-items-center mb-0 dash_count">
-                                                                            </h2>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                           
+                                <div class="row">
+                                    @if (isset($status) && $return_data['status'] == 'success')
+                                        <div class="alert alert-success" role="alert">
+                                            {{ $return_data['msg'] }}
                                         </div>
-                                  
+                                    @endif
 
-                                  
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center">
-                                    <div class="col-lg-10 col-md-10 col-sm-10">
-                                        <canvas id="myPieChart" width="400" height="200"></canvas>
+                                    {{-- <div class="col-12 grid-margin">
+                                        <div class="card"> --}}
+                                            <div class="card-body">
+                                                <div class="container dash-height">
+                                                    @if (isset($status) && $return_data['status'] == 'success')
+                                    <div class="alert alert-success" role="alert">
+                                        {{ $return_data['msg'] }}
                                     </div>
-                                </div>
+                                    @endif
+                                                    <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-amenities-category') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Aminities Category</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['amenitie-category']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-amenities') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Aminities</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['amenitie']}}</h4>
+                                                                                                
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-flowers') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Flowers</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['flowers']}}</h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-tress') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Tress</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['tress']}}</h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-tress') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Zone Area</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['zone-area']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-ticket') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Ticket</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['ticket']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-gallery') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Gallery</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['gallery']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-contact-enquiry') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Contact Enquiry</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['contact-enquiry']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            
 
-                                <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center">
-                                    <div class="col-lg-10 col-md-10 col-sm-10">
-                                        <canvas id="myPieChart1" width="400" height="200"></canvas>
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-aboutus') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">About Us</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['aboutus']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+
+
+                                                                <div class="col-md-3">
+                                                                    <a 
+                                                                    href="{{ route('list-charges') }}"
+                                                                    >
+                                                                        <div class="card">
+                                                                            <div class="card-body"
+                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
+                                                                                <div class="card-statistic-3 p-4">
+                                                                                    <div class="mb-4">
+                                                                                        <h4 class="mb-0 dash_card_title">Charges</h4>
+                                                                                    </div>
+                                                                                    <div class="row align-items-center mb-2 d-flex">
+                                                                                        <div class="col-8">
+                                                                                            <h4
+                                                                                                class="d-flex align-items-center mb-0 dash_count">
+                                                                                                {{$return_data['charges']}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            
+                                                            </div>
+                                                    </div>
+
+
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -302,43 +472,5 @@
                     </div>
                 </div>
             </div>
-                            {{-- </div>
-                        </div> --}}
-
-
-
-            </div>
-            {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-         
-            <script>
-                var ctx = document.getElementById('myPieChart').getContext('2d');
-                var myPieChart = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: {!! json_encode($data['labels']) !!},
-                        datasets: [{
-                            data: {!! json_encode($data['counts']) !!},
-                            backgroundColor: [
-                                'red',
-                                'blue',
-                                'yellow',
-                                'green',
-                                'purple',
-                                'orange'
-                            ]
-                        }]
-                    },
-                    options: {
-                        // Additional options can go here
-                    }
-                });
-            </script> --}}
-
-
-
-
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-           
-          
+            
         @endsection

@@ -33,7 +33,6 @@
                 <div class=" " style="display: flex; justify-content:space-between">
                     <h3 class="page-title">Change Password
                     </h3>
-                   
                 </div>
             <div class="row">
                 <div class="col-12 grid-margin">

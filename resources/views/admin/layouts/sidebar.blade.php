@@ -2,7 +2,10 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="{{ asset('website/assets/img/logo/LANSCAPE LOG.png') }}"
+            
+            <a 
+            
+            href="{{ route('/dashboard') }}"><img class="main-logo" src="{{ asset('website/assets/img/logo/LANSCAPE LOG.png') }}"
                     alt=""></a>
             <strong><img src="{{ asset('website/assets/img/logo/LANSCAPE LOG.png') }}" alt=""></strong>
         </div>
@@ -146,12 +149,12 @@
                             <span class="mini-click-non">User Management</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Reporting and Analytics</span>
                         </a>
-                    </li> 
+                    </li>  --}}
 
 
 
