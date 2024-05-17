@@ -5,7 +5,7 @@ namespace App\Constants;
 return [
 
     define('DEFAULT_START', 1),
-    define('DEFAULT_LENGTH', 5),
+    define('DEFAULT_LENGTH', 10),
 
     'ABOUTUS_ADD'	         => "/all_web_data/images/aboutus/",
     'ABOUTUS_DELETE'	         => '/all_web_data/images/aboutus/',
