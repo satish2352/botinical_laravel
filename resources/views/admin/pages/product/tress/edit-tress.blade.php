@@ -231,7 +231,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_video_upload">Video Uploa</label>&nbsp<span
+                                                        <label for="english_video_upload">Video Upload</label>&nbsp<span
                                                             class="red-text">*</span><br>
                                                         <input type="file" name="english_video_upload"
                                                             id="english_video_upload" accept="video/*"

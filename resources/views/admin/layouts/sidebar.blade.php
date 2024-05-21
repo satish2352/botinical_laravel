@@ -82,7 +82,7 @@
                     <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Product</span>
+                            <span class="mini-click-non">Tress/Plant</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
                            
