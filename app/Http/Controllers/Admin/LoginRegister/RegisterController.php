@@ -101,6 +101,7 @@ class RegisterController extends Controller {
 
     public function editUsers(Request $request){
         $user_data = $this->service->editUsers($request);
+      
         return view('admin.pages.users.edit-users',compact('user_data'));
     }
 
@@ -334,6 +335,7 @@ class RegisterController extends Controller {
     
     public function editUsersProfile(Request $request){
         $user_data = $this->service->getProfile($request);
+     
         // $user_detail= session()->get('user_id');
         // $id = $user_data->id;
         // return view('admin.layout.master',compact('user_data'));

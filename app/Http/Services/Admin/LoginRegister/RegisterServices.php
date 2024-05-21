@@ -100,6 +100,7 @@ class RegisterServices
 
     public function editUsers($request) {
         $data_users = $this->repo->editUsers($request);
+       
         return $data_users;
     }
     

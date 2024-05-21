@@ -86,8 +86,8 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ strip_tags($item->english_name) }}</td>
                                                     <td>{{ strip_tags($item->hindi_name) }}</td>
-                                                    <td>{{ strip_tags($item->english_description) }}</td>
-                                                    <td>{{ strip_tags($item->hindi_description) }}</td>
+                                                    <td class="truncate">{{ strip_tags($item->english_description) }}</td>
+                                                    <td class="truncate">{{ strip_tags($item->hindi_description) }}</td>
                                                     <td>{{ strip_tags($item->english_ticket_cost) }}</td>
                                                     <td>{{ strip_tags($item->hindi_ticket_cost) }}</td>
                                                     <td>{{ strip_tags($item->english_rules_terms) }}</td>

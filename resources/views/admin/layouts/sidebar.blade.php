@@ -114,19 +114,19 @@
                     </li>
                     <li class="{{ Request::is('list-zone-area') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-zone-area') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-file icon-wrap"></i>
                             <span class="mini-click-non">Zone Management</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-amenities') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fas fa-hotel icon-wrap"></i>
                             <span class="mini-click-non">Amenities Management</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-ticket') }}" aria-expanded="false">
-                            <i class="fa fa-ticket icon-wrap"></i>
+                            <i class="fas fa-ticket-alt icon-wrap"></i>
                             <span class="mini-click-non">Ticket Management</span>
                         </a>
                     </li> 

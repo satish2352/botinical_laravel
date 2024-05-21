@@ -85,8 +85,8 @@
                                                     <td>{{ strip_tags($item->english_name) }}  ({{ strip_tags($item->hindi_name) }})</td>
                                                     <td>{{ strip_tags($item->amenities_english_name) }}</td>
                                                     <td>{{ strip_tags($item->amenities_hindi_name) }}</td>
-                                                    <td>{{ strip_tags($item->english_description) }}</td>
-                                                    <td>{{ strip_tags($item->hindi_description) }}</td>
+                                                    <td class="truncate">{{ strip_tags($item->english_description) }}</td>
+                                                    <td class="truncate11">{{ strip_tags($item->hindi_description) }}</td>
                                                     <td> <img class="img-size"
                                                             src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $item->image }}"
                                                             alt=" {{ strip_tags($item['english_name']) }} Image" style="width:100px; height:100px;" />

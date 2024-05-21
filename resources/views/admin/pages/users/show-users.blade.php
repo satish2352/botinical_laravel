@@ -1,4 +1,4 @@
-@extends('admin.layout.master')
+@extends('admin.layouts.master')
 
 @section('content')
     <div class="main-panel">
@@ -24,14 +24,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    @include('admin.layout.alert')
+                                    @include('admin.layouts.alert')
                                     <div class="row ">
                                         <div class="col-lg-4 col-md-4 col-sm-4">
                                             <label>Name :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ $user_detail->f_name }} {{ $user_detail->m_name }}
-                                                {{ $user_detail->l_name }}</label>
+                                            <label>{{ $user_detail->full_name }}</label>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -39,7 +38,7 @@
                                             <label>Role :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->role_name) }}</label>
+                                            <label>{{ strip_tags($user_detail->role_id) }}</label>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -47,7 +46,7 @@
                                             <label>Email :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->u_email) }}</label>
+                                            <label>{{ strip_tags($user_detail->email) }}</label>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -55,19 +54,12 @@
                                             <label>Mobile Number :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->number) }}</label>
+                                            <label>{{ strip_tags($user_detail->mobile_number) }}</label>
                                         </div>
                                     </div>
 
 
-                                    <div class="row ">
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <label>Designation :</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->designation) }}</label>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="row ">
                                         <div class="col-lg-4 col-md-4 col-sm-4">
                                             <label>Address :</label>
@@ -76,30 +68,8 @@
                                             <label>{{ strip_tags($user_detail->address) }}</label>
                                         </div>
                                     </div>
-                                    <div class="row ">
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <label>State :</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->state) }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="row ">
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <label>City :</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->city) }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="row ">
-                                        <div class="col-lg-4 col-md-4 col-sm-4">
-                                            <label>Pincode :</label>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->pincode) }}</label>
-                                        </div>
-                                    </div>
+                                 
+                                 
 
                                     <div class="row ">
                                         <div class="col-lg-4 col-md-4 col-sm-4">

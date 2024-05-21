@@ -5,6 +5,7 @@
         .fixed-table-loading {
             display: none;
         }
+       
     </style>
 
     <div class="data-table-area mg-tb-15">
@@ -87,8 +88,8 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ strip_tags($item->english_name) }}</td>
                                                     <td>{{ strip_tags($item->hindi_name) }}</td>
-                                                    <td>{{ strip_tags($item->english_description) }}</td>
-                                                    <td>{{ strip_tags($item->hindi_description) }}</td>
+                                                    <td class="truncate">{{ strip_tags($item->english_description) }}</td>
+                                                    <td class="truncate">{{ strip_tags($item->hindi_description) }}</td>
                                                     <td>{{ strip_tags($item->english_botnical_name) }}</td>
                                                     <td>{{ strip_tags($item->hindi_botnical_name) }}</td>
                                                     <td>{{ strip_tags($item->english_common_name) }}</td>

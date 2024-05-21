@@ -112,14 +112,8 @@ class RegisterRepository
 							// 'u_uname' => $request['u_uname'],
 							'role_id' => $request['role_id'],
 							'full_name' => $request['full_name'],
-							'm_name' => $request['m_name'],
-							'l_name' => $request['l_name'],
-							'number' => $request['number'],
-							'designation' => $request['designation'],
+							'mobile_number' => $request['mobile_number'],
 							'address' => $request['address'],
-							'state' => $request['state'],
-							'city' => $request['city'],
-							'pincode' => $request['pincode'],
 							'is_active' => isset($request['is_active']) ? true :false,
 						]);
 		
@@ -218,95 +212,135 @@ class RegisterRepository
 			->select('id')->get();
 	}
 
-	public function editUsers($reuest)
-	{
 
-		$data_users = [];
+	public function editUsers($request){
+        try {
+            $return_data = array();
+            $data_output = User::find($request->id);
 
-		$data_users['roles'] = Roles::where('is_active', true)
-			->select('id', 'role_name')
-			->get()
-			->toArray();
-		$data_users['permissions'] = Permissions::where('is_active', true)
-			->select('id', 'route_name', 'permission_name', 'url')
-			->get()
-			->toArray();
+            if (!$data_output) {
+                return [
+                    'msg' => 'Data not found.',
+                    'status' => 'error'
+                ];
+            }
 
-		$data_users_data = User::join('roles', function ($join) {
-			$join->on('users.role_id', '=', 'roles.id');
-		})
-			// ->join('roles_permissions', function($join) {
-			// 	$join->on('users.id', '=', 'roles_permissions.user_id');
-			// })
-			->where('users.id', '=', $reuest->edit_id)
-			// ->where('roles_permissions.is_active','=',true)
-			// ->where('users.is_active','=',true)
-			->select(
-				'roles.id as role_id',
-				// 'users.u_uname',
-				'users.password',
-				'users.email',
-				'users.full_name',
-				'users.m_name',
-				'users.l_name',
-				'users.number',
-				'users.designation',
-				'users.address',
-				'users.state',
-				'users.city',
-				'users.pincode',
-				'users.id',
-				'users.is_active',
-			)->get()
-			->toArray();
+            // Store the previous image names
+            $previousImage = $data_output->user_profile;
+           
+            // Update the fields from the request
+            $data_output->full_name = $request['full_name'];
+            $data_output->mobile_number = $request['mobile_number'];
+            $data_output->role_id = $request['role_id'];
+            $data_output->address = $request['address'];
+          
+            
+            $data_output->save();
+            $last_insert_id = $data_output->id;
 
-	$data_users_data = User::join('roles', function($join) {
-						$join->on('users.role_id', '=', 'roles.id');
-					})
-					// ->join('roles_permissions', function($join) {
-					// 	$join->on('users.id', '=', 'roles_permissions.user_id');
-					// })
-					->where('users.id','=',$reuest->edit_id)
-					// ->where('roles_permissions.is_active','=',true)
-					// ->where('users.is_active','=',true)
-					->select('roles.id as role_id',
-							// 'users.u_uname',
-							'users.password',
-							'users.email',
-							'users.full_name',
-							'users.m_name',
-							'users.l_name',
-							'users.number',
-							'users.designation',
-							'users.address',
-							'users.state',
-							'users.city',
-							'users.pincode',
-							'users.id',
-							'users.is_active',
-						)->get()
-						->toArray();
+            $return_data['last_insert_id'] = $last_insert_id;
+            $return_data['user_profile'] = $previousImage;
+		
+            return  $return_data;
+        
+        } catch (\Exception $e) {
+            return [
+                'msg' => 'Failed to update Data.',
+                'status' => 'error',
+                'error' => $e->getMessage() // Return the error message for debugging purposes
+            ];
+        }
+    }
+
+	// public function editUsers($reuest)
+	// {
+
+	// 	$data_users = [];
+
+	// 	// $data_users['roles'] = Roles::where('is_active', true)
+	// 	// 	->select('id', 'role_name')
+	// 	// 	->get()
+	// 	// 	->toArray();
+	// 	// $data_users['permissions'] = Permissions::where('is_active', true)
+	// 	// 	->select('id', 'route_name', 'permission_name', 'url')
+	// 	// 	->get()
+	// 	// 	->toArray();
+
+	// 	// $data_users_data = User::join('roles', function ($join) {
+	// 	// 	$join->on('users.role_id', '=', 'roles.id');
+	// 	// })
+	// 		// ->join('roles_permissions', function($join) {
+	// 		// 	$join->on('users.id', '=', 'roles_permissions.user_id');
+	// 		// })
+	// 		// ->where('users.id', '=', $reuest->edit_id)
+	// 		// ->where('roles_permissions.is_active','=',true)
+	// 		// ->where('users.is_active','=',true)
+	// 		->select(
+	// 			'roles.id as role_id',
+	// 			// 'users.u_uname',
+	// 			'users.password',
+	// 			'users.email',
+	// 			'users.full_name',
+	// 			'users.m_name',
+	// 			'users.l_name',
+	// 			'users.number',
+	// 			'users.designation',
+	// 			'users.address',
+	// 			'users.state',
+	// 			'users.city',
+	// 			'users.pincode',
+	// 			'users.id',
+	// 			'users.is_active',
+	// 		)->get()
+	// 		->toArray();
+
+	// $data_users_data = User::join('roles', function($join) {
+	// 					$join->on('users.role_id', '=', 'roles.id');
+	// 				})
+	// 				// ->join('roles_permissions', function($join) {
+	// 				// 	$join->on('users.id', '=', 'roles_permissions.user_id');
+	// 				// })
+	// 				->where('users.id','=',$reuest->edit_id)
+	// 				// ->where('roles_permissions.is_active','=',true)
+	// 				// ->where('users.is_active','=',true)
+	// 				->select('roles.id as role_id',
+	// 						// 'users.u_uname',
+	// 						'users.password',
+	// 						'users.email',
+	// 						'users.full_name',
+	// 						'users.m_name',
+	// 						'users.l_name',
+	// 						'users.number',
+	// 						'users.designation',
+	// 						'users.address',
+	// 						'users.state',
+	// 						'users.city',
+	// 						'users.pincode',
+	// 						'users.id',
+	// 						'users.is_active',
+	// 					)->get()
+	// 					->toArray();
 						
-		$data_users['data_users'] = $data_users_data[0];
-		// $data_users['permissions_user'] = User::join('roles_permissions', function($join) {
-		// 					$join->on('users.id', '=', 'roles_permissions.user_id');
-		// 				})
-		// 				->join('permissions', function($join) {
-		// 					$join->on('roles_permissions.permission_id', '=', 'permissions.id');
-		// 				})
-		// 				->where('roles_permissions.user_id','=',$reuest->edit_id)
-		// 				->where('roles_permissions.is_active','=',true)
-		// 				// ->where('users.is_active','=',true)
-		// 				->select(
-		// 					'roles_permissions.per_add',
-		// 					'roles_permissions.per_update',
-		// 					'roles_permissions.per_delete',
-		// 					'permissions.id as permissions_id'
-		// 					)->get()
-		// 					->toArray();
+	// 	$data_users['data_users'] = $data_users_data[0];
+	// 	// $data_users['permissions_user'] = User::join('roles_permissions', function($join) {
+	// 	// 					$join->on('users.id', '=', 'roles_permissions.user_id');
+	// 	// 				})
+	// 	// 				->join('permissions', function($join) {
+	// 	// 					$join->on('roles_permissions.permission_id', '=', 'permissions.id');
+	// 	// 				})
+	// 	// 				->where('roles_permissions.user_id','=',$reuest->edit_id)
+	// 	// 				->where('roles_permissions.is_active','=',true)
+	// 	// 				// ->where('users.is_active','=',true)
+	// 	// 				->select(
+	// 	// 					'roles_permissions.per_add',
+	// 	// 					'roles_permissions.per_update',
+	// 	// 					'roles_permissions.per_delete',
+	// 	// 					'permissions.id as permissions_id'
+	// 	// 					)->get()
+	// 	// 					->toArray();
 
-		return $data_users;
-	}
+	// 	return $data_users;
+	// }
 
 	// public function delete($request)
 	// {
@@ -338,12 +372,8 @@ class RegisterRepository
 	public function getById($id)
 	{
 		try {
-			$user = User::leftJoin('roles', 'roles.id', '=', 'users.role_id')
-				->leftJoin('tbl_area as state_user', 'users.state', '=', 'state_user.location_id')
-				->leftJoin('tbl_area as city_user', 'users.city', '=', 'city_user.location_id')
-				->where('users.id', $id)
-				->select('users.full_name','users.m_name','users.l_name','users.email','users.number','users.designation','users.address','users.pincode','users.user_profile','roles.role_name','state_user.name as state','city_user.name as city')
-				->first();
+			$user = User::find($id);
+				
 	
 			if ($user) {
 				return $user;

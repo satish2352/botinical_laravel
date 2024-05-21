@@ -22,117 +22,34 @@
                                 action="{{ route('update-users') }}" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                 <div class="row">
-                                    {{-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="u_email">Email ID</label>&nbsp<span class="red-text">*</span>
-                                        <input type="text" class="form-control" name="u_email" id="u_email"
-                                            placeholder="" value="{{$user_data['data_users']['u_email']}}">
-                                        @if ($errors->has('u_email'))
-                                        <span
-                                            class="red-text"><?php echo $errors->first('u_email', ':message'); ?></span>
-                                        @endif
-                                    </div>
-                                </div> 
-                                          <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="u_uname">User Name</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control" name="u_uname" id="u_uname"
-                                                placeholder="" value="{{ $user_data['data_users']['u_uname'] }}">
-                                            @if ($errors->has('u_uname'))
-                                                <span class="red-text"><?php echo $errors->first('u_uname', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="u_password">Password</label>&nbsp<span class="red-text">*</span>
-                                        <input type="text" class="form-control" name="u_password" id="u_password"
-                                            placeholder="" value="{{decrypt($user_data['data_users']['u_password'])}}">
-                                        @if ($errors->has('u_password'))
-                                        <span
-                                            class="red-text"><?php echo $errors->first('u_password', ':message'); ?></span>
-                                        @endif
-                                    </div>
-                                </div> --}}
-
+                                   
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="role_id">Role Type</label>&nbsp<span class="red-text">*</span>
-                                            <select class="form-control" id="role_id" name="role_id"
-                                                onchange="myFunction(this.value)">
-                                                <option>Select</option>
-                                                @foreach ($user_data['roles'] as $role)
-                                                    <option value="{{ $role['id'] }}"
-                                                        @if ($role['id'] == $user_data['data_users']['role_id']) <?php echo 'selected'; ?> @endif>
-                                                        {{ $role['role_name'] }}</option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('role_id'))
-                                                <span class="red-text"><?php echo $errors->first('role_id', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="f_name">First Name</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control mb-2" name="f_name" id="f_name"
-                                                placeholder="" value="{{ $user_data['data_users']['f_name'] }}"
+                                            <label for="full_name">Full Name</label>&nbsp<span class="red-text">*</span>
+                                            <input type="text" class="form-control mb-2" name="full_name" id="full_name"
+                                                placeholder="" value="{{ $user_data['data_users']['full_name'] }}"
                                                 oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').replace(/(\..*)\./g, '$1');">
-                                            @if ($errors->has('f_name'))
-                                                <span class="red-text"><?php echo $errors->first('f_name', ':message'); ?></span>
+                                            @if ($errors->has('full_name'))
+                                                <span class="red-text"><?php echo $errors->first('full_name', ':message'); ?></span>
                                             @endif
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="m_name">Middle Name</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control mb-2" name="m_name" id="m_name"
-                                                placeholder="" value="{{ $user_data['data_users']['m_name'] }}"
-                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').replace(/(\..*)\./g, '$1');">
-                                            @if ($errors->has('m_name'))
-                                                <span class="red-text"><?php echo $errors->first('m_name', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="l_name">Last Name</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control mb-2" name="l_name" id="l_name"
-                                                placeholder="" value="{{ $user_data['data_users']['l_name'] }}"
-                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').replace(/(\..*)\./g, '$1');">
-                                            @if ($errors->has('l_name'))
-                                                <span class="red-text"><?php echo $errors->first('l_name', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="number">Number</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control mb-2" name="number" id="number"
-                                                placeholder="" value="{{ $user_data['data_users']['number'] }}"
+                                            <label for="mobile_number">Number</label>&nbsp<span class="red-text">*</span>
+                                            <input type="text" class="form-control mb-2" name="mobile_number" id="mobile_number"
+                                                placeholder="" value="{{ $user_data['data_users']['mobile_number'] }}"
                                                 onkeyup="editvalidateMobileNumber(this.value)"
                                                 pattern="[789]{1}[0-9]{9}" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');"  maxlength="10" minlength="10"
                                                 >
                                             <span id="edit-message" class="red-text"></span>
-                                            @if ($errors->has('number'))
-                                                <span class="red-text"><?php echo $errors->first('number', ':message'); ?></span>
+                                            @if ($errors->has('mobile_number'))
+                                                <span class="red-text"><?php echo $errors->first('mobile_number', ':message'); ?></span>
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="designation">Designation</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control mb-2" name="designation" id="designation"
-                                                placeholder="" value="{{ $user_data['data_users']['designation'] }}"
-                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').replace(/(\..*)\./g, '$1');">
-                                            @if ($errors->has('designation'))
-                                                <span class="red-text"><?php echo $errors->first('designation', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="address">Address</label>&nbsp<span class="red-text">*</span>
@@ -145,42 +62,20 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="state">State</label>&nbsp<span class="red-text">*</span>
-                                            <select class="form-control mb-2" name="state" id="state">
-                                                <option value="">Select State</option>
-                                            </select>
-                                            @if ($errors->has('state'))
-                                                <span class="red-text"><?php echo $errors->first('state', ':message'); ?></span>
+                                            <label for="user_profile"> Image</label>
+                                            <input type="file" name="user_profile" class="form-control mb-2"
+                                                id="english_image" accept="image/*" placeholder="image">
+                                            @if ($errors->has('user_profile'))
+                                                <div class="red-text"><?php echo $errors->first('user_profile', ':message'); ?>
+                                                </div>
                                             @endif
                                         </div>
+                                        <img id="english"
+                                            src="{{ Config::get('DocumentConstant.USER_PROFILE_VIEW') }}{{ $user_data->user_profile }}"
+                                            class="img-fluid img-thumbnail" width="150">
+                                        <img id="english_imgPreview" src="#" alt="pic"
+                                            class="img-fluid img-thumbnail" width="150" style="display:none">
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="city">City</label>&nbsp<span class="red-text">*</span>
-                                            <select class="form-control mb-2" name="city" id="city">
-                                                <option value="">Select City</option>
-                                            </select>
-                                            @if ($errors->has('city'))
-                                                <span class="red-text"><?php echo $errors->first('city', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="pincode">Pincode</label>&nbsp<span class="red-text">*</span>
-                                            <input type="text" class="form-control mb-2" name="pincode" id="pincode"
-                                                placeholder="" value="{{ $user_data['data_users']['pincode'] }}"
-                                                onkeyup="editvalidatePincode(this.value)">
-                                            <span id="edit-message-pincode" class="red-text"></span>
-                                            @if ($errors->has('pincode'))
-                                                <span class="red-text"><?php echo $errors->first('pincode', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-
-
-                                    <br>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group form-check form-check-flat form-check-primary">
                                             <label class="form-check-label">
