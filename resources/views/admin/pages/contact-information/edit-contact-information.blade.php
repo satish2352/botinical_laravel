@@ -45,7 +45,7 @@
                                 @endif
 
                                 <div class="all-form-element-inner">
-                                    <form action="{{ route('update-charges') }}" method="POST"
+                                    <form action="{{ route('update-contact-information') }}" method="POST"
                                         enctype="multipart/form-data" id="addDesignsForm" autocomplete="off">
                                         @csrf
                                         <div class="form-group-inner">
@@ -97,6 +97,20 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="english_address">Address :</label>
+                                                    <textarea class="form-control" id="english_address" name="english_address" placeholder="Enter Address">@if (old('english_address')) {{ old('english_address') }}@else{{ $editData->english_address }} @endif</textarea>
+                                                    @if ($errors->has('english_address'))
+                                                        <span class="red-text"><?php echo $errors->first('english_address', ':message'); ?></span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="hindi_address">पता :</label>
+                                                    <textarea class="form-control" id="hindi_address" name="hindi_address" placeholder="पता दर्ज करें">@if (old('hindi_address')) {{ old('hindi_address') }}@else{{ $editData->hindi_address }} @endif</textarea>
+                                                    @if ($errors->has('hindi_address'))
+                                                        <span class="red-text"><?php echo $errors->first('hindi_address', ':message'); ?></span>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                     <label for="email">Email :</label>
                                                     <input type="email" class="form-control"
                                                         value="@if (old('email')) {{ old('email') }}@else{{ $editData->email }} @endif"
@@ -106,27 +120,13 @@
                                                         <span class="red-text"><?php echo $errors->first('email', ':message'); ?></span>
                                                     @endif
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="english_address">Address :</label>
-                                                    <textarea class="form-control" id="english_address" name="english_address" placeholder="Enter Address">@if (old('english_address')) {{ old('english_address') }}@else{{ $editData->english_address }} @endif</textarea>
-                                                    @if ($errors->has('english_address'))
-                                                        <span class="red-text"><?php echo $errors->first('english_address', ':message'); ?></span>
-                                                    @endif
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="hindi_address">Address :</label>
-                                                    <textarea class="form-control" id="hindi_address" name="hindi_address" placeholder="पता दर्ज करें">@if (old('hindi_address')) {{ old('hindi_address') }}@else{{ $editData->hindi_address }} @endif</textarea>
-                                                    @if ($errors->has('hindi_address'))
-                                                        <span class="red-text"><?php echo $errors->first('hindi_address', ':message'); ?></span>
-                                                    @endif
-                                                </div>
                                             </div>
                                             <div class="login-btn-inner">
                                                 <div class="row">
                                                     <div class="col-lg-5"></div>
                                                     <div class="col-lg-7">
                                                         <div class="login-horizental cancel-wp pull-left">
-                                                            <a href="{{ route('list-charges') }}">
+                                                            <a href="{{ route('list-contact-information') }}">
                                                                 <button class="btn btn-white"
                                                                     style="margin-bottom:50px">Cancel</button>
                                                             </a>

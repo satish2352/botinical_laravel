@@ -43,7 +43,7 @@ class ContactInformationRepository  {
             $dataOutput->hindi_address = $request->hindi_address;
 
             $dataOutput->save();
-            $return_data['image'] = $previousEnglishImage;
+            $return_data['dataOutput'] = $dataOutput;
             return  $return_data;
         
         } catch (\Exception $e) {

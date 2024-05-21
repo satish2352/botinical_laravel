@@ -193,6 +193,12 @@
             font-family: "Anta", sans-serif;
             /* font-family: titillium -webkit-body; */
         }
+        .dash_card_title{
+            color: #fff;
+        }
+        .dash_count{
+            color: #fff;
+        }
     </style>
     <?php 
     // $data_for_url = session('data_for_url'); 
@@ -316,7 +322,7 @@
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <a 
-                                                                    href="{{ route('list-tress') }}"
+                                                                    href="{{ route('list-zone-area') }}"
                                                                     >
                                                                         <div class="card">
                                                                             <div class="card-body"
@@ -432,31 +438,6 @@
                                                                     </a>
                                                                 </div>
 
-
-                                                                <div class="col-md-3">
-                                                                    <a 
-                                                                    href="{{ route('list-charges') }}"
-                                                                    >
-                                                                        <div class="card">
-                                                                            <div class="card-body"
-                                                                                style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
-                                                                                <div class="card-statistic-3 p-4">
-                                                                                    <div class="mb-4">
-                                                                                        <h4 class="mb-0 dash_card_title">Charges</h4>
-                                                                                    </div>
-                                                                                    <div class="row align-items-center mb-2 d-flex">
-                                                                                        <div class="col-8">
-                                                                                            <h4
-                                                                                                class="d-flex align-items-center mb-0 dash_count">
-                                                                                                {{$return_data['charges']}} </h4>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            
                                                             </div>
                                                     </div>
 

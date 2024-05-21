@@ -13,7 +13,7 @@
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
                     <li class="{{ Request::is('/dashboard') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('/dashboard') }}" aria-expanded="false">
+                        <a class="" href="{{ route('/dashboard') }}" aria-expanded="false">
                             <i class="fa fa-home icon-wrap"></i>
                             <span class="mini-click-non">Dashboard</span>
                         </a>
@@ -38,12 +38,12 @@
                                     <span class="mini-sub-pro">Amenities Category</span>
                                 </a>
                             </li>
-                            <li class="{{ Request::is('list-charges') ? 'active' : '' }}">
+                            {{-- <li class="{{ Request::is('list-charges') ? 'active' : '' }}">
                                 <a class="has-arrow" href="{{ route('list-charges') }}" aria-expanded="false">
                                     <i class="fa big-icon fa-envelope icon-wrap"></i>
                                     <span class="mini-click-non">Charges</span>
                                 </a>
-                            </li> 
+                            </li>  --}}
                             {{-- <li class="nav-item {{ Request::is('list-district') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-district') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
@@ -69,16 +69,26 @@
                     </li>
                     <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
-                            <i class="fa fa-user icon-wrap"></i>
+                            <i class="fa fa-users icon-wrap"></i>
                             <span class="mini-click-non">About Us</span>
                         </a>
-                    </li> 
-                    <li class="{{ Request::is('list-zone-area') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-zone-area') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Zone Management</span>
-                        </a>
-                    </li> 
+                        <ul class="submenu-angle" aria-expanded="false">                          
+                           
+                            <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
+                                    <i class="fa fa-user icon-wrap"></i>
+                                    <span class="mini-click-non">About Us</span>
+                                </a>
+                            </li> 
+                            <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
+                                    <i class="fa fa-user icon-wrap"></i>
+                                    <span class="mini-click-non">About Us Element</span>
+                                </a>
+                            </li> 
+
+                        </ul>
+                    </li>                   
                     <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
@@ -102,49 +112,45 @@
 
                         </ul>
                     </li>
-
-
+                    <li class="{{ Request::is('list-zone-area') ? 'active' : '' }}">
+                        <a class="" href="{{ route('list-zone-area') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Zone Management</span>
+                        </a>
+                    </li> 
                     <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-amenities') }}" aria-expanded="false">
+                        <a class="" href="{{ route('list-amenities') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Amenities Management</span>
                         </a>
                     </li> 
-
-                   
-                    <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
-                            <span class="mini-click-non">Facilities Management</span>
-                        </a>
-                    </li> 
                     <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-ticket') }}" aria-expanded="false">
+                        <a class="" href="{{ route('list-ticket') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Ticket Management</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-gallery') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-gallery') }}" aria-expanded="false">
+                        <a class="" href="{{ route('list-gallery') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Gallery</span>
                         </a>
                     </li> 
                  
                     <li class="{{ Request::is('list-contact-information') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-contact-information') }}" aria-expanded="false">
+                        <a class="" href="{{ route('list-contact-information') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Contact Details</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-contact-enquiry') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-contact-enquiry') }}" aria-expanded="false">
+                        <a class="" href="{{ route('list-contact-enquiry') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">Contact Enquiry</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="has-arrow" href="{{ route('list-roles') }}" aria-expanded="false">
+                        <a class="" href="{{ route('list-roles') }}" aria-expanded="false">
                             <i class="fa big-icon fa-envelope icon-wrap"></i>
                             <span class="mini-click-non">User Management</span>
                         </a>

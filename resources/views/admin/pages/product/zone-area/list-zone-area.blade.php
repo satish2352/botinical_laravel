@@ -20,7 +20,7 @@
                                         <div class="login-horizental cancel-wp pull-left">
                                             <a href="{{ route('add-zone-area') }}"><button
                                                     class="btn btn-sm btn-primary login-submit-cs" type="submit"
-                                                    href="{{ route('add-zone-area') }}">Add Flower</button></a>
+                                                    href="{{ route('add-zone-area') }}">Add Zone Area</button></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-10"></div>

@@ -46,7 +46,6 @@ class DashboardController extends Controller {
         $return_data['ticket'] = count(Ticket::where('is_active',true)->orderBy('updated_at', 'desc')->get());
         $return_data['gallery'] = count(Gallery::where('is_active',true)->orderBy('updated_at', 'desc')->get());
         $return_data['contact-enquiry'] = count(ContactEnquiry::where('is_active',true)->orderBy('updated_at', 'desc')->get());
-        $return_data['charges'] = count(Charges::where('is_active',true)->orderBy('updated_at', 'desc')->get());
         $return_data['aboutus'] = count(AboutUs::where('is_active',true)->orderBy('updated_at', 'desc')->get());
 
 
