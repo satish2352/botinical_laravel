@@ -25,7 +25,7 @@
                                 <div class="col-12">
                                     <div class="row ">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
-                                            <label>Title :</label>
+                                            <label>Name :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <label>{{ strip_tags($amenities->english_name) }}</label>

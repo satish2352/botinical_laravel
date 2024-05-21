@@ -6,12 +6,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="sparkline12-list">
                 <div class=" " style="display: flex; justify-content:space-between">
-                    <h3 class="page-title">Ticket
+                    <h3 class="page-title">About Us Element
                     </h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb" style="background-color: #fff;">
-                            <li class="breadcrumb-item"><a href="{{ route('list-ticket') }}">Ticket</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"> Ticket </li>
+                            <li class="breadcrumb-item"><a href="{{ route('list-aboutus-element') }}">About Us Element</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> About Us </li>
                         </ol>
                     </nav>
                 </div>
@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="all-form-element-inner">
-                            <form class="forms-sample" action="{{ route('update-ticket') }}" method="post" id="regForm"
+                            <form class="forms-sample" action="{{ route('update-aboutus-element') }}" method="post" id="regForm"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
@@ -29,7 +29,7 @@
                                             <label for="english_name">Name </label>&nbsp<span class="red-text">*</span>
                                             <input class="form-control" name="english_name" id="english_name"
                                                 placeholder="Enter the Name"
-                                                value=" @if (old('english_name')) {{ old('english_name') }}@else{{ $ticket->english_name }} @endif">
+                                                value=" @if (old('english_name')) {{ old('english_name') }}@else{{ $aboutuselement->english_name }} @endif">
                                             <label class="error py-2" for="english_name" id="english_name_error"></label>
                                             @if ($errors->has('english_name'))
                                                 <span class="red-text"><?php echo $errors->first('english_name', ':message'); ?></span>
@@ -41,21 +41,21 @@
                                             <label for="hindi_name">नाम</label>&nbsp<span class="red-text">*</span>
                                             <input class="form-control" name="hindi_name" id="hindi_name"
                                                 placeholder="नाम दर्ज करें"
-                                                value="@if (old('hindi_name')) {{ old('hindi_name') }}@else{{ $ticket->hindi_name }} @endif">
+                                                value="@if (old('hindi_name')) {{ old('hindi_name') }}@else{{ $aboutuselement->hindi_name }} @endif">
                                             <label class="error py-2" for="hindi_name" id="hindi_name_error"></label>
                                             @if ($errors->has('hindi_name'))
                                                 <span class="red-text"><?php echo $errors->first('hindi_name', ':message'); ?></span>
                                             @endif
                                         </div>
                                     </div>
-                                     <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="english_description">Description</label>&nbsp<span
                                                 class="red-text">*</span>
                                             <textarea class="form-control english_description" name="english_description" id="english_description"
                                                 placeholder="Enter the Description">
                                                 <label class="error py-2" for="english_description" id="english_description_error"></label>
-                                            @if (old('english_description')){{ old('english_description') }}@else{{ $ticket->english_description }}@endif
+                                            @if (old('english_description')){{ old('english_description') }}@else{{ $aboutuselement->english_description }}@endif
                                             </textarea>
                                             @if ($errors->has('english_description'))
                                                 <span class="red-text"><?php echo $errors->first('english_description', ':message'); ?></span>
@@ -68,7 +68,7 @@
                                                 class="red-text">*</span>
                                             <textarea class="form-control hindi_description" name="hindi_description" id="hindi_description"
                                                 placeholder="विवरण दर्ज करें">
-                                            @if (old('hindi_description')){{ old('hindi_description') }}@else{{ $ticket->hindi_description }}@endif
+                                            @if (old('hindi_description')){{ old('hindi_description') }}@else{{ $aboutuselement->hindi_description }}@endif
                                             </textarea>
                                             <label class="error py-2" for="english_description"
                                                 id="english_description_error"></label>
@@ -79,66 +79,34 @@
                                                 <span class="red-text"><?php echo $errors->first('hindi_description', ':message'); ?></span>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div>                                
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="english_ticket_cost">Ticket Cost</label>&nbsp<span class="red-text">*</span>
-                                            <input class="form-control" name="english_ticket_cost" id="english_ticket_cost"
-                                                placeholder="Enter the Ticket Cost"
-                                                value="@if (old('english_ticket_cost')) {{ old('english_ticket_cost') }}@else{{ $ticket->english_ticket_cost }} @endif">
-                                            <label class="error py-2" for="english_ticket_cost" id="english_ticket_cost_error"></label>
-                                            @if ($errors->has('english_ticket_cost'))
-                                                <span class="red-text"><?php echo $errors->first('english_ticket_cost', ':message'); ?></span>
-                                            @endif
+                                            <label for="image"> Image</label>
+                                            <input type="file" name="image" class="form-control"
+                                                id="image" accept="image/*" placeholder="image">
+                                           
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="hindi_ticket_cost">टिकट की कीमत</label>&nbsp<span class="red-text">*</span>
-                                            <input class="form-control" name="hindi_ticket_cost" id="hindi_ticket_cost"
-                                                placeholder="टिकट की लागत दर्ज करें"
-                                                value="@if (old('hindi_ticket_cost')) {{ old('hindi_ticket_cost') }}@else{{ $ticket->hindi_ticket_cost }} @endif">
-                                            <label class="error py-2" for="hindi_ticket_cost" id="hindi_ticket_cost_error"></label>
-                                            @if ($errors->has('hindi_ticket_cost'))
-                                                <span class="red-text"><?php echo $errors->first('hindi_ticket_cost', ':message'); ?></span>
-                                            @endif
+                                        <img id="english"
+                                            src="{{ Config::get('DocumentConstant.ABOUTUS_ELEMENT_VIEW') }}{{ $aboutuselement->image }}"
+                                            class="img-fluid img-thumbnail" width="150">
+                                        <img id="english_imgPreview" src="#" alt="pic"
+                                            class="img-fluid img-thumbnail" width="150" style="display:none">
+                                            @if ($errors->has('image'))
+                                            <div class="red-text"><?php echo $errors->first('image', ':message'); ?>
+                                            </div>
+                                        @endif
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="english_rules_terms">Rules Terms</label>&nbsp<span class="red-text">*</span>
-                                            <input class="form-control" name="english_rules_terms" id="english_rules_terms"
-                                                placeholder="नाम दर्ज करें"
-                                                value="@if (old('english_rules_terms')) {{ old('english_rules_terms') }}@else{{ $ticket->english_rules_terms }} @endif">
-                                            <label class="error py-2" for="english_rules_terms" id="english_rules_terms_error"></label>
-                                            @if ($errors->has('english_rules_terms'))
-                                                <span class="red-text"><?php echo $errors->first('english_rules_terms', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label for="hindi_rules_terms">नियम शर्तें</label>&nbsp<span class="red-text">*</span>
-                                            <input class="form-control" name="hindi_rules_terms" id="hindi_rules_terms"
-                                                placeholder="नियम शर्तें दर्ज करें"
-                                                value="@if (old('hindi_rules_terms')) {{ old('hindi_rules_terms') }}@else{{ $ticket->hindi_rules_terms }} @endif">
-                                            <label class="error py-2" for="hindi_rules_terms" id="hindi_rules_terms_error"></label>
-                                            @if ($errors->has('hindi_rules_terms'))
-                                                <span class="red-text"><?php echo $errors->first('hindi_rules_terms', ':message'); ?></span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                  
                                     <div class="col-md-12 col-sm-12 text-center">
                                         <button type="submit" class="btn btn-sm btn-success" >
                                             Save &amp; Update
                                         </button>
-                                        <span><a href="{{ route('list-ticket') }}"
+                                        <span><a href="{{ route('list-aboutus-element') }}"
                                                 class="btn btn-sm btn-primary ">Back</a></span>
                                     </div>
                                 </div>
                                 <input type="hidden" name="id" id="id" class="form-control"
-                                    value="{{ $ticket->id }}" placeholder="">
+                                    value="{{ $aboutuselement->id }}" placeholder="">
                             </form>
                         </div>
                     </div>
@@ -149,7 +117,7 @@
 </div>
 </div>
 </div>
-{{-- <script>
+<script>
     jQuery.noConflict();
     jQuery(document).ready(function($) {
         $("#regForm").validate({
@@ -166,12 +134,7 @@
                 hindi_description: {
                     required: true,
                 },
-                latitude: {
-                    required: true,
-                },
-                longitude: {
-                    required: true,
-                },
+             
                 // image: {
                 //     required: true,
                 //     fileExtension: ["jpg", "jpeg", "png"],
@@ -212,12 +175,7 @@
                 hindi_description: {
                     required: "कृपया वर्णन दर्ज करें |",
                 },
-                latitude: {
-                    required: "Please enter the Latitude.",
-                },
-                longitude: {
-                    required: "Please enter the Longitude.",
-                },
+              
                 // image: {
                 //     required: "Please upload an Image (JPG, JPEG, PNG).",
                 //     fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
@@ -256,5 +214,5 @@
                 errorLabel.remove();
             });
     });
-</script>     --}}
+</script>    
     @endsection

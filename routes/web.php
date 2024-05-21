@@ -43,6 +43,15 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/change-password', ['as' => '/change-password', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\ChangePassword@index']);
     Route::post('/update-password', ['as' => '/update-password', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\ChangePassword@updatePassword']);
 
+    Route::get('/list-users', ['as' => 'list-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@index']);
+    Route::get('/add-users', ['as' => 'add-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@addUsers']);
+    Route::post('/add-users', ['as' => 'add-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@register']);
+    Route::get('/edit-users/{edit_id}', ['as' => 'edit-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@editUsers']);
+    Route::post('/update-users', ['as' => 'update-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@update']);
+    Route::post('/delete-users', ['as' => 'delete-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@delete']);
+    Route::post('/show-users', ['as' => 'show-users', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@show']);
+    Route::get('/cities', ['as' => 'cities', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@getCities']);
+    Route::get('/states', ['as' => 'states', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@getState']);
     // Route::get('/forms', ['as' => 'forms', 'uses' => 'App\Http\Controllers\Admin\Forms\FormsController@index']);
     Route::get('/admin-log-out', ['as' => 'log-out', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\LoginController@logout']);
 
@@ -60,7 +69,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::any('/store-roles', ['as' => 'store-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@store']);
     Route::any('/edit-roles/{id}', ['as' => 'edit-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@edit']);
     Route::any('/update-roles', ['as' => 'update-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@update']);
-    Route::any('/delete-roles/{id}', ['as' => 'delete-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@destroy']);
+    Route::any('/delete-roles/{id}', ['as' => 'delete-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\Controller@destroy']);
 
     Route::get('/list-district', ['as' => 'list-district', 'uses' => 'App\Http\Controllers\Admin\Area\AreaController@index']);
     Route::get('/add-district', ['as' => 'add-district', 'uses' => 'App\Http\Controllers\Admin\Area\AreaController@addDistrict']);
@@ -165,6 +174,16 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/show-aboutus', ['as' => 'show-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@show']);
     Route::post('/delete-aboutus', ['as' => 'delete-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@destroy']);
     Route::post('/update-active-aboutus', ['as' => 'update-active-aboutus', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsController@updateOne']);
+
+    Route::any('/list-aboutus-element', ['as' => 'list-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@index']);
+    Route::any('/add-aboutu-element', ['as' => 'add-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@add']);
+    Route::any('/add-aboutus-element', ['as' => 'add-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@add']);
+    Route::any('/store-aboutus-element', ['as' => 'store-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@store']);
+    Route::any('/edit-aboutus-element/{edit_id}', ['as' => 'edit-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@edit']);
+    Route::any('/update-aboutus-element', ['as' => 'update-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@update']);
+    Route::post('/show-aboutus-element', ['as' => 'show-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@show']);
+    Route::post('/delete-aboutus-element', ['as' => 'delete-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@destroy']);
+    Route::post('/update-active-aboutus-element', ['as' => 'update-active-aboutus-element', 'uses' => 'App\Http\Controllers\Admin\AboutUs\AboutUsElementController@updateOne']);
 
     Route::any('/list-contact-enquiry', ['as' => 'list-contact-enquiry', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactEnquiryController@index']);
     Route::post('/delete-contact-enquiry', ['as' => 'delete-contact-enquiry', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactEnquiryController@destroy']);

@@ -3,14 +3,14 @@ namespace App\Http\Repository\Admin\AboutUs;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use App\Models\ {
-	AboutUs
+	AboutUsElement
 };
 use Config;
 
-class AboutUsRepository  {
+class AboutUsElementRepository  {
 	public function getAll(){
         try {
-            return AboutUs::orderBy('updated_at', 'desc')->get();
+            return AboutUsElement::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }
@@ -19,7 +19,7 @@ class AboutUsRepository  {
         try {
            
             $data =array();
-            $add_data = new AboutUs();
+            $add_data = new AboutUsElement();
             $add_data->english_name = $request['english_name'];
             $add_data->hindi_name = $request['hindi_name'];
             $add_data->english_description = $request['english_description'];
@@ -33,7 +33,7 @@ class AboutUsRepository  {
             
             $ImageName = $last_insert_id .'_' . rand(100000, 999999) . '_image.' . $request->image->extension();
 
-            $add_data = AboutUs::find($last_insert_id); 
+            $add_data = AboutUsElement::find($last_insert_id); 
             $add_data->image = $ImageName; 
                  
             $add_data->save();
@@ -53,7 +53,7 @@ class AboutUsRepository  {
 
     public function getById($id){
         try {
-            $data_output = AboutUs::find($id);
+            $data_output = AboutUsElement::find($id);
           
             if ($data_output) {
                 return $data_output;
@@ -72,7 +72,7 @@ class AboutUsRepository  {
     public function updateAll($request){
         try {
             $return_data = array();
-            $data_output = AboutUs::find($request->id);
+            $data_output = AboutUsElement::find($request->id);
 
             if (!$data_output) {
                 return [
@@ -110,7 +110,7 @@ class AboutUsRepository  {
 
     public function updateOne($request){
         try {
-            $data = AboutUs::find($request); 
+            $data = AboutUsElement::find($request); 
 
             if ($data) {
                 $is_active = $data->is_active === 1 ? 0 : 1;
@@ -137,12 +137,12 @@ class AboutUsRepository  {
 
     public function deleteById($id){
             try {
-                $data_output = AboutUs::find($id);
+                $data_output = AboutUsElement::find($id);
                 if ($data_output) {
-                    if (file_exists_view(Config::get('DocumentConstant.ABOUTUS_VIEW') . $data_output->image)){
-                        removeImage(Config::get('DocumentConstant.ABOUTUS_VIEW') . $data_output->image);
+                    if (file_exists_view(Config::get('DocumentConstant.ABOUTUS_ELEMENT_DELETE') . $data_output->image)){
+                        removeImage(Config::get('DocumentConstant.ABOUTUS_ELEMENT_DELETE') . $data_output->image);
                     }
-                 $data_output->delete();
+                    $data_output->delete();
                     
                     return $data_output;
                 } else {

@@ -21,10 +21,15 @@ class TicketRepository  {
      public function addAll($request){
         try {
             $add_data = new Ticket();
-            $add_data->name = $request['name'];
-            $add_data->description = $request['description'];
-            $add_data->rules_terms = $request['rules_terms'];
-            $add_data->ticket_cost = $request['ticket_cost'];
+            $add_data->english_name = $request['english_name'];
+            $add_data->hindi_name = $request['hindi_name'];
+            $add_data->english_description = $request['english_description'];
+            $add_data->hindi_description = $request['hindi_description'];
+            $add_data->english_rules_terms = $request['english_rules_terms'];
+            $add_data->hindi_rules_terms = $request['hindi_rules_terms'];
+            $add_data->english_ticket_cost = $request['english_ticket_cost'];
+            $add_data->hindi_ticket_cost = $request['hindi_ticket_cost'];
+
             $add_data->save(); 
     
             return $add_data;
@@ -69,12 +74,15 @@ class TicketRepository  {
                 ];
             }
             // Update the fields from the request
-            $data_output->name = $request['name'];
-            $data_output->description = $request['description'];
-            $data_output->rules_terms = $request['rules_terms'];
-            $data_output->ticket_cost = $request['ticket_cost'];
-          
-            
+            $data_output->english_name = $request['english_name'];
+            $data_output->hindi_name = $request['hindi_name'];
+            $data_output->english_description = $request['english_description'];
+            $data_output->hindi_description = $request['hindi_description'];
+            $data_output->english_rules_terms = $request['english_rules_terms'];
+            $data_output->hindi_rules_terms = $request['hindi_rules_terms'];
+            $data_output->english_ticket_cost = $request['english_ticket_cost'];
+            $data_output->hindi_ticket_cost = $request['hindi_ticket_cost'];
+
             $data_output->save();
             $last_insert_id = $data_output->id;
 

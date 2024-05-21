@@ -41,32 +41,56 @@ class RegisterServices
     //     }
     // }
 
+    // public function register($request){
+    //     try {
+
+    //         $chk_dup = $this->repo->checkDupCredentials($request);
+    //         if(sizeof($chk_dup)>0)
+    //         {
+    //             return ['status'=>'failed','msg'=>'Registration Failed. The name has already been taken.'];
+    //         }
+    //         else
+    //         {
+    //             $last_id = $this->repo->register($request);
+              
+    //             $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
+    //             //"\all_web_data\images\home\slides\\"."\\";
+    //             $userProfile = $last_id . '_english.' . $request->user_profile->getClientOriginalExtension();
+    //             uploadImage($request, 'user_profile', $path, $userProfile);
+              
+              
+    //             dd($register_user);
+    //             die();
+    //             if ($last_id) {
+    //                 return ['status' => 'success', 'msg' => 'User Added Successfully.'];
+    //             } else {
+    //                 return ['status' => 'error', 'msg' => 'User get Not Added.'];
+    //             }  
+    //         }
+
+    //     } catch (Exception $e) {
+    //         return ['status' => 'error', 'msg' => $e->getMessage()];
+    //         }      
+    // }
+
     public function register($request){
         try {
-
-            $chk_dup = $this->repo->checkDupCredentials($request);
-            if(sizeof($chk_dup)>0)
-            {
-                return ['status'=>'failed','msg'=>'Registration Failed. The name has already been taken.'];
-            }
-            else
-            {
-                $last_id = $this->repo->register($request);
+            $last_id = $this->repo->register($request);
+          
+            if(isset($last_id['ImageName'])){
                 $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
-                //"\all_web_data\images\home\slides\\"."\\";
-                $userProfile = $last_id . '_english.' . $request->user_profile->getClientOriginalExtension();
-                uploadImage($request, 'user_profile', $path, $userProfile);
-             
-                if ($last_id) {
-                    return ['status' => 'success', 'msg' => 'User Added Successfully.'];
-                } else {
-                    return ['status' => 'error', 'msg' => 'User get Not Added.'];
-                }  
-            }
+                $ImageName = $last_id['ImageName'];
 
+                uploadImage($request, 'user_profile', $path, $ImageName);
+              
+              
+                return ['status' => 'success', 'msg' => 'Data Added Successfully.'];
+            } else {
+                return ['status' => 'error', 'msg' => 'ImageName not found in response.'];
+            }
         } catch (Exception $e) {
             return ['status' => 'error', 'msg' => $e->getMessage()];
-            }      
+        }      
     }
 
     public function update($request) {

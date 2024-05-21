@@ -14,13 +14,13 @@
                     <div class="sparkline13-list">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Ticket <span class="table-project-n">Data</span> Table</h1>
+                                <h1>About Us Element <span class="table-project-n">Data</span> Table</h1>
                                 <div class="form-group-inner login-btn-inner row">
                                     <div class="col-lg-2">
                                         <div class="login-horizental cancel-wp pull-left">
-                                            <a href="{{ route('add-ticket') }}"><button
+                                            <a href="{{ route('add-aboutus-element') }}"><button
                                                     class="btn btn-sm btn-primary login-submit-cs" type="submit"
-                                                    href="{{ route('add-ticket') }}">Add Ticket</button></a>
+                                                    href="{{ route('add-aboutus-element') }}">Add About Us</button></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-10"></div>
@@ -68,30 +68,27 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Sr.No.</th>
-                                                <th>Name</th>
-                                                <th>नाम</th>
+                                                <th>Title </th>
+                                                <th>शीर्षक </th>
                                                 <th>Description </th>
-                                                <th>विवरण</th>
-                                                <th>Ticket Cost </th>
-                                                <th>टिकट की कीमत</th>
-                                                <th>Terms and Rules </th>
-                                                <th>नियम एवं शर्तें</th>
+                                                <th>वर्णन </th>
+                                                <th>Image </th>
                                                 <th>Status </th>
                                                 <th> Action </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($ticket as $item)
+                                            @foreach ($aboutuselement as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ strip_tags($item->english_name) }}</td>
                                                     <td>{{ strip_tags($item->hindi_name) }}</td>
                                                     <td>{{ strip_tags($item->english_description) }}</td>
                                                     <td>{{ strip_tags($item->hindi_description) }}</td>
-                                                    <td>{{ strip_tags($item->english_ticket_cost) }}</td>
-                                                    <td>{{ strip_tags($item->hindi_ticket_cost) }}</td>
-                                                    <td>{{ strip_tags($item->english_rules_terms) }}</td>
-                                                    <td>{{ strip_tags($item->hindi_rules_terms) }}</td>
+                                                    <td> <img class="img-size"
+                                                            src="{{ Config::get('DocumentConstant.ABOUTUS_ELEMENT_VIEW') }}{{ $item->image }}"
+                                                            alt=" {{ strip_tags($item['english_name']) }} Image" style="width:100px; height:100px;" />
+                                                    </td>
                                                     <td>
                                                         <label class="switch">
                                                             <input data-id="{{ $item->id }}" type="checkbox"
@@ -106,7 +103,7 @@
                                                     <td>
                                                         <div class="d-flex">
                                                             {{-- @if (in_array('per_update', $data_permission)) --}}
-                                                            <a href="{{ route('edit-ticket', base64_encode($item->id)) }}"
+                                                            <a href="{{ route('edit-aboutus-element', base64_encode($item->id)) }}"
                                                                 class="btn btn-sm btn-outline-primary m-1"
                                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                             {{-- @endif --}}
@@ -134,15 +131,29 @@
             </div>
         </div>
     </div>
-    <form method="POST" action="{{ url('/delete-ticket') }}" id="deleteform">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <form method="POST" action="{{ url('/delete-aboutus-element') }}" id="deleteform">
         @csrf
         <input type="hidden" name="delete_id" id="delete_id" value="">
     </form>
-    <form method="POST" action="{{ url('/show-ticket') }}" id="showform">
+    <form method="POST" action="{{ url('/show-aboutus-element') }}" id="showform">
         @csrf
         <input type="hidden" name="show_id" id="show_id" value="">
     </form>
-    <form method="POST" action="{{ url('/update-active-ticket') }}" id="activeform">
+    <form method="POST" action="{{ url('/update-active-aboutus-element') }}" id="activeform">
         @csrf
         <input type="hidden" name="active_id" id="active_id" value="">
     </form>

@@ -13,23 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_ticket', function (Blueprint $table) {
+        Schema::create('tbl_aboutus_element', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('english_name');
             $table->string('hindi_name');
             $table->text('english_description');
             $table->text('hindi_description');
-            $table->string('english_rules_terms');
-            $table->string('hindi_rules_terms');
-            $table->string('english_ticket_cost')->nullable();
-            $table->string('hindi_ticket_cost')->nullable();
+            $table->string('image')->nullable();
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
-
-
-
-
-
             $table->timestamps();
         });
     }
@@ -41,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_ticket');
+        Schema::dropIfExists('tbl_aboutus_element');
     }
 };

@@ -1,32 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Ticket;
+namespace App\Http\Controllers\Admin\AboutUs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Services\Admin\Ticket\TicketServices;
+use App\Http\Services\Admin\AboutUs\AboutElementUsServices;
 use Validator;
 use Illuminate\Validation\Rule;
 use Config;
 
-class TicketController extends Controller
+class AboutUsElementController extends Controller
 {
 
     public function __construct(){
-    $this->service = new TicketServices();
+    $this->service = new AboutElementUsServices();
     }
 
     public function index(){
         try {
-            $ticket = $this->service->getAll();
-            return view('admin.pages.ticket.list-ticket', compact('ticket'));
+            $aboutuselement = $this->service->getAll();
+            return view('admin.pages.aboutus-element.list-aboutus-element', compact('aboutuselement'));
         } catch (\Exception $e) {
             return $e;
         }
     }
 
     public function add(){
-        return view('admin.pages.ticket.add-ticket');
+        return view('admin.pages.aboutus-element.add-aboutus-element');
     }
 
     public function store(Request $request){
@@ -36,30 +36,29 @@ class TicketController extends Controller
             'hindi_name' => 'required|max:255',
             'english_description' => 'required',
             'hindi_description' => 'required',
-            'english_rules_terms' => 'required',
-            'hindi_rules_terms' => 'required',
-            'english_ticket_cost' => 'required',
-            'hindi_ticket_cost' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:' . Config::get("AllFileValidation.ABOUT_US_IMAGE_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.ABOUT_US_IMAGE_MIN_SIZE"),
+          
         ];
         
         $messages = [
-         'english_name.required' => 'Please enter the name.',
+            'english_name.required' => 'Please enter the name.',
             'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
             'hindi_name.required' => 'कृपया नाम दर्ज करें |',
             'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
             'english_description.required' => 'Please enter the description.',
             'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
-            'english_rules_terms.required' => 'Please enter the rules terms',
-            'hindi_rules_terms.required' => 'कृपया नियम शर्तें दर्ज करें',
-            'english_ticket_cost.required' => 'Please enter the ticket cost',
-            'english_ticket_cost.required' => 'कृपया टिकट की कीमत दर्ज करें',
-           
+            'image.required' => 'The image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image.max' => 'The image size must not exceed ' . Config::get("AllFileValidation.ABOUT_US_IMAGE_MAX_SIZE") . ' KB.',
+            'image.min' => 'The image size must be at least ' . Config::get("AllFileValidation.ABOUT_US_IMAGE_MIN_SIZE") . ' KB.',
+          
         ];
         try {
             $validation = Validator::make($request->all(), $rules, $messages);
             
             if ($validation->fails()) {
-                return redirect('add-ticket')
+                return redirect('add-aboutus-element')
                     ->withInput()
                     ->withErrors($validation);
             } else {
@@ -70,22 +69,22 @@ class TicketController extends Controller
                     $status = $add_data['status'];
 
                     if ($status == 'success') {
-                        return redirect('list-ticket')->with(compact('msg', 'status'));
+                        return redirect('list-aboutus-element')->with(compact('msg', 'status'));
                     } else {
-                        return redirect('add-ticket')->withInput()->with(compact('msg', 'status'));
+                        return redirect('add-aboutus-element')->withInput()->with(compact('msg', 'status'));
                     }
                 }
             }
         } catch (Exception $e) {
-            return redirect('add-ticket')->withInput()->with(['msg' => $e->getMessage(), 'status' => 'error']);
+            return redirect('add-aboutus-element')->withInput()->with(['msg' => $e->getMessage(), 'status' => 'error']);
         }
     }
 
     public function show(Request $request){
         try {
-            $ticket = $this->service->getById($request->show_id);
+            $aboutuselement = $this->service->getById($request->show_id);
           
-            return view('admin.pages.ticket.show-ticket', compact('ticket'));
+            return view('admin.pages.aboutus-element.show-aboutus-element', compact('aboutuselement'));
         } catch (\Exception $e) {
             return $e;
         }
@@ -93,35 +92,38 @@ class TicketController extends Controller
     
     public function edit(Request $request){
         $edit_data_id = base64_decode($request->edit_id);      
-        $ticket = $this->service->getById($edit_data_id);
-        return view('admin.pages.ticket.edit-ticket', compact('ticket'));
+        $aboutuselement = $this->service->getById($edit_data_id);
+        return view('admin.pages.aboutus-element.edit-aboutus-element', compact('aboutuselement'));
     }
     
     public function update(Request $request){
         $rules = [
-            'english_name' => 'required|max:255',
-            'hindi_name' => 'required|max:255',
-            'english_description' => 'required',
-            'hindi_description' => 'required',
-            'english_rules_terms' => 'required',
-            'hindi_rules_terms' => 'required',
-            'english_ticket_cost' => 'required',
-            'hindi_ticket_cost' => 'required',
-            
-
+            // 'english_name' => 'required|max:255',
+            // 'hindi_name' => 'required|max:255',
+            // 'english_description' => 'required',
+            // 'hindi_description' => 'required',
+       
         ];
-      
+
+        // if($request->has('image')) {
+        //     $rules['image'] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get("AllFileValidation.SLIDER_IMAGE_MAX_SIZE").'|min:'.Config::get("AllFileValidation.SLIDER_IMAGE_MIN_SIZE");
+        // }
+        
         $messages = [   
-            'english_name.required' => 'Please enter the name.',
-            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
-            'hindi_name.required' => 'कृपया नाम दर्ज करें |',
-            'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
-            'english_description.required' => 'Please enter the description.',
-            'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
-            'english_rules_terms.required' => 'Please enter the rules terms',
-            'hindi_rules_terms.required' => 'कृपया नियम शर्तें दर्ज करें',
-            'english_ticket_cost.required' => 'Please enter the ticket cost',
-            'english_ticket_cost.required' => 'कृपया टिकट की कीमत दर्ज करें',
+            // 'english_name.required' => 'Please enter the name.',
+            // 'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            // 'hindi_name.required' => 'कृपया नाम दर्ज करें |',
+            // 'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
+            // 'english_description.required' => 'Please enter the description.',
+            // 'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
+
+           
+            // 'image.required' => 'The image is required.',
+            // 'image.image' => 'The file must be an image.',
+            // 'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            // 'image.max' => 'The image size must not exceed ' . Config::get("AllFileValidation.ABOUT_US_IMAGE_MAX_SIZE") . ' KB.',
+            // 'image.min' => 'The image size must be at least ' . Config::get("AllFileValidation.ABOUT_US_IMAGE_MIN_SIZE") . ' KB.',
+           
         ];
 
         try {
@@ -136,7 +138,7 @@ class TicketController extends Controller
                     $msg = $update_slide['msg'];
                     $status = $update_slide['status'];
                     if ($status == 'success') {
-                        return redirect('list-ticket')->with(compact('msg', 'status'));
+                        return redirect('list-aboutus-element')->with(compact('msg', 'status'));
                     } else {
                         return redirect()->back()
                             ->withInput()
@@ -155,7 +157,7 @@ class TicketController extends Controller
         try {
             $active_id = $request->active_id;
         $result = $this->service->updateOne($active_id);
-            return redirect('list-ticket')->with('flash_message', 'Updated!');  
+            return redirect('list-aboutus-element')->with('flash_message', 'Updated!');  
         } catch (\Exception $e) {
             return $e;
         }
@@ -168,7 +170,7 @@ class TicketController extends Controller
                 $msg = $delete_data['msg'];
                 $status = $delete_data['status'];
                 if ($status == 'success') {
-                    return redirect('list-ticket')->with(compact('msg', 'status'));
+                    return redirect('list-aboutus-element')->with(compact('msg', 'status'));
                 } else {
                     return redirect()->back()
                         ->withInput()

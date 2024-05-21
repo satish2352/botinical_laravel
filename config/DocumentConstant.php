@@ -7,9 +7,17 @@ return [
     define('DEFAULT_START', 1),
     define('DEFAULT_LENGTH', 10),
 
+    'USER_PROFILE_ADD'	         => "/all_web_data/images/userProfile/",
+    'USER_PROFILE_DELETE'	         => '/all_web_data/images/userProfile/',
+    'USER_PROFILE_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/userProfile/',
+
     'ABOUTUS_ADD'	         => "/all_web_data/images/aboutus/",
     'ABOUTUS_DELETE'	         => '/all_web_data/images/aboutus/',
     'ABOUTUS_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/aboutus/',
+    
+    'ABOUTUS_ELEMENT_ADD'	         => "/all_web_data/images/aboutuselement/",
+    'ABOUTUS_ELEMENT_DELETE'	         => '/all_web_data/images/aboutuselement/',
+    'ABOUTUS_ELEMENT_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/aboutuselement/',
     
     'AMENITIES_ADD'	         => "/all_web_data/images/amenities/",
     'AMENITIES_DELETE'	         => '/all_web_data/images/amenities/',

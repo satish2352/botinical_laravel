@@ -80,8 +80,8 @@
                                     <span class="mini-click-non">About Us</span>
                                 </a>
                             </li> 
-                            <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
-                                <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
+                            <li class="{{ Request::is('list-aboutus-element') ? 'active' : '' }}">
+                                <a class="has-arrow" href="{{ route('list-aboutus-element') }}" aria-expanded="false">
                                     <i class="fa fa-user icon-wrap"></i>
                                     <span class="mini-click-non">About Us Element</span>
                                 </a>
@@ -91,7 +91,7 @@
                     </li>                   
                     <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-tree icon-wrap"></i>
                             <span class="mini-click-non">Tress/Plant</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
@@ -126,32 +126,32 @@
                     </li> 
                     <li class="{{ Request::is('list-ticket') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-ticket') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-ticket icon-wrap"></i>
                             <span class="mini-click-non">Ticket Management</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-gallery') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-gallery') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-image icon-wrap"></i>
                             <span class="mini-click-non">Gallery</span>
                         </a>
                     </li> 
                  
                     <li class="{{ Request::is('list-contact-information') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-contact-information') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-address-book icon-wrap"></i>
                             <span class="mini-click-non">Contact Details</span>
                         </a>
                     </li> 
                     <li class="{{ Request::is('list-contact-enquiry') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-contact-enquiry') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <i class="fa fa-address-book icon-wrap"></i>
                             <span class="mini-click-non">Contact Enquiry</span>
                         </a>
                     </li> 
-                    <li class="{{ Request::is('list-roles', 'organizations-list-employees',  'list-roles', 'list-district', 'list-taluka', 'list-village') ? 'active' : '' }}">
-                        <a class="" href="{{ route('list-roles') }}" aria-expanded="false">
-                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                    <li class="{{ Request::is('list-users') ? 'active' : '' }}">
+                        <a class="" href="{{ route('list-users') }}" aria-expanded="false">
+                            <i class="fa fa-user icon-wrap"></i>
                             <span class="mini-click-non">User Management</span>
                         </a>
                     </li> 

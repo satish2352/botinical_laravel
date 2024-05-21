@@ -17,24 +17,25 @@ class RegisterRepository
 {
 
 	public function getUsersList() {
-        $data_users = User::join('roles', function($join) {
-							$join->on('users.role_id', '=', 'roles.id');
-						})
-						// ->where('users.is_active','=',true)
-						->select('roles.role_name',
-								'users.email',
-								'users.full_name',
-								'users.m_name',
-								'users.l_name',
-								'users.number',
-								'users.designation',
-								'users.address',
-								'users.state',
-								'users.city',
-								'users.pincode',
-								'users.id',
-								'users.is_active'
-							)->get();
+        $data_users = User::all();
+		
+		// join('roles', function($join) {
+		// 					$join->on('users.role_id', '=', 'roles.id');
+		// 				})
+		// 				->select('roles.role_name',
+		// 						'users.email',
+		// 						'users.full_name',
+		// 						'users.m_name',
+		// 						'users.l_name',
+		// 						'users.number',
+		// 						'users.designation',
+		// 						'users.address',
+		// 						'users.state',
+		// 						'users.city',
+		// 						'users.pincode',
+		// 						'users.id',
+		// 						'users.is_active'
+		// 					)->get();
 							// ->toArray();
 
 		return $data_users;
@@ -78,30 +79,22 @@ class RegisterRepository
 
 	public function register($request)
 	{
-		$ipAddress = getIPAddress($request);
+		// $ipAddress = getIPAddress($request);
 		$user_data = new User();
 		$user_data->email = $request['email'];
 		// $user_data->u_uname = $request['u_uname'];
 		$user_data->password = bcrypt($request['password']);
 		$user_data->role_id = $request['role_id'];
 		$user_data->full_name = $request['full_name'];
-		$user_data->m_name = $request['m_name'];
-		$user_data->l_name = $request['l_name'];
-		$user_data->number = $request['number'];
-		$user_data->designation = $request['designation'];
-		$user_data->address = $request['address'];
-		$user_data->state = $request['state'];
-		$user_data->city = $request['city'];
-		$user_data->pincode = $request['pincode'];
-		$user_data->ip_address = $ipAddress;
+		$user_data->mobile_number = $request['mobile_number'];
+		// $user_data->ip_address = $ipAddress;
 		$user_data->is_active = isset($request['is_active']) ? true : false;
 		$user_data->save();
 
 		$last_insert_id = $user_data->id;
 		// $this->insertRolesPermissions($request, $last_insert_id);
 
-		$imageProfile = $last_insert_id . '_english.' . $request->user_profile->getClientOriginalExtension();
-        
+		$imageProfile = $last_insert_id .'_' . rand(100000, 999999) . '_image.' . $request->user_profile->extension();
         $user_detail = User::find($last_insert_id); // Assuming $request directly contains the ID
         $user_detail->user_profile = $imageProfile; // Save the image filename to the database
         $user_detail->save();
