@@ -13,7 +13,7 @@ use Config;
 class ZoneAreaRepository  {
 	public function getAll(){
         try {
-            return ZonesArea::all();
+            return ZonesArea::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }

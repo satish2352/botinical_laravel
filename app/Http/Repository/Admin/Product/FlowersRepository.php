@@ -13,7 +13,7 @@ use Config;
 class FlowersRepository  {
 	public function getAll(){
         try {
-            return Flowers::all();
+            return Flowers::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }

@@ -27,7 +27,8 @@ class AmenitiesRepository  {
                 'tbl_amenities_category.hindi_name',
                 'tbl_amenities_category.id',
                 )
-            ->get();          
+                ->orderBy('tbl_amenities_category.id', 'desc')
+               ->get();          
              return $dataOutputCategory;
         } catch (\Exception $e) {
             return $e;

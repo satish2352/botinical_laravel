@@ -13,7 +13,7 @@ use Config;
 class TressRepository  {
 	public function getAll(){
         try {
-            return Tress::all();
+            return Tress::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }
