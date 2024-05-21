@@ -16,7 +16,7 @@
                 <div class="sparkline12-hd">
                     <div class="main-sparkline12-hd">
                         <center>
-                            <h1>Add</h1>
+                            <h1>Add Aminities Category</h1>
                         </center>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                                                             <a href="{{ route('list-amenities-category') }}" class="btn btn-white"
                                                                 style="margin-bottom:50px">Cancel</a>
                                                             <button class="btn btn-sm btn-primary login-submit-cs"
-                                                                type="submit" style="margin-bottom:50px">Save Data</button>
+                                                                type="submit" style="margin-bottom:50px">Save Category</button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -12,7 +12,7 @@ class ChargesRepository  {
 
     public function getAll(){
         try {
-          $data_output = Charges::get();
+            $data_output = Charges::orderBy('updated_at', 'desc')->get();
             return $data_output;
         } catch (\Exception $e) {
             return $e;

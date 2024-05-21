@@ -12,7 +12,7 @@ class ContactInformationRepository  {
 
     public function getAll(){
         try {
-          $data_output = ContactInformation::get();
+          $data_output = ContactInformation::orderBy('updated_at', 'desc')->get();
             return $data_output;
         } catch (\Exception $e) {
             return $e;

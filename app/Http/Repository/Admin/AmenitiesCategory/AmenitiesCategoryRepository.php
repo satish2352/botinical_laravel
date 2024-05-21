@@ -14,7 +14,7 @@ class AmenitiesCategoryRepository  {
 
     public function getAll(){
         try {
-          $data_output = CategoryAmenities::get();
+          $data_output = CategoryAmenities::orderBy('updated_at', 'desc')->get();
             return $data_output;
         } catch (\Exception $e) {
             return $e;

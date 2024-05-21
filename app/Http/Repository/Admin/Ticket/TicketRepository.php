@@ -13,7 +13,7 @@ use Config;
 class TicketRepository  {
 	public function getAll(){
         try {
-            return Ticket::all();
+            return Ticket::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }

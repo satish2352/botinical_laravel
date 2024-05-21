@@ -54,7 +54,7 @@
                                                 id="id" name="id">
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="english_name">Name:</label>
+                                                    <label for="english_name">Category Name:</label>
                                                     <input type="text" class="form-control"
                                                         value="@if (old('english_name')) {{ old('english_name') }}@else{{ $editData->english_name }} @endif"
                                                         id="english_name" name="english_name"
@@ -65,11 +65,11 @@
                                                 </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="hindi_name">नाम:</label>
+                                                    <label for="hindi_name">श्रेणी नाम:</label>
                                                     <input type="text" class="form-control"
                                                         value="@if (old('hindi_name')) {{ old('hindi_name') }}@else{{ $editData->hindi_name }} @endif"
                                                         id="hindi_name" name="hindi_name"
-                                                        placeholder="नाम दर्ज करें">
+                                                        placeholder="श्रेणी नाम दर्ज करें">
                                                     @if ($errors->has('hindi_name'))
                                                         <span class="red-text"><?php echo $errors->first('hindi_name', ':message'); ?></span>
                                                     @endif
@@ -97,7 +97,7 @@
                                                                     style="margin-bottom:50px">Cancel</button>
                                                             </a>
                                                             <button class="btn btn-sm btn-primary login-submit-cs"
-                                                                type="submit" style="margin-bottom:50px">Save Data</button>
+                                                                type="submit" style="margin-bottom:50px">Update Category</button>
                                                         </div>
                                                     </div>
                                                 </div>

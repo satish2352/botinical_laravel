@@ -10,7 +10,7 @@ use Config;
 class GalleryRepository  {
 	public function getAll(){
         try {
-            return Gallery::all();
+            return Gallery::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }

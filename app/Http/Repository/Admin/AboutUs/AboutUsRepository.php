@@ -10,7 +10,7 @@ use Config;
 class AboutUsRepository  {
 	public function getAll(){
         try {
-            return AboutUs::all();
+            return AboutUs::orderBy('updated_at', 'desc')->get();
         } catch (\Exception $e) {
             return $e;
         }
