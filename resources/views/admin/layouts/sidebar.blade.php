@@ -98,18 +98,18 @@
                                     <span class="mini-click-non">Flowers Management</span>
                                 </a>
                             </li> 
-                            <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
-                                <a class="has-arrow" href="{{ route('list-amenities') }}" aria-expanded="false">
-                                    <i class="fa big-icon fa-envelope icon-wrap"></i>
-                                    <span class="mini-click-non">Amenities Management</span>
-                                </a>
-                            </li> 
+                           
 
                         </ul>
                     </li>
 
 
-
+                    <li class="{{ Request::is('list-amenities') ? 'active' : '' }}">
+                        <a class="has-arrow" href="{{ route('list-amenities') }}" aria-expanded="false">
+                            <i class="fa big-icon fa-envelope icon-wrap"></i>
+                            <span class="mini-click-non">Amenities Management</span>
+                        </a>
+                    </li> 
 
                    
                     <li class="{{ Request::is('list-roles') ? 'active' : '' }}">
