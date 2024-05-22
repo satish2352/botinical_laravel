@@ -63,7 +63,7 @@ class AboutUsListController extends Controller {
 
             $basic_query_object = AboutUsElement::where( 'is_active', '=', true );
 
-            $totalRecords = $basic_query_object->select( 'tbl_aboutus.id' )->get()->count();
+            $totalRecords = $basic_query_object->select( 'tbl_aboutus_element.id' )->get()->count();
 
             if ( $language == 'hindi' ) {
                 $data_output =   $basic_query_object->select('id', 'hindi_name as name', 'hindi_description as description', 'image' );
