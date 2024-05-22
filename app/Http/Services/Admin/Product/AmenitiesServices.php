@@ -136,7 +136,7 @@ class AmenitiesServices
                 $data_output->hindi_video_upload = $HindiVideoUpload;
                 $data_output->save();
             }
-            
+         
             if ($return_data) {
                 return ['status' => 'success', 'msg' => 'Data Updated Successfully.'];
             } else {

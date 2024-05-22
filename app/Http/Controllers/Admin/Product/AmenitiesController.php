@@ -115,7 +115,7 @@ class AmenitiesController extends Controller
     public function show(Request $request){
         try {
             $amenities = $this->service->getById($request->show_id);
-          
+        
             return view('admin.pages.product.amenities.show-amenities', compact('amenities'));
         } catch (\Exception $e) {
             return $e;
@@ -224,6 +224,7 @@ class AmenitiesController extends Controller
         try {
             $active_id = $request->active_id;
         $result = $this->service->updateOne($active_id);
+
             return redirect('list-amenities')->with('flash_message', 'Updated!');  
         } catch (\Exception $e) {
             return $e;

@@ -95,7 +95,7 @@ class AmenitiesRepository  {
     public function getById($id){
         try {
             $data_output = Amenities::find($id);
-          
+ 
             if ($data_output) {
                 return $data_output;
             } else {
@@ -192,20 +192,20 @@ class AmenitiesRepository  {
             try {
                 $data_output = Amenities::find($id);
                 if ($data_output) {
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->image)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->image);
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image)){
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image);
                     }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_audio_link)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_audio_link);
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_audio_link)){
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_audio_link);
                     }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_audio_link)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_audio_link);
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_audio_link)){
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_audio_link);
                     }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_video_upload)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_video_upload);
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_video_upload)){
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_video_upload);
                     }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_video_upload)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_video_upload);
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_video_upload)){
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_video_upload);
                     }
                     
                     $data_output->delete();
