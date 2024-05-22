@@ -98,7 +98,20 @@ class AmenitiesController extends Controller
         try {
             $language = $request->input('language', 'english');
             $category_id = $request->input('amenities_category_id');
-            $data_output = Amenities::where('tbl_amenities.is_active', true); 
+            $amenities_id = $request->input('amenities_id');
+
+            $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
+            $rowperpage = DEFAULT_LENGTH;
+            $start = ( $page - 1 ) * $rowperpage;
+
+
+            $data_output = Amenities::where('tbl_amenities.is_active', true)
+            ->when($amenities_id, function ($query) use ($amenities_id) {
+                $query->where('id', $amenities_id);
+            });
+
+            $totalRecords = $basic_query_object->select('tbl_amenities.id')->get()->count();
+
             if ($language == 'hindi') {
                 $data_output = $data_output->leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
                 ->select('tbl_amenities_category.hindi_name as category_name','tbl_amenities.hindi_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.hindi_description as description', 'tbl_amenities.hindi_audio_link as audio_link', 'tbl_amenities.hindi_video_upload as video_upload', 'tbl_amenities.image')
@@ -112,7 +125,9 @@ class AmenitiesController extends Controller
                     $query->where('tbl_amenities_category.id', $category_id);
                 });
             }
-            $data_output = $data_output->get()->toArray();
+            $data_output =  $data_output->skip($start)
+            ->take($rowperpage)->get()
+            ->toArray();
 
             foreach ( $data_output as &$flowerdetail ) {
                 $flowerdetail[ 'image' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image' ];
@@ -129,7 +144,17 @@ class AmenitiesController extends Controller
 
             }
 
-            return response()->json(['status' => 'true', 'message' => 'All data retrieved successfully', 'data' => $data_output], 200);
+
+            if ( sizeof( $data_output ) > 0 ) {
+                $totalPages = ceil( $totalRecords/$rowperpage );
+            } else {
+                $totalPages = 0;
+            }
+
+            return response()->json(['status' => 'true', 'message' => 'All data retrieved successfully', 'totalRecords' => $totalRecords,
+                'totalPages'=>$totalPages, 
+                'page_no_to_hilight'=>$page,
+                'data' => $data_output], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => 'false', 'message' => 'Amenities Us List Fail', 'error' => $e->getMessage()], 500);
         }
