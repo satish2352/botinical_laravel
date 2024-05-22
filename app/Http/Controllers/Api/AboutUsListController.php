@@ -10,7 +10,8 @@ use App\Models\ {
     AboutUs,
     Amenities,
     Charges,
-    AboutUsElement
+    AboutUsElement,
+    Ticket
 }
 ;
 
