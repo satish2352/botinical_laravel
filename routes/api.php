@@ -43,6 +43,9 @@ Route::group([
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
 
+        Route::post('/get-ticket-list', [AboutUsListController::class, 'getAllTicketList']);
+        
+
          // =========Amenities===================
 
         Route::post('/get-amenities-category', [AmenitiesController::class, 'getAmenitiesCategory']);

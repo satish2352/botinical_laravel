@@ -374,7 +374,8 @@ class RegisterRepository
 		try {
 			$user = User::find($id);
 				
-	
+			dd($user);
+			die();
 			if ($user) {
 				return $user;
 			} else {

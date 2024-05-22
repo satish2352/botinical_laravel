@@ -100,7 +100,9 @@ class RegisterController extends Controller {
     }
 
     public function editUsers(Request $request){
-        $user_data = $this->service->editUsers($request);
+        $user_data = $this->service->getById($request->edit_id);
+      
+        // $user_data = $this->service->editUsers($request);
       
         return view('admin.pages.users.edit-users',compact('user_data'));
     }
