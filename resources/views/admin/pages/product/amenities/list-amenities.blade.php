@@ -74,7 +74,7 @@
                                                 <th>Description </th>
                                                 <th>वर्णन </th>
                                                 <th>Image </th>
-                                                <th>Status </th>
+                                                {{-- <th>Status </th> --}}
                                                 <th> Action </th>
                                             </tr>
                                         </thead>
@@ -91,7 +91,7 @@
                                                             src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $item->image }}"
                                                             alt=" {{ strip_tags($item['english_name']) }} Image" style="width:100px; height:100px;" />
                                                     </td>
-                                                    <td>
+                                                    {{-- <td>
                                                         <label class="switch">
                                                             <input data-id="{{ $item->id }}" type="checkbox"
                                                                 {{ $item->is_active ? 'checked' : '' }}
@@ -101,7 +101,7 @@
                                                             <span class="slider round"></span>
                                                         </label>
 
-                                                    </td>
+                                                    </td> --}}
                                                     <td>
                                                         <div class="d-flex">
                                                             {{-- @if (in_array('per_update', $data_permission)) --}}
