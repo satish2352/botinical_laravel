@@ -113,13 +113,13 @@ class AmenitiesController extends Controller
             $totalRecords = $basic_query_object->select('tbl_amenities.id')->get()->count();
 
             if ($language == 'hindi') {
-                $data_output = $basic_query_object->leftJoin('id','tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
+                $data_output = $basic_query_object->leftJoin('tbl_amenities.id as id','tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
                 ->select('tbl_amenities_category.hindi_name as category_name','tbl_amenities.hindi_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.hindi_description as description', 'tbl_amenities.hindi_audio_link as audio_link', 'tbl_amenities.hindi_video_upload as video_upload', 'tbl_amenities.image')
                 ->when($category_id, function ($query) use ($category_id) {
                     $query->where('tbl_amenities_category.id', $category_id);
                 });
             } else {
-                $data_output = $basic_query_object->leftJoin('id','tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
+                $data_output = $basic_query_object->leftJoin('tbl_amenities.id as id','tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
                 ->select('tbl_amenities_category.english_name as category_name','tbl_amenities.english_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.english_description as description', 'tbl_amenities.english_audio_link as audio_link', 'tbl_amenities.english_video_upload as video_upload', 'tbl_amenities.image')
             ->when($category_id, function ($query) use ($category_id) {
                     $query->where('tbl_amenities_category.id', $category_id);
