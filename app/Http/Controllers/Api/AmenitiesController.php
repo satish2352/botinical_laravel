@@ -105,7 +105,7 @@ class AmenitiesController extends Controller
             $start = ( $page - 1 ) * $rowperpage;
 
 
-            $data_output = Amenities::where('tbl_amenities.is_active', true)
+            $basic_query_object = Amenities::where('tbl_amenities.is_active', true)
             ->when($amenities_id, function ($query) use ($amenities_id) {
                 $query->where('id', $amenities_id);
             });
