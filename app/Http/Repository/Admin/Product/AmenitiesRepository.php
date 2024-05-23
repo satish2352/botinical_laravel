@@ -16,19 +16,38 @@ class AmenitiesRepository  {
     public function getAll()
     {
         try {
-            $dataOutputCategory = CategoryAmenities::join('tbl_amenities', 'tbl_amenities.amenities_category_id','=', 'tbl_amenities_category.id')
+            // $dataOutputCategory = Amenities::join('amenities_category_id', 'amenities_category_id.id','=', 'tbl_amenities.amenities_category_id')
+            // ->select(
+            //     'tbl_amenities.english_name as amenities_english_name', 
+            //     'tbl_amenities.hindi_name as amenities_hindi_name', 
+            //     'tbl_amenities.english_description', 
+            //     'tbl_amenities.hindi_description', 
+            //     'tbl_amenities.image', 
+            //     'tbl_amenities_category.english_name',
+            //     'tbl_amenities_category.hindi_name',
+            //     'tbl_amenities_category.id',
+            //     )
+            //     ->orderBy('tbl_amenities_category.id', 'desc')
+            //    ->get();  
+               
+            $dataOutputCategory = Amenities::join('tbl_amenities_category', 'tbl_amenities_category.id','=', 'tbl_amenities.amenities_category_id')
             ->select(
                 'tbl_amenities.english_name as amenities_english_name', 
                 'tbl_amenities.hindi_name as amenities_hindi_name', 
                 'tbl_amenities.english_description', 
-                'tbl_amenities.hindi_description', 
+                'tbl_amenities.hindi_description',
+                'tbl_amenities.english_audio_link', 
+                'tbl_amenities.hindi_audio_link', 
+                'tbl_amenities.english_video_upload', 
+                'tbl_amenities.hindi_video_upload', 
                 'tbl_amenities.image', 
                 'tbl_amenities_category.english_name',
                 'tbl_amenities_category.hindi_name',
-                'tbl_amenities_category.id',
-                )
-                ->orderBy('tbl_amenities_category.id', 'desc')
-               ->get();          
+                'tbl_amenities.id',
+            )
+            ->orderBy('tbl_amenities.id', 'desc')
+            ->get();
+        
              return $dataOutputCategory;
         } catch (\Exception $e) {
             return $e;
@@ -95,8 +114,21 @@ class AmenitiesRepository  {
 
     public function getById($id){
         try {
-            $citizenvolunteer = CategoryAmenities::join('tbl_amenities_category', 'tbl_amenities_category.id', '=', 'tbl_amenities.amenities_category_id')
-                ->select('tbl_amenities.*', 'tbl_amenities_category.english_name')
+            $citizenvolunteer = Amenities::join('tbl_amenities_category', 'tbl_amenities_category.id','=', 'tbl_amenities.amenities_category_id')
+            ->select(
+                'tbl_amenities.english_name as amenities_english_name', 
+                'tbl_amenities.hindi_name as amenities_hindi_name', 
+                'tbl_amenities.english_description', 
+                'tbl_amenities.hindi_description',
+                'tbl_amenities.english_audio_link', 
+                'tbl_amenities.hindi_audio_link', 
+                'tbl_amenities.english_video_upload', 
+                'tbl_amenities.hindi_video_upload', 
+                'tbl_amenities.image', 
+                'tbl_amenities_category.english_name',
+                'tbl_amenities_category.hindi_name',
+                'tbl_amenities.id',
+            )
                 ->where('tbl_amenities.id', $id)
                 ->first();
    
@@ -231,7 +263,9 @@ class AmenitiesRepository  {
 
     public function deleteById($id){
             try {
+              
                 $data_output = Amenities::find($id);
+            
                 if ($data_output) {
                     if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image)){
                         removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image);

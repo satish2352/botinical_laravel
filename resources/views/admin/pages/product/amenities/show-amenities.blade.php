@@ -25,7 +25,7 @@
                                 <div class="col-12">
                                     <div class="row ">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
-                                            <label>Name :</label>
+                                            <label>Category Name :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <label>{{ strip_tags($amenities->english_name) }}</label>
@@ -33,10 +33,27 @@
                                     </div>
                                     <div class="row ">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
-                                            <label>नाम :</label>
+                                            <label>श्रेणी नाम :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <label>{{ strip_tags($amenities->hindi_name) }}</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Name :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($amenities->amenities_english_name) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>नाम :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($amenities->amenities_hindi_name) }}</label>
                                         </div>
                                     </div>
                                     <div class="row ">
