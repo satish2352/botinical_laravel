@@ -147,10 +147,17 @@ class AmenitiesServices
         }      
     }
 
+    // public function updateOne($id){
+    //     return $this->repo->updateOne($id);
+    // }
     public function updateOne($id){
+        // Dump and die to inspect the ID being passed in
+        dd($id);
+    
+        // Proceed with the update after inspection
         return $this->repo->updateOne($id);
     }
-
+    
    
     public function deleteById($id)
     {

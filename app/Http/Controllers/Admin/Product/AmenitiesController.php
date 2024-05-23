@@ -115,7 +115,7 @@ class AmenitiesController extends Controller
     public function show(Request $request){
         try {
             $amenities = $this->service->getById($request->show_id);
-        
+       
             return view('admin.pages.product.amenities.show-amenities', compact('amenities'));
         } catch (\Exception $e) {
             return $e;

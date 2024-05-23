@@ -92,23 +92,64 @@ class AmenitiesRepository  {
     }
     
 
+
     public function getById($id){
         try {
-            $data_output = Amenities::find($id);
- 
-            if ($data_output) {
-                return $data_output;
+            $citizenvolunteer = CategoryAmenities::join('tbl_amenities_category', 'tbl_amenities_category.id', '=', 'tbl_amenities.amenities_category_id')
+                ->select('tbl_amenities.*', 'tbl_amenities_category.english_name')
+                ->where('tbl_amenities.id', $id)
+                ->first();
+   
+            if ($citizenvolunteer) {
+                return $citizenvolunteer;
             } else {
                 return null;
             }
         } catch (\Exception $e) {
-            return $e;
             return [
-                'msg' => 'Failed to get by id data.',
-                'status' => 'error'
+                'msg' => 'Failed to get by id Citizen Volunteer.',
+                'status' => 'error',
+                'error' => $e->getMessage()
             ];
         }
     }
+    
+    
+
+//     public function getById($id){
+//         try {
+//             // $data_output = Amenities::find($id);
+
+
+//             $data_output = CategoryAmenities::join('tbl_amenities', 'tbl_amenities.amenities_category_id','=', 'tbl_amenities_category.id')
+//             ->select(
+//                 'tbl_amenities.english_name as amenities_english_name', 
+//                 'tbl_amenities.hindi_name as amenities_hindi_name', 
+//                 'tbl_amenities.english_description', 
+//                 'tbl_amenities.hindi_description', 
+//                 'tbl_amenities.image', 
+//                 'tbl_amenities_category.english_name',
+//                 'tbl_amenities_category.hindi_name',
+//                 'tbl_amenities_category.id',
+//                 )
+//                 ->orderBy('tbl_amenities_category.id', 'desc')
+//                ->get();
+
+// dd($data_output )
+
+//             if ($data_output) {
+//                 return $data_output;
+//             } else {
+//                 return null;
+//             }
+//         } catch (\Exception $e) {
+//             return $e;
+//             return [
+//                 'msg' => 'Failed to get by id data.',
+//                 'status' => 'error'
+//             ];
+//         }
+//     }
     
     public function updateAll($request){
         try {
