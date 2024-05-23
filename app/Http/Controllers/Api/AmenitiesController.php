@@ -107,7 +107,7 @@ class AmenitiesController extends Controller
 
             $basic_query_object = Amenities::where('tbl_amenities.is_active', true)
             ->when($amenities_id, function ($query) use ($amenities_id) {
-                $query->where('id', $amenities_id);
+                $query->where('tbl_amenities.id', $amenities_id); 
             });
 
             $totalRecords = $basic_query_object->select('tbl_amenities.id')->get()->count();
