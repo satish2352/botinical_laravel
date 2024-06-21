@@ -38,7 +38,11 @@ class MappingController extends Controller
             if ($language == 'hindi') {
                 $data_output_trees = $basic_query_object_trees
                     ->leftJoin('icon_master', 'tbl_trees.icon_id', '=', 'icon_master.id')
-                    ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name', 'tbl_trees.hindi_name as name', 'tbl_trees.image')
+                    ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name', 'tbl_trees.hindi_name as name','hindi_description as description',
+                'tbl_trees.hindi_audio_link as audio_link',
+                'tbl_trees.hindi_video_upload as video_upload',
+                'tbl_trees.latitude',
+                'tbl_trees.longitude', 'tbl_trees.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -47,7 +51,11 @@ class MappingController extends Controller
             } else {
                 $data_output_trees = $basic_query_object_trees
                     ->leftJoin('icon_master', 'tbl_trees.icon_id', '=', 'icon_master.id')
-                    ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name', 'icon_master.image as icon_image', 'tbl_trees.english_name as name', 'tbl_trees.image')
+                    ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name', 'icon_master.image as icon_image', 'tbl_trees.english_name as name', 'english_description as description',
+                    'tbl_trees.english_audio_link as audio_link',
+                    'tbl_trees.english_video_upload as video_upload',
+                    'tbl_trees.latitude',
+                    'tbl_trees.longitude', 'tbl_trees.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -72,7 +80,11 @@ class MappingController extends Controller
             if ($language == 'hindi') {
                 $data_output_flowers = $basic_query_object_flowers
                     ->leftJoin('icon_master', 'tbl_flowers.icon_id', '=', 'icon_master.id')
-                    ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name', 'tbl_flowers.hindi_name as name', 'tbl_flowers.image')
+                    ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name', 'tbl_flowers.hindi_name as name',  'hindi_description as description',
+                    'tbl_flowers.hindi_audio_link as audio_link',
+                    'tbl_flowers.hindi_video_upload as video_upload',
+                    'tbl_flowers.latitude',
+                    'tbl_flowers.longitude',  'tbl_flowers.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -81,7 +93,11 @@ class MappingController extends Controller
             } else {
                 $data_output_flowers = $basic_query_object_flowers
                     ->leftJoin('icon_master', 'tbl_flowers.icon_id', '=', 'icon_master.id')
-                    ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name', 'icon_master.image as icon_image', 'tbl_flowers.english_name as name', 'tbl_flowers.image')
+                    ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name', 'icon_master.image as icon_image', 'tbl_flowers.english_name as name', 'english_description as description',
+                    'tbl_flowers.english_audio_link as audio_link',
+                    'tbl_flowers.english_video_upload as video_upload',
+                    'tbl_flowers.latitude',
+                    'tbl_flowers.longitude', 'tbl_flowers.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -111,6 +127,8 @@ class MappingController extends Controller
             ], 500);
         }
     }
+   
+    
     
     
  }
