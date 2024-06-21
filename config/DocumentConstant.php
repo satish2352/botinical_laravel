@@ -43,6 +43,10 @@ return [
     'FACILITIES_ADD'	         => "/all_web_data/images/facilities/",
     'FACILITIES_DELETE'	         => '/all_web_data/images/facilities/',
     'FACILITIES_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/facilities/',
+
+    'ICON_MASTER_ADD'	         => "/all_web_data/images/iconmaster/",
+    'ICON_MASTER_DELETE'	         => '/all_web_data/images/iconmaster/',
+    'ICON_MASTER_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/iconmaster/',
     // 'DB_BACKUP'	 => "/all_web_data/DBBackup//",
 
     

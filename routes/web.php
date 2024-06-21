@@ -193,6 +193,22 @@ Route::group(['middleware' => ['admin']], function () {
     Route::any('/update-contact-information', ['as' => 'update-contact-information', 'uses' => 'App\Http\Controllers\Admin\Contact\ContactInformationController@update']);
 
 
+
+
+
+
+
+    // =========================
+
+    Route::any('/list-icon', ['as' => 'list-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@index']);
+    Route::any('/add-icon', ['as' => 'add-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@add']);
+    Route::any('/store-icon', ['as' => 'store-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@store']);
+    Route::any('/edit-icon/{edit_id}', ['as' => 'edit-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@edit']);
+    Route::any('/update-icon', ['as' => 'update-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@update']);
+    Route::post('/delete-icon', ['as' => 'delete-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@destroy']);
+    Route::post('/update-one-icon', ['as' => 'update-one-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@updateOneCategory']);
+
+
 });
 
 

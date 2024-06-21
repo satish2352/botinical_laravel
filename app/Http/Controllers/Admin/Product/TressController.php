@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Tress;
 use App\Http\Services\Admin\Product\TressServices;
+use App\Models\ {
+    Tress,
+    IconMaster
+    };
 use Validator;
 use Illuminate\Validation\Rule;
 use Config;
@@ -27,7 +30,8 @@ class TressController extends Controller
     }
 
     public function add(){
-        return view('admin.pages.product.tress.add-tress');
+        $dataOutputIcon = IconMaster::get();
+        return view('admin.pages.product.tress.add-tress', compact('dataOutputIcon'));
     }
 
     public function store(Request $request){

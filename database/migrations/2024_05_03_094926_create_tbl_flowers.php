@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tbl_flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('icon_id')->nullable();
             $table->string('english_name');
             $table->string('hindi_name');
             $table->string('english_botnical_name');

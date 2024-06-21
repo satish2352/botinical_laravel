@@ -200,6 +200,25 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="icon_id">Icon</label>&nbsp<span class="red-text">*</span>
+                                                        <select class="form-control" id="icon_id" name="icon_id">
+                                                            <option selected>Select</option>
+                                                            @foreach ($dataOutputIcon as $data)
+                                                                @if (old('icon_id') == $data['id'])
+                                                                    <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}" selected>
+                                                                        {{ strip_tags($data['name']) }}
+                                                                    </option>
+                                                                @else
+                                                                    <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}">
+                                                                        {{ strip_tags($data['name']) }}
+                                                                    </option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="image">Image </label>&nbsp<span
                                                             class="red-text">*</span><br>
                                                         <input type="file" name="image" id="image"

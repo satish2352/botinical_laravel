@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\GalleryController;
 use App\Http\Controllers\Api\TressController;
 use App\Http\Controllers\Api\FacilitiesController;
 use App\Http\Controllers\Api\ZoneAreaController;
-
+use App\Http\Controllers\Api\MappingController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -57,7 +57,11 @@ Route::group([
         Route::post('/get-tress-list', [TressController::class, 'getTressList']);
         Route::post('/get-tress-audio', [TressController::class, 'getParticularTressAudio']);
         Route::post('/get-tress-video', [TressController::class, 'getParticularTressVideo']);
+       
+        Route::post('/get-map-data', [MappingController::class, 'filterMapData']);
 
+
+        
         // =========Flowers===================
         Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
         Route::post('/get-flowers-audio', [FlowersController::class, 'getParticularFlowersAudio']);

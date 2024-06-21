@@ -8,6 +8,10 @@ use App\Http\Services\Admin\Product\FlowersServices;
 use Validator;
 use Illuminate\Validation\Rule;
 use Config;
+use App\Models\ {
+    Tress,
+    IconMaster
+    };
 
 class FlowersController extends Controller
 {
@@ -26,7 +30,8 @@ class FlowersController extends Controller
     }
 
     public function add(){
-        return view('admin.pages.product.flowers.add-flowers');
+        $dataOutputIcon = IconMaster::get();
+        return view('admin.pages.product.flowers.add-flowers', compact('dataOutputIcon'));
     }
 
     public function store(Request $request){

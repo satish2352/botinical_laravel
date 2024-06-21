@@ -23,6 +23,7 @@ class FlowersRepository  {
            
             $data =array();
             $add_data = new Flowers();
+            $add_data->icon_id = $request['icon_id'];
             $add_data->english_name = $request['english_name'];
             $add_data->hindi_name = $request['hindi_name'];
             $add_data->english_botnical_name = $request['english_botnical_name'];

@@ -27,5 +27,8 @@ return [
 
     'GALLERY_IMAGE_MAX_SIZE'=>'2048',
     'GALLERY_IMAGE_MIN_SIZE'=>'10',
+
+    'ICON_MASTER_IMAGE_MAX_SIZE'=>'1024',
+    'ICON_MASTER_IMAGE_MIN_SIZE'=>'1',
     
 ];
