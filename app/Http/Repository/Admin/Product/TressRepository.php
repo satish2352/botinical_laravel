@@ -6,7 +6,7 @@ use DB;
 use Illuminate\Support\Carbon;
 // use Session;
 use App\Models\ {
-	Tress
+	Tress,
 };
 use Config;
 

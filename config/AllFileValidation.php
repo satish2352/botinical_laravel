@@ -9,10 +9,10 @@ return [
     'TRESS_IMAGE_MAX_SIZE'=>'2048',
     'TRESS_IMAGE_MIN_SIZE'=>'10',
 
-    'AUDIO_MAX_SIZE'=>'3072',
+    'AUDIO_MAX_SIZE'=>'5120',
     'AUDIO_MIN_SIZE'=>'10',
 
-    'VIDEO_MAX_SIZE'=>'3072',
+    'VIDEO_MAX_SIZE'=>'51200',
     'VIDEO_MIN_SIZE'=>'10',
 
     'FLOWERS_IMAGE_MAX_SIZE'=>'2048',

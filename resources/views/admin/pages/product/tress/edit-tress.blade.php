@@ -419,7 +419,7 @@
             </div>
         </div>
     </div>
-    <script>
+    {{-- <script>
         jQuery.noConflict();
         jQuery(document).ready(function($) {
             $("#regForm").validate({
@@ -592,5 +592,5 @@
                 errorLabel.remove();
             });
         });
-    </script>
+    </script> --}}
 @endsection
