@@ -24,7 +24,7 @@
                                             enctype="multipart/form-data" id="regForm">
                                             @csrf
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="amenities_category_id">Category</label>&nbsp<span
                                                             class="red-text">*</span>
@@ -43,7 +43,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="image">Image </label>&nbsp<span
                                                             class="red-text">*</span><br>
@@ -53,6 +53,28 @@
                                                         @if ($errors->has('image'))
                                                             <span class="red-text"><?php echo $errors->first('image', ':message'); ?></span>
                                                         @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="icon_id">Icon</label>&nbsp<span class="red-text">*</span>
+                                                        <select class="form-control" id="icon_id" name="icon_id">
+                                                            <option selected>Select</option>
+                                                            @foreach ($dataOutputIcon as $data)
+                                                                @if (old('icon_id') == $data['id'])
+                                                                    <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}" selected>
+                                                                        {{ strip_tags($data['name']) }}
+                                                                    </option>
+                                                                @else
+                                                                    <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}">
+                                                                        {{ strip_tags($data['name']) }}
+                                                                    </option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('icon_id'))
+                                                        <span class="red-text"><?php echo $errors->first('icon_id', ':message'); ?></span>
+                                                    @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">

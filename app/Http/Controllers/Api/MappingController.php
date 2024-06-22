@@ -132,6 +132,89 @@ class MappingController extends Controller
     }
    
     
+    // public function filterMapData(Request $request) {
+    //     try {
+    //         $language = $request->input('language', 'english');
+    //         $category_id = $request->input('icon_id');
+    //         $tress_id = $request->input('tress_id');
+    //         $flowers_id = $request->input('flowers_id');
+    
+    //         // Initialize response variables
+    //         $treesData = [];
+    //         $flowersData = [];
+    
+    //         // Filter data for Trees
+    //         $basic_query_object_trees = Tress::where('tbl_trees.is_active', true);
+    
+    //         if ($tress_id) {
+    //             $basic_query_object_trees->where('tbl_trees.id', $tress_id);
+    //         }
+    
+    //         $data_output_trees = $basic_query_object_trees
+    //             ->leftJoin('icon_master', 'tbl_trees.icon_id', '=', 'icon_master.id')
+    //             ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name',
+    //                 'tbl_trees.' . $language . '_name as name', $language . '_description as description',
+    //                 'tbl_trees.' . $language . '_audio_link as audio_link',
+    //                 'tbl_trees.' . $language . '_video_upload as video_upload',
+    //                 'tbl_trees.latitude', 'tbl_trees.longitude', 'tbl_trees.height', 'tbl_trees.height_type',
+    //                 'tbl_trees.canopy', 'tbl_trees.canopy_type', 'tbl_trees.girth', 'tbl_trees.girth_type',
+    //                 'tbl_trees.image', 'icon_master.image as icon_image')
+    //             ->when($category_id, function ($query) use ($category_id) {
+    //                 $query->where('icon_master.id', $category_id);
+    //             })
+    //             ->get()
+    //             ->toArray();
+    
+    //         foreach ($data_output_trees as &$treeDetail) {
+    //             $treeDetail['image'] = Config::get('DocumentConstant.TREES_VIEW') . $treeDetail['image'];
+    //             $treeDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $treeDetail['icon_image'];
+    //         }
+    
+    //         $treesData = $data_output_trees;
+    
+    //         // Filter data for Flowers
+    //         $basic_query_object_flowers = Flowers::where('tbl_flowers.is_active', true);
+    
+    //         if ($flowers_id) {
+    //             $basic_query_object_flowers->where('tbl_flowers.id', $flowers_id);
+    //         }
+    
+    //         $data_output_flowers = $basic_query_object_flowers
+    //             ->leftJoin('icon_master', 'tbl_flowers.icon_id', '=', 'icon_master.id')
+    //             ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name',
+    //                 'tbl_flowers.' . $language . '_name as name', $language . '_description as description',
+    //                 'tbl_flowers.' . $language . '_audio_link as audio_link',
+    //                 'tbl_flowers.' . $language . '_video_upload as video_upload',
+    //                 'tbl_flowers.latitude', 'tbl_flowers.longitude', 'tbl_flowers.height', 'tbl_flowers.height_type',
+    //                 'tbl_flowers.canopy', 'tbl_flowers.canopy_type', 'tbl_flowers.girth', 'tbl_flowers.girth_type',
+    //                 'tbl_flowers.image', 'icon_master.image as icon_image')
+    //             ->when($category_id, function ($query) use ($category_id) {
+    //                 $query->where('icon_master.id', $category_id);
+    //             })
+    //             ->get()
+    //             ->toArray();
+    
+    //         foreach ($data_output_flowers as &$flowerDetail) {
+    //             $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
+    //             $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
+    //         }
+    
+    //         $flowersData = $data_output_flowers;
+    
+    //         return response()->json([
+    //             'status' => 'true',
+    //             'message' => 'All data retrieved successfully',
+    //             'treesData' => $treesData,
+    //             'flowersData' => $flowersData
+    //         ], 200);
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'status' => 'false',
+    //             'message' => 'Data retrieval failed',
+    //             'error' => $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
     
     
  }

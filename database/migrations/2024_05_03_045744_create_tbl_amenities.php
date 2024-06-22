@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tbl_amenities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('amenities_category_id');
+            $table->unsignedBigInteger('icon_id');
             $table->string('english_name');
             $table->string('hindi_name');
             $table->text('english_description');

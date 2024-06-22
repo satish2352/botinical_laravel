@@ -9,7 +9,8 @@ use Validator;
 use Illuminate\Validation\Rule;
 use Config;
 use App\Models\ {
-    CategoryAmenities
+    CategoryAmenities,
+    IconMaster
     };
 class AmenitiesController extends Controller
 {
@@ -31,8 +32,9 @@ class AmenitiesController extends Controller
 
     public function add(){
         // $dataOutputCategory = $this->service->getAll(); 
+        $dataOutputIcon = IconMaster::get();
         $dataOutputCategory = CategoryAmenities::get();
-        return view('admin.pages.product.amenities.add-amenities', compact('dataOutputCategory'));
+        return view('admin.pages.product.amenities.add-amenities', compact('dataOutputCategory', 'dataOutputIcon'));
     }
 
     public function store(Request $request){
@@ -123,10 +125,11 @@ class AmenitiesController extends Controller
     }
     
     public function edit(Request $request){
+        $dataOutputIcon = IconMaster::get();
         $edit_data_id = base64_decode($request->edit_id);      
         $amenities = $this->service->getById($edit_data_id);
         $dataOutputCategory = CategoryAmenities::where('is_active', true)->get();
-        return view('admin.pages.product.amenities.edit-amenities', compact('amenities', 'dataOutputCategory'));
+        return view('admin.pages.product.amenities.edit-amenities', compact('amenities', 'dataOutputCategory', 'dataOutputIcon'));
     }
     
     public function update(Request $request){

@@ -60,6 +60,7 @@ class AmenitiesRepository  {
             $data =array();
             $add_data = new Amenities();
             $add_data->amenities_category_id = $request['amenities_category_id'];
+            $add_data->icon_id = $request['icon_id'];
             $add_data->english_name = $request['english_name'];
             $add_data->hindi_name = $request['hindi_name'];
             $add_data->english_description = $request['english_description'];
@@ -205,6 +206,7 @@ class AmenitiesRepository  {
 
             // Update the fields from the request
             $data_output->amenities_category_id = $request['amenities_category_id'];
+            $data_output->icon_id = $request['icon_id'];
             $data_output->english_name = $request['english_name'];
             $data_output->hindi_name = $request['hindi_name'];
             $data_output->english_description = $request['english_description'];

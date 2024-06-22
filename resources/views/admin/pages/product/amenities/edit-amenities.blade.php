@@ -24,7 +24,7 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
                                         <div class="form-group">
                                           <label for="Service">Product:</label> &nbsp<span class="red-text">*</span>
                                           <select class="form-control mb-2" name="amenities_category_id" id="amenities_category_id">
@@ -43,7 +43,7 @@
                                           @endif
                                         </div>
                                       </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
                                         <div class="form-group">
                                             <label for="image"> Image</label>
                                             <input type="file" name="image" class="form-control"
@@ -59,6 +59,22 @@
                                             <div class="red-text"><?php echo $errors->first('image', ':message'); ?>
                                             </div>
                                         @endif
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label for="icon_id">Icon</label>&nbsp;<span class="red-text">*</span>
+                                                <select class="form-control" id="icon_id" name="icon_id">
+                                                    <option value="" disabled {{ old('icon_id', '') == '' ? 'selected' : '' }}>Select</option>
+                                                    @foreach ($dataOutputIcon as $data)
+                                                        <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}" {{ old('icon_id') == $data['id'] ? 'selected' : '' }}>
+                                                            {{ strip_tags($data['name']) }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @if ($errors->has('icon_id'))
+                                                    <span class="red-text">{{ $errors->first('icon_id') }}</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
