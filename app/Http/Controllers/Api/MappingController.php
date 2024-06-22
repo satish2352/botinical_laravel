@@ -69,6 +69,17 @@ class MappingController extends Controller
             foreach ($data_output_trees as &$treeDetail) {
                 $treeDetail['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image'];
                 $treeDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $treeDetail['icon_image'];
+
+                if ($language == 'hindi') {
+                    $treeDetail['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['audio_link'];
+                } else {
+                    $treeDetail['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['audio_link'];
+                }
+                if ($language == 'hindi') {
+                    $treeDetail['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['video_upload'];
+                } else {
+                    $treeDetail['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['video_upload'];
+                }
             }
     
             // Filter data for Flowers
@@ -113,6 +124,17 @@ class MappingController extends Controller
             foreach ($data_output_flowers as &$flowerDetail) {
                 $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
                 $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
+            
+                if ($language == 'hindi') {
+                    $flowerDetail['audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['audio_link'];
+                } else {
+                    $flowerDetail['audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['audio_link'];
+                }
+                if ($language == 'hindi') {
+                    $flowerDetail['video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['video_upload'];
+                } else {
+                    $flowerDetail['video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['video_upload'];
+                }
             }
               // Filter data for Aminities
               $basic_query_object_aminities = Amenities::where('tbl_amenities.is_active', true);
@@ -155,7 +177,18 @@ class MappingController extends Controller
               foreach ($data_output_aminities as &$aminitiesDetail) {
                   $aminitiesDetail['image'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image'];
                   $aminitiesDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $aminitiesDetail['icon_image'];
-              }
+              
+                  if ($language == 'hindi') {
+                    $aminitiesDetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['audio_link'];
+                } else {
+                    $aminitiesDetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['audio_link'];
+                }
+                if ($language == 'hindi') {
+                    $aminitiesDetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['video_upload'];
+                } else {
+                    $aminitiesDetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['video_upload'];
+                }
+                }
     
             // Combine both data sets into a single response
             $combined_data_output = array_merge($data_output_trees, $data_output_flowers,$data_output_aminities);
