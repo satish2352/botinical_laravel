@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Config;
 use App\Models\ {
     Tress,
     Flowers,
+    Amenities,
     IconMaster
 }
 ;
@@ -19,6 +20,7 @@ class MappingController extends Controller
         try {
             $language = $request->input('language', 'english');
             $category_id = $request->input('icon_id');
+            $tress_id = $request->input( 'tress_id' );
             $amenities_id = $request->input('amenities_id');
             $flowers_id = $request->input('flowers_id');
     
@@ -29,8 +31,8 @@ class MappingController extends Controller
             // Filter data for Tress
             $basic_query_object_trees = Tress::where('tbl_trees.is_active', true);
             
-            if ($amenities_id) {
-                $basic_query_object_trees->where('tbl_trees.id', $amenities_id);
+            if ($tress_id) {
+                $basic_query_object_trees->where('tbl_trees.id', $tress_id);
             }
     
             $totalRecords = $basic_query_object_trees->count();
@@ -38,7 +40,7 @@ class MappingController extends Controller
             if ($language == 'hindi') {
                 $data_output_trees = $basic_query_object_trees
                     ->leftJoin('icon_master', 'tbl_trees.icon_id', '=', 'icon_master.id')
-                    ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name', 'tbl_trees.hindi_name as name','hindi_description as description',
+                    ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name', 'tbl_trees.hindi_name as name','icon_master.image as icon_image','hindi_description as description',
                 'tbl_trees.hindi_audio_link as audio_link',
                 'tbl_trees.hindi_video_upload as video_upload',
                 'tbl_trees.latitude',
@@ -72,8 +74,8 @@ class MappingController extends Controller
             // Filter data for Flowers
             $basic_query_object_flowers = Flowers::where('tbl_flowers.is_active', true);
             
-            if ($amenities_id) {
-                $basic_query_object_flowers->where('tbl_flowers.id', $amenities_id);
+            if ($flowers_id) {
+                $basic_query_object_flowers->where('tbl_flowers.id', $flowers_id);
             }
     
             $totalRecords = $basic_query_object_flowers->count();
@@ -81,7 +83,7 @@ class MappingController extends Controller
             if ($language == 'hindi') {
                 $data_output_flowers = $basic_query_object_flowers
                     ->leftJoin('icon_master', 'tbl_flowers.icon_id', '=', 'icon_master.id')
-                    ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name', 'tbl_flowers.hindi_name as name',  'hindi_description as description',
+                    ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name', 'tbl_flowers.hindi_name as name', 'icon_master.image as icon_image', 'hindi_description as description',
                     'tbl_flowers.hindi_audio_link as audio_link',
                     'tbl_flowers.hindi_video_upload as video_upload',
                     'tbl_flowers.latitude',
@@ -112,15 +114,57 @@ class MappingController extends Controller
                 $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
                 $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
             }
+              // Filter data for Aminities
+              $basic_query_object_aminities = Amenities::where('tbl_amenities.is_active', true);
+            
+              if ($flowers_id) {
+                  $basic_query_object_aminities->where('tbl_amenities.id', $flowers_id);
+              }
+      
+              $totalRecords = $basic_query_object_aminities->count();
+      
+              if ($language == 'hindi') {
+                  $data_output_aminities = $basic_query_object_aminities
+                      ->leftJoin('icon_master', 'tbl_amenities.icon_id', '=', 'icon_master.id')
+                      ->select('tbl_amenities.id as id', 'tbl_amenities.icon_id', 'icon_master.name as icon_name', 'tbl_amenities.hindi_name as name', 'icon_master.image as icon_image', 'hindi_description as description',
+                      'tbl_amenities.hindi_audio_link as audio_link',
+                      'tbl_amenities.hindi_video_upload as video_upload',
+                      'tbl_amenities.latitude',
+                      'tbl_amenities.longitude', 
+                      'tbl_amenities.image')
+                      ->when($category_id, function ($query) use ($category_id) {
+                          $query->where('icon_master.id', $category_id);
+                      })
+                      ->get()
+                      ->toArray();
+              } else {
+                  $data_output_aminities = $basic_query_object_aminities
+                      ->leftJoin('icon_master', 'tbl_amenities.icon_id', '=', 'icon_master.id')
+                      ->select('tbl_amenities.id as id', 'tbl_amenities.icon_id', 'icon_master.name as icon_name', 'icon_master.image as icon_image', 'tbl_amenities.english_name as name', 'english_description as description',
+                      'tbl_amenities.english_audio_link as audio_link',
+                      'tbl_amenities.english_video_upload as video_upload',
+                      'tbl_amenities.latitude',
+                      'tbl_amenities.longitude', 'tbl_amenities.image')
+                      ->when($category_id, function ($query) use ($category_id) {
+                          $query->where('icon_master.id', $category_id);
+                      })
+                      ->get()
+                      ->toArray();
+              }
+      
+              foreach ($data_output_aminities as &$flowerDetail) {
+                  $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
+                  $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
+              }
     
             // Combine both data sets into a single response
-            $combined_data_output = array_merge($data_output_trees, $data_output_flowers);
+            $combined_data_output = array_merge($data_output_trees, $data_output_flowers,$data_output_aminities);
     
             return response()->json([
                 'status' => 'true',
                 'message' => 'All data retrieved successfully',
                 'totalRecords' => $totalRecords,
-                'Data' => $combined_data_output
+                'data' => $combined_data_output
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
