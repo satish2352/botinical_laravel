@@ -30,9 +30,9 @@ class FlowersController extends Controller {
             $totalRecords = $basic_query_object->select('tbl_flowers.id')->get()->count();
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select('id', 'hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude', 'hindi_botnical_name as botnical_name','hindi_common_name as common_name' );
+                $data_output =   $basic_query_object->select('id', 'hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude', 'hindi_botnical_name as botnical_name','hindi_common_name as common_name','height','height_type', 'canopy', 'canopy_type','girth','girth_type' );
             } else {
-                $data_output =  $basic_query_object->select('id', 'english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude', 'english_botnical_name as botnical_name', 'english_common_name as common_name' );
+                $data_output =  $basic_query_object->select('id', 'english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude', 'english_botnical_name as botnical_name', 'english_common_name as common_name','height','height_type', 'canopy', 'canopy_type','girth','girth_type' );
             }
 
             $data_output =  $data_output->skip($start)

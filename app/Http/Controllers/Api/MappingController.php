@@ -42,6 +42,7 @@ class MappingController extends Controller
                 'tbl_trees.hindi_audio_link as audio_link',
                 'tbl_trees.hindi_video_upload as video_upload',
                 'tbl_trees.latitude',
+                'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type',
                 'tbl_trees.longitude', 'tbl_trees.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
@@ -55,7 +56,7 @@ class MappingController extends Controller
                     'tbl_trees.english_audio_link as audio_link',
                     'tbl_trees.english_video_upload as video_upload',
                     'tbl_trees.latitude',
-                    'tbl_trees.longitude', 'tbl_trees.image')
+                    'tbl_trees.longitude', 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type', 'tbl_trees.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -84,7 +85,9 @@ class MappingController extends Controller
                     'tbl_flowers.hindi_audio_link as audio_link',
                     'tbl_flowers.hindi_video_upload as video_upload',
                     'tbl_flowers.latitude',
-                    'tbl_flowers.longitude',  'tbl_flowers.image')
+                    'tbl_flowers.longitude', 
+                    'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type',
+                    'tbl_flowers.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -97,7 +100,7 @@ class MappingController extends Controller
                     'tbl_flowers.english_audio_link as audio_link',
                     'tbl_flowers.english_video_upload as video_upload',
                     'tbl_flowers.latitude',
-                    'tbl_flowers.longitude', 'tbl_flowers.image')
+                    'tbl_flowers.longitude', 'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type', 'tbl_flowers.image')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
