@@ -26,11 +26,11 @@
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="Service">Product:</label> &nbsp<span
+                                                        <label for="Service">Category:</label> &nbsp<span
                                                             class="red-text">*</span>
                                                         <select class="form-control mb-2" name="amenities_category_id"
                                                             id="amenities_category_id">
-                                                            <option value="" default>Select Product</option>
+                                                            <option value="" default>Select Category</option>
                                                             @foreach ($dataOutputCategory as $service)
                                                                 <option value="{{ $service->id }}"
                                                                     @if ($amenities->amenities_category_id == $service->id) {{ 'selected' }} @endif>
