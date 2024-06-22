@@ -87,6 +87,31 @@
                                             <label>{{ strip_tags($tress->hindi_description) }}</label>
                                         </div>
                                     </div>
+
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Height :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($tress->height) }} {{ strip_tags($tress->height_type) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Canopy :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($tress->canopy) }} {{ strip_tags($tress->canopy_type) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Girth :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($tress->girth) }} {{ strip_tags($tress->girth_type) }}</label>
+                                        </div>
+                                    </div>
                                     <div class="row rowpadd">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
                                             <label> Image :</label>

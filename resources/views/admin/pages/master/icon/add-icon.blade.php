@@ -59,7 +59,7 @@
                                                             <a href="{{ route('list-icon') }}" class="btn btn-white"
                                                                 style="margin-bottom:50px">Cancel</a>
                                                             <button class="btn btn-sm btn-primary login-submit-cs"
-                                                                type="submit" style="margin-bottom:50px">Save Category</button>
+                                                                type="submit" style="margin-bottom:50px">Save Icon</button>
                                                         </div>
                                                     </div>
                                                 </div>

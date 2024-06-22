@@ -31,6 +31,12 @@ return new class extends Migration
             $table->string('hindi_video_upload');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('height');
+            $table->string('height_type');
+            $table->string('canopy');
+            $table->string('canopy_type');
+            $table->string('girth');
+            $table->string('girth_type');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

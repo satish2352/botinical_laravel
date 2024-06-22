@@ -283,7 +283,7 @@
                                                                                 style="background-color:#{{ str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) . str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT) }}">
                                                                                 <div class="card-statistic-3 p-4">
                                                                                     <div class="mb-4">
-                                                                                        <h4 class="mb-0 dash_card_title">Flowers</h4>
+                                                                                        <h4 class="mb-0 dash_card_title">Plant</h4>
                                                                                     </div>
                                                                                     <div class="row align-items-center mb-2 d-flex">
                                                                                         <div class="col-8">

@@ -122,9 +122,10 @@ class FlowersController extends Controller
     }
     
     public function edit(Request $request){
+        $dataOutputIcon = IconMaster::get();
         $edit_data_id = base64_decode($request->edit_id);      
         $flowers = $this->service->getById($edit_data_id);
-        return view('admin.pages.product.flowers.edit-flowers', compact('flowers'));
+        return view('admin.pages.product.flowers.edit-flowers', compact('flowers', 'dataOutputIcon'));
     }
     
     public function update(Request $request){

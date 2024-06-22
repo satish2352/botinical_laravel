@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-start align-items-center">
                             <h3 class="page-title">
-                                Flowers Details
+                                Plant Details
                             </h3>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-end align-items-center">
@@ -85,6 +85,30 @@
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
                                             <label>{{ strip_tags($flowers->hindi_description) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Height :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($flowers->height) }} {{ strip_tags($flowers->height_type) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Canopy :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($flowers->canopy) }} {{ strip_tags($flowers->canopy_type) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Girth :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($flowers->girth) }} {{ strip_tags($flowers->girth_type) }}</label>
                                         </div>
                                     </div>
                                     <div class="row rowpadd">

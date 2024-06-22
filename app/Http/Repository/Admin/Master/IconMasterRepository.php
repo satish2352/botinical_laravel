@@ -68,10 +68,6 @@ class IconMasterRepository  {
             $return_data['last_insert_id'] = $last_insert_id;
             $return_data['image'] = $previousImage;
 
-
-dd($return_data);
-die();
-
             return  $return_data;
         
         } catch (\Exception $e) {
@@ -126,15 +122,24 @@ public function updateOneCategory($request) {
     }
 }
 
+
 public function deleteById($id){
     try {
-        $data_output = IconMaster::find($id);
-        $data_output->delete();
+        $tress = IconMaster::find($id);
+        if ($tress) {
+            if (file_exists_view(Config::get('DocumentConstant.ICON_MASTER_DELETE') . $tress->image)){
+                removeImage(Config::get('DocumentConstant.ICON_MASTER_DELETE') . $tress->image);
+            }
+            $tress->delete();
             
-        return $data_output;
+            return $tress;
+        } else {
+            return null;
+        }
     } catch (\Exception $e) {
         return $e;
     }
 }
+
    
 }

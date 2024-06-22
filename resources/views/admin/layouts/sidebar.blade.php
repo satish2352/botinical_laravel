@@ -111,7 +111,7 @@
                             <li class="{{ Request::is('list-flowers') ? 'active' : '' }}">
                                 <a class="has-arrow" href="{{ route('list-flowers') }}" aria-expanded="false">
                                     <i class="fa big-icon fa-envelope icon-wrap"></i>
-                                    <span class="mini-click-non">Flowers Management</span>
+                                    <span class="mini-click-non">Plant Management</span>
                                 </a>
                             </li> 
                            

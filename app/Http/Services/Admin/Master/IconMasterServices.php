@@ -3,7 +3,8 @@ namespace App\Http\Services\Admin\Master;
 use App\Http\Repository\Admin\Master\IconMasterRepository;
 use Carbon\Carbon;
 
-
+use App\Models\
+{ IconMaster };
 use Config;
 class IconMasterServices
 {
@@ -44,8 +45,6 @@ class IconMasterServices
     public function updateAll($request){
         try {
             $return_data = $this->repo->updateAll($request);
-            dd($return_data);
-            die();
             $path = Config::get('DocumentConstant.ICON_MASTER_ADD');
             if ($request->hasFile('image')) {
                 if ($return_data['image']) {
@@ -85,6 +84,7 @@ class IconMasterServices
     {
         return $this->repo->updateOneCategory($id);
     }
+    
     public function deleteById($id)
     {
         try {

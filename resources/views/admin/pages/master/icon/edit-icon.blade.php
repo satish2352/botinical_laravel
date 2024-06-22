@@ -12,7 +12,7 @@
                 <div class="sparkline12-hd">
                     <div class="main-sparkline12-hd">
                         <center>
-                            <h1>Edit Amenities Category Data</h1>
+                            <h1>Edit Icon Data</h1>
                         </center>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                                 @endif
 
                                 <div class="all-form-element-inner">
-                                    <form action="{{ route('update-amenities-category') }}" method="POST"
+                                    <form action="{{ route('update-icon') }}" method="POST"
                                         enctype="multipart/form-data" id="addDesignsForm" autocomplete="off">
                                         @csrf
                                         <div class="form-group-inner">
@@ -58,7 +58,7 @@
                                                     <input type="text" class="form-control"
                                                         value="@if (old('name')) {{ old('name') }}@else{{ $editData->name }} @endif"
                                                         id="name" name="name"
-                                                        placeholder="Enter amenities-category name">
+                                                        placeholder="Enter name">
                                                     @if ($errors->has('name'))
                                                         <span class="red-text"><?php echo $errors->first('name', ':message'); ?></span>
                                                     @endif
@@ -95,7 +95,7 @@
                                                                     style="margin-bottom:50px">Cancel</button>
                                                             </a>
                                                             <button class="btn btn-sm btn-primary login-submit-cs"
-                                                                type="submit" style="margin-bottom:50px">Update Category</button>
+                                                                type="submit" style="margin-bottom:50px">Update Icon</button>
                                                         </div>
                                                     </div>
                                                 </div>

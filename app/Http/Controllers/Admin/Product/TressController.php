@@ -48,6 +48,9 @@ class TressController extends Controller
             'hindi_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get("AllFileValidation.VIDEO_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.VIDEO_MIN_SIZE"),
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
+            'icon_id' => 'required',
+            'height' => 'required',
+            'height_type' => 'required',
         ];
         
         $messages = [
@@ -84,6 +87,9 @@ class TressController extends Controller
             'longitude.required' => 'Please enter the longitude.',
             'longitude.numeric' => 'Longitude must be a number.',
             'longitude.between' => 'Longitude must be between -180 and 180.',
+            'icon_id.required' => 'Please select the icon.',
+            'height.required' => 'Please enter the height.',
+            'height_type.required' => 'Please select the height type.',
         ];
         try {
             $validation = Validator::make($request->all(), $rules, $messages);
@@ -122,9 +128,10 @@ class TressController extends Controller
     }
     
     public function edit(Request $request){
+        $dataOutputIcon = IconMaster::get();
         $edit_data_id = base64_decode($request->edit_id);      
         $tress = $this->service->getById($edit_data_id);
-        return view('admin.pages.product.tress.edit-tress', compact('tress'));
+        return view('admin.pages.product.tress.edit-tress', compact('tress', 'dataOutputIcon'));
     }
     
     public function update(Request $request){

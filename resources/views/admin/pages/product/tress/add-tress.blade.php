@@ -174,7 +174,7 @@
                                                         <label for="latitude">Latitude</label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="latitude" id="latitude"
-                                                            placeholder="Enter the Title" name="latitude"
+                                                            placeholder="Enter the Latitude" name="latitude"
                                                             value="{{ old('latitude') }}">
                                                         @if ($errors->has('latitude'))
                                                             <span class="red-text"><?php echo $errors->first('latitude', ':message'); ?></span>
@@ -186,7 +186,7 @@
                                                         <label for="longitude">Longitude</label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="longitude" id="longitude"
-                                                            placeholder="Enter the Title" name="longitude"
+                                                            placeholder="Enter the Longitude" name="longitude"
                                                             value="{{ old('longitude') }}">
                                                         @if ($errors->has('longitude'))
                                                             <span class="red-text"><?php echo $errors->first('longitude', ':message'); ?></span>
@@ -210,13 +210,11 @@
                                                                 @endif
                                                             @endforeach
                                                         </select>
+                                                        @if ($errors->has('icon_id'))
+                                                        <span class="red-text"><?php echo $errors->first('icon_id', ':message'); ?></span>
+                                                    @endif
                                                     </div>
                                                 </div>
-                                                
-
-
-
-
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="image">Image </label>&nbsp<span
@@ -229,6 +227,84 @@
                                                         @endif
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="height">Height</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="height"
+                                                            id="height" placeholder="Enter the Height"
+                                                            name="height" value="{{ old('height') }}">
+                                                        @if ($errors->has('height'))
+                                                            <span class="red-text"><?php echo $errors->first('height', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="height_type">Height Type</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="height_type" name="height_type">
+                                                            <option value="" selected disabled>Select Height Type</option>
+                                                            <option value="feet">Feet</option>
+                                                            <option value="cm">CM</option>
+                                                        </select>
+                                                        @if ($errors->has('height_type'))
+                                                        <span class="red-text"><?php echo $errors->first('height_type', ':message'); ?></span>
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="canopy">Canopy</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="canopy"
+                                                            id="canopy" placeholder="Enter the canopy"
+                                                            name="canopy" value="{{ old('canopy') }}">
+                                                        @if ($errors->has('canopy'))
+                                                            <span class="red-text"><?php echo $errors->first('canopy', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="canopy_type">Canopy Type</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="canopy_type" name="canopy_type">
+                                                            <option value="" selected disabled>Select Canopy Type</option>
+                                                            <option value="feet">Feet</option>
+                                                            <option value="cm">CM</option>
+                                                        </select>
+                                                        @if ($errors->has('canopy_type'))
+                                                        <span class="red-text"><?php echo $errors->first('canopy_type', ':message'); ?></span>
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="girth">Girth</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="girth"
+                                                            id="girth" placeholder="Enter the girth"
+                                                            name="girth" value="{{ old('girth') }}">
+                                                        @if ($errors->has('girth'))
+                                                            <span class="red-text"><?php echo $errors->first('canopy', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="girth_type">Girth Type</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="girth_type" name="girth_type">
+                                                            <option value="" selected disabled>Select Girth Type</option>
+                                                            <option value="feet">Feet</option>
+                                                            <option value="cm">CM</option>
+                                                        </select>
+                                                        @if ($errors->has('girth_type'))
+                                                        <span class="red-text"><?php echo $errors->first('girth_type', ':message'); ?></span>
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                                
+
                                                 <div class="col-md-12 col-sm-12 text-center">
                                                     <button type="submit" class="btn btn-sm btn-success">
                                                         Save &amp; Submit
@@ -282,7 +358,28 @@
                     latitude: {
                         required: true,
                     },
+                    icon_id:{
+                        required: true,
+                    },
                     longitude: {
+                        required: true,
+                    },
+                    height:{
+                        required: true,
+                    },
+                    height_type:{
+                        required: true,
+                    },
+                    canopy:{
+                        required: true,
+                    },
+                    canopy_type:{
+                        required: true,
+                    },
+                    girth:{
+                        required: true,
+                    },
+                    girth_type:{
                         required: true,
                     },
                     image: {
@@ -342,6 +439,27 @@
                     },
                     longitude: {
                         required: "Please enter the Longitude.",
+                    },
+                    icon_id: {
+                        required: "Please select the Icon.",
+                    },
+                    height: {
+                        required: "Please enter the height.",
+                    },
+                    height_type: {
+                        required: "Please select the height type.",
+                    },
+                    canopy:{
+                        required: "Please enter the canopy.",
+                    },
+                    canopy_type:{
+                        required: "Please select the canopy type.",
+                    },
+                    girth:{
+                        required: "Please enter the girth.",
+                    },
+                    girth_type:{
+                        required: "Please select the girth type.",
                     },
                     image: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",

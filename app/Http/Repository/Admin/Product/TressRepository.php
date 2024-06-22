@@ -34,6 +34,12 @@ class TressRepository  {
             $add_data->hindi_description = $request['hindi_description'];
             $add_data->latitude = $request['latitude'];
             $add_data->longitude = $request['longitude'];
+            $add_data->height = $request['height'];
+            $add_data->height_type = $request['height_type'];
+            $add_data->canopy = $request['canopy'];
+            $add_data->canopy_type = $request['canopy_type'];
+            $add_data->girth = $request['girth'];
+            $add_data->girth_type = $request['girth_type'];
             $add_data->english_audio_link = $request->has('english_audio_link') ? $request->english_audio_link : '';
             $add_data->hindi_audio_link = $request->has('hindi_audio_link') ? $request->hindi_audio_link : '';
             $add_data->english_video_upload = $request->has('english_video_upload') ? $request->english_video_upload : '';
@@ -116,6 +122,7 @@ class TressRepository  {
             $previousHindiVideo = $data_output->hindi_video_upload;
 
             // Update the fields from the request
+            $data_output->icon_id = $request['icon_id'];
             $data_output->english_name = $request['english_name'];
             $data_output->hindi_name = $request['hindi_name'];
             $data_output->english_botnical_name = $request['english_botnical_name'];
@@ -126,7 +133,12 @@ class TressRepository  {
             $data_output->hindi_description = $request['hindi_description'];
             $data_output->latitude = $request['latitude'];
             $data_output->longitude = $request['longitude'];
-            
+            $data_output->height = $request['height'];
+            $data_output->height_type = $request['height_type'];
+            $data_output->canopy = $request['canopy'];
+            $data_output->canopy_type = $request['canopy_type'];
+            $data_output->girth = $request['girth'];
+            $data_output->girth_type = $request['girth_type'];
             $data_output->save();
             $last_insert_id = $data_output->id;
 
