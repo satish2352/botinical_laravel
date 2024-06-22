@@ -39,7 +39,6 @@ class AmenitiesCategoryController extends Controller
          $rules = [
                     'english_name' => 'required|max:255',
                     'hindi_name' => 'required|max:255',
-                    'icon' => 'required',
                     
                 ];
 
@@ -48,7 +47,6 @@ class AmenitiesCategoryController extends Controller
                     'english_name.max' => 'The name must not exceed 255 characters.',
                     'english_name.required' => 'कृपया नाम दर्ज करें |',
                     'english_name.max' => 'नाम 255 अक्षरों से अधिक नहीं होना चाहिए.',
-                    'icon.required' => 'Please enter the icon name.',
                 ];
   
           try {
@@ -91,7 +89,6 @@ class AmenitiesCategoryController extends Controller
             $rules = [
                 'english_name' => 'required|max:255',
                 'hindi_name' => 'required|max:255',
-                'icon' => 'required',
                     
                 ];
     
@@ -101,7 +98,6 @@ class AmenitiesCategoryController extends Controller
                 'english_name.max' => 'The name must not exceed 255 characters.',
                 'english_name.required' => 'कृपया नाम दर्ज करें |',
                 'english_name.max' => 'नाम 255 अक्षरों से अधिक नहीं होना चाहिए.',
-                'icon.required' => 'Please enter the icon name.',
               
                 ];
     

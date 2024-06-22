@@ -72,6 +72,30 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="open_time">Open Time </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" id="open_time" name="open_time"
+                                                            id="open_time" placeholder="Enter the Name"
+                                                            name="open_time" value="{{ old('open_time') }}">
+                                                        @if ($errors->has('open_time'))
+                                                            <span class="red-text"><?php echo $errors->first('open_time', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="close_time">Close Time </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" name="close_time"
+                                                            id="close_time" placeholder="Enter the Name"
+                                                            name="close_time" value="{{ old('close_time') }}">
+                                                        @if ($errors->has('close_time'))
+                                                            <span class="red-text"><?php echo $errors->first('close_time', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="image">Image </label>&nbsp<span
                                                             class="red-text">*</span><br>
                                                         <input type="file" name="image" id="image"
@@ -125,6 +149,12 @@
                     longitude: {
                         required: true,
                     },
+                    open_time: {
+                        required: true,
+                    },
+                    close_time: {
+                        required: true,
+                    },
                     image: {
                         required: true,
                         fileExtension: ["jpg", "jpeg", "png"],
@@ -170,6 +200,12 @@
                     },
                     longitude: {
                         required: "Please enter the Longitude.",
+                    },
+                    open_time: {
+                        required: "Please select open time.",
+                    },
+                    close_time: {
+                        required: "Please select close time.",
                     },
                     image: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",

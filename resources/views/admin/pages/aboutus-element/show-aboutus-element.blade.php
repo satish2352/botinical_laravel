@@ -55,6 +55,22 @@
                                             <label>{{ strip_tags($aboutuselement->hindi_description) }}</label>
                                         </div>
                                     </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Open Time :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($aboutuselement->open_time) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <label>Close Time :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($aboutuselement->close_time) }}</label>
+                                        </div>
+                                    </div>
                                     <div class="row rowpadd">
                                         <div class="col-lg-3 col-md-3 col-sm-3">
                                             <label> Image :</label>

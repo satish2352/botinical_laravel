@@ -24,7 +24,8 @@ class AboutUsElementRepository  {
             $add_data->hindi_name = $request['hindi_name'];
             $add_data->english_description = $request['english_description'];
             $add_data->hindi_description = $request['hindi_description'];
-         
+            $add_data->open_time = $request['open_time'];
+            $add_data->close_time = $request['close_time'];
           
             $add_data->save(); 
 
@@ -89,7 +90,8 @@ class AboutUsElementRepository  {
             $data_output->hindi_name = $request['hindi_name'];
             $data_output->english_description = $request['english_description'];
             $data_output->hindi_description = $request['hindi_description'];
-          
+            $data_output->open_time = $request['open_time'];
+            $data_output->close_time = $request['close_time'];
             
             $data_output->save();
             $last_insert_id = $data_output->id;

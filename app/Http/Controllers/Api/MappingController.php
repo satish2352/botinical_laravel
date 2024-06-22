@@ -152,9 +152,9 @@ class MappingController extends Controller
                       ->toArray();
               }
       
-              foreach ($data_output_aminities as &$flowerDetail) {
-                  $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
-                  $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
+              foreach ($data_output_aminities as &$aminitiesDetail) {
+                  $aminitiesDetail['image'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image'];
+                  $aminitiesDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $aminitiesDetail['icon_image'];
               }
     
             // Combine both data sets into a single response

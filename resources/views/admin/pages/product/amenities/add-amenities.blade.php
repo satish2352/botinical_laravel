@@ -198,7 +198,52 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                               
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="open_time_first">Open Time </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" id="open_time_first" name="open_time_first"
+                                                            id="open_time_first" placeholder="Enter the Name"
+                                                            name="open_time_first" value="{{ old('open_time_first') }}">
+                                                        @if ($errors->has('open_time_first'))
+                                                            <span class="red-text"><?php echo $errors->first('open_time_first', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="close_time_first">Close Time </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" name="close_time_first"
+                                                            id="close_time_first" placeholder="Enter the Name"
+                                                            name="close_time_first" value="{{ old('close_time_first') }}">
+                                                        @if ($errors->has('close_time_first'))
+                                                            <span class="red-text"><?php echo $errors->first('close_time_first', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="open_time_second">Open Time </label>
+                                                        <input type="time" class="form-control mb-2" id="open_time_second" name="open_time_second"
+                                                            id="open_time_second" placeholder="Enter the Name"
+                                                            name="open_time_second" value="{{ old('open_time_second') }}">
+                                                        @if ($errors->has('open_time_second'))
+                                                            <span class="red-text"><?php echo $errors->first('open_time_second', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="close_time_second">Close Time </label>
+                                                        <input type="time" class="form-control mb-2" name="close_time_second"
+                                                            id="close_time_second" placeholder="Enter the Name"
+                                                            name="close_time_second" value="{{ old('close_time_second') }}">
+                                                        @if ($errors->has('close_time_second'))
+                                                            <span class="red-text"><?php echo $errors->first('close_time_second', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
                                                 <div class="col-md-12 col-sm-12 text-center">
                                                     <button type="submit" class="btn btn-sm btn-success">
                                                         Save &amp; Submit
@@ -240,6 +285,12 @@
                         required: true,
                     },
                     longitude: {
+                        required: true,
+                    },
+                    open_time_first: {
+                        required: true,
+                    },
+                    close_time_first: {
                         required: true,
                     },
                     image: {
@@ -287,6 +338,12 @@
                     },
                     longitude: {
                         required: "Please enter the Longitude.",
+                    },
+                    open_time_first: {
+                        required: "Please select open time.",
+                    },
+                    close_time_first: {
+                        required: "Please select close time.",
                     },
                     image: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",

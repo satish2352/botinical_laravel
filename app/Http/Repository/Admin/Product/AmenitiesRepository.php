@@ -67,6 +67,10 @@ class AmenitiesRepository  {
             $add_data->hindi_description = $request['hindi_description'];
             $add_data->latitude = $request['latitude'];
             $add_data->longitude = $request['longitude'];
+            $add_data->open_time_first = $request['open_time_first'];
+            $add_data->close_time_first = $request['close_time_first'];
+            $add_data->open_time_second = $request['open_time_second'];
+            $add_data->close_time_second = $request['close_time_second'];
             $add_data->english_audio_link = $request->has('english_audio_link') ? $request->english_audio_link : '';
             $add_data->hindi_audio_link = $request->has('hindi_audio_link') ? $request->hindi_audio_link : '';
             $add_data->english_video_upload = $request->has('english_video_upload') ? $request->english_video_upload : '';
@@ -213,7 +217,10 @@ class AmenitiesRepository  {
             $data_output->hindi_description = $request['hindi_description'];
             $data_output->latitude = $request['latitude'];
             $data_output->longitude = $request['longitude'];
-            
+            $data_output->open_time_first = $request['open_time_first'];
+            $data_output->close_time_first = $request['close_time_first'];
+            $data_output->open_time_second = $request['open_time_second'];
+            $data_output->close_time_second = $request['close_time_second'];
             $data_output->save();
             $last_insert_id = $data_output->id;
 

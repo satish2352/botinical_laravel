@@ -46,14 +46,6 @@
                                                         <span class="red-text"><?php echo $errors->first('hindi_name', ':message'); ?></span>
                                                     @endif
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="icon">Icon :</label>
-                                                    <input type="text" class="form-control" id="icon"
-                                                        name="icon" placeholder="Enter name">
-                                                    @if ($errors->has('icon'))
-                                                        <span class="red-text"><?php echo $errors->first('icon', ':message'); ?></span>
-                                                    @endif
-                                                </div>
                                             </div>
                                             <div class="login-btn-inner">
                                                 <div class="row">
@@ -95,9 +87,6 @@
                     hindi_name: {
                         required: true
                     },
-                    icon: {
-                        required: true
-                    },
 
                 },
                 messages: {
@@ -107,10 +96,6 @@
                     hindi_name: {
                         required: "कृपया नाम दर्ज करें |",
                     },
-                    icon: {
-                        required: "Please Enter Icon.",
-                    },
-
                 },
             });
         });

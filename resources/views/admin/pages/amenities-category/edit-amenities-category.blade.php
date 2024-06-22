@@ -74,16 +74,6 @@
                                                         <span class="red-text"><?php echo $errors->first('hindi_name', ':message'); ?></span>
                                                     @endif
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <label for="icon">Icon:</label>
-                                                    <input type="text" class="form-control"
-                                                        value="@if (old('icon')) {{ old('icon') }}@else{{ $editData->icon }} @endif"
-                                                        id="icon" name="icon"
-                                                        placeholder="Enter amenities-category name">
-                                                    @if ($errors->has('icon'))
-                                                        <span class="red-text"><?php echo $errors->first('icon', ':message'); ?></span>
-                                                    @endif
-                                                </div>
                                             </div>
 
 
@@ -128,10 +118,6 @@
                     hindi_name: {
                         required: true
                     },
-                    icon: {
-                        required: true
-                    },
-
                 },
                 messages: {
                     english_name: {
@@ -140,10 +126,6 @@
                     hindi_name: {
                         required: "कृपया नाम दर्ज करें |",
                     },
-                    icon: {
-                        required: "Please Enter Icon.",
-                    },
-
                 },
             });
         });

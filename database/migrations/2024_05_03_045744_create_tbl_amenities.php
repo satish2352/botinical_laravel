@@ -28,6 +28,10 @@ return new class extends Migration
             $table->string('hindi_video_upload');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('open_time_first');
+            $table->string('close_time_first');
+            $table->string('open_time_second');
+            $table->string('close_time_second');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

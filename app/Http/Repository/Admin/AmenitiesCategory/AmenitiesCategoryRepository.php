@@ -29,7 +29,6 @@ class AmenitiesCategoryRepository  {
             $dataOutput = new CategoryAmenities();
             $dataOutput->english_name = $request->english_name;
             $dataOutput->hindi_name = $request->hindi_name;
-            $dataOutput->icon = $request->icon;
             $dataOutput->save();
 
             return [
@@ -60,7 +59,6 @@ class AmenitiesCategoryRepository  {
            
             $dataOutput->english_name = $request->english_name;
             $dataOutput->hindi_name = $request->hindi_name;
-            $dataOutput->icon = $request->icon;
 
             $dataOutput->save();
             $return_data['image'] = $previousEnglishImage;
