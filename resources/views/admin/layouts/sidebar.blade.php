@@ -98,14 +98,14 @@
                     <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
                             <i class="fa fa-tree icon-wrap"></i>
-                            <span class="mini-click-non">Tress/Plant</span>
+                            <span class="mini-click-non">Tree/Plant</span>
                         </a>
                         <ul class="submenu-angle" aria-expanded="false">                          
                            
                             <li class="{{ Request::is('list-tress') ? 'active' : '' }}">
                                 <a class="has-arrow" href="{{ route('list-tress') }}" aria-expanded="false">
                                     <i class="fa fa-tree icon-wrap"></i>
-                                    <span class="mini-click-non">Trees Management</span>
+                                    <span class="mini-click-non">Tree Management</span>
                                 </a>
                             </li> 
                             <li class="{{ Request::is('list-flowers') ? 'active' : '' }}">

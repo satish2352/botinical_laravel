@@ -6,12 +6,12 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="sparkline12-list">
                     <div class=" " style="display: flex; justify-content:space-between">
-                        <h3 class="page-title">Tress
+                        <h3 class="page-title">Tree
                         </h3>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb" style="background-color: #fff;">
-                                <li class="breadcrumb-item"><a href="{{ route('list-tress') }}">Tress</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> Tress </li>
+                                <li class="breadcrumb-item"><a href="{{ route('list-tress') }}">Tree</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"> Tree </li>
                             </ol>
                         </nav>
                     </div>
