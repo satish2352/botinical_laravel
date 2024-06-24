@@ -68,6 +68,7 @@
                                         <thead>
                                             <tr>
                                                 <th data-field="id">Sr.No.</th>
+                                                <th>Category Name </th>
                                                 <th>Image </th>
                                                 <th>Status </th>
                                                 <th> Action </th>
@@ -77,7 +78,7 @@
                                             @foreach ($gallery as $item)
                                                 <tr>
                                                     <td>{{ $loop->iteration }}</td>
-                                                  
+                                                    <td>{{ strip_tags($item->english_name) }}  ({{ strip_tags($item->hindi_name) }})</td>
                                                     <td> <img class="img-size"
                                                             src="{{ Config::get('DocumentConstant.GALLERY_VIEW') }}{{ $item->image }}"
                                                             alt=" {{ strip_tags($item['english_name']) }} Image" style="width:100px; height:100px;" />
@@ -122,20 +123,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <form method="POST" action="{{ url('/delete-gallery') }}" id="deleteform">
         @csrf
         <input type="hidden" name="delete_id" id="delete_id" value="">

@@ -3,18 +3,24 @@ namespace App\Http\Repository\Admin\Gallery;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use App\Models\ {
-	Gallery
+	Gallery,
+    GalleryCategory
 };
 use Config;
 
 class GalleryRepository  {
-	public function getAll(){
+    public function getAll() {
         try {
-            return Gallery::orderBy('updated_at', 'desc')->get();
+            return Gallery::leftJoin('tbl_gallery_category', 'tbl_gallery.gallery_category_id', '=', 'tbl_gallery_category.id')
+                ->select('tbl_gallery.id as id', 'tbl_gallery_category.english_name', 'tbl_gallery_category.hindi_name', 'tbl_gallery.image')
+                ->orderBy('tbl_gallery.updated_at', 'desc')
+                ->get();
         } catch (\Exception $e) {
-            return $e;
+            \Log::error('Error fetching galleries: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to fetch galleries'], 500);
         }
     }
+    
     public function addAll($request){
         try {
         
