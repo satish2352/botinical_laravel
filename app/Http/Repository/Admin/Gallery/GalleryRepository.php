@@ -20,6 +20,7 @@ class GalleryRepository  {
         
             $data =array();
             $add_data = new Gallery();
+            $add_data->gallery_category_id = $request['gallery_category_id'];
             $add_data->save();              
             $last_insert_id = $add_data->id;
             $ImageName = $last_insert_id .'_' . rand(100000, 999999) . '_image.' . $request->image->extension();
@@ -63,7 +64,6 @@ class GalleryRepository  {
         try {
             $return_data = array();
             $data_output = Gallery::find($request->id);
-
             if (!$data_output) {
                 return [
                     'msg' => 'Data not found.',
@@ -74,11 +74,9 @@ class GalleryRepository  {
             // Store the previous image names
             $previousImage = $data_output->image;
          
-          
-            
+            $data_output->gallery_category_id = $request['gallery_category_id'];
             $data_output->save();
             $last_insert_id = $data_output->id;
-
             $return_data['last_insert_id'] = $last_insert_id;
             $return_data['image'] = $previousImage;
           
@@ -124,8 +122,8 @@ class GalleryRepository  {
             try {
                 $data_output = Gallery::find($id);
                 if ($data_output) {
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->image)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->image);
+                    if (file_exists_view(Config::get('DocumentConstant.GALLERY_VIEW') . $data_output->image)){
+                        removeImage(Config::get('DocumentConstant.GALLERY_VIEW') . $data_output->image);
                     }
                     
                     $data_output->delete();

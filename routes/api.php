@@ -48,12 +48,15 @@ Route::group([
         
 
          // =========Amenities===================
-
+         
+         Route::post('/add-amenities', [AmenitiesController::class, 'addAmenities']);
         Route::post('/get-amenities-category', [AmenitiesController::class, 'getAmenitiesCategory']);
         Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
         Route::post('/get-amenities-audio', [AmenitiesController::class, 'getParticularAmenitiesAudio']);
         Route::post('/get-amenities-video', [AmenitiesController::class, 'getParticularAmenitiesVideo']);
          // =========Tress===================
+         
+         Route::post('/add-tress', [TressController::class, 'addTrees']);
         Route::post('/get-tress-list', [TressController::class, 'getTressList']);
         Route::post('/get-tress-audio', [TressController::class, 'getParticularTressAudio']);
         Route::post('/get-tress-video', [TressController::class, 'getParticularTressVideo']);
@@ -63,6 +66,8 @@ Route::group([
 
         
         // =========Flowers===================
+        
+        Route::post('/add-plant', [FlowersController::class, 'addPlant']);
         Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
         Route::post('/get-flowers-audio', [FlowersController::class, 'getParticularFlowersAudio']);
         Route::post('/get-flowers-video', [FlowersController::class, 'getParticularFlowersVideo']);

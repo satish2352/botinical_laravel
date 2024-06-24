@@ -38,6 +38,13 @@
                                     <span class="mini-sub-pro">Amenities Category</span>
                                 </a>
                             </li>
+                            <li class="nav-item {{ Request::is('list-gallery-category') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-gallery-category') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">Gallery Category</span>
+                                </a>
+                            </li>
+                            
                             <li class="nav-item {{ Request::is('list-icon') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-icon') }}">
                                     <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>

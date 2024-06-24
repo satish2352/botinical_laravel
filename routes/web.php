@@ -208,6 +208,13 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/delete-icon', ['as' => 'delete-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@destroy']);
     Route::post('/update-one-icon', ['as' => 'update-one-icon', 'uses' => 'App\Http\Controllers\Admin\Master\IconMasterController@updateOneCategory']);
 
+    Route::any('/list-gallery-category', ['as' => 'list-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@index']);
+    Route::any('/add-gallery-category', ['as' => 'add-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@add']);
+    Route::any('/store-gallery-category', ['as' => 'store-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@store']);
+    Route::any('/edit-gallery-category/{edit_id}', ['as' => 'edit-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@edit']);
+    Route::any('/update-gallery-category', ['as' => 'update-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@update']);
+    Route::post('/delete-gallery-category', ['as' => 'delete-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@destroy']);
+    Route::post('/update-one-gallery-category', ['as' => 'update-one-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@updateOneCategory']);
 
 });
 

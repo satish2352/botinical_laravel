@@ -26,6 +26,26 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="gallery_category_id">Category</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <select class="form-control" id="gallery_category_id" name="gallery_category_id">
+                                                            <option selected>Select</option>
+                                                            @foreach ($dataOutputCategory as $data)
+                                                                @if (old('gallery_category_id') == $data['id'])
+                                                                    <option value="{{ $data['id'] }}" selected>
+                                                                        {{ $data['english_name'] }}</option>
+                                                                @else
+                                                                    <option value="{{ $data['id'] }}">{{ $data['hindi_name'] }}
+                                                                        ({{ $data['english_name'] }})
+                                                                    </option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="image">Image </label>&nbsp<span
                                                             class="red-text">*</span><br>
                                                         <input type="file" name="image" id="image" accept="image/*"

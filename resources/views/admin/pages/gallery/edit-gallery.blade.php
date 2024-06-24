@@ -24,6 +24,28 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="gallery_category_id">Category:</label> &nbsp<span
+                                                class="red-text">*</span>
+                                            <select class="form-control mb-2" name="gallery_category_id"
+                                                id="gallery_category_id">
+                                                <option value="" default>Select Category</option>
+                                                @foreach ($dataOutputCategory as $service)
+                                                    <option value="{{ $service->id }}"
+                                                        @if ($gallery->gallery_category_id == $service->id) {{ 'selected' }} @endif>
+                                                        {{ $service->english_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('gallery_category_id'))
+                                                <span class="red-text">
+                                                    <?php echo $errors->first('gallery_category_id', ':message'); ?>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                        <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="image"> Image</label>

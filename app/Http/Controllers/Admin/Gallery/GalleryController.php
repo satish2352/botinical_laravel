@@ -8,6 +8,12 @@ use App\Http\Services\Admin\Gallery\GalleryServices;
 use Validator;
 use Illuminate\Validation\Rule;
 use Config;
+use App\Models\ {
+    GalleryCategory
+    };
+
+
+
 
 class GalleryController extends Controller
 {
@@ -26,7 +32,8 @@ class GalleryController extends Controller
     }
 
     public function add(){
-        return view('admin.pages.gallery.add-gallery');
+        $dataOutputCategory = GalleryCategory::get();
+        return view('admin.pages.gallery.add-gallery', compact('dataOutputCategory'));
     }
 
     public function store(Request $request){
@@ -79,9 +86,10 @@ class GalleryController extends Controller
     }
     
     public function edit(Request $request){
+        $dataOutputCategory = GalleryCategory::get();
         $edit_data_id = base64_decode($request->edit_id);      
         $gallery = $this->service->getById($edit_data_id);
-        return view('admin.pages.gallery.edit-gallery', compact('gallery'));
+        return view('admin.pages.gallery.edit-gallery', compact('gallery', 'dataOutputCategory'));
     }
     
     public function update(Request $request){

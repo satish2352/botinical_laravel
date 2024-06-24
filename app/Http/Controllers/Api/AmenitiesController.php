@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Validator;
 use App\Models\ {
     Amenities,
     CategoryAmenities
@@ -14,6 +15,103 @@ use App\Models\ {
 
 class AmenitiesController extends Controller
 {
+
+    public function addAmenities(Request $request) {
+        // Define the validation rules
+        $validator = Validator::make($request->all(), [
+            'english_name' => 'required',
+            'hindi_name' => 'required',
+            'english_description' => 'required',
+            'hindi_description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'english_audio_link' => 'required',
+            'hindi_audio_link' => 'required',
+            'english_video_upload' => 'required|mimes:mp4,mov,avi|max:10000',
+            'hindi_video_upload' => 'required|mimes:mp4,mov,avi|max:10000',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
+        ]);
+    
+        // Define custom validation messages
+        $customMessages = [
+            'english_name.required' => 'English name is required.',
+            'hindi_name.required' => 'Hindi name is required.',
+            'english_description.required' => 'English description is required.',
+            'hindi_description.required' => 'Hindi description is required.',
+            'image.required' => 'Image is required.',
+            'image.image' => 'Image must be a valid image file.',
+            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg.',
+            'image.max' => 'Image size must not exceed 2048 KB.',
+            'english_audio_link.required' => 'English audio link is required.',
+            'hindi_audio_link.required' => 'Hindi audio link is required.',
+            'english_video_upload.required' => 'English video upload is required.',
+            'english_video_upload.mimes' => 'English video must be a file of type: mp4, mov, avi.',
+            'english_video_upload.max' => 'English video size must not exceed 10000 KB.',
+            'hindi_video_upload.required' => 'Hindi video upload is required.',
+            'hindi_video_upload.mimes' => 'Hindi video must be a file of type: mp4, mov, avi.',
+            'hindi_video_upload.max' => 'Hindi video size must not exceed 10000 KB.',
+            'latitude.required' => 'Latitude is required.',
+            'latitude.numeric' => 'Latitude must be a number.',
+            'latitude.between' => 'Latitude must be between -90 and 90.',
+            'longitude.required' => 'Longitude is required.',
+            'longitude.numeric' => 'Longitude must be a number.',
+            'longitude.between' => 'Longitude must be between -180 and 180.',
+          
+        ];
+    
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json(['status' => 'false', 'message' => $validator->errors()->all()], 200);
+        }
+    
+        try {
+            // Save tree data
+            $amenities_data = new Amenities();
+            $amenities_data->amenities_category_id = $request->amenities_category_id;
+            $amenities_data->icon_id = $request->icon_id;
+            $amenities_data->english_name = $request->english_name;
+            $amenities_data->hindi_name = $request->hindi_name;
+            $amenities_data->english_description = $request->english_description;
+            $amenities_data->hindi_description = $request->hindi_description;
+            $amenities_data->latitude = $request->latitude;
+            $amenities_data->longitude = $request->longitude;
+            $amenities_data->open_time_first = $request->open_time_first;
+            $amenities_data->close_time_first = $request->close_time_first;
+            $amenities_data->open_time_second = $request->open_time_second;
+            $amenities_data->close_time_second = $request->close_time_second;
+            $amenities_data->save();
+    
+            // Get last inserted ID
+            $last_insert_id = $amenities_data->id;
+    
+            // Handle file uploads
+            $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
+            $englishAudio = $last_insert_id . '_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
+            $hindiAudio = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
+            $englishVideo = $last_insert_id . '_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
+            $hindiVideo = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
+            $path = Config::get('DocumentConstant.AMENITIES_ADD');
+    
+            // Save files
+            $request->image->move(public_path($path), $treeImage);
+            $request->english_audio_link->move(public_path($path), $englishAudio);
+            $request->hindi_audio_link->move(public_path($path), $hindiAudio);
+            $request->english_video_upload->move(public_path($path), $englishVideo);
+            $request->hindi_video_upload->move(public_path($path), $hindiVideo);
+    
+            // Update tree data with file names
+            $amenities_data->image = $treeImage;
+            $amenities_data->english_audio_link = $englishAudio;
+            $amenities_data->hindi_audio_link = $hindiAudio;
+            $amenities_data->english_video_upload = $englishVideo;
+            $amenities_data->hindi_video_upload = $hindiVideo;
+            $amenities_data->save();
+    
+            return response()->json(['status' => 'true', 'message' => 'Plant added successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'false', 'message' => 'Plant addition failed', 'error' => $e->getMessage()], 500);
+        }
+    }
       public function getAmenitiesCategory(Request $request) {
         try {
             $language = $request->input('language', 'english'); 

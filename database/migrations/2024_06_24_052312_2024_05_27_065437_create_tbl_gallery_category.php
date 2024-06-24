@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_gallery', function (Blueprint $table) {
+        Schema::create('tbl_gallery_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('gallery_category_id');
-            $table->string('image')->nullable();
+            $table->string('english_name');
+            $table->string('hindi_name');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_gallery');
+        //
     }
 };
