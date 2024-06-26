@@ -83,7 +83,7 @@ class HomeRepository  {
 
             // Store the previous image names
             $previousImage = $data_output->english_image;
-           
+            $previousHindiImage = $data_output->hindi_image;
             // Update the fields from the request
             $data_output->english_name = $request['english_name'];
             $data_output->hindi_name = $request['hindi_name'];
@@ -96,6 +96,7 @@ class HomeRepository  {
 
             $return_data['last_insert_id'] = $last_insert_id;
             $return_data['english_image'] = $previousImage;
+            $return_data['hindi_image'] = $previousHindiImage;
 
             return  $return_data;
         

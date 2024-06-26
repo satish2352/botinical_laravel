@@ -76,6 +76,19 @@ class HomeServices
                 $data_output->english_image = $ImageName;
                 $data_output->save();
             }
+
+            if ($request->hasFile('hindi_image')) {
+                if ($return_data['hindi_image']) {
+                    if (file_exists_view(Config::get('DocumentConstant.HOME_DATA_DELETE') . $return_data['hindi_image'])) {
+                        removeImage(Config::get('DocumentConstant.HOME_DATA_DELETE') . $return_data['hindi_image']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->hindi_image->extension();
+                uploadImage($request, 'hindi_image', $path, $ImageName);
+                $data_output = HomeData::find($return_data['last_insert_id']);
+                $data_output->hindi_image = $ImageName;
+                $data_output->save();
+            }
             
             if ($return_data) {
                 return ['status' => 'success', 'msg' => 'Data Updated Successfully.'];

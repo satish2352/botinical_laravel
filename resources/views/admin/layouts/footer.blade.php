@@ -109,6 +109,21 @@ alert('kkkkkkkk');
             }
         });
 
+
+        $("#hindi_image").change(function() {
+            $('#hindi_english').css('display', 'none');
+            $("#hindi_imgPreview").show();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#hindi_imgPreview").attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         $("#english_audio_link").change(function() {
             $('#englishaudio').css('display', 'none');
             $("#english_audioPreview").show();

@@ -105,10 +105,10 @@
                                                     id="hindi_image" accept="image/*" placeholder="image">
                                                
                                             </div>
-                                            <img id="english"
+                                            <img id="hindi_english"
                                                 src="{{ Config::get('DocumentConstant.HOME_DATA_VIEW') }}{{ $home->hindi_image }}"
                                                 class="img-fluid img-thumbnail" width="150">
-                                            <img id="english_imgPreview" src="#" alt="pic"
+                                            <img id="hindi_imgPreview" src="#" alt="pic"
                                                 class="img-fluid img-thumbnail" width="150" style="display:none">
                                                 @if ($errors->has('hindi_image'))
                                                 <div class="red-text"><?php echo $errors->first('hindi_image', ':message'); ?>
