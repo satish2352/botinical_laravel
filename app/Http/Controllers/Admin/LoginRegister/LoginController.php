@@ -32,13 +32,13 @@ class LoginController extends Controller
             ])->first();
             if(!empty($get_user)){
            
-                if($get_user->ip_address!=$request->ip() || $get_user->user_agent!=$request->userAgent()){
+                if($get_user->ip_address!=$request->ip() ){
                     $update = User::where([
                         'email' => $request['email'],
                         ])
                         ->update([
                             'ip_address'=>'null',
-                            'user_agent'=>'null',
+                            // 'user_agent'=>'null',
                         ]);        
                 }
             }
@@ -69,8 +69,8 @@ class LoginController extends Controller
                     'email' => $request['email']
                     ])->get()->toArray();
 
-                if(!($update_values[0]['ip_address'] == $request->ip() && $update_values[0]['user_agent'] == $request->userAgent()) &&
-                !($update_values[0]['ip_address'] == 'null' && $update_values[0]['user_agent'] == 'null')) {
+                if(!($update_values[0]['ip_address'] == $request->ip()) &&
+                !($update_values[0]['ip_address'] == 'null')) {
                     return redirect('/login')->with('error','Please logout from another browser');
 
                 }
@@ -99,7 +99,7 @@ class LoginController extends Controller
             ])
             ->update([
                 'ip_address'=>'null',
-                'user_agent'=>'null'
+                // 'user_agent'=>'null'
             ]);
 
 

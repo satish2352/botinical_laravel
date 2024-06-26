@@ -36,7 +36,7 @@ class LoginService
                                 ])
                                 ->update([
                                     'ip_address'=>$request->ip(),
-                                    'user_agent'=>$request->userAgent()
+                                    // 'user_agent'=>$request->userAgent()
                                 ]);
 
                 $json = ['status'=>'success','msg'=>$response['user_details']];
