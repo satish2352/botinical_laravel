@@ -1,28 +1,80 @@
-@extends('admin.layout.master')
+@extends('admin.layouts.master')
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="main-panel">
-        <div class="content-wrapper mt-6">
-            <div class="page-header">
-                <h3 class="page-title">
-                    Users Master
-                </h3>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('list-users') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Users Master</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="row">
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div class="row paddingbottom">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="sparkline12-list">
+                                            <div class=" " style="display: flex; justify-content:space-between">
+                                                <h3 class="page-title">Users
+                                                </h3>
+                                                <nav aria-label="breadcrumb">
+                                                    <ol class="breadcrumb" style="background-color: #fff;">
+                                                        <li class="breadcrumb-item"><a href="{{ route('list-users') }}">Users</a></li>
+                                                        <li class="breadcrumb-item active" aria-current="page"> Users </li>
+                                                    </ol>
+                                                </nav>
+                                            </div>
+                                            <div class="sparkline12-graph">
+                                                <div class="basic-login-form-ad">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="all-form-element-inner">
                             <form class="forms-sample" id="regForm" name="frm_register" method="post" role="form"
                                 action="{{ route('update-users') }}" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                                 <div class="row">
-                                   
+                                    {{-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email ID</label>&nbsp<span class="red-text">*</span>
+                                        <input type="text" class="form-control" name="email" id="email"
+                                            placeholder="" value="{{$user_data['data_users']['email']}}">
+                                        @if ($errors->has('email'))
+                                        <span
+                                            class="red-text"><?php //echo $errors->first('email', ':message'); ?></span>
+                                        @endif
+                                    </div>
+                                </div> 
+                                          <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="u_uname">User Name</label>&nbsp<span class="red-text">*</span>
+                                            <input type="text" class="form-control" name="u_uname" id="u_uname"
+                                                placeholder="" value="{{ $user_data['data_users']['u_uname'] }}">
+                                            @if ($errors->has('u_uname'))
+                                                <span class="red-text"><?php echo $errors->first('u_uname', ':message'); ?></span>
+                                            @endif
+                                        </div>
+                                    </div> --}}
+                                    {{-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>&nbsp<span class="red-text">*</span>
+                                        <input type="text" class="form-control" name="password" id="password"
+                                            placeholder="" value="{{decrypt($user_data['data_users']['password'])}}">
+                                        @if ($errors->has('password'))
+                                        <span
+                                            class="red-text"><?php echo $errors->first('password', ':message'); ?></span>
+                                        @endif
+                                    </div>
+                                </div> --}}
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="role_id">Role Type</label>&nbsp<span class="red-text">*</span>
+                                            <select class="form-control" id="role_id" name="role_id"
+                                                onchange="myFunction(this.value)">
+                                                <option>Select</option>
+                                                @foreach ($user_data['roles'] as $role)
+                                                    <option value="{{ $role['id'] }}"
+                                                        @if ($role['id'] == $user_data['data_users']['role_id']) <?php echo 'selected'; ?> @endif>
+                                                        {{ $role['role_name'] }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('role_id'))
+                                                <span class="red-text"><?php echo $errors->first('role_id', ':message'); ?></span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="full_name">Full Name</label>&nbsp<span class="red-text">*</span>
@@ -49,7 +101,17 @@
                                             @endif
                                         </div>
                                     </div>
-                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="occupation">Occupation</label>&nbsp<span class="red-text">*</span>
+                                            <input type="text" class="form-control mb-2" name="occupation" id="occupation"
+                                                placeholder="" value="{{ $user_data['data_users']['occupation'] }}"
+                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').replace(/(\..*)\./g, '$1');">
+                                            @if ($errors->has('occupation'))
+                                                <span class="red-text"><?php echo $errors->first('occupation', ':message'); ?></span>
+                                            @endif
+                                        </div>
+                                    </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="address">Address</label>&nbsp<span class="red-text">*</span>
@@ -60,22 +122,23 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                               
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="user_profile"> Image</label>
-                                            <input type="file" name="user_profile" class="form-control mb-2"
-                                                id="english_image" accept="image/*" placeholder="image">
-                                            @if ($errors->has('user_profile'))
-                                                <div class="red-text"><?php echo $errors->first('user_profile', ':message'); ?>
-                                                </div>
+                                            <label for="pincode">Pincode</label>&nbsp<span class="red-text">*</span>
+                                            <input type="text" class="form-control mb-2" name="pincode" id="pincode"
+                                                placeholder="" value="{{ $user_data['data_users']['pincode'] }}"
+                                                onkeyup="editvalidatePincode(this.value)">
+                                            <span id="edit-message-pincode" class="red-text"></span>
+                                            @if ($errors->has('pincode'))
+                                                <span class="red-text"><?php //echo $errors->first('pincode', ':message'); ?></span>
                                             @endif
                                         </div>
-                                        <img id="english"
-                                            src="{{ Config::get('DocumentConstant.USER_PROFILE_VIEW') }}{{ $user_data->user_profile }}"
-                                            class="img-fluid img-thumbnail" width="150">
-                                        <img id="english_imgPreview" src="#" alt="pic"
-                                            class="img-fluid img-thumbnail" width="150" style="display:none">
-                                    </div>
+                                    </div> --}}
+
+
+
+                                    <br>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group form-check form-check-flat form-check-primary">
                                             <label class="form-check-label">
@@ -111,7 +174,7 @@
             </div>
         </div>
 
-        <script>
+        {{-- <script>
             function getStateCity(stateId, city_id) {
 
                 $('#city').html('<option value="">Select City</option>');
@@ -141,29 +204,29 @@
                 }
             }
 
-            function getState(stateId) {
-                $('#state').html('<option value="">Select State</option>');
-                if (stateId !== '') {
-                    $.ajax({
-                        url: '{{ route('states') }}',
-                        type: 'GET',
-                        data: {
-                            stateId: stateId
-                        },
-                        success: function(response) {
-                            if (response.state.length > 0) {
-                                $.each(response.state, function(index, state) {
-                                    $('#state').append('<option value="' + state
-                                        .location_id +
-                                        '" selected>' + state.name + '</option>');
-                                });
-                                $('#state').val(stateId);
-                            }
-                        }
-                    });
-                }
-            }
-        </script>
+            // function getState(stateId) {
+            //     $('#state').html('<option value="">Select State</option>');
+            //     if (stateId !== '') {
+            //         $.ajax({
+            //             url: '{{ route('states') }}',
+            //             type: 'GET',
+            //             data: {
+            //                 stateId: stateId
+            //             },
+            //             success: function(response) {
+            //                 if (response.state.length > 0) {
+            //                     $.each(response.state, function(index, state) {
+            //                         $('#state').append('<option value="' + state
+            //                             .location_id +
+            //                             '" selected>' + state.name + '</option>');
+            //                     });
+            //                     $('#state').val(stateId);
+            //                 }
+            //             }
+            //         });
+            //     }
+            // }
+        </script> --}}
 
         <script type="text/javascript">
             function submitRegister() {
@@ -171,11 +234,11 @@
             }
         </script>
         <script>
-            function editvalidateMobileNumber(number) {
+            function editvalidateMobileNumber(mobile_number) {
                 var mobileNumberPattern = /^\d*$/;
                 var validationMessage = document.getElementById("edit-message");
 
-                if (mobileNumberPattern.test(number)) {
+                if (mobileNumberPattern.test(mobile_number)) {
                     validationMessage.textContent = "";
                 } else {
                     validationMessage.textContent = "Only numbers are allowed.";
@@ -183,11 +246,11 @@
             }
         </script>
         <script>
-            function editvalidatePincode(number) {
+            function editvalidatePincode(mobile_number) {
                 var pincodePattern = /^\d*$/;
                 var validationMessage = document.getElementById("edit-message-pincode");
 
-                if (pincodePattern.test(number)) {
+                if (pincodePattern.test(mobile_number)) {
                     validationMessage.textContent = "";
                 } else {
                     validationMessage.textContent = "Only numbers are allowed.";
@@ -196,16 +259,6 @@
         </script>
 
         <script>
-            $(document).ready(function() {
-                myFunction($("#role_id").val());
-                getStateCity('{{ $user_data['data_users']['state'] }}', '{{ $user_data['data_users']['city'] }}');
-                getState('{{ $user_data['data_users']['state'] }}');
-
-                $("#state").on('change', function() {
-                    getStateCity($("#state").val(),'');
-                });
-            });
-
             function myFunction(role_id) {
                 $("#data_for_role").empty();
                 $.ajax({
@@ -236,7 +289,7 @@
                 $("#frm_register1").validate({
                     rules: {
 
-                        u_password: {
+                        password: {
                             //required: true,
                             minlength: 6,
                             mypassword: true
@@ -244,11 +297,11 @@
                         },
                         password_confirmation: {
                             //required: true,
-                            equalTo: "#u_password"
+                            equalTo: "#password"
                         },
                     },
                     messages: {
-                        u_password: {
+                        password: {
                             required: "Please enter your new password",
                             minlength: "Password should be minimum 8 characters"
                         },
@@ -284,7 +337,7 @@
             const f_name = $('#f_name').val();
             const m_name = $('#m_name').val();
             const l_name = $('#l_name').val();
-            const number = $('#number').val();
+            const mobile_number = $('#mobile_number').val();
             const designation = $('#designation').val();
             const address = $('#address').val();
             const state = $('#state').val();
@@ -303,13 +356,13 @@
         var form = $("#regForm");
         var validator = form.validate({
             rules: {
-                // u_email: {
+                // email: {
                 //     required: true,
                 // },
                 role_id: {
                     required: true,
                 },
-                // u_password: {
+                // password: {
                 //     required: true,
                 // },
                 // password_confirmation: {
@@ -324,7 +377,7 @@
                 l_name: {
                     required: true,
                 },
-                number: {
+                mobile_number: {
                     required: true,
                 },
                 designation: {
@@ -347,13 +400,13 @@
                 },
             },
             messages: {
-                // u_email: {
+                // email: {
                 //     required: "Please Enter the Eamil",
                 // },
                 role_id: {
                     required: "Please Select Role Name",
                 },
-                // u_password: {
+                // password: {
                 //     required: "Please Enter the Password",
                 // },
                 // password_confirmation: {
@@ -368,7 +421,7 @@
                 l_name: {
                     required: "Please Enter the Last Name",
                 },
-                number: {
+                mobile_number: {
                     required: "Please Enter the Number",
                 },
                 designation: {
@@ -413,9 +466,9 @@
     $(document).ready(function() {
         // Function to check if all input fields are filled with valid data
         function checkFormValidity() {
-            // const u_email = $('#u_email').val();
+            // const email = $('#email').val();
             const role_id = $('#role_id').val();
-            // const u_password = $('#u_password').val();
+            // const password = $('#password').val();
             // const password_confirmation = $('#password_confirmation').val();
             const f_name = $('#f_name').val();
             const m_name = $('#m_name').val();
@@ -443,13 +496,13 @@
         // Initialize the form validation
         $("#regForm").validate({
             rules: {
-                // u_email: {
+                // email: {
                 //     required: true,
                 // },
                 role_id: {
                     required: true,
                 },
-                // u_password: {
+                // password: {
                 //     required: true,
                 // },
                 // password_confirmation: {
@@ -488,13 +541,13 @@
 
             },
             messages: {
-                // u_email: {
+                // email: {
                 //     required: "Please Enter the Eamil",
                 // },
                 role_id: {
                     required: "Please Select Role Name",
                 },
-                // u_password: {
+                // password: {
                 //     required: "Please Enter the Password",
                 // },
                 // password_confirmation: {

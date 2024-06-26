@@ -289,14 +289,14 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="icon_id">Icon</label>&nbsp;<span class="red-text">*</span>
-                                                        <select class="form-control" id="icon_id" name="icon_id">
-                                                            <option value="" disabled {{ old('icon_id', '') == '' ? 'selected' : '' }}>Select</option>
-                                                            @foreach ($dataOutputIcon as $data)
-                                                                <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}" {{ old('icon_id') == $data['id'] ? 'selected' : '' }}>
-                                                                    {{ strip_tags($data['name']) }}
+                                                        <label for="icon_id">Icon:</label> &nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control mb-2" name="icon_id" id="icon_id">
+                                                            <option value="" default>Select Icon</option>
+                                                            @foreach ($dataOutputIcon as $service)
+                                                                <option value="{{ $service['id'] }}" {{ old('icon_id', $flowers->icon_id) == $service->id ? 'selected' : '' }}>
+                                                                    {{ $service->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

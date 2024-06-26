@@ -17,40 +17,38 @@ class RegisterRepository
 {
 
 	public function getUsersList() {
-        $data_users = User::all();
-		
-		// join('roles', function($join) {
-		// 					$join->on('users.role_id', '=', 'roles.id');
-		// 				})
-		// 				->select('roles.role_name',
-		// 						'users.email',
-		// 						'users.full_name',
-		// 						'users.m_name',
-		// 						'users.l_name',
-		// 						'users.number',
-		// 						'users.designation',
-		// 						'users.address',
-		// 						'users.state',
-		// 						'users.city',
-		// 						'users.pincode',
-		// 						'users.id',
-		// 						'users.is_active'
-		// 					)->get();
+        $data_users = User::join('roles', function($join) {
+							$join->on('users.role_id', '=', 'roles.id');
+						})
+						// ->where('users.is_active','=',true)
+						->select('roles.role_name',
+								'users.email',
+								'users.full_name',
+								'users.date_of_birth',
+								'users.mobile_number',
+								'users.gender',
+								'users.address',
+								// 'users.state',
+								// 'users.city',
+								'users.occupation',
+								'users.id',
+								'users.is_active'
+							)->get();
 							// ->toArray();
 
 		return $data_users;
 	}
 
 
-	// public function permissionsData()
-	// {
-	// 	$permissions = Permissions::where('is_active', true)
-	// 		->select('id', 'route_name', 'permission_name', 'url')
-	// 		->get()
-	// 		->toArray();
+	public function permissionsData()
+	{
+		$permissions = Permissions::where('is_active', true)
+			->select('id', 'route_name', 'permission_name', 'url')
+			->get()
+			->toArray();
 
-	// 	return $permissions;
-	// }
+		return $permissions;
+	}
 	// public function register($request)
 	// {
 	// 	$ipAddress = getIPAddress($request);
@@ -60,14 +58,13 @@ class RegisterRepository
 	// 	$user_data->password = bcrypt($request['password']);
 	// 	$user_data->role_id = $request['role_id'];
 	// 	$user_data->full_name = $request['full_name'];
-	// 	$user_data->m_name = $request['m_name'];
-	// 	$user_data->l_name = $request['l_name'];
-	// 	$user_data->number = $request['number'];
-	// 	$user_data->designation = $request['designation'];
+	// 	$user_data->date_of_birth = $request['date_of_birth'];
+	// 	$user_data->mobile_number = $request['mobile_number'];
+	// 	$user_data->gender = $request['gender'];
 	// 	$user_data->address = $request['address'];
 	// 	$user_data->state = $request['state'];
 	// 	$user_data->city = $request['city'];
-	// 	$user_data->pincode = $request['pincode'];
+	// 	$user_data->occupation = $request['occupation'];
 	// 	$user_data->ip_address = $ipAddress;
 	// 	$user_data->is_active = isset($request['is_active']) ? true : false;
 	// 	$user_data->save();
@@ -79,6 +76,7 @@ class RegisterRepository
 
 	public function register($request)
 	{
+		$data =array();
 		// $ipAddress = getIPAddress($request);
 		$user_data = new User();
 		$user_data->email = $request['email'];
@@ -86,34 +84,47 @@ class RegisterRepository
 		$user_data->password = bcrypt($request['password']);
 		$user_data->role_id = $request['role_id'];
 		$user_data->full_name = $request['full_name'];
+		$user_data->date_of_birth = $request['date_of_birth'];
 		$user_data->mobile_number = $request['mobile_number'];
-		// $user_data->ip_address = $ipAddress;
+		$user_data->gender = $request['gender'];
+		$user_data->address = $request['address'];
+		// $user_data->state = $request['state'];
+		// $user_data->city = $request['city'];
+		$user_data->occupation = $request['occupation'];
+		$user_data->ip_address = 'null';
 		$user_data->is_active = isset($request['is_active']) ? true : false;
 		$user_data->save();
 
 		$last_insert_id = $user_data->id;
 		// $this->insertRolesPermissions($request, $last_insert_id);
 
-		$imageProfile = $last_insert_id .'_' . rand(100000, 999999) . '_image.' . $request->user_profile->extension();
-        $user_detail = User::find($last_insert_id); // Assuming $request directly contains the ID
-        $user_detail->user_profile = $imageProfile; // Save the image filename to the database
+		$imageProfile = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->user_profile->extension();
+        
+        $user_detail = User::find($last_insert_id);
+        $user_detail->user_profile = $imageProfile; 
         $user_detail->save();
         // echo  $user_detail;
 		// die();
-        return $last_insert_id;
+        $data['imageProfile'] =$imageProfile;
+        return $data;
 
 	}
 
 	public function update($request)
 	{
-        $ipAddress = getIPAddress($request);
+        // $ipAddress = getIPAddress($request);
 		$user_data = User::where('id',$request['edit_id']) 
 						->update([
 							// 'u_uname' => $request['u_uname'],
 							'role_id' => $request['role_id'],
 							'full_name' => $request['full_name'],
+							'date_of_birth' => $request['date_of_birth'],
 							'mobile_number' => $request['mobile_number'],
+							'gender' => $request['gender'],
 							'address' => $request['address'],
+							// 'state' => $request['state'],
+							// 'city' => $request['city'],
+							'occupation' => $request['occupation'],
 							'is_active' => isset($request['is_active']) ? true :false,
 						]);
 		
@@ -212,135 +223,93 @@ class RegisterRepository
 			->select('id')->get();
 	}
 
+	public function editUsers($reuest)
+	{
 
-	public function editUsers($request){
-        try {
-            $return_data = array();
-            $data_output = User::find($request->id);
+		$data_users = [];
 
-            if (!$data_output) {
-                return [
-                    'msg' => 'Data not found.',
-                    'status' => 'error'
-                ];
-            }
+		$data_users['roles'] = Roles::where('is_active', true)
+			->select('id', 'role_name')
+			->get()
+			->toArray();
+		$data_users['permissions'] = Permissions::where('is_active', true)
+			->select('id', 'route_name', 'permission_name', 'url')
+			->get()
+			->toArray();
 
-            // Store the previous image names
-            $previousImage = $data_output->user_profile;
-           
-            // Update the fields from the request
-            $data_output->full_name = $request['full_name'];
-            $data_output->mobile_number = $request['mobile_number'];
-            $data_output->role_id = $request['role_id'];
-            $data_output->address = $request['address'];
-          
-            
-            $data_output->save();
-            $last_insert_id = $data_output->id;
+		$data_users_data = User::join('roles', function ($join) {
+			$join->on('users.role_id', '=', 'roles.id');
+		})
+			// ->join('roles_permissions', function($join) {
+			// 	$join->on('users.id', '=', 'roles_permissions.user_id');
+			// })
+			->where('users.id', '=', base64_decode($reuest->edit_id))
+			// ->where('roles_permissions.is_active','=',true)
+			// ->where('users.is_active','=',true)
+			->select(
+				'roles.id as role_id',
+				// 'users.u_uname',
+				'users.password',
+				'users.email',
+				'users.full_name',
+				'users.date_of_birth',
+				'users.mobile_number',
+				'users.gender',
+				'users.address',
+				// 'users.state',
+				// 'users.city',
+				'users.occupation',
+				'users.id',
+				'users.is_active',
+			)->get()
+			->toArray();
 
-            $return_data['last_insert_id'] = $last_insert_id;
-            $return_data['user_profile'] = $previousImage;
-		
-            return  $return_data;
-        
-        } catch (\Exception $e) {
-            return [
-                'msg' => 'Failed to update Data.',
-                'status' => 'error',
-                'error' => $e->getMessage() // Return the error message for debugging purposes
-            ];
-        }
-    }
-
-	// public function editUsers($reuest)
-	// {
-
-	// 	$data_users = [];
-
-	// 	// $data_users['roles'] = Roles::where('is_active', true)
-	// 	// 	->select('id', 'role_name')
-	// 	// 	->get()
-	// 	// 	->toArray();
-	// 	// $data_users['permissions'] = Permissions::where('is_active', true)
-	// 	// 	->select('id', 'route_name', 'permission_name', 'url')
-	// 	// 	->get()
-	// 	// 	->toArray();
-
-	// 	// $data_users_data = User::join('roles', function ($join) {
-	// 	// 	$join->on('users.role_id', '=', 'roles.id');
-	// 	// })
-	// 		// ->join('roles_permissions', function($join) {
-	// 		// 	$join->on('users.id', '=', 'roles_permissions.user_id');
-	// 		// })
-	// 		// ->where('users.id', '=', $reuest->edit_id)
-	// 		// ->where('roles_permissions.is_active','=',true)
-	// 		// ->where('users.is_active','=',true)
-	// 		->select(
-	// 			'roles.id as role_id',
-	// 			// 'users.u_uname',
-	// 			'users.password',
-	// 			'users.email',
-	// 			'users.full_name',
-	// 			'users.m_name',
-	// 			'users.l_name',
-	// 			'users.number',
-	// 			'users.designation',
-	// 			'users.address',
-	// 			'users.state',
-	// 			'users.city',
-	// 			'users.pincode',
-	// 			'users.id',
-	// 			'users.is_active',
-	// 		)->get()
-	// 		->toArray();
-
-	// $data_users_data = User::join('roles', function($join) {
-	// 					$join->on('users.role_id', '=', 'roles.id');
-	// 				})
-	// 				// ->join('roles_permissions', function($join) {
-	// 				// 	$join->on('users.id', '=', 'roles_permissions.user_id');
-	// 				// })
-	// 				->where('users.id','=',$reuest->edit_id)
-	// 				// ->where('roles_permissions.is_active','=',true)
-	// 				// ->where('users.is_active','=',true)
-	// 				->select('roles.id as role_id',
-	// 						// 'users.u_uname',
-	// 						'users.password',
-	// 						'users.email',
-	// 						'users.full_name',
-	// 						'users.m_name',
-	// 						'users.l_name',
-	// 						'users.number',
-	// 						'users.designation',
-	// 						'users.address',
-	// 						'users.state',
-	// 						'users.city',
-	// 						'users.pincode',
-	// 						'users.id',
-	// 						'users.is_active',
-	// 					)->get()
-	// 					->toArray();
+	$data_users_data = User::join('roles', function($join) {
+						$join->on('users.role_id', '=', 'roles.id');
+					})
+					// ->join('roles_permissions', function($join) {
+					// 	$join->on('users.id', '=', 'roles_permissions.user_id');
+					// })
+					->where('users.id','=',base64_decode($reuest->edit_id))
+					// ->where('roles_permissions.is_active','=',true)
+					// ->where('users.is_active','=',true)
+					->select('roles.id as role_id',
+							// 'users.u_uname',
+							'users.password',
+							'users.email',
+							'users.full_name',
+							'users.date_of_birth',
+							'users.mobile_number',
+							'users.gender',
+							'users.address',
+							// 'users.state',
+							// 'users.city',
+							'users.occupation',
+							'users.id',
+							'users.is_active',
+						)->get()
+						->toArray();
 						
-	// 	$data_users['data_users'] = $data_users_data[0];
-	// 	// $data_users['permissions_user'] = User::join('roles_permissions', function($join) {
-	// 	// 					$join->on('users.id', '=', 'roles_permissions.user_id');
-	// 	// 				})
-	// 	// 				->join('permissions', function($join) {
-	// 	// 					$join->on('roles_permissions.permission_id', '=', 'permissions.id');
-	// 	// 				})
-	// 	// 				->where('roles_permissions.user_id','=',$reuest->edit_id)
-	// 	// 				->where('roles_permissions.is_active','=',true)
-	// 	// 				// ->where('users.is_active','=',true)
-	// 	// 				->select(
-	// 	// 					'roles_permissions.per_add',
-	// 	// 					'roles_permissions.per_update',
-	// 	// 					'roles_permissions.per_delete',
-	// 	// 					'permissions.id as permissions_id'
-	// 	// 					)->get()
-	// 	// 					->toArray();
+		$data_users['data_users'] = $data_users_data[0];
+		// $data_users['permissions_user'] = User::join('roles_permissions', function($join) {
+		// 					$join->on('users.id', '=', 'roles_permissions.user_id');
+		// 				})
+		// 				->join('permissions', function($join) {
+		// 					$join->on('roles_permissions.permission_id', '=', 'permissions.id');
+		// 				})
+		// 				->where('roles_permissions.user_id','=',$reuest->edit_id)
+		// 				->where('roles_permissions.is_active','=',true)
+		// 				// ->where('users.is_active','=',true)
+		// 				->select(
+		// 					'roles_permissions.per_add',
+		// 					'roles_permissions.per_update',
+		// 					'roles_permissions.per_delete',
+		// 					'permissions.id as permissions_id'
+		// 					)->get()
+		// 					->toArray();
 
-	// 	return $data_users;
-	// }
+		return $data_users;
+	}
 
 	// public function delete($request)
 	// {
@@ -372,10 +341,13 @@ class RegisterRepository
 	public function getById($id)
 	{
 		try {
-			$user = User::find($id);
-				
-			
-		
+			$user = User::leftJoin('roles', 'roles.id', '=', 'users.role_id')
+				// ->leftJoin('tbl_area as state_user', 'users.state', '=', 'state_user.location_id')
+				// ->leftJoin('tbl_area as city_user', 'users.city', '=', 'city_user.location_id')
+				->where('users.id', $id)
+				->select('users.full_name','users.date_of_birth','users.email','users.mobile_number','users.gender','users.address','users.occupation','users.user_profile','roles.role_name')
+				->first();
+	
 			if ($user) {
 				return $user;
 			} else {
@@ -421,7 +393,7 @@ class RegisterRepository
 	{
 		$user_detail = User::where('is_active', true)
 			->where('id', session()->get('user_id'))
-			->select('id', 'full_name', 'm_name', 'l_name', 'email', 'password', 'number', 'designation','user_profile')
+			->select('id', 'full_name', 'date_of_birth', 'email', 'password', 'mobile_number', 'gender','user_profile')
 			->first();
 		return $user_detail;
 	}
@@ -437,9 +409,8 @@ class RegisterRepository
 			
 			$update_data = [
 				'full_name' => $request->full_name,
-				'm_name' => $request->m_name,
-				'l_name' => $request->l_name,
-				'designation' => $request->designation,
+				'date_of_birth' => $request->date_of_birth,
+				'gender' => $request->gender,
 			];
 			
 			if (isset($return_data['user_profile'])) {
@@ -451,7 +422,7 @@ class RegisterRepository
 			// 	$update_data['user_profile'] = $newImagePathOrFilename;
 			// }
 
-			if (($request->number != $request->old_number) && !isset($request->password)) {
+			if (($request->mobile_number != $request->old_number) && !isset($request->password)) {
 				$this->sendOTPEMAIL($otp, $request);
 				info("only mobile change");
 				$return_data['password_change'] = 'no';
@@ -465,7 +436,7 @@ class RegisterRepository
 
 			}
 
-			if ((isset($request->password) && $request->password !== '') && ($request->number == $request->old_number)) {
+			if ((isset($request->password) && $request->password !== '') && ($request->mobile_number == $request->old_number)) {
 				info("only password change");
 				// $update_data['password'] = bcrypt($request->password);
 				$return_data['password_change'] = 'yes';
@@ -480,7 +451,7 @@ class RegisterRepository
 				$this->sendOTPEMAIL($otp, $request);
 			}
 
-			if ((isset($request->password) && $request->password !== '') && ($request->number != $request->old_number)) {
+			if ((isset($request->password) && $request->password !== '') && ($request->mobile_number != $request->old_number)) {
 				info("only password and mobile number changed");
 				$update_data['otp'] = $otp;
 				$return_data['password_new'] = bcrypt($request->password);
@@ -530,4 +501,21 @@ class RegisterRepository
 		}
 	}
 	
+	// public function checkEmailExists(Request $request) {
+    //     $userEmail = $request->input('email');
+      
+    //     $user = User::where('email', $userEmail)->first();
+      
+    //     if ($user) {
+    //       return response()->json([
+    //         'success' => false,
+    //         'message' => 'This Email already exists.',
+    //       ]);
+    //     } else {
+    //       return response()->json([
+    //         'success' => true,
+    //         'message' => 'This Email does not exist.',
+    //       ]);
+    //     }
+    // }
 }

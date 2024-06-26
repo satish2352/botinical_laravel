@@ -31,6 +31,12 @@
                                     <span class="mini-sub-pro">Roles</span>
                                 </a>
                             </li> --}}
+                            <li class="nav-item {{ Request::is('list-role') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-role') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">Role</span>
+                                </a>
+                            </li>
 
                             <li class="nav-item {{ Request::is('list-amenities-category') ? 'active' : '' }}">
                                 <a title="Inbox" href="{{ route('list-amenities-category') }}">
@@ -80,6 +86,13 @@
 
                         </ul>
                     </li>
+                    
+                    <li class="{{ Request::is('list-home') ? 'active' : '' }}">
+                        <a class="" href="{{ route('list-home') }}" aria-expanded="false">
+                            <i class="fa fa-home icon-wrap"></i>
+                            <span class="mini-click-non">Home Data</span>
+                        </a>
+                    </li> 
                     <li class="{{ Request::is('list-aboutus') ? 'active' : '' }}">
                         <a class="has-arrow" href="{{ route('list-aboutus') }}" aria-expanded="false">
                             <i class="fa fa-users icon-wrap"></i>

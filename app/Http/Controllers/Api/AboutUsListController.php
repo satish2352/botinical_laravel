@@ -11,11 +11,55 @@ use App\Models\ {
     Amenities,
     Charges,
     AboutUsElement,
-    Ticket
+    Ticket,
+    HomeData
 }
 ;
 
 class AboutUsListController extends Controller {
+
+    public function getHomeData( Request $request ) {
+        try {
+             $language = $request->input( 'language', 'english' );
+            $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
+            $rowperpage = DEFAULT_LENGTH;
+            $start = ( $page - 1 ) * $rowperpage;
+
+            $basic_query_object = HomeData::where( 'is_active', '=', true );
+
+            $totalRecords = $basic_query_object->select( 'tbl_home_data.id' )->get()->count();
+
+            if ( $language == 'hindi' ) {
+                $data_output =   $basic_query_object->select('id', 'hindi_name as name', 'hindi_description as description','hindi_image as image');
+            } else {
+                $data_output =  $basic_query_object->select('id', 'english_name as name', 'english_description as description','english_image as image');
+            }
+
+            $data_output =  $data_output->skip( $start )
+            ->take( $rowperpage )->get()
+            ->toArray();
+            foreach ( $data_output as &$aboutusimage ) {
+                if ($language == 'hindi') {
+                    $aboutusimage['image'] = Config::get('DocumentConstant.HOME_DATA_VIEW') . $aboutusimage['image'];
+                } else {
+                    $aboutusimage['image'] = Config::get('DocumentConstant.HOME_DATA_VIEW') . $aboutusimage['image'];
+                }
+            }
+
+            if ( sizeof( $data_output ) > 0 ) {
+                $totalPages = ceil( $totalRecords/$rowperpage );
+            } else {
+                $totalPages = 0;
+            }
+
+            return response()->json( [ 'status' => 'true', 'message' => 'All data retrieved successfully', 'totalRecords' => $totalRecords,
+            'totalPages'=>$totalPages, 'page_no_to_hilight'=>$page,
+            'data' => $data_output ], 200 );
+        } catch ( \Exception $e ) {
+            return response()->json( [ 'status' => 'false', 'message' => 'Home Data Get Fail', 'error' => $e->getMessage() ], 500 );
+        }
+    }
+
    
     public function getAllAboutUsList( Request $request ) {
         try {

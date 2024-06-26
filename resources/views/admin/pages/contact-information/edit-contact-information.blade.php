@@ -120,6 +120,17 @@
                                                         <span class="red-text"><?php echo $errors->first('email', ':message'); ?></span>
                                                     @endif
                                                 </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="google_link">Google Map Link :</label>
+                                                    <input type="text" class="form-control" id="google_link"
+                                                        name="google_link"    value="@if (old('google_link')) {{ old('google_link') }}@else{{ $editData->google_link }} @endif"  placeholder="Enter name">
+                                                    @if ($errors->has('google_link'))
+                                                        <span class="red-text"><?php echo $errors->first('google_link', ':message'); ?></span>
+                                                    @endif
+                                                </div>
+
+
+
                                             </div>
                                             <div class="login-btn-inner">
                                                 <div class="row">

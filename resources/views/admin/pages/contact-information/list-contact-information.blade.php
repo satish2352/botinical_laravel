@@ -21,7 +21,8 @@ padding-left: 20px !important;
     text-align: left;
 } */
 </style>
-
+<?php $data_permission = getPermissionForCRUDPresentOrNot('list-slide', session('permissions'));
+    ?>
 <div class="data-table-area mg-tb-15">
     <div class="container-fluid">
         <div class="row">
@@ -106,11 +107,11 @@ padding-left: 20px !important;
                                                 <td>{{ strip_tags($item->hindi_address) }}</td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        {{-- @if (in_array('per_update', $data_permission)) --}}
+                                                        @if (in_array('per_update', $data_permission))
                                                         <a href="{{ route('edit-contact-information', base64_encode($item->id)) }}"
                                                             class="btn btn-sm btn-outline-primary m-1"
                                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                        {{-- @endif --}}
+                                                        @endif
                                                     </div>
                                                 </td>
                                             </tr>

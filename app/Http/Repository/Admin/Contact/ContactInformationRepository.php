@@ -39,6 +39,7 @@ class ContactInformationRepository  {
             $dataOutput->english_officer_number = $request->english_officer_number;
             $dataOutput->hindi_officer_number = $request->hindi_officer_number;
             $dataOutput->email = $request->email;
+            $dataOutput->google_link = $request->google_link;
             $dataOutput->english_address = $request->english_address;
             $dataOutput->hindi_address = $request->hindi_address;
 

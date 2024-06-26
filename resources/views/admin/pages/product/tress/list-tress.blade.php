@@ -7,7 +7,8 @@
         }
        
     </style>
-
+<?php $data_permission = getPermissionForCRUDPresentOrNot('list-tress', session('permissions'));
+    ?>
     <div class="data-table-area mg-tb-15">
         <div class="container-fluid">
             <div class="row">
@@ -19,10 +20,12 @@
                                 <div class="form-group-inner login-btn-inner row">
                                     <div class="col-lg-2">
                                         <div class="login-horizental cancel-wp pull-left">
+                                            @if (in_array('per_add', $data_permission))
                                             <a href="{{ route('add-tress') }}"><button
                                                     class="btn btn-sm btn-primary login-submit-cs" type="submit"
                                                     href="{{ route('add-tress') }}">Add Tree</button></a>
-                                        </div>
+                                                    @endif
+                                                </div>
                                     </div>
                                     <div class="col-lg-10"></div>
                                 </div>
@@ -111,20 +114,20 @@
                                                     </td>
                                                     <td>
                                                         <div class="d-flex">
-                                                            {{-- @if (in_array('per_update', $data_permission)) --}}
+                                                            @if (in_array('per_update', $data_permission))
                                                             <a href="{{ route('edit-tress', base64_encode($item->id)) }}"
                                                                 class="btn btn-sm btn-outline-primary m-1"
                                                                 title="Edit Tress"><i class="fas fa-pencil-alt"></i></a>
-                                                            {{-- @endif --}}
+                                                            @endif
 
                                                             <a data-id="{{ $item->id }}"
                                                                 class="show-btn btn btn-sm btn-outline-primary m-1"
                                                                 title="Show Tress "><i class="fas fa-eye"></i></a>
-                                                            {{-- @if (in_array('per_delete', $data_permission)) --}}
+                                                            @if (in_array('per_delete', $data_permission))
                                                             <a data-id="{{ $item->id }}"
                                                                 class="delete-btn btn btn-sm btn-outline-danger m-1"
                                                                 title="Delete Tress"><i class="fas fa-archive"></i></a>
-                                                            {{-- @endif --}}
+                                                            @endif
 
                                                         </div>
                                                     </td>

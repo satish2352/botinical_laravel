@@ -6,7 +6,8 @@
             display: none;
         }
     </style>
-
+<?php $data_permission = getPermissionForCRUDPresentOrNot('list-aboutus', session('permissions'));
+    ?>
     <div class="data-table-area mg-tb-15">
         <div class="container-fluid">
             <div class="row">
@@ -102,11 +103,11 @@
                                                     </td> --}}
                                                     <td>
                                                         <div class="d-flex">
-                                                            {{-- @if (in_array('per_update', $data_permission)) --}}
+                                                            @if (in_array('per_update', $data_permission))
                                                             <a href="{{ route('edit-aboutus', base64_encode($item->id)) }}"
                                                                 class="btn btn-sm btn-outline-primary m-1"
                                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                            {{-- @endif --}}
+                                                            @endif
 
                                                             {{-- <a data-id="{{ $item->id }}"
                                                                 class="show-btn btn btn-sm btn-outline-primary m-1"

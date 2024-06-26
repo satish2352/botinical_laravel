@@ -7,7 +7,8 @@ use Illuminate\Support\Carbon;
 // use Session;
 use App\Models\ {
 	Amenities,
-    CategoryAmenities
+    CategoryAmenities,
+    IconMaster
 };
 use Config;
 
@@ -120,7 +121,11 @@ class AmenitiesRepository  {
     public function getById($id){
         try {
             $citizenvolunteer = Amenities::join('tbl_amenities_category', 'tbl_amenities_category.id','=', 'tbl_amenities.amenities_category_id')
+            ->join('icon_master', 'icon_master.id','=', 'tbl_amenities.icon_id')
             ->select(
+                'tbl_amenities.amenities_category_id',
+                'tbl_amenities.icon_id',
+                'icon_master.name',
                 'tbl_amenities.english_name as amenities_english_name', 
                 'tbl_amenities.hindi_name as amenities_hindi_name', 
                 'tbl_amenities.english_description', 
@@ -130,13 +135,20 @@ class AmenitiesRepository  {
                 'tbl_amenities.english_video_upload', 
                 'tbl_amenities.hindi_video_upload', 
                 'tbl_amenities.image', 
+               'tbl_amenities.latitude', 
+               'tbl_amenities.longitude', 
+               'tbl_amenities.open_time_first', 
+               'tbl_amenities.close_time_first', 
+               'tbl_amenities.open_time_second', 
+               'tbl_amenities.close_time_second', 
                 'tbl_amenities_category.english_name',
                 'tbl_amenities_category.hindi_name',
                 'tbl_amenities.id',
             )
                 ->where('tbl_amenities.id', $id)
                 ->first();
-   
+  
+                
             if ($citizenvolunteer) {
                 return $citizenvolunteer;
             } else {

@@ -10,29 +10,39 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    // Rest omitted for brevity
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        // 'full_name',
-        // 'm_name',
-        // 'l_name',
-        // 'email',
-        // 'password',
-        // 'number',
-        // 'imei_no',
-        // 'aadhar_no',
-        // 'state',
-        // 'district',
-        // 'taluka',
-        // 'village',
-        // 'address',
-        // 'city',
-        // 'pincode',
-        // 'profile_image',
-        'remember_token', // Add this line to allow mass assignment
+        'name',
+        'email',
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
 
+    
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *

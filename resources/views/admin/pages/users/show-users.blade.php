@@ -30,7 +30,8 @@
                                             <label>Name :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ $user_detail->full_name }}</label>
+                                            <label>{{ $user_detail->f_name }} {{ $user_detail->m_name }}
+                                                {{ $user_detail->l_name }}</label>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -38,7 +39,7 @@
                                             <label>Role :</label>
                                         </div>
                                         <div class="col-lg-8 col-md-8 col-sm-8">
-                                            <label>{{ strip_tags($user_detail->role_id) }}</label>
+                                            <label>{{ strip_tags($user_detail->role_name) }}</label>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -59,7 +60,14 @@
                                     </div>
 
 
-                                   
+                                    <div class="row ">
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <label>Occupation :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($user_detail->occupation) }}</label>
+                                        </div>
+                                    </div>
                                     <div class="row ">
                                         <div class="col-lg-4 col-md-4 col-sm-4">
                                             <label>Address :</label>
@@ -68,8 +76,30 @@
                                             <label>{{ strip_tags($user_detail->address) }}</label>
                                         </div>
                                     </div>
-                                 
-                                 
+                                    <div class="row ">
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <label>Date of Birth :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($user_detail->date_of_birth) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <label>Gender :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($user_detail->gender) }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <label>Pincode :</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8">
+                                            <label>{{ strip_tags($user_detail->pincode) }}</label>
+                                        </div>
+                                    </div>
 
                                     <div class="row ">
                                         <div class="col-lg-4 col-md-4 col-sm-4">

@@ -54,6 +54,18 @@ Route::group(['middleware' => ['admin']], function () {
     Route::get('/states', ['as' => 'states', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\RegisterController@getState']);
     // Route::get('/forms', ['as' => 'forms', 'uses' => 'App\Http\Controllers\Admin\Forms\FormsController@index']);
     Route::get('/admin-log-out', ['as' => 'log-out', 'uses' => 'App\Http\Controllers\Admin\LoginRegister\LoginController@logout']);
+    Route::post('/list-role-wise-permission', ['as' => 'list-role-wise-permission', 'uses' => 'App\Http\Controllers\Admin\Menu\RoleController@listRoleWisePermission']);
+
+    //=====Roles Route======
+Route::get('/list-role', ['as' => 'list-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@index']);
+Route::get('/add-role', ['as' => 'add-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@add']);
+Route::post('/add-role', ['as' => 'add-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@store']);
+Route::get('/edit-role/{edit_id}', ['as' => 'edit-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@edit']);
+Route::post('/update-role', ['as' => 'update-role','uses' => 'App\Http\Controllers\Admin\Master\RoleController@update']);
+Route::post('/show-role', ['as' => 'show-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@show']);
+Route::post('/delete-role', ['as' => 'delete-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@destroy']);
+Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\Controllers\Admin\Master\RoleController@updateOneRole']);
+
 
     Route::any('/list-amenities-category', ['as' => 'list-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@index']);
     Route::any('/add-amenities-category', ['as' => 'add-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@add']);
@@ -215,6 +227,16 @@ Route::group(['middleware' => ['admin']], function () {
     Route::any('/update-gallery-category', ['as' => 'update-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@update']);
     Route::post('/delete-gallery-category', ['as' => 'delete-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@destroy']);
     Route::post('/update-one-gallery-category', ['as' => 'update-one-gallery-category', 'uses' => 'App\Http\Controllers\Admin\Master\GalleryCategoryController@updateOneCategory']);
+
+
+    Route::any('/list-home', ['as' => 'list-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@index']);
+    Route::any('/add-home', ['as' => 'add-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@add']);
+    Route::any('/store-home', ['as' => 'store-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@store']);
+    Route::any('/edit-home/{edit_id}', ['as' => 'edit-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@edit']);
+    Route::any('/update-home', ['as' => 'update-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@update']);
+    Route::post('/show-home', ['as' => 'show-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@show']);
+    Route::post('/delete-home', ['as' => 'delete-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@destroy']);
+    Route::post('/update-active-home', ['as' => 'update-active-home', 'uses' => 'App\Http\Controllers\Admin\Home\HomeController@updateOne']);
 
 });
 

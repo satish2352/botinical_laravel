@@ -23,25 +23,37 @@
                                         <form class="forms-sample" action="{{ route('update-amenities') }}" method="post"
                                             id="regForm" enctype="multipart/form-data">
                                             @csrf
+                                           
                                             <div class="row">
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="form-group">
-                                                        <label for="Service">Category:</label> &nbsp<span
-                                                            class="red-text">*</span>
-                                                        <select class="form-control mb-2" name="amenities_category_id"
-                                                            id="amenities_category_id">
+                                                        <label for="Service">Category:</label> &nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control mb-2" name="amenities_category_id" id="amenities_category_id">
                                                             <option value="" default>Select Category</option>
                                                             @foreach ($dataOutputCategory as $service)
-                                                                <option value="{{ $service->id }}"
-                                                                    @if ($amenities->amenities_category_id == $service->id) {{ 'selected' }} @endif>
+                                                                <option value="{{ $service['id'] }}" {{ old('amenities_category_id', $amenities->amenities_category_id) == $service->id ? 'selected' : '' }}>
                                                                     {{ $service->english_name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
                                                         @if ($errors->has('amenities_category_id'))
-                                                            <span class="red-text">
-                                                                <?php echo $errors->first('amenities_category_id', ':message'); ?>
-                                                            </span>
+                                                            <span class="red-text">{{ $errors->first('amenities_category_id') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label for="icon_id">Icon:</label> &nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control mb-2" name="icon_id" id="icon_id">
+                                                            <option value="" default>Select Icon</option>
+                                                            @foreach ($dataOutputIcon as $service)
+                                                                <option value="{{ $service['id'] }}" {{ old('icon_id', $amenities->icon_id) == $service->id ? 'selected' : '' }}>
+                                                                    {{ $service->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('icon_id'))
+                                                            <span class="red-text">{{ $errors->first('icon_id') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -62,34 +74,13 @@
                                                         </div>
                                                     @endif
                                                 </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="icon_id">Icon</label>&nbsp;<span
-                                                            class="red-text">*</span>
-                                                        <select class="form-control" id="icon_id" name="icon_id">
-                                                            <option value="" disabled
-                                                                {{ old('icon_id', '') == '' ? 'selected' : '' }}>Select
-                                                            </option>
-                                                            @foreach ($dataOutputIcon as $data)
-                                                                <option value="{{ $data['id'] }}"
-                                                                    data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}"
-                                                                    {{ old('icon_id') == $data['id'] ? 'selected' : '' }}>
-                                                                    {{ strip_tags($data['name']) }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        @if ($errors->has('icon_id'))
-                                                            <span class="red-text">{{ $errors->first('icon_id') }}</span>
-                                                        @endif
-                                                    </div>
-                                                </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="english_name">Name </label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="english_name" id="english_name"
                                                             placeholder="Enter the Name"
-                                                            value=" @if (old('english_name')) {{ old('english_name') }}@else{{ $amenities->english_name }} @endif">
+                                                            value=" @if (old('amenities_english_name')) {{ old('amenities_english_name') }}@else{{ $amenities->amenities_english_name }} @endif">
                                                         <label class="error py-2" for="english_name"
                                                             id="english_name_error"></label>
                                                         @if ($errors->has('english_name'))
@@ -103,7 +94,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="hindi_name" id="hindi_name"
                                                             placeholder="नाम दर्ज करें"
-                                                            value="@if (old('hindi_name')) {{ old('hindi_name') }}@else{{ $amenities->hindi_name }} @endif">
+                                                            value="@if (old('amenities_hindi_name')) {{ old('amenities_hindi_name') }}@else{{ $amenities->amenities_hindi_name }} @endif">
                                                         <label class="error py-2" for="hindi_name"
                                                             id="hindi_name_error"></label>
                                                         @if ($errors->has('hindi_name'))
@@ -294,51 +285,44 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="open_time_first">Open Time </label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input type="time" class="form-control mb-2"
-                                                            id="open_time_first" name="open_time_first"
-                                                            placeholder="Enter the Open Time"
-                                                            value="@if (old('open_time_first')) {{ old('open_time_first') }}@else{{ $aboutuselement->open_time_first }} @endif">
+                                                        <label for="open_time_first">Open Time </label>&nbsp<span class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" id="open_time_first" name="open_time_first" placeholder="Enter the Open Time"
+                                                            value="{{ old('open_time_first') ?? $amenities->open_time_first }}">
                                                         @if ($errors->has('open_time_first'))
-                                                            <span class="red-text"><?php echo $errors->first('open_time_first', ':message'); ?></span>
+                                                            <span class="red-text">{{ $errors->first('open_time_first') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="close_time_first">Close Time </label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input type="time" class="form-control mb-2"
-                                                            id="close_time_first" name="close_time_first"
-                                                            placeholder="Enter the Close Time"
-                                                            value="@if (old('close_time_first')) {{ old('close_time_first') }}@else{{ $aboutuselement->close_time_first }} @endif">
+                                                        <label for="close_time_first">Close Time </label>&nbsp<span class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" id="close_time_first" name="close_time_first" placeholder="Enter the Close Time"
+                                                            value="{{ old('close_time_first') ?? $amenities->close_time_first }}">
                                                         @if ($errors->has('close_time_first'))
-                                                            <span class="red-text"><?php echo $errors->first('close_time_first', ':message'); ?></span>
+                                                            <span class="red-text">{{ $errors->first('close_time_first') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="open_time_second">Open Time </label>
-                                                        <input type="time" class="form-control mb-2"
-                                                            id="open_time_second" name="open_time_second"
-                                                            placeholder="Enter the Open Time"
-                                                            value="@if (old('open_time_second')) {{ old('open_time_second') }}@else{{ $aboutuselement->open_time_second }} @endif">
+                                                        <input type="time" class="form-control mb-2" id="open_time_second" name="open_time_second" placeholder="Enter the Open Time"
+                                                            value="{{ old('open_time_second') ?? $amenities->open_time_second }}">
                                                         @if ($errors->has('open_time_second'))
-                                                            <span class="red-text"><?php echo $errors->first('open_time_second', ':message'); ?></span>
+                                                            <span class="red-text">{{ $errors->first('open_time_second') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="close_time_second">Close Time </label>
-                                                        <input type="time" class="form-control mb-2"
-                                                            id="close_time_second" name="close_time_second"
-                                                            placeholder="Enter the Close Time"
-                                                            value="@if (old('close_time_second')) {{ old('close_time_second') }}@else{{ $aboutuselement->close_time_second }} @endif">
+                                                        <input type="time" class="form-control mb-2" id="close_time_second" name="close_time_second" placeholder="Enter the Close Time"
+                                                            value="{{ old('close_time_second') ?? $amenities->close_time_second }}">
                                                         @if ($errors->has('close_time_second'))
-                                                            <span class="red-text"><?php echo $errors->first('close_time_second', ':message'); ?></span>
+                                                            <span class="red-text">{{ $errors->first('close_time_second') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>

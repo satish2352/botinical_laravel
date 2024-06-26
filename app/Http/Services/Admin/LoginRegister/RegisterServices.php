@@ -41,56 +41,33 @@ class RegisterServices
     //     }
     // }
 
-    // public function register($request){
-    //     try {
-
-    //         $chk_dup = $this->repo->checkDupCredentials($request);
-    //         if(sizeof($chk_dup)>0)
-    //         {
-    //             return ['status'=>'failed','msg'=>'Registration Failed. The name has already been taken.'];
-    //         }
-    //         else
-    //         {
-    //             $last_id = $this->repo->register($request);
-              
-    //             $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
-    //             //"\all_web_data\images\home\slides\\"."\\";
-    //             $userProfile = $last_id . '_english.' . $request->user_profile->getClientOriginalExtension();
-    //             uploadImage($request, 'user_profile', $path, $userProfile);
-              
-              
-    //             dd($register_user);
-    //             die();
-    //             if ($last_id) {
-    //                 return ['status' => 'success', 'msg' => 'User Added Successfully.'];
-    //             } else {
-    //                 return ['status' => 'error', 'msg' => 'User get Not Added.'];
-    //             }  
-    //         }
-
-    //     } catch (Exception $e) {
-    //         return ['status' => 'error', 'msg' => $e->getMessage()];
-    //         }      
-    // }
-
     public function register($request){
         try {
-            $last_id = $this->repo->register($request);
-          
-            if(isset($last_id['ImageName'])){
-                $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
-                $ImageName = $last_id['ImageName'];
 
-                uploadImage($request, 'user_profile', $path, $ImageName);
-              
-              
-                return ['status' => 'success', 'msg' => 'Data Added Successfully.'];
-            } else {
-                return ['status' => 'error', 'msg' => 'ImageName not found in response.'];
+            $chk_dup = $this->repo->checkDupCredentials($request);
+            if(sizeof($chk_dup)>0)
+            {
+                return ['status'=>'failed','msg'=>'Registration Failed. The name has already been taken.'];
             }
+            else
+            {
+                $last_id = $this->repo->register($request);
+                $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
+                //"\all_web_data\images\home\slides\\"."\\";
+                $imageProfile = $last_id['imageProfile'];
+                // $userProfile = $last_id . '_english.' . $request->user_profile->extension();
+                uploadImage($request, 'user_profile', $path, $imageProfile);
+             
+                if ($last_id) {
+                    return ['status' => 'success', 'msg' => 'User Added Successfully.'];
+                } else {
+                    return ['status' => 'error', 'msg' => 'User get Not Added.'];
+                }  
+            }
+
         } catch (Exception $e) {
             return ['status' => 'error', 'msg' => $e->getMessage()];
-        }      
+            }      
     }
 
     public function update($request) {
@@ -100,7 +77,6 @@ class RegisterServices
 
     public function editUsers($request) {
         $data_users = $this->repo->editUsers($request);
-       
         return $data_users;
     }
     
@@ -140,13 +116,13 @@ class RegisterServices
             $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
             if ($request->hasFile('user_profile')) {
                 if ($return_data['user_profile']) {
-                    if (file_exists_view(Config::get('DocumentConstant.USER_PROFILE_DELETE') . $return_data['user_profile'])) {
+                    if (file_exists_s3(Config::get('DocumentConstant.USER_PROFILE_DELETE') . $return_data['user_profile'])) {
                         removeImage(Config::get('DocumentConstant.USER_PROFILE_DELETE') . $return_data['user_profile']);
                     }
 
                 }
     
-                $englishImageName = $return_data['last_insert_id'] . '_english.' . $request->user_profile->getClientOriginalExtension();
+                $englishImageName = $return_data['last_insert_id'] .'_' . rand(100000, 999999) . '_english.' . $request->user_profile->extension();
                 uploadImage($request, 'user_profile', $path, $englishImageName);
                 $slide_data = User::find($return_data['last_insert_id']);
                 $slide_data->user_profile = $englishImageName;
@@ -171,13 +147,13 @@ class RegisterServices
         $path = Config::get('DocumentConstant.USER_PROFILE_ADD');
         if ($request->hasFile('user_profile')) {
             if ($return_data['user_profile']) {
-                if (file_exists_view(Config::get('DocumentConstant.USER_PROFILE_DELETE') . $return_data['user_profile'])) {
+                if (file_exists_s3(Config::get('DocumentConstant.USER_PROFILE_DELETE') . $return_data['user_profile'])) {
                     removeImage(Config::get('DocumentConstant.USER_PROFILE_DELETE') . $return_data['user_profile']);
                 }
 
             }
 
-            $englishImageName = $return_data['last_insert_id'] . '_english.' . $request->user_profile->getClientOriginalExtension();
+            $englishImageName = $return_data['last_insert_id'] . '_english.' . $request->user_profile->extension();
             uploadImage($request, 'user_profile', $path, $englishImageName);
             $profile = User::find($return_data['last_insert_id']);
             $profile->user_profile = $englishImageName;

@@ -124,8 +124,12 @@ class AmenitiesController extends Controller
         }
     }
     
+
+ 
+
+
     public function edit(Request $request){
-        $dataOutputIcon = IconMaster::get();
+        $dataOutputIcon = IconMaster::where('is_active', true)->get();
         $edit_data_id = base64_decode($request->edit_id);      
         $amenities = $this->service->getById($edit_data_id);
         $dataOutputCategory = CategoryAmenities::where('is_active', true)->get();

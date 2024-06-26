@@ -7,7 +7,14 @@ use App\Models\ {
 };
 use Illuminate\Support\Facades\Storage;
 
-
+function getRouteDetailsPresentOrNot($data_for_session) {
+    $data =[];
+    foreach ($data_for_session as $value_new) {
+        array_push($data,$value_new['url']);
+    }
+    Session::put('data_for_url', $data);
+    return $data;
+}
 
 function getPermissionForCRUDPresentOrNot($url,$data_for_session) {
     $data =[];
@@ -32,6 +39,8 @@ function getPermissionForCRUDPresentOrNot($url,$data_for_session) {
     }
     return $data;
 }
+
+
 
 function uploadImage($request, $image_name, $path, $name) {
     // Check if the directory exists, create it if not

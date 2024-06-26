@@ -15,49 +15,42 @@
             /* display: none; */
         }
     </style>
-    <div class="container-fluid">
-        <div class="row paddingbottom">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="sparkline12-list">
-                    <div class=" " style="display: flex; justify-content:space-between">
-                        <h3 class="page-title">User 
-                        </h3>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb" style="background-color: #fff;">
-                                <li class="breadcrumb-item"><a href="{{ route('list-users') }}">User</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> User </li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="sparkline12-graph">
-                        <div class="basic-login-form-ad">
-            <div class="row">
-                <div class="col-12 grid-margin">
-                    <div class="card">
-                        <div class="card-body">
+  <div class="container-fluid">
+    <div class="row paddingbottom">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="sparkline12-list">
+                <div class=" " style="display: flex; justify-content:space-between">
+                    <h3 class="page-title">User 
+                    </h3>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="background-color: #fff;">
+                            <li class="breadcrumb-item"><a href="{{ route('list-users') }}">User</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> User </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="sparkline12-graph">
+                    <div class="basic-login-form-ad">
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
                             <form class="forms-sample" id="frm_register" name="frm_register" method="post" role="form"
                                 action="{{ route('add-users') }}" enctype="multipart/form-data">
                                 <div class="row">
                                     <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
-
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    {{--        <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label for="role_id">Role Type</label>&nbsp<span class="red-text">*</span>
-                                            <select class="form-control" id="role_id" name="role_id" onchange="myFunction(this.value)">
-                                                <option value="">Select</option>
-                                                <option value="1">Admin</option>
-                                                <option value="2">Driver/Garden
-                                                    Guide</option>
-                                                <option value="3">User/Customer</option>
-                                               
-                                            </select>
-                                            @if ($errors->has('role_id'))
-                                                <span class="red-text">{{ $errors->first('role_id', ':message') }}</span>
+                                            <label for="u_uname">User Name</label>&nbsp<span class="red-text">*</span>
+                                            <input type="text" class="form-control" name="u_uname" id="u_uname"
+                                                placeholder="" value="{{ old('u_uname') }}">
+                                            @if ($errors->has('u_uname'))
+                                                <span class="red-text"><?php echo $errors->first('u_uname', ':message'); ?></span>
                                             @endif
                                         </div>
                                     </div>
-                                    
+                                    --}}
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="email">Email ID</label>&nbsp<span class="red-text">*</span>
@@ -68,7 +61,27 @@
                                             @endif
                                         </div>
                                     </div>
-                                   
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="role_id">Role Type</label>&nbsp<span class="red-text">*</span>
+                                            <select class="form-control" id="role_id" name="role_id"
+                                                onchange="myFunction(this.value)">
+                                                <option value="">Select</option>
+                                                @foreach ($roles as $role)
+                                                    @if (old('role_id') == $role['id'])
+                                                        <option value="{{ $role['id'] }}" selected>
+                                                            {{ $role['role_name'] }}</option>
+                                                    @else
+                                                        <option value="{{ $role['id'] }}">{{ $role['role_name'] }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('role_id'))
+                                                <span class="red-text"><?php echo $errors->first('role_id', ':message'); ?></span>
+                                            @endif
+                                        </div>
+                                    </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="password">Password</label>&nbsp<span class="red-text">*</span>
@@ -112,7 +125,7 @@
                                         </div>
                                     </div>
 
-                                   
+                                  
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="mobile_number">Mobile Number</label>&nbsp<span
@@ -131,6 +144,18 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
+                                            <label for="occupation">Occupation</label>&nbsp<span
+                                                class="red-text">*</span>
+                                            <input type="text" class="form-control" name="occupation"
+                                                id="occupation" placeholder="" value="{{ old('occupation') }}"
+                                                oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').replace(/(\..*)\./g, '$1');">
+                                            @if ($errors->has('occupation'))
+                                                <span class="red-text"><?php echo $errors->first('occupation', ':message'); ?></span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
                                             <label for="address">Address</label>&nbsp<span class="red-text">*</span>
                                             <input type="text" class="form-control" name="address" id="address"
                                                 placeholder="" value="{{ old('address') }}">
@@ -139,7 +164,35 @@
                                             @endif
                                         </div>
                                     </div>
-                                  
+                                    {{-- <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="state">State</label>&nbsp<span class="red-text">*</span>
+                                            <select class="form-control" id="state" name="state">
+                                                <option>Select State</option>
+                                                @foreach ($dynamic_state as $state)
+                                                    @if (old('state') == $state['location_id'])
+                                                        <option value="{{ $state['location_id'] }}" selected>
+                                                            {{ $state['name'] }}</option>
+                                                    @else
+                                                        <option value="{{ $state['location_id'] }}">
+                                                            {{ $state['name'] }}
+                                                        </option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="city">City</label>&nbsp<span class="red-text">*</span>
+                                            <select class="form-control" name="city" id="city">
+                                                <option value="">Select City</option>
+                                            </select>
+                                            @if ($errors->has('city'))
+                                                <span class="red-text"><?php //echo $errors->first('city', ':message'); ?></span>
+                                            @endif
+                                        </div>
+                                    </div> --}}
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="user_profile">Profile Photo</label>&nbsp<span
@@ -151,6 +204,7 @@
                                             @endif
                                         </div>
                                     </div>
+                                
                                     <div class="col-lg-12 col-md-12 col-sm-12 user_tbl">
                                         <div id="data_for_role">
                                         </div>
@@ -204,7 +258,7 @@
                 }
             }
         </script>
-        <script>
+        {{-- <script>
             function addvalidatePincode(number) {
                 var pincodePattern = /^\d*$/;
                 var validationMessage = document.getElementById("validation-message-pincode");
@@ -215,7 +269,7 @@
                     validationMessage.textContent = "Please enter only numbers.";
                 }
             }
-        </script>
+        </script> --}}
 
 
         <script>
@@ -252,7 +306,7 @@
                 });
             });
         </script>
-        {{-- <script>
+        <script>
             function myFunction(role_id) {
                 // alert(role_id);
                 $("#data_for_role").empty();
@@ -272,45 +326,43 @@
                     error: function(data) {}
                 });
             }
-        </script> --}}
+        </script>
 
-        {{-- <script>
+        <script>
             $(document).ready(function() {
                 // Function to check if all input fields are filled with valid data
                 function checkFormValidity() {
-                    const u_email = $('#u_email').val();
+                    const email = $('#email').val();
                     const role_id = $('#role_id').val();
-                    const u_password = $('#u_password').val();
+                    const password = $('#password').val();
                     const password_confirmation = $('#password_confirmation').val();
-                    const f_name = $('#f_name').val();
-                    const m_name = $('#m_name').val();
-                    const l_name = $('#l_name').val();
-                    const number = $('#number').val();
-                    const designation = $('#designation').val();
+                    const full_name = $('#full_name').val();
+                    const mobile_number = $('#mobile_number').val();
+                    const occupation = $('#occupation').val();
                     const address = $('#address').val();
-                    const state = $('#state').val();
-                    const city = $('#city').val();
+                    // const gender = $('#gender').val();
+                    // const city = $('#city').val();
                     const user_profile = $('#user_profile').val();
-                    const pincode = $('#pincode').val();
+                    const date_of_birth = $('#date_of_birth').val();
 
                     // Enable the submit button if all fields are valid
-                    if (u_email && role_id && u_password && password_confirmation && f_name && m_name && l_name &&
-                        number && designation && address && state && city && user_profile && pincode) {
-                        $('#submitButton').prop('disabled', false);
-                    } else {
-                        $('#submitButton').prop('disabled', true);
-                    }
+                    // if (email && role_id && password && password_confirmation && full_name &&
+                    //     number && occupation && address && user_profile && date_of_birth && gender) {
+                    //     $('#submitButton').prop('disabled', false);
+                    // } else {
+                    //     $('#submitButton').prop('disabled', true);
+                    // }
                 }
 
                 // Call the checkFormValidity function on input change
                 $('input,textarea, select, #user_profile').on('input change',
                     checkFormValidity);
 
-                    $.validator.addMethod("number", function(value, element) {
+                    $.validator.addMethod("mobile_number", function(value, element) {
                     return this.optional(element) || /^[0-9]{10}$/.test(value);
-                }, "Please enter a valid 10-digit number.");
+                }, "Please enter a valid 10-digit mobile_number.");
 
-                $.validator.addMethod("u_email", function(value, element) {
+                $.validator.addMethod("email", function(value, element) {
                     // Regular expression for email validation
                     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
                     return this.optional(element) || emailRegex.test(value);
@@ -319,110 +371,98 @@
                 // Initialize the form validation
                 $("#regForm").validate({
                     rules: {
-                        u_email: {
+                        email: {
                             required: true,
                         //     remote: {
                         //     url: '/web/check-email-exists',
                         //     type: 'post',
                         //     data: {
-                        //         u_email: function() {
-                        //             return $('#u_email').val();
+                        //         email: function() {
+                        //             return $('#email').val();
                         //         }
                         //     }
                         // },
-                            u_email:true,
+                            email:true,
                         },
                         role_id: {
                             required: true,
                         },
-                        u_password: {
+                        password: {
                             required: true,
                         },
                         password_confirmation: {
                             required: true,
                         },
-                        f_name: {
+                        full_name: {
                             required: true,
                         },
-                        m_name: {
+                        mobile_number: {
                             required: true,
+                            mobile_number:true,
                         },
-                        l_name: {
-                            required: true,
-                        },
-                        number: {
-                            required: true,
-                            number:true,
-                        },
-                        designation: {
+                        occupation: {
                             required: true,
                         },
                         address: {
                             required: true,
                         },
-                        state: {
+                        gender: {
                             required: true,
                         },
-                        city: {
-                            required: true,
-                        },
+                        // city: {
+                        //     required: true,
+                        // },
                         user_profile: {
                             required: true,
                         },
-                        pincode: {
+                        date_of_birth: {
                             required: true,
                         },
 
                     },
                     messages: {
-                        u_email: {
+                        email: {
                             required: "Please Enter the Eamil",
                             // remote: "This Email already exists."
                         },
                         role_id: {
                             required: "Please Select Role Name",
                         },
-                        u_password: {
+                        password: {
                             required: "Please Enter the Password",
                         },
                         password_confirmation: {
                             required: "Please Enter the Confirmation Password",
                         },
-                        f_name: {
+                        full_name: {
                             required: "Please Enter the First Name",
                         },
-                        m_name: {
-                            required: "Please Enter the Middle Name",
+                        mobile_number: {
+                            required: "Please Enter the mobile number",
                         },
-                        l_name: {
-                            required: "Please Enter the Last Name",
-                        },
-                        number: {
-                            required: "Please Enter the Number",
-                        },
-                        designation: {
-                            required: "Please Enter the Designation",
+                        occupation: {
+                            required: "Please Enter the occupation",
                         },
                         address: {
                             required: "Please Enter the Address",
                         },
 
-                        state: {
-                            required: "Please Select State",
+                        gender: {
+                            required: "Please Select gender",
                         },
-                        city: {
-                            required: "Please Select State",
-                        },
+                        // city: {
+                        //     required: "Please Select State",
+                        // },
                         user_profile: {
                             required: "Upload Media File",
                             accept: "Only png, jpeg, and jpg image files are allowed.", // Update the error message for the accept rule
                         },
-                        pincode: {
-                            required: "Please Enter the Pincode",
+                        date_of_birth: {
+                            required: "Please Enter the date_of_birth",
                         },
                     },
 
                 });
             });
-        </script> --}}
+        </script>
     @endsection

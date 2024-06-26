@@ -412,7 +412,7 @@ class AreaRepository
 
 	public function update($request)
 	{
-        $ipAddress = getIPAddress($request);
+        // $ipAddress = getIPAddress($request);
 		$user_data = User::where('id',$request['edit_id']) 
 						->update([
 							// 'u_uname' => $request['u_uname'],

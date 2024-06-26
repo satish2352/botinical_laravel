@@ -40,6 +40,8 @@ Route::group([
 
     Route::middleware('auth:api')->group(function () {
         Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
+        
+        Route::post('/get-home-data', [AboutUsListController::class, 'getHomeData']);
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
         Route::post('/get-aboutus-element-list', [AboutUsListController::class, 'getAllAboutUsElementList']);
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);

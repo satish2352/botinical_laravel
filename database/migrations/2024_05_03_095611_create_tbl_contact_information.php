@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email');
             $table->text('english_address');
             $table->text('hindi_address');
+            $table->text('google_link');
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

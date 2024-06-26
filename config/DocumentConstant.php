@@ -7,6 +7,10 @@ return [
     define('DEFAULT_START', 1),
     define('DEFAULT_LENGTH', 10),
 
+    'HOME_DATA_ADD'	         => "/all_web_data/images/homedata/",
+    'HOME_DATA_DELETE'	         => '/all_web_data/images/homedata/',
+    'HOME_DATA_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/homedata/',
+
     'USER_PROFILE_ADD'	         => "/all_web_data/images/userProfile/",
     'USER_PROFILE_DELETE'	         => '/all_web_data/images/userProfile/',
     'USER_PROFILE_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/userProfile/',
