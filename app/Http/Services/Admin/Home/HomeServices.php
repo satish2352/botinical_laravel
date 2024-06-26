@@ -24,11 +24,16 @@ class HomeServices
     
     public function getAll(){
         try {
-            return $this->repo->getAll();
+            $result = $this->repo->getAll();
+            dd($result); // This will dump the result and stop the execution
+            die();
+            return $result;
         } catch (\Exception $e) {
+            dd($e); // This will dump the exception and stop the execution
             return $e;
         }
     }
+    
    
     public function addAll($request){
         try {
