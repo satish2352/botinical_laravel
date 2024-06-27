@@ -32,7 +32,10 @@ class TressServices
    
     public function addAll($request){
         try {
-            $last_id = $this->repo->addAll($request);        
+            $last_id = $this->repo->addAll($request); 
+            
+            dd($last_id);
+            die();
             if(isset($last_id['ImageName'])){
                 $path = Config::get('DocumentConstant.TRESS_ADD');
                 $ImageName = $last_id['ImageName'];
