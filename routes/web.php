@@ -120,6 +120,7 @@ Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\
     Route::post('/delete-tress', ['as' => 'delete-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@destroy']);
     Route::post('/update-active-tress', ['as' => 'update-active-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@updateOne']);
 
+
     Route::any('/list-flowers', ['as' => 'list-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@index']);
     Route::any('/add-flowers', ['as' => 'add-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@add']);
     Route::any('/store-flowers', ['as' => 'store-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@store']);

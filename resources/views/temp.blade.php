@@ -63,7 +63,11 @@
 		============================================ -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
+<style>
+    .logoImage{
+        width: 145px !important; background-color: #01595A !important; margin: 10px;
+    }
+    </style>
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -189,7 +193,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        <a href="index.html"><img class="main-logo logoImage" src="img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
             </div>

@@ -289,7 +289,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="icon_id">Icon:</label> &nbsp;<span class="red-text">*</span>
                                                         <select class="form-control mb-2" name="icon_id" id="icon_id">
@@ -323,6 +323,79 @@
                                                         </div>
                                                     @endif
                                                 </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_two"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image_two" accept="image/*" placeholder="image_two">
+
+                                                    </div>
+                                                    <img id="english"
+                                                        src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_two }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_two'))
+                                                        <div class="red-text"><?php echo $errors->first('image_two', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_three"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image_three" accept="image/*" placeholder="image_three">
+
+                                                    </div>
+                                                    <img id="english"
+                                                        src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_three }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_three'))
+                                                        <div class="red-text"><?php echo $errors->first('image_three', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_four"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image_four" accept="image/*" placeholder="image_four">
+
+                                                    </div>
+                                                    <img id="english"
+                                                        src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_four }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_four'))
+                                                        <div class="red-text"><?php echo $errors->first('image_four', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_five"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image_five" accept="image/*" placeholder="image_five">
+
+                                                    </div>
+                                                    <img id="english"
+                                                        src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_five }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_five'))
+                                                        <div class="red-text"><?php echo $errors->first('image_five', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                              
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="height">Height</label>&nbsp<span

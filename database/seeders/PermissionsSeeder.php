@@ -74,6 +74,14 @@ class PermissionsSeeder extends Seeder
                     [
                         'created_at' => \Carbon\Carbon::now(),
                         'updated_at' => \Carbon\Carbon::now(),
+                        'route_name' => 'Home Data',
+                        'url' => 'list-home',
+                        'permission_name' => 'Home Data',
+                    ]);
+                Permissions::create(
+                    [
+                        'created_at' => \Carbon\Carbon::now(),
+                        'updated_at' => \Carbon\Carbon::now(),
                         'route_name' => 'Tree',
                         'url' => 'list-tress',
                         'permission_name' => 'Tree',
@@ -114,10 +122,18 @@ class PermissionsSeeder extends Seeder
                 [
                     'created_at' => \Carbon\Carbon::now(),
                     'updated_at' => \Carbon\Carbon::now(),
-                    'route_name' => 'Gallery',
-                    'url' => 'list-gallery',
-                    'permission_name' => 'Gallery',
+                    'route_name' => 'Contact-Information',
+                    'url' => 'list-contact-information',
+                    'permission_name' => 'Contact-Information',
                 ]);
+                Permissions::create(
+                    [
+                        'created_at' => \Carbon\Carbon::now(),
+                        'updated_at' => \Carbon\Carbon::now(),
+                        'route_name' => 'Contact-Enquiry',
+                        'url' => 'list-contact-enquiry',
+                        'permission_name' => 'Contact-Enquiry',
+                    ]);
            
         
 

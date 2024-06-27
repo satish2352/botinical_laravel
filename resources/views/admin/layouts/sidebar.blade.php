@@ -1,4 +1,9 @@
 <?php $data_for_url = session('data_for_url'); ?>
+<style>
+    .logoImage{
+        width: 145px !important; background-color: #01595A !important; margin: 10px;
+    }
+    </style>
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
         <div class="sidebar-header">
@@ -200,7 +205,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="logo-pro">
-                    <a href="index.html"><img class="main-logo" src="{{ asset('img/logo/logo.png') }}"
+                    <a href="index.html"><img class="main-logo logoImage" src="{{ asset('img/logo/logo.png') }}"
                             alt=""></a>
                 </div>
             </div>

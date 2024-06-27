@@ -32,17 +32,24 @@ class TressServices
    
     public function addAll($request){
         try {
-            $last_id = $this->repo->addAll($request);
-         
+            $last_id = $this->repo->addAll($request);        
             if(isset($last_id['ImageName'])){
                 $path = Config::get('DocumentConstant.TRESS_ADD');
                 $ImageName = $last_id['ImageName'];
+                $ImageName2 = $last_id['ImageName2'];
+                $ImageName3 = $last_id['ImageName3'];
+                $ImageName4 = $last_id['ImageName4'];
+                $ImageName5 = $last_id['ImageName5'];
                 $EnglishAudioUpload = $last_id['EnglishAudioUpload'];
                 $HindiAudioUpload = $last_id['HindiAudioUpload'];
                 $EnglishVideoUpload = $last_id['EnglishVideoUpload'];
                 $HindiVideoUpload = $last_id['HindiVideoUpload'];
 
                 uploadImage($request, 'image', $path, $ImageName);
+                uploadImage($request, 'image_two', $path, $ImageName2);
+                uploadImage($request, 'image_three', $path, $ImageName3);
+                uploadImage($request, 'image_four', $path, $ImageName4);
+                uploadImage($request, 'image_five', $path, $ImageName5);
                 uploadImage($request, 'english_audio_link', $path, $EnglishAudioUpload);
                 uploadImage($request, 'hindi_audio_link', $path, $HindiAudioUpload);
                 uploadImage($request, 'english_video_upload', $path, $EnglishVideoUpload);

@@ -227,6 +227,50 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_two">Image </label> (optional)<br>
+                                                        <input type="file" name="image_two" id="image_two"
+                                                            accept="image_two/*" value="{{ old('image_two') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_two'))
+                                                            <span class="red-text"><?php echo $errors->first('image_two', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_three">Image </label> (optional)<br>
+                                                        <input type="file" name="image_three" id="image_three"
+                                                            accept="image_three/*" value="{{ old('image_three') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_three'))
+                                                            <span class="red-text"><?php echo $errors->first('image_three', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_four">Image </label> (optional)<br>
+                                                        <input type="file" name="image_four" id="image_four"
+                                                            accept="image_four/*" value="{{ old('image_four') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_four'))
+                                                            <span class="red-text"><?php echo $errors->first('image_four', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_five">Image </label> (optional)<br>
+                                                        <input type="file" name="image_five" id="image_five"
+                                                            accept="image_five/*" value="{{ old('image_five') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_five'))
+                                                            <span class="red-text"><?php echo $errors->first('image_five', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
