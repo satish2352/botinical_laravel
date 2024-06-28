@@ -431,6 +431,26 @@
                         fileExtension: ["jpg", "jpeg", "png"],
                         fileSize: [10, 2048],
                     },
+                    image2: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
+                    image3: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
+                    image4: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
+                    image5: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
                     english_audio_link: {
                         required: true,
                         extension: "mp3",
@@ -506,6 +526,26 @@
                         required: "Please select the girth type.",
                     },
                     image: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image2: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image3: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image4: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image5: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",
                         fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
                         fileSize: "File size must be between 10 KB and 2 MB.",

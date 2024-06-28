@@ -2,7 +2,7 @@
 @section('content')
     <style>
         label {
-            margin-top: 20px;
+            /* margin-top: 20px; */
         }
     </style>
 <div class="container-fluid">

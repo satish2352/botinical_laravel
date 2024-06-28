@@ -327,13 +327,13 @@
                                                     <div class="form-group">
                                                         <label for="image_two"> Image</label>
                                                         <input type="file" name="image" class="form-control"
-                                                            id="image_two" accept="image/*" placeholder="image_two">
+                                                            id="image2" accept="image/*" placeholder="image_two">
 
                                                     </div>
-                                                    <img id="english"
+                                                    <img id="english2"
                                                         src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_two }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                    <img id="english_imgPreview2" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_two'))
@@ -345,13 +345,13 @@
                                                     <div class="form-group">
                                                         <label for="image_three"> Image</label>
                                                         <input type="file" name="image" class="form-control"
-                                                            id="image_three" accept="image/*" placeholder="image_three">
+                                                            id="image3" accept="image/*" placeholder="image_three">
 
                                                     </div>
-                                                    <img id="english"
+                                                    <img id="english3"
                                                         src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_three }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                    <img id="english_imgPreview3" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_three'))
@@ -363,13 +363,13 @@
                                                     <div class="form-group">
                                                         <label for="image_four"> Image</label>
                                                         <input type="file" name="image" class="form-control"
-                                                            id="image_four" accept="image/*" placeholder="image_four">
+                                                            id="image4" accept="image/*" placeholder="image_four">
 
                                                     </div>
-                                                    <img id="english"
+                                                    <img id="english4"
                                                         src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_four }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                    <img id="english_imgPreview4" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_four'))
@@ -381,13 +381,13 @@
                                                     <div class="form-group">
                                                         <label for="image_five"> Image</label>
                                                         <input type="file" name="image" class="form-control"
-                                                            id="image_five" accept="image/*" placeholder="image_five">
+                                                            id="image5" accept="image/*" placeholder="image_five">
 
                                                     </div>
-                                                    <img id="english"
+                                                    <img id="english5"
                                                         src="{{ Config::get('DocumentConstant.TRESS_VIEW') }}{{ $tress->image_five }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview" src="#" alt="pic"
+                                                    <img id="english_imgPreview5" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_five'))

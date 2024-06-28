@@ -82,6 +82,10 @@ class AmenitiesRepository  {
             $last_insert_id = $add_data->id;
             
             $ImageName = $last_insert_id .'_' . rand(100000, 999999) . '_image.' . $request->image->extension();
+            $ImageName2 = $last_insert_id .'_' . rand(100000, 999999) . '_image_two.' . $request->image_two->extension();
+            $ImageName3 = $last_insert_id .'_' . rand(100000, 999999) . '_image_three.' . $request->image_three->extension();
+            $ImageName4 = $last_insert_id .'_' . rand(100000, 999999) . '_image_four.' . $request->image_four->extension();
+            $ImageName5 = $last_insert_id .'_' . rand(100000, 999999) . '_image_five.' . $request->image_five->extension();
 
             $EnglishAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
             $HindiAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
@@ -92,6 +96,10 @@ class AmenitiesRepository  {
 
             $add_data = Amenities::find($last_insert_id); 
             $add_data->image = $ImageName; 
+            $add_data->image_two = $ImageName2; 
+            $add_data->image_three = $ImageName3; 
+            $add_data->image_four = $ImageName4; 
+            $add_data->image_five = $ImageName5; 
             $add_data->english_audio_link = $EnglishAudioUpload; 
             $add_data->hindi_audio_link = $HindiAudioUpload; 
             $add_data->english_video_upload = $EnglishVideoUpload; 
@@ -101,6 +109,10 @@ class AmenitiesRepository  {
             $add_data->save();
             
             $data['ImageName'] =$ImageName;
+            $data['ImageName2'] =$ImageName2;
+            $data['ImageName3'] =$ImageName3;
+            $data['ImageName4'] =$ImageName4;
+            $data['ImageName5'] =$ImageName5;
             $data['EnglishAudioUpload'] =$EnglishAudioUpload;
             $data['HindiAudioUpload'] =$HindiAudioUpload;
             $data['EnglishVideoUpload'] =$EnglishVideoUpload;
@@ -214,6 +226,10 @@ class AmenitiesRepository  {
 
             // Store the previous image names
             $previousImage = $data_output->image;
+            $previousImage2 = $data_output->image_two;
+            $previousImage3 = $data_output->image_three;
+            $previousImage4 = $data_output->image_four;
+            $previousImage5 = $data_output->image_five;
             $previousEnglishAudio = $data_output->english_audio_link;
             $previousHindiAudio = $data_output->hindi_audio_link;
 
@@ -238,6 +254,10 @@ class AmenitiesRepository  {
 
             $return_data['last_insert_id'] = $last_insert_id;
             $return_data['image'] = $previousImage;
+            $return_data['image_two'] = $previousImage2;
+            $return_data['image_three'] = $previousImage3;
+            $return_data['image_four'] = $previousImage4;
+            $return_data['image_five'] = $previousImage5;
             $return_data['english_audio_link'] = $previousEnglishAudio;
             $return_data['hindi_audio_link'] = $previousHindiAudio;
 

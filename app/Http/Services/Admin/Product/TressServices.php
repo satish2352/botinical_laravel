@@ -89,6 +89,54 @@ class TressServices
                 $data_output->image = $ImageName;
                 $data_output->save();
             }
+            if ($request->hasFile('image_two')) {
+                if ($return_data['image_two']) {
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_two'])) {
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_two']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_two->extension();
+                uploadImage($request, 'image_two', $path, $ImageName);
+                $data_output = Amenities::find($return_data['last_insert_id']);
+                $data_output->image_two = $ImageName;
+                $data_output->save();
+            }
+            if ($request->hasFile('image_three')) {
+                if ($return_data['image_three']) {
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_three'])) {
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_three']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_three->extension();
+                uploadImage($request, 'image_three', $path, $ImageName);
+                $data_output = Amenities::find($return_data['last_insert_id']);
+                $data_output->image_three = $ImageName;
+                $data_output->save();
+            }
+            if ($request->hasFile('image_four')) {
+                if ($return_data['image_four']) {
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_four'])) {
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_four']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_four->extension();
+                uploadImage($request, 'image_four', $path, $ImageName);
+                $data_output = Amenities::find($return_data['last_insert_id']);
+                $data_output->image_four = $ImageName;
+                $data_output->save();
+            }
+            if ($request->hasFile('image_five')) {
+                if ($return_data['image_five']) {
+                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_five'])) {
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_five']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_five->extension();
+                uploadImage($request, 'image_five', $path, $ImageName);
+                $data_output = Amenities::find($return_data['last_insert_id']);
+                $data_output->image_five = $ImageName;
+                $data_output->save();
+            }
     
             if ($request->hasFile('english_audio_link')) {
                 if ($return_data['english_audio_link']) {

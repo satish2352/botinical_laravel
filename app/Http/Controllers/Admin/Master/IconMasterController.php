@@ -9,6 +9,7 @@ use Session;
 use Validator;
 use Config;
 use Carbon;
+use Illuminate\Validation\Rule;
 
 class IconMasterController extends Controller
 { 
@@ -37,7 +38,7 @@ class IconMasterController extends Controller
 
       public function store(Request $request){
          $rules = [
-                    'name' => 'required|max:255',
+                    'name' => 'required|unique:icon_master|max:255',
                     'image' => 'required|image|mimes:jpeg,png,jpg|max:' . Config::get("AllFileValidation.ICON_MASTER_IMAGE_MAX_SIZE") . '|min:' . Config::get("AllFileValidation.ICON_MASTER_IMAGE_MIN_SIZE"),
                     
                 ];
@@ -47,6 +48,7 @@ class IconMasterController extends Controller
                     'name.max' => 'The name must not exceed 255 characters.',
                     'name.required' => 'कृपया नाम दर्ज करें |',
                     'name.max' => 'नाम 255 अक्षरों से अधिक नहीं होना चाहिए.',
+                    'name.unique' => 'name already exist.',
                     'image.required' => 'The image is required.',
                     'image.image' => 'The file must be an image.',
                     'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
@@ -91,8 +93,9 @@ class IconMasterController extends Controller
 
 
 public function update(Request $request){
+    $id = $request->edit_id;
     $rules = [
-        'name' => 'required|max:255',
+        'name' => ['required', 'max:255','regex:/^[a-zA-Z\s]+$/u', Rule::unique('icon_master', 'name')->ignore($id, 'id')],
     ];
 
     if($request->has('image')) {
@@ -101,7 +104,7 @@ public function update(Request $request){
     $messages = [   
         'name.required' => 'Please enter the name.',
         'name.max' => 'Please enter an name with a maximum length of 255 characters.',
-
+         'name.unique' => 'Name Already Exist.',
         'image.required' => 'The image is required.',
         'image.image' => 'The file must be an image.',
         'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',

@@ -108,6 +108,58 @@ alert('kkkkkkkk');
                 reader.readAsDataURL(file);
             }
         });
+        $("#image2").change(function() {
+            $('#english2').css('display', 'none');
+            $("#english_imgPreview2").show();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#english_imgPreview2").attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        $("#image3").change(function() {
+            $('#english').css('display', 'none');
+            $("#english_imgPreview3").show();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#english_imgPreview3").attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        $("#image4").change(function() {
+            $('#english').css('display', 'none');
+            $("#english_imgPreview4").show();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#english_imgPreview4").attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        $("#image5").change(function() {
+            $('#english').css('display', 'none');
+            $("#english_imgPreview5").show();
+
+            const file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#english_imgPreview5").attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
 
         $("#hindi_image").change(function() {

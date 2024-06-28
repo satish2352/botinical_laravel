@@ -2,7 +2,7 @@
 
 @section('content')
     <?php
-    $restricted_options = ['add_1'];
+    $restricted_options = ['add_5','delete_5'];
     ?>
 
 <div class="container-fluid">

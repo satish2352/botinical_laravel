@@ -231,6 +231,50 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="image_two">Image </label> (optional)<br>
+                                                        <input type="file" name="image_two" id="image_two"
+                                                            accept="image_two/*" value="{{ old('image_two') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_two'))
+                                                            <span class="red-text"><?php echo $errors->first('image_two', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_three">Image </label> (optional)<br>
+                                                        <input type="file" name="image_three" id="image_three"
+                                                            accept="image_three/*" value="{{ old('image_three') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_three'))
+                                                            <span class="red-text"><?php echo $errors->first('image_three', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_four">Image </label> (optional)<br>
+                                                        <input type="file" name="image_four" id="image_four"
+                                                            accept="image_four/*" value="{{ old('image_four') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_four'))
+                                                            <span class="red-text"><?php echo $errors->first('image_four', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_five">Image </label> (optional)<br>
+                                                        <input type="file" name="image_five" id="image_five"
+                                                            accept="image_five/*" value="{{ old('image_five') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_five'))
+                                                            <span class="red-text"><?php echo $errors->first('image_five', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="height">Height</label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="height"
@@ -385,6 +429,26 @@
                         fileExtension: ["jpg", "jpeg", "png"],
                         fileSize: [10, 2048],
                     },
+                    image2: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
+                    image3: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
+                    image4: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
+                    image5: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [10, 2048],
+                    },
                     english_audio_link: {
                         required: true,
                         extension: "mp3",
@@ -460,6 +524,26 @@
                         required: "Please select the girth type.",
                     },
                     image: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image2: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image3: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image4: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 10 KB and 2 MB.",
+                    },
+                    image5: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",
                         fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
                         fileSize: "File size must be between 10 KB and 2 MB.",

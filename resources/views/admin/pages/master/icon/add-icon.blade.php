@@ -2,7 +2,7 @@
 @section('content')
     <style>
         label {
-            margin-top: 20px;
+            /* margin-top: 20px; */
         }
 
         .error {
@@ -88,8 +88,10 @@
                     name: {
                         required: true
                     },
-                    icon: {
-                        required: true
+                    image: {
+                        required: true,
+                        fileExtension: ["jpg", "jpeg", "png"],
+                        fileSize: [1, 1024],
                     },
 
                 },
@@ -97,8 +99,10 @@
                     name: {
                         required: "Please Enter Name.",
                     },
-                    icon: {
-                        required: "Please Enter Icon.",
+                    image: {
+                        required: "Please upload an Image (JPG, JPEG, PNG).",
+                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
+                        fileSize: "File size must be between 1 KB and 1 MB.",
                     },
 
                 },

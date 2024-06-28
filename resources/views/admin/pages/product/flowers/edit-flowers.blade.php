@@ -325,6 +325,78 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="image_two"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image2" accept="image/*" placeholder="image_two">
+
+                                                    </div>
+                                                    <img id="english2"
+                                                        src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->image_two }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview2" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_two'))
+                                                        <div class="red-text"><?php echo $errors->first('image_two', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_three"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image3" accept="image/*" placeholder="image_three">
+
+                                                    </div>
+                                                    <img id="english3"
+                                                        src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->image_three }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview3" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_three'))
+                                                        <div class="red-text"><?php echo $errors->first('image_three', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_four"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image4" accept="image/*" placeholder="image_four">
+
+                                                    </div>
+                                                    <img id="english4"
+                                                        src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->image_four }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview4" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_four'))
+                                                        <div class="red-text"><?php echo $errors->first('image_four', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_five"> Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image5" accept="image/*" placeholder="image_five">
+
+                                                    </div>
+                                                    <img id="english5"
+                                                        src="{{ Config::get('DocumentConstant.FLOWERS_VIEW') }}{{ $flowers->image_five }}"
+                                                        class="img-fluid img-thumbnail" width="150">
+                                                    <img id="english_imgPreview5" src="#" alt="pic"
+                                                        class="img-fluid img-thumbnail" width="150"
+                                                        style="display:none">
+                                                    @if ($errors->has('image_five'))
+                                                        <div class="red-text"><?php echo $errors->first('image_five', ':message'); ?>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="height">Height</label>&nbsp<span
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="height"

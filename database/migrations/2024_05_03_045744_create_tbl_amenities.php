@@ -22,6 +22,10 @@ return new class extends Migration
             $table->text('english_description');
             $table->text('hindi_description');
             $table->string('image')->nullable();
+            $table->string('image_two')->nullable();
+            $table->string('image_three')->nullable();
+            $table->string('image_four')->nullable();
+            $table->string('image_five')->nullable();
             $table->string('english_audio_link');
             $table->string('hindi_audio_link');
             $table->string('english_video_upload');
