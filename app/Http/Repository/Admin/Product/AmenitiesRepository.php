@@ -323,38 +323,80 @@ class AmenitiesRepository  {
         }
     }
 
-    public function deleteById($id){
-            try {
+    // public function deleteById($id){
+    //         try {
               
-                $data_output = Amenities::find($id);
+    //             $data_output = Amenities::find($id);
             
-                if ($data_output) {
-                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image)){
-                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_audio_link)){
-                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_audio_link);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_audio_link)){
-                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_audio_link);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_video_upload)){
-                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_video_upload);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_video_upload)){
-                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_video_upload);
-                    }
+    //             if ($data_output) {
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_two)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_two);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_three)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_three);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_four)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_four);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_five)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->image_five);
+    //                 }
+
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_audio_link)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_audio_link);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_audio_link)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_audio_link);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_video_upload)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->english_video_upload);
+    //                 }
+    //                 if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_video_upload)){
+    //                     removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->hindi_video_upload);
+    //                 }
                     
-                    $data_output->delete();
+    //                 $data_output->delete();
                     
-                    return $data_output;
-                } else {
-                    return null;
+    //                 return $data_output;
+    //             } else {
+    //                 return null;
+    //             }
+    //         } catch (\Exception $e) {
+    //             return $e;
+    //         }
+    // }
+
+    public function deleteById($id){
+        try {
+            $data_output = Amenities::find($id);
+    
+            if ($data_output) {
+                $imageFields = [ 'image_two', 'image_three', 'image_four', 'image_five'];
+                foreach ($imageFields as $field) {
+                    if (!empty($data_output->$field) && file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->$field)) {
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->$field);
+                    }
                 }
-            } catch (\Exception $e) {
-                return $e;
+              
+                $audioVideoFields = ['image','english_audio_link', 'hindi_audio_link', 'english_video_upload', 'hindi_video_upload'];
+                foreach ($audioVideoFields as $field) {
+                    if (!empty($data_output->$field) && file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->$field)) {
+                        removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $data_output->$field);
+                    }
+                }
+    
+                $data_output->delete();
+                
+                return $data_output;
+            } else {
+                return null;
             }
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
-
-
+    
 }

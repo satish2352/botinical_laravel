@@ -236,6 +236,7 @@ class AmenitiesServices
     {
         try {
             $delete = $this->repo->deleteById($id);
+           
             if ($delete) {
                 return ['status' => 'success', 'msg' => 'Deleted Successfully.'];
             } else {

@@ -217,35 +217,33 @@ class FlowersRepository  {
     }
 
     public function deleteById($id){
-            try {
-                $data_output = Flowers::find($id);
-                if ($data_output) {
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->image)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->image);
+        try {
+            $data_output = Flowers::find($id);
+    
+            if ($data_output) {
+                $imageFields = [ 'image_two', 'image_three', 'image_four', 'image_five'];
+                foreach ($imageFields as $field) {
+                    if (!empty($data_output->$field) && file_exists_view(Config::get('DocumentConstant.FLOWERS_DELETE') . $data_output->$field)) {
+                        removeImage(Config::get('DocumentConstant.FLOWERS_DELETE') . $data_output->$field);
                     }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_audio_link)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_audio_link);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_audio_link)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_audio_link);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_video_upload)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->english_video_upload);
-                    }
-                    if (file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_video_upload)){
-                        removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->hindi_video_upload);
-                    }
-                    
-                    $data_output->delete();
-                    
-                    return $data_output;
-                } else {
-                    return null;
                 }
-            } catch (\Exception $e) {
-                return $e;
+              
+                $audioVideoFields = ['image','english_audio_link', 'hindi_audio_link', 'english_video_upload', 'hindi_video_upload'];
+                foreach ($audioVideoFields as $field) {
+                    if (!empty($data_output->$field) && file_exists_view(Config::get('DocumentConstant.FLOWERS_DELETE') . $data_output->$field)) {
+                        removeImage(Config::get('DocumentConstant.FLOWERS_DELETE') . $data_output->$field);
+                    }
+                }
+    
+                $data_output->delete();
+                
+                return $data_output;
+            } else {
+                return null;
             }
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
-
 
 }
