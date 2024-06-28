@@ -212,13 +212,13 @@ class AmenitiesController extends Controller
 
             if ($language == 'hindi') {
                 $data_output = $basic_query_object->leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
-                ->select('tbl_amenities.id as id','tbl_amenities_category.hindi_name as category_name','tbl_amenities.hindi_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.hindi_description as description', 'tbl_amenities.hindi_audio_link as audio_link', 'tbl_amenities.hindi_video_upload as video_upload', 'tbl_amenities.image', 'tbl_amenities.open_time_first', 'tbl_amenities.close_time_first', 'tbl_amenities.open_time_second', 'tbl_amenities.close_time_second')
+                ->select('tbl_amenities.id as id','tbl_amenities_category.hindi_name as category_name','tbl_amenities.hindi_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.hindi_description as description', 'tbl_amenities.hindi_audio_link as audio_link', 'tbl_amenities.hindi_video_upload as video_upload', 'tbl_amenities.image', 'tbl_amenities.open_time_first', 'tbl_amenities.close_time_first', 'tbl_amenities.open_time_second', 'tbl_amenities.close_time_second','tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
                 ->when($category_id, function ($query) use ($category_id) {
                     $query->where('tbl_amenities_category.id', $category_id);
                 });
             } else {
                 $data_output = $basic_query_object->leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
-                ->select('tbl_amenities.id as id','tbl_amenities_category.english_name as category_name','tbl_amenities.english_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.english_description as description', 'tbl_amenities.english_audio_link as audio_link', 'tbl_amenities.english_video_upload as video_upload', 'tbl_amenities.image', 'tbl_amenities.open_time_first', 'tbl_amenities.close_time_first', 'tbl_amenities.open_time_second', 'tbl_amenities.close_time_second')
+                ->select('tbl_amenities.id as id','tbl_amenities_category.english_name as category_name','tbl_amenities.english_name as name', 'tbl_amenities.amenities_category_id', 'tbl_amenities.english_description as description', 'tbl_amenities.english_audio_link as audio_link', 'tbl_amenities.english_video_upload as video_upload', 'tbl_amenities.image', 'tbl_amenities.open_time_first', 'tbl_amenities.close_time_first', 'tbl_amenities.open_time_second', 'tbl_amenities.close_time_second','tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
             ->when($category_id, function ($query) use ($category_id) {
                     $query->where('tbl_amenities_category.id', $category_id);
                 });
