@@ -39,24 +39,37 @@ class AmenitiesServices
             if(isset($last_id['ImageName'])){
                 $path = Config::get('DocumentConstant.AMENITIES_ADD');
                 $ImageName = $last_id['ImageName'];
-                $ImageName2 = $last_id['ImageName2'];
-                $ImageName3 = $last_id['ImageName3'];
-                $ImageName4 = $last_id['ImageName4'];
-                $ImageName5 = $last_id['ImageName5'];
                 $EnglishAudioUpload = $last_id['EnglishAudioUpload'];
                 $HindiAudioUpload = $last_id['HindiAudioUpload'];
                 $EnglishVideoUpload = $last_id['EnglishVideoUpload'];
                 $HindiVideoUpload = $last_id['HindiVideoUpload'];
 
                 uploadImage($request, 'image', $path, $ImageName);
-                uploadImage($request, 'image_two', $path, $ImageName2);
-                uploadImage($request, 'image_three', $path, $ImageName3);
-                uploadImage($request, 'image_four', $path, $ImageName4);
-                uploadImage($request, 'image_five', $path, $ImageName5);
                 uploadImage($request, 'english_audio_link', $path, $EnglishAudioUpload);
                 uploadImage($request, 'hindi_audio_link', $path, $HindiAudioUpload);
                 uploadImage($request, 'english_video_upload', $path, $EnglishVideoUpload);
                 uploadImage($request, 'hindi_video_upload', $path, $HindiVideoUpload);
+
+                if (isset($last_id['ImageName2'])) {
+                    $ImageName2 = $last_id['ImageName2'];
+                    uploadImage($request, 'image_two', $path, $ImageName2);
+                }
+    
+                if (isset($last_id['ImageName3'])) {
+                    $ImageName3 = $last_id['ImageName3'];
+                    uploadImage($request, 'image_three', $path, $ImageName3);
+                }
+    
+                if (isset($last_id['ImageName4'])) {
+                    $ImageName4 = $last_id['ImageName4'];
+                    uploadImage($request, 'image_four', $path, $ImageName4);
+                }
+    
+                if (isset($last_id['ImageName5'])) {
+                    $ImageName5 = $last_id['ImageName5'];
+                    uploadImage($request, 'image_five', $path, $ImageName5);
+                }
+
     
                 return ['status' => 'success', 'msg' => 'Data Added Successfully.'];
             } else {
@@ -78,7 +91,7 @@ class AmenitiesServices
     public function updateAll($request){
         try {
             $return_data = $this->repo->updateAll($request);
-           
+          
             $path = Config::get('DocumentConstant.AMENITIES_ADD');
             if ($request->hasFile('image')) {
                 if ($return_data['image']) {
@@ -94,7 +107,7 @@ class AmenitiesServices
             }
 
             if ($request->hasFile('image_two')) {
-                if ($return_data['image_two']) {
+                if (isset($return_data['image_two']) && $return_data['image_two']) {
                     if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_two'])) {
                         removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_two']);
                     }
@@ -105,8 +118,9 @@ class AmenitiesServices
                 $data_output->image_two = $ImageName;
                 $data_output->save();
             }
+    
             if ($request->hasFile('image_three')) {
-                if ($return_data['image_three']) {
+                if (isset($return_data['image_three']) && $return_data['image_three']) {
                     if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_three'])) {
                         removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_three']);
                     }
@@ -117,8 +131,9 @@ class AmenitiesServices
                 $data_output->image_three = $ImageName;
                 $data_output->save();
             }
+    
             if ($request->hasFile('image_four')) {
-                if ($return_data['image_four']) {
+                if (isset($return_data['image_four']) && $return_data['image_four']) {
                     if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_four'])) {
                         removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_four']);
                     }
@@ -129,8 +144,9 @@ class AmenitiesServices
                 $data_output->image_four = $ImageName;
                 $data_output->save();
             }
+    
             if ($request->hasFile('image_five')) {
-                if ($return_data['image_five']) {
+                if (isset($return_data['image_five']) && $return_data['image_five']) {
                     if (file_exists_view(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_five'])) {
                         removeImage(Config::get('DocumentConstant.AMENITIES_DELETE') . $return_data['image_five']);
                     }

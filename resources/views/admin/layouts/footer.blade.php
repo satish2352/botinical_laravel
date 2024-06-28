@@ -108,54 +108,54 @@ alert('kkkkkkkk');
                 reader.readAsDataURL(file);
             }
         });
-        $("#image2").change(function() {
-            $('#english2').css('display', 'none');
-            $("#english_imgPreview2").show();
+        $("#image_two").change(function() {
+            $('#english_two').css('display', 'none');
+            $("#english_imgPreview_two").show();
 
             const file = this.files[0];
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
-                    $("#english_imgPreview2").attr("src", event.target.result);
+                    $("#english_imgPreview_two").attr("src", event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         });
-        $("#image3").change(function() {
-            $('#english').css('display', 'none');
-            $("#english_imgPreview3").show();
+        $("#image_three").change(function() {
+            $('#english_three').css('display', 'none');
+            $("#english_imgPreview_three").show();
 
             const file = this.files[0];
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
-                    $("#english_imgPreview3").attr("src", event.target.result);
+                    $("#english_imgPreview_three").attr("src", event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         });
-        $("#image4").change(function() {
-            $('#english').css('display', 'none');
-            $("#english_imgPreview4").show();
+        $("#image_four").change(function() {
+            $('#english_four').css('display', 'none');
+            $("#english_imgPreview_four").show();
 
             const file = this.files[0];
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
-                    $("#english_imgPreview4").attr("src", event.target.result);
+                    $("#english_imgPreview_four").attr("src", event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         });
-        $("#image5").change(function() {
-            $('#english').css('display', 'none');
-            $("#english_imgPreview5").show();
+        $("#image_five").change(function() {
+            $('#english_five').css('display', 'none');
+            $("#english_imgPreview_five").show();
 
             const file = this.files[0];
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
-                    $("#english_imgPreview5").attr("src", event.target.result);
+                    $("#english_imgPreview_five").attr("src", event.target.result);
                 };
                 reader.readAsDataURL(file);
             }

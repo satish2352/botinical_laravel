@@ -202,7 +202,7 @@
                                                     <div class="form-group">
                                                         <label for="icon_id">Icon</label>&nbsp<span class="red-text">*</span>
                                                         <select class="form-control" id="icon_id" name="icon_id">
-                                                            <option selected>Select</option>
+                                                            <option>Select</option>
                                                             @foreach ($dataOutputIcon as $data)
                                                                 @if (old('icon_id') == $data['id'])
                                                                     <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}" selected>
@@ -215,6 +215,10 @@
                                                                 @endif
                                                             @endforeach
                                                         </select>
+                                                        @if ($errors->has('icon_id'))
+                                                        <span class="red-text"><?php echo $errors->first('icon_id', ':message'); ?></span>
+                                                    @endif
+
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -289,9 +293,9 @@
                                                     <div class="form-group">
                                                         <label for="height_type">Height Type</label>&nbsp;<span class="red-text">*</span>
                                                         <select class="form-control" id="height_type" name="height_type">
-                                                            <option value="" selected disabled>Select Height Type</option>
-                                                            <option value="feet">Feet</option>
-                                                            <option value="cm">CM</option>
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
                                                         </select>
                                                         @if ($errors->has('height_type'))
                                                         <span class="red-text"><?php echo $errors->first('height_type', ':message'); ?></span>
@@ -314,9 +318,9 @@
                                                     <div class="form-group">
                                                         <label for="canopy_type">Canopy Type</label>&nbsp;<span class="red-text">*</span>
                                                         <select class="form-control" id="canopy_type" name="canopy_type">
-                                                            <option value="" selected disabled>Select Canopy Type</option>
-                                                            <option value="feet">Feet</option>
-                                                            <option value="cm">CM</option>
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
                                                         </select>
                                                         @if ($errors->has('canopy_type'))
                                                         <span class="red-text"><?php echo $errors->first('canopy_type', ':message'); ?></span>
@@ -339,9 +343,9 @@
                                                     <div class="form-group">
                                                         <label for="girth_type">Girth Type</label>&nbsp;<span class="red-text">*</span>
                                                         <select class="form-control" id="girth_type" name="girth_type">
-                                                            <option value="" selected disabled>Select Girth Type</option>
-                                                            <option value="feet">Feet</option>
-                                                            <option value="cm">CM</option>
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
                                                         </select>
                                                         @if ($errors->has('girth_type'))
                                                         <span class="red-text"><?php echo $errors->first('girth_type', ':message'); ?></span>
@@ -429,26 +433,6 @@
                         fileExtension: ["jpg", "jpeg", "png"],
                         fileSize: [10, 2048],
                     },
-                    image2: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image3: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image4: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image5: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
                     english_audio_link: {
                         required: true,
                         extension: "mp3",
@@ -528,27 +512,6 @@
                         fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
                         fileSize: "File size must be between 10 KB and 2 MB.",
                     },
-                    image2: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image3: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image4: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image5: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-
                     english_audio_link: {
                         required: "Please upload an Audio file MP3.",
                         extension: "Only MP3 audio files are allowed.",

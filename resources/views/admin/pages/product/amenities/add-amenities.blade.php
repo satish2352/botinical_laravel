@@ -28,11 +28,11 @@
                                                     <div class="form-group">
                                                         <label for="amenities_category_id">Category</label>&nbsp<span
                                                             class="red-text">*</span>
-                                                        <select class="form-control" id="amenities_category_id" name="amenities_category_id">
+                                                        <select class="form-control" id="amenitiesId" name="amenities_category_id">
                                                             <option selected>Select</option>
                                                             @foreach ($dataOutputCategory as $data)
                                                                 @if (old('amenities_category_id') == $data['id'])
-                                                                    <option value="{{ $data['id'] }}" selected>
+                                                                    <option value="{{ $data['id'] }}" >
                                                                         {{ $data['english_name'] }}</option>
                                                                 @else
                                                                     <option value="{{ $data['id'] }}">{{ $data['hindi_name'] }}
@@ -41,6 +41,9 @@
                                                                 @endif
                                                             @endforeach
                                                         </select>
+                                                        @if ($errors->has('amenities_category_id'))
+                                                        <span class="red-text"><?php echo $errors->first('amenities_category_id', ':message'); ?></span>
+                                                    @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -212,7 +215,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="open_time_second">Open Time </label>
+                                                        <label for="open_time_second">Open Time </label> (optional)
                                                         <input type="time" class="form-control mb-2" id="open_time_second" name="open_time_second"
                                                             id="open_time_second" placeholder="Enter the Name"
                                                             name="open_time_second" value="{{ old('open_time_second') }}">
@@ -223,7 +226,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="close_time_second">Close Time </label>
+                                                        <label for="close_time_second">Close Time </label>(optional)
                                                         <input type="time" class="form-control mb-2" name="close_time_second"
                                                             id="close_time_second" placeholder="Enter the Name"
                                                             name="close_time_second" value="{{ old('close_time_second') }}">
@@ -313,6 +316,12 @@
         jQuery(document).ready(function($) {
             $("#regForm").validate({
                 rules: {
+                    amenitiesId:{
+                        required: true
+                    },
+                    icon_id:{
+                        required: true
+                    },
                     english_name: {
                         required: true
                     },
@@ -385,6 +394,12 @@
 
                 },
                 messages: {
+                    amenitiesId:{
+                        required: "Please select Category.",
+                    },
+                    icon_id:{
+                        required: "Please select Icon.",
+                    },
                     english_name: {
                         required: "Please Enter Name.",
                     },

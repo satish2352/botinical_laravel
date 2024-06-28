@@ -290,7 +290,7 @@
                                                 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="open_time_second">Open Time </label>
+                                                        <label for="open_time_second">Open Time </label> (optional)
                                                         <input type="time" class="form-control mb-2" id="open_time_second" name="open_time_second" placeholder="Enter the Open Time"
                                                             value="{{ old('open_time_second') ?? $amenities->open_time_second }}">
                                                         @if ($errors->has('open_time_second'))
@@ -301,7 +301,7 @@
                                                 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="close_time_second">Close Time </label>
+                                                        <label for="close_time_second">Close Time </label> (optional)
                                                         <input type="time" class="form-control mb-2" id="close_time_second" name="close_time_second" placeholder="Enter the Close Time"
                                                             value="{{ old('close_time_second') ?? $amenities->close_time_second }}">
                                                         @if ($errors->has('close_time_second'))
@@ -328,15 +328,15 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="image_two"> Image</label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image2" accept="image/*" placeholder="image_two">
+                                                        <label for="image_two"> Image</label> (optional)
+                                                        <input type="file" name="image_two" class="form-control"
+                                                            id="image_two" accept="image/*" placeholder="upload image">
 
                                                     </div>
-                                                    <img id="english2"
+                                                    <img id="english_two"
                                                         src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->image_two }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview2" src="#" alt="pic"
+                                                    <img id="english_imgPreview_two" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_two'))
@@ -346,15 +346,15 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="image_three"> Image</label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image3" accept="image/*" placeholder="image_three">
+                                                        <label for="image_three"> Image</label> (optional)
+                                                        <input type="file" name="image_three" class="form-control"
+                                                            id="image_three" accept="image/*" placeholder="upload image">
 
                                                     </div>
-                                                    <img id="english3"
+                                                    <img id="english_three"
                                                         src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->image_three }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview3" src="#" alt="pic"
+                                                    <img id="english_imgPreview_three" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_three'))
@@ -364,15 +364,15 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="image_four"> Image</label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image4" accept="image/*" placeholder="image_four">
+                                                        <label for="image_four"> Image</label> (optional)
+                                                        <input type="file" name="image_four" class="form-control"
+                                                            id="image_four" accept="image/*" placeholder="upload image">
 
                                                     </div>
-                                                    <img id="english4"
+                                                    <img id="english_four"
                                                         src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->image_four }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview4" src="#" alt="pic"
+                                                    <img id="english_imgPreview_four" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_four'))
@@ -382,15 +382,15 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="image_five"> Image</label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image5" accept="image/*" placeholder="image_five">
+                                                        <label for="image_five"> Image</label> (optional)
+                                                        <input type="file" name="image_five" class="form-control"
+                                                            id="image_five" accept="image/*" placeholder="upload image">
 
                                                     </div>
-                                                    <img id="english5"
+                                                    <img id="english_five"
                                                         src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $amenities->image_five }}"
                                                         class="img-fluid img-thumbnail" width="150">
-                                                    <img id="english_imgPreview5" src="#" alt="pic"
+                                                    <img id="english_imgPreview_five" src="#" alt="pic"
                                                         class="img-fluid img-thumbnail" width="150"
                                                         style="display:none">
                                                     @if ($errors->has('image_five'))

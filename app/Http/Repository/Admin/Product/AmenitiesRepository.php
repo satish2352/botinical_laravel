@@ -86,10 +86,27 @@ class AmenitiesRepository  {
             $last_insert_id = $add_data->id;
             
             $ImageName = $last_insert_id .'_' . rand(100000, 999999) . '_image.' . $request->image->extension();
-            $ImageName2 = $last_insert_id .'_' . rand(100000, 999999) . '_image_two.' . $request->image_two->extension();
-            $ImageName3 = $last_insert_id .'_' . rand(100000, 999999) . '_image_three.' . $request->image_three->extension();
-            $ImageName4 = $last_insert_id .'_' . rand(100000, 999999) . '_image_four.' . $request->image_four->extension();
-            $ImageName5 = $last_insert_id .'_' . rand(100000, 999999) . '_image_five.' . $request->image_five->extension();
+            $data['ImageName'] = $ImageName;
+    
+            if ($request->hasFile('image_two')) {
+                $ImageName2 = $last_insert_id .'_' . rand(100000, 999999) . '_image_two.' . $request->image_two->extension();
+                $data['ImageName2'] = $ImageName2;
+            }
+    
+            if ($request->hasFile('image_three')) {
+                $ImageName3 = $last_insert_id .'_' . rand(100000, 999999) . '_image_three.' . $request->image_three->extension();
+                $data['ImageName3'] = $ImageName3;
+            }
+    
+            if ($request->hasFile('image_four')) {
+                $ImageName4 = $last_insert_id .'_' . rand(100000, 999999) . '_image_four.' . $request->image_four->extension();
+                $data['ImageName4'] = $ImageName4;
+            }
+    
+            if ($request->hasFile('image_five')) {
+                $ImageName5 = $last_insert_id .'_' . rand(100000, 999999) . '_image_five.' . $request->image_five->extension();
+                $data['ImageName5'] = $ImageName5;
+            }
 
             $EnglishAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
             $HindiAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
@@ -99,11 +116,11 @@ class AmenitiesRepository  {
 
 
             $add_data = Amenities::find($last_insert_id); 
-            $add_data->image = $ImageName; 
-            $add_data->image_two = $ImageName2; 
-            $add_data->image_three = $ImageName3; 
-            $add_data->image_four = $ImageName4; 
-            $add_data->image_five = $ImageName5; 
+            $add_data->image = $ImageName;
+            $add_data->image_two = $request->hasFile('image_two') ? $ImageName2 : null;
+            $add_data->image_three = $request->hasFile('image_three') ? $ImageName3 : null;
+            $add_data->image_four = $request->hasFile('image_four') ? $ImageName4 : null;
+            $add_data->image_five = $request->hasFile('image_five') ? $ImageName5 : null;
             $add_data->english_audio_link = $EnglishAudioUpload; 
             $add_data->hindi_audio_link = $HindiAudioUpload; 
             $add_data->english_video_upload = $EnglishVideoUpload; 
@@ -113,10 +130,6 @@ class AmenitiesRepository  {
             $add_data->save();
             
             $data['ImageName'] =$ImageName;
-            $data['ImageName2'] =$ImageName2;
-            $data['ImageName3'] =$ImageName3;
-            $data['ImageName4'] =$ImageName4;
-            $data['ImageName5'] =$ImageName5;
             $data['EnglishAudioUpload'] =$EnglishAudioUpload;
             $data['HindiAudioUpload'] =$HindiAudioUpload;
             $data['EnglishVideoUpload'] =$EnglishVideoUpload;

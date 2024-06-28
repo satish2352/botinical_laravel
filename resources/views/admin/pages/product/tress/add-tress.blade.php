@@ -288,15 +288,16 @@
                                                     <div class="form-group">
                                                         <label for="height_type">Height Type</label>&nbsp;<span class="red-text">*</span>
                                                         <select class="form-control" id="height_type" name="height_type">
-                                                            <option value="" selected disabled>Select Height Type</option>
-                                                            <option value="feet">Feet</option>
-                                                            <option value="cm">CM</option>
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
                                                         </select>
                                                         @if ($errors->has('height_type'))
-                                                        <span class="red-text"><?php echo $errors->first('height_type', ':message'); ?></span>
-                                                    @endif
+                                                            <span class="red-text">{{ $errors->first('height_type', ':message') }}</span>
+                                                        @endif
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="canopy">Canopy</label>&nbsp<span
@@ -313,9 +314,9 @@
                                                     <div class="form-group">
                                                         <label for="canopy_type">Canopy Type</label>&nbsp;<span class="red-text">*</span>
                                                         <select class="form-control" id="canopy_type" name="canopy_type">
-                                                            <option value="" selected disabled>Select Canopy Type</option>
-                                                            <option value="feet">Feet</option>
-                                                            <option value="cm">CM</option>
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
                                                         </select>
                                                         @if ($errors->has('canopy_type'))
                                                         <span class="red-text"><?php echo $errors->first('canopy_type', ':message'); ?></span>
@@ -338,9 +339,9 @@
                                                     <div class="form-group">
                                                         <label for="girth_type">Girth Type</label>&nbsp;<span class="red-text">*</span>
                                                         <select class="form-control" id="girth_type" name="girth_type">
-                                                            <option value="" selected disabled>Select Girth Type</option>
-                                                            <option value="feet">Feet</option>
-                                                            <option value="cm">CM</option>
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
                                                         </select>
                                                         @if ($errors->has('girth_type'))
                                                         <span class="red-text"><?php echo $errors->first('girth_type', ':message'); ?></span>

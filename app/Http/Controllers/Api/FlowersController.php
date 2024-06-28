@@ -169,6 +169,11 @@ class FlowersController extends Controller {
 
             foreach ( $data_output as &$flowerdetail ) {
                 $flowerdetail[ 'image' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $flowerdetail[ 'image' ];
+                $flowerdetail[ 'image_two' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $flowerdetail[ 'image_two' ];
+                $flowerdetail[ 'image_three' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $flowerdetail[ 'image_three' ];
+                $flowerdetail[ 'image_four' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $flowerdetail[ 'image_four' ];
+                $flowerdetail[ 'image_five' ] = Config::get( 'DocumentConstant.FLOWERS_VIEW' ) . $flowerdetail[ 'image_five' ];
+                
                 if ($language == 'hindi') {
                     $flowerdetail['audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerdetail['audio_link'];
                 } else {

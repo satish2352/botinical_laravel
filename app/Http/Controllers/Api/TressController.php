@@ -181,6 +181,10 @@ class TressController extends Controller
            
             foreach ( $data_output as &$tressimage ) {
                 $tressimage[ 'image' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image' ];
+                $tressimage[ 'image_two' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image_two' ];
+                $tressimage[ 'image_three' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image_three' ];
+                $tressimage[ 'image_four' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image_four' ];
+                $tressimage[ 'image_five' ] = Config::get( 'DocumentConstant.TRESS_VIEW' ) . $tressimage[ 'image_five' ];
                 if ($language == 'hindi') {
                     $tressimage['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $tressimage['audio_link'];
                 } else {
