@@ -45,7 +45,7 @@ class MappingController extends Controller
                 'tbl_trees.hindi_video_upload as video_upload',
                 'tbl_trees.latitude',
                 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type',
-                'tbl_trees.longitude', 'tbl_trees.image', 'tbl_trees.image_two', 'tbl_trees.three', 'tbl_trees.image_four', 'tbl_trees.image_five')
+                'tbl_trees.longitude', 'tbl_trees.image', 'tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -58,7 +58,7 @@ class MappingController extends Controller
                     'tbl_trees.english_audio_link as audio_link',
                     'tbl_trees.english_video_upload as video_upload',
                     'tbl_trees.latitude',
-                    'tbl_trees.longitude', 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type', 'tbl_trees.image', 'tbl_trees.image_two', 'tbl_trees.three', 'tbl_trees.image_four', 'tbl_trees.image_five')
+                    'tbl_trees.longitude', 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type', 'tbl_trees.image', 'tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -104,7 +104,7 @@ class MappingController extends Controller
                     'tbl_flowers.latitude',
                     'tbl_flowers.longitude', 
                     'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type',
-                    'tbl_flowers.image', 'tbl_flowers.image_two', 'tbl_flowers.three', 'tbl_flowers.image_four', 'tbl_flowers.image_five')
+                    'tbl_flowers.image', 'tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -117,7 +117,7 @@ class MappingController extends Controller
                     'tbl_flowers.english_audio_link as audio_link',
                     'tbl_flowers.english_video_upload as video_upload',
                     'tbl_flowers.latitude',
-                    'tbl_flowers.longitude', 'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type', 'tbl_flowers.image', 'tbl_flowers.image_two', 'tbl_flowers.three', 'tbl_flowers.image_four', 'tbl_flowers.image_five')
+                    'tbl_flowers.longitude', 'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type', 'tbl_flowers.image', 'tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -161,7 +161,7 @@ class MappingController extends Controller
                       'tbl_amenities.hindi_video_upload as video_upload',
                       'tbl_amenities.latitude',
                       'tbl_amenities.longitude', 
-                      'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
+                      'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
                       ->when($category_id, function ($query) use ($category_id) {
                           $query->where('icon_master.id', $category_id);
                       })
@@ -174,7 +174,7 @@ class MappingController extends Controller
                       'tbl_amenities.english_audio_link as audio_link',
                       'tbl_amenities.english_video_upload as video_upload',
                       'tbl_amenities.latitude',
-                      'tbl_amenities.longitude', 'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
+                      'tbl_amenities.longitude', 'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
                       ->when($category_id, function ($query) use ($category_id) {
                           $query->where('icon_master.id', $category_id);
                       })
