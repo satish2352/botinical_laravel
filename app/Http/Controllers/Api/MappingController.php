@@ -161,7 +161,7 @@ class MappingController extends Controller
                       'tbl_amenities.hindi_video_upload as video_upload',
                       'tbl_amenities.latitude',
                       'tbl_amenities.longitude', 
-                      'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
+                      'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five', 'tbl_amenities.open_time_first', 'tbl_amenities.close_time_first', 'tbl_amenities.open_time_second', 'tbl_amenities.close_time_second')
                       ->when($category_id, function ($query) use ($category_id) {
                           $query->where('icon_master.id', $category_id);
                       })
@@ -174,7 +174,7 @@ class MappingController extends Controller
                       'tbl_amenities.english_audio_link as audio_link',
                       'tbl_amenities.english_video_upload as video_upload',
                       'tbl_amenities.latitude',
-                      'tbl_amenities.longitude', 'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
+                      'tbl_amenities.longitude', 'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.image_three', 'tbl_amenities.image_four', 'tbl_amenities.image_five', 'tbl_amenities.open_time_first', 'tbl_amenities.close_time_first', 'tbl_amenities.open_time_second', 'tbl_amenities.close_time_second')
                       ->when($category_id, function ($query) use ($category_id) {
                           $query->where('icon_master.id', $category_id);
                       })
