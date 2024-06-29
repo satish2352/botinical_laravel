@@ -7,6 +7,7 @@
         }
     </style>
 <?php $data_permission = getPermissionForCRUDPresentOrNot('list-amenities', session('permissions'));
+   
     ?>
     <div class="data-table-area mg-tb-15">
         <div class="container-fluid">

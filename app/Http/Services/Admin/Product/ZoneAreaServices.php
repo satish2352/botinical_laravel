@@ -47,6 +47,25 @@ class ZoneAreaServices
                 uploadImage($request, 'english_video_upload', $path, $EnglishVideoUpload);
                 uploadImage($request, 'hindi_video_upload', $path, $HindiVideoUpload);
     
+                if (isset($last_id['ImageName2'])) {
+                    $ImageName2 = $last_id['ImageName2'];
+                    uploadImage($request, 'image_two', $path, $ImageName2);
+                }
+    
+                if (isset($last_id['ImageName3'])) {
+                    $ImageName3 = $last_id['ImageName3'];
+                    uploadImage($request, 'image_three', $path, $ImageName3);
+                }
+    
+                if (isset($last_id['ImageName4'])) {
+                    $ImageName4 = $last_id['ImageName4'];
+                    uploadImage($request, 'image_four', $path, $ImageName4);
+                }
+    
+                if (isset($last_id['ImageName5'])) {
+                    $ImageName5 = $last_id['ImageName5'];
+                    uploadImage($request, 'image_five', $path, $ImageName5);
+                }
                 return ['status' => 'success', 'msg' => 'Data Added Successfully.'];
             } else {
                 return ['status' => 'error', 'msg' => 'ImageName not found in response.'];
@@ -82,6 +101,57 @@ class ZoneAreaServices
                 $data_output->save();
             }
     
+            if ($request->hasFile('image_two')) {
+                if (isset($return_data['image_two']) && $return_data['image_two']) {
+                    if (file_exists_view(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_two'])) {
+                        removeImage(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_two']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_two->extension();
+                uploadImage($request, 'image_two', $path, $ImageName);
+                $data_output = ZonesArea::find($return_data['last_insert_id']);
+                $data_output->image_two = $ImageName;
+                $data_output->save();
+            }
+    
+            if ($request->hasFile('image_three')) {
+                if (isset($return_data['image_three']) && $return_data['image_three']) {
+                    if (file_exists_view(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_three'])) {
+                        removeImage(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_three']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_three->extension();
+                uploadImage($request, 'image_three', $path, $ImageName);
+                $data_output = ZonesArea::find($return_data['last_insert_id']);
+                $data_output->image_three = $ImageName;
+                $data_output->save();
+            }
+    
+            if ($request->hasFile('image_four')) {
+                if (isset($return_data['image_four']) && $return_data['image_four']) {
+                    if (file_exists_view(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_four'])) {
+                        removeImage(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_four']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_four->extension();
+                uploadImage($request, 'image_four', $path, $ImageName);
+                $data_output = ZonesArea::find($return_data['last_insert_id']);
+                $data_output->image_four = $ImageName;
+                $data_output->save();
+            }
+    
+            if ($request->hasFile('image_five')) {
+                if (isset($return_data['image_five']) && $return_data['image_five']) {
+                    if (file_exists_view(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_five'])) {
+                        removeImage(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['image_five']);
+                    }
+                }
+                $ImageName = $return_data['last_insert_id'] . '_' . rand(100000, 999999) . '_image.' . $request->image_five->extension();
+                uploadImage($request, 'image_five', $path, $ImageName);
+                $data_output = ZonesArea::find($return_data['last_insert_id']);
+                $data_output->image_five = $ImageName;
+                $data_output->save();
+            }
             if ($request->hasFile('english_audio_link')) {
                 if ($return_data['english_audio_link']) {
                     if (file_exists_view(Config::get('DocumentConstant.ZONESAREA_DELETE') . $return_data['english_audio_link'])) {

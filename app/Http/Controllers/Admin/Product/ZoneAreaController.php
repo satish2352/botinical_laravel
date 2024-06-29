@@ -57,6 +57,31 @@ class ZoneAreaController extends Controller
             'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
             'image.max' => 'The image size must not exceed ' . Config::get("AllFileValidation.ZONE_AREA_IMAGE_MAX_SIZE") . ' KB.',
             'image.min' => 'The image size must be at least ' . Config::get("AllFileValidation.ZONE_AREA_IMAGE_MIN_SIZE") . ' KB.',
+            
+            'image_two.required' => 'The image is required.',
+            'image_two.image' => 'The file must be an image.',
+            'image_two.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_two.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_two.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MIN_SIZE' ) . ' KB.',
+
+            'image_three.required' => 'The image is required.',
+            'image_three.image' => 'The file must be an image.',
+            'image_three.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_three.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_three.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MIN_SIZE' ) . ' KB.',
+
+            'image_four.required' => 'The image is required.',
+            'image_four.image' => 'The file must be an image.',
+            'image_four.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_four.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_four.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MIN_SIZE' ) . ' KB.',
+
+            'image_five.required' => 'The image is required.',
+            'image_five.image' => 'The file must be an image.',
+            'image_five.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_five.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_five.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MIN_SIZE' ) . ' KB.',
+
             'english_audio_link.required' => 'Please upload the English audio file.',
             'hindi_audio_link.required' => 'हिंदी ऑडियो फ़ाइल अपलोड करें।',
             'english_audio_link.mimes' => 'The English audio must be in MP3 format.',
@@ -167,6 +192,31 @@ class ZoneAreaController extends Controller
             'image.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
             'image.max' => 'The image size must not exceed ' . Config::get("AllFileValidation.ZONE_AREA_IMAGE_MAX_SIZE") . ' KB.',
             'image.min' => 'The image size must be at least ' . Config::get("AllFileValidation.ZONE_AREA_IMAGE_MIN_SIZE") . ' KB.',
+          
+            'image_two.required' => 'The image is required.',
+            'image_two.image' => 'The file must be an image.',
+            'image_two.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_two.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_two.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MIN_SIZE' ) . ' KB.',
+
+            'image_three.required' => 'The image is required.',
+            'image_three.image' => 'The file must be an image.',
+            'image_three.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_three.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_three.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MIN_SIZE' ) . ' KB.',
+
+            'image_four.required' => 'The image is required.',
+            'image_four.image' => 'The file must be an image.',
+            'image_four.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_four.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_four.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MIN_SIZE' ) . ' KB.',
+
+            'image_five.required' => 'The image is required.',
+            'image_five.image' => 'The file must be an image.',
+            'image_five.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'image_five.max' => 'The image size must not exceed ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MAX_SIZE' ) . ' KB.',
+            'image_five.min' => 'The image size must be at least ' . Config::get( 'AllFileValidation.ZONE_AREA_IMAGE_MIN_SIZE' ) . ' KB.',
+            
             'english_audio_link.required' => 'Please upload the English audio file.',
             'hindi_audio_link.required' => 'हिंदी ऑडियो फ़ाइल अपलोड करें।',
             'english_audio_link.mimes' => 'The English audio must be in MP3 format.',

@@ -153,7 +153,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_audio_link">Audio Upload </label>
+                                                        <label for="english_audio_link">Audio Upload  </label> (optional)
                                                         <input type="file" name="english_audio_link"
                                                             id="english_audio_link" accept="audio/*"
                                                             class="form-control">
@@ -181,8 +181,7 @@
 
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="hindi_audio_link">ऑडियो अपलोड </label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="hindi_audio_link">ऑडियो अपलोड </label> (optional)<br>
                                                         <input type="file" name="hindi_audio_link"
                                                             id="hindi_audio_link" accept="audio/*"
                                                             value="{{ old('hindi_audio_link') }}"
@@ -208,8 +207,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_video_upload">Video Uploa</label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="english_video_upload">Video Uploa</label> (optional)<br>
                                                         <input type="file" name="english_video_upload"
                                                             id="english_video_upload" accept="video/*"
                                                             value="{{ old('english_video_upload') }}"
@@ -238,8 +236,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="hindi_video_upload">वीडियो अपलोड </label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="hindi_video_upload">वीडियो अपलोड </label> (optional)<br>
                                                         <input type="file" name="hindi_video_upload"
                                                             id="hindi_video_upload" accept="video/*"
                                                             value="{{ old('hindi_video_upload') }}"

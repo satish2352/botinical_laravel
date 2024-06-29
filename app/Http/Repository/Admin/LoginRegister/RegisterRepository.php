@@ -321,23 +321,17 @@ class RegisterRepository
 	// 	return "ok";
 	// }
 
-	public function delete($id)
-    {
-        try {
-            $user = User::find($id);
-            if ($user) {
-              
-                $user->delete();
-               
-                return $user;
-            } else {
-                return null;
-            }
-        } catch (\Exception $e) {
-            return $e;
-        }
-    }
-
+	public function deleteById($id){
+		try {
+			$data_output = User::find($id);
+		
+			$data_output->delete();
+				
+			return $data_output;
+		} catch (\Exception $e) {
+			return $e;
+		}
+	}
 	public function getById($id)
 	{
 		try {

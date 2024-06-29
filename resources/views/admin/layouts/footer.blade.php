@@ -60,7 +60,7 @@
 
 <script>
     $('.delete-btn').click(function(e) {
-alert('kkkkkkkk');
+        alert(delete_id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -316,6 +316,11 @@ alert('kkkkkkkk');
         $("#activeform").submit();
     })
 </script>
+<script>
+    setTimeout(function() {
+            $(".alert").alert('close');
+        }, 1000); // 1000 milliseconds = 1 second
+    </script>
 </body>
 
 </html>

@@ -116,8 +116,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_audio_link">Audio Upload </label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="english_audio_link">Audio Upload </label> (optional)<br>
                                                         <input type="file" name="english_audio_link"
                                                             id="english_audio_link" accept="audio/*"
                                                             value="{{ old('english_audio_link') }}"
@@ -129,8 +128,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="hindi_audio_link">ऑडियो अपलोड </label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="hindi_audio_link">ऑडियो अपलोड </label> (optional)<br>
                                                         <input type="file" name="hindi_audio_link" id="hindi_audio_link"
                                                             accept="audio/*" value="{{ old('hindi_audio_link') }}"
                                                             class="form-control mb-2">
@@ -141,8 +139,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_video_upload">Video Upload </label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="english_video_upload">Video Upload </label> (optional)</span><br>
                                                         <input type="file" name="english_video_upload"
                                                             id="english_video_upload" accept="video/*"
                                                             value="{{ old('english_video_upload') }}"
@@ -154,8 +151,7 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="hindi_video_upload">वीडियो अपलोड </label>&nbsp<span
-                                                            class="red-text">*</span><br>
+                                                        <label for="hindi_video_upload">वीडियो अपलोड </label> (optional)<br>
                                                         <input type="file" name="hindi_video_upload"
                                                             id="hindi_video_upload" accept="video/*"
                                                             value="{{ old('hindi_video_upload') }}"
@@ -351,46 +347,26 @@
                         fileExtension: ["jpg", "jpeg", "png"],
                         fileSize: [10, 2048],
                     },
-                    image2: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image3: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image4: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image5: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    english_audio_link: {
-                        required: true,
-                        extension: "mp3",
-                        fileSize: [10240, 1048576]
-                    },
-                    hindi_audio_link: {
-                        required: true,
-                        extension: "mp3",
-                        fileSize: [10240, 1048576]
-                    },
-                    english_video_upload: {
-                        required: true,
-                        extension: "mp4",
-                        fileSize: [102400, 5242880]
-                    },
-                    hindi_video_upload: {
-                        required: true,
-                        extension: "mp4",
-                        fileSize: [102400, 5242880]
-                    },
+                    // english_audio_link: {
+                    //     required: true,
+                    //     extension: "mp3",
+                    //     fileSize: [10240, 1048576]
+                    // },
+                    // hindi_audio_link: {
+                    //     required: true,
+                    //     extension: "mp3",
+                    //     fileSize: [10240, 1048576]
+                    // },
+                    // english_video_upload: {
+                    //     required: true,
+                    //     extension: "mp4",
+                    //     fileSize: [102400, 5242880]
+                    // },
+                    // hindi_video_upload: {
+                    //     required: true,
+                    //     extension: "mp4",
+                    //     fileSize: [102400, 5242880]
+                    // },
 
                 },
                 messages: {
@@ -429,48 +405,29 @@
                         fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
                         fileSize: "File size must be between 10 KB and 2 MB.",
                     },
-                    image2: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image3: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image4: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image5: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
+               
 
-                    english_audio_link: {
-                        required: "Please upload an Audio file MP3.",
-                        extension: "Only MP3 audio files are allowed.",
-                        fileSize: "File size must be between 10 KB and 1 MB.",
-                    },
-                    hindi_audio_link: {
-                        required: "कृपया ऑडियो फ़ाइल MP3 अपलोड करें।",
-                        extension: "केवल MP3 ऑडियो फ़ाइलें अनुमत हैं।",
-                        fileSize: "फ़ाइल का आकार 10 KB और 1 MB के बीच होना चाहिए।",
-                    },
+                    // english_audio_link: {
+                    //     required: "Please upload an Audio file MP3.",
+                    //     extension: "Only MP3 audio files are allowed.",
+                    //     fileSize: "File size must be between 10 KB and 1 MB.",
+                    // },
+                    // hindi_audio_link: {
+                    //     required: "कृपया ऑडियो फ़ाइल MP3 अपलोड करें।",
+                    //     extension: "केवल MP3 ऑडियो फ़ाइलें अनुमत हैं।",
+                    //     fileSize: "फ़ाइल का आकार 10 KB और 1 MB के बीच होना चाहिए।",
+                    // },
                    
-                    english_video_upload: {
-                        required: "Please upload a Video file MP4.",
-                        extension: "Only MP4 video files are allowed.",
-                        fileSize: "File size must be between 100 KB and 5 MB.",
-                    },
-                    hindi_video_upload: {
-                        required: "कृपया वीडियो फ़ाइल MP4 अपलोड करें।",
-                        extension: "केवल MP4 वीडियो फ़ाइलें अनुमत हैं।",
-                        fileSize: "फ़ाइल का आकार 100 KB और 5 MB के बीच होना चाहिए।",
-                    },
+                    // english_video_upload: {
+                    //     required: "Please upload a Video file MP4.",
+                    //     extension: "Only MP4 video files are allowed.",
+                    //     fileSize: "File size must be between 100 KB and 5 MB.",
+                    // },
+                    // hindi_video_upload: {
+                    //     required: "कृपया वीडियो फ़ाइल MP4 अपलोड करें।",
+                    //     extension: "केवल MP4 वीडियो फ़ाइलें अनुमत हैं।",
+                    //     fileSize: "फ़ाइल का आकार 100 KB और 5 MB के बीच होना चाहिए।",
+                    // },
 
                 },
             });

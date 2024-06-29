@@ -74,8 +74,9 @@ class AmenitiesRepository  {
             $add_data->longitude = $request['longitude'];
             $add_data->open_time_first = $request['open_time_first'];
             $add_data->close_time_first = $request['close_time_first'];
-            $add_data->open_time_second = $request['open_time_second'];
-            $add_data->close_time_second = $request['close_time_second'];
+            $add_data->open_time_second = $request->has('open_time_second') ? $request->open_time_second : '';
+            $add_data->close_time_second = $request->has('close_time_second') ? $request->close_time_second : '';
+            $add_data->hindi_audio_link = $request->has('hindi_audio_link') ? $request->hindi_audio_link : '';
             $add_data->english_audio_link = $request->has('english_audio_link') ? $request->english_audio_link : '';
             $add_data->hindi_audio_link = $request->has('hindi_audio_link') ? $request->hindi_audio_link : '';
             $add_data->english_video_upload = $request->has('english_video_upload') ? $request->english_video_upload : '';
@@ -108,11 +109,30 @@ class AmenitiesRepository  {
                 $data['ImageName5'] = $ImageName5;
             }
 
-            $EnglishAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
-            $HindiAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
+            if ($request->hasFile('english_audio_link')) {
+                $EnglishAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
+                $data['EnglishAudioUpload'] = $EnglishAudioUpload;
+            }
 
-            $EnglishVideoUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
-            $HindiVideoUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
+            if ($request->hasFile('hindi_audio_link')) {
+                $HindiAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
+                $data['HindiAudioUpload'] = $HindiAudioUpload;
+            }
+            if ($request->hasFile('english_video_upload')) {
+                $EnglishVideoUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
+                $data['EnglishVideoUpload'] = $EnglishVideoUpload;
+            }
+            if ($request->hasFile('hindi_video_upload')) {
+                $HindiVideoUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->hindi_video_upload->extension();
+                $data['HindiVideoUpload'] = $HindiVideoUpload;
+            }
+
+
+            // $EnglishAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
+            // $HindiAudioUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
+
+            // $EnglishVideoUpload = $last_insert_id .'_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
+            // $HindiVideoUpload = $last_insert_id .'_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
 
 
             $add_data = Amenities::find($last_insert_id); 
@@ -121,19 +141,24 @@ class AmenitiesRepository  {
             $add_data->image_three = $request->hasFile('image_three') ? $ImageName3 : null;
             $add_data->image_four = $request->hasFile('image_four') ? $ImageName4 : null;
             $add_data->image_five = $request->hasFile('image_five') ? $ImageName5 : null;
-            $add_data->english_audio_link = $EnglishAudioUpload; 
-            $add_data->hindi_audio_link = $HindiAudioUpload; 
-            $add_data->english_video_upload = $EnglishVideoUpload; 
-            $add_data->hindi_video_upload = $HindiVideoUpload; 
+
+            $add_data->english_audio_link = $request->hasFile('english_audio_link') ? $EnglishAudioUpload : null;
+            $add_data->hindi_audio_link = $request->hasFile('hindi_audio_link') ? $HindiAudioUpload : null;
+            $add_data->english_video_upload = $request->hasFile('english_video_upload') ? $EnglishVideoUpload : null;
+            $add_data->hindi_video_upload = $request->hasFile('hindi_video_upload') ? $HindiVideoUpload : null;
+            // $add_data->english_audio_link = $EnglishAudioUpload; 
+            // $add_data->hindi_audio_link = $HindiAudioUpload; 
+            // $add_data->english_video_upload = $EnglishVideoUpload; 
+            // $add_data->hindi_video_upload = $HindiVideoUpload; 
 
            
             $add_data->save();
             
             $data['ImageName'] =$ImageName;
-            $data['EnglishAudioUpload'] =$EnglishAudioUpload;
-            $data['HindiAudioUpload'] =$HindiAudioUpload;
-            $data['EnglishVideoUpload'] =$EnglishVideoUpload;
-            $data['HindiVideoUpload'] =$HindiVideoUpload;
+            // $data['EnglishAudioUpload'] =$EnglishAudioUpload;
+            // $data['HindiAudioUpload'] =$HindiAudioUpload;
+            // $data['EnglishVideoUpload'] =$EnglishVideoUpload;
+            // $data['HindiVideoUpload'] =$HindiVideoUpload;
             
             return $data;
     

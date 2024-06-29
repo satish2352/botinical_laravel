@@ -219,7 +219,7 @@
                                     {{-- <div class="col-12 grid-margin">
                                         <div class="card"> --}}
                                             <div class="card-body">
-                                                <div class="container dash-height">
+                                                <div class="">
                                                     @if (isset($status) && $return_data['status'] == 'success')
                                     <div class="alert alert-success" role="alert">
                                         {{ $return_data['msg'] }}

@@ -281,13 +281,13 @@ class RegisterController extends Controller {
         }
     }
   
-   
-    public function delete(Request $request){
+    public function destroy(Request $request){
         try {
-            $delete = $this->service->delete($request->delete_id);
-            if ($delete) {
-                $msg = $delete['msg'];
-                $status = $delete['status'];
+           
+            $delete_data = $this->service->deleteById($request->delete_id);
+            if ($delete_data) {
+                $msg = $delete_data['msg'];
+                $status = $delete_data['status'];
                 if ($status == 'success') {
                     return redirect('list-users')->with(compact('msg', 'status'));
                 } else {
@@ -300,7 +300,7 @@ class RegisterController extends Controller {
             return $e;
         }
     } 
-
+   
     public function updateOne(Request $request){
         try {
             $active_id = $request->active_id;

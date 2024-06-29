@@ -39,16 +39,40 @@ class AmenitiesServices
             if(isset($last_id['ImageName'])){
                 $path = Config::get('DocumentConstant.AMENITIES_ADD');
                 $ImageName = $last_id['ImageName'];
-                $EnglishAudioUpload = $last_id['EnglishAudioUpload'];
-                $HindiAudioUpload = $last_id['HindiAudioUpload'];
-                $EnglishVideoUpload = $last_id['EnglishVideoUpload'];
-                $HindiVideoUpload = $last_id['HindiVideoUpload'];
+                // $EnglishAudioUpload = $last_id['EnglishAudioUpload'];
+                // $HindiAudioUpload = $last_id['HindiAudioUpload'];
+                // $EnglishVideoUpload = $last_id['EnglishVideoUpload'];
+                // $HindiVideoUpload = $last_id['HindiVideoUpload'];
 
                 uploadImage($request, 'image', $path, $ImageName);
+                // uploadImage($request, 'english_audio_link', $path, $EnglishAudioUpload);
+                // uploadImage($request, 'hindi_audio_link', $path, $HindiAudioUpload);
+                // uploadImage($request, 'english_video_upload', $path, $EnglishVideoUpload);
+                // uploadImage($request, 'hindi_video_upload', $path, $HindiVideoUpload);
+
+                   // Check and upload English audio if available
+            if (isset($last_id['EnglishAudioUpload'])) {
+                $EnglishAudioUpload = $last_id['EnglishAudioUpload'];
                 uploadImage($request, 'english_audio_link', $path, $EnglishAudioUpload);
+            }
+
+            // Check and upload Hindi audio if available
+            if (isset($last_id['HindiAudioUpload'])) {
+                $HindiAudioUpload = $last_id['HindiAudioUpload'];
                 uploadImage($request, 'hindi_audio_link', $path, $HindiAudioUpload);
+            }
+
+            // Check and upload English video if available
+            if (isset($last_id['EnglishVideoUpload'])) {
+                $EnglishVideoUpload = $last_id['EnglishVideoUpload'];
                 uploadImage($request, 'english_video_upload', $path, $EnglishVideoUpload);
+            }
+
+            // Check and upload Hindi video if available
+            if (isset($last_id['HindiVideoUpload'])) {
+                $HindiVideoUpload = $last_id['HindiVideoUpload'];
                 uploadImage($request, 'hindi_video_upload', $path, $HindiVideoUpload);
+            }
 
                 if (isset($last_id['ImageName2'])) {
                     $ImageName2 = $last_id['ImageName2'];

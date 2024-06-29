@@ -111,6 +111,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @if(!empty($amenities->english_audio_link))
                                         <div class="row rowpadd">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label> Audio :</label>
@@ -123,6 +124,9 @@
                                                 </audio>
                                             </div>
                                         </div>
+                                        @else
+                                        @endif
+                                        @if(!empty($amenities->hindi_audio_link))
                                         <div class="row rowpadd">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label> ऑडियो :</label>
@@ -135,7 +139,9 @@
                                                 </audio>
                                             </div>
                                         </div>
-
+                                        @else
+                                        @endif
+                                        @if(!empty($amenities->english_video_upload))
                                         <div class="row rowpadd">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label> Video :</label>
@@ -148,6 +154,9 @@
                                                 </video>
                                             </div>
                                         </div>
+                                        @else
+                                        @endif
+                                        @if(!empty($amenities->hindi_video_upload))
                                         <div class="row rowpadd">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label> वीडियो :</label>
@@ -160,6 +169,8 @@
                                                 </video>
                                             </div>
                                         </div>
+                                        @else
+                                        @endif
                                         <div class="row ">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label>Open Time :</label>
@@ -176,6 +187,7 @@
                                                 <label>{{ strip_tags($amenities->close_time_first) }}</label>
                                             </div>
                                         </div>
+                                        @if(!empty($amenities->open_time_second))
                                         <div class="row ">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label>Open Time :</label>
@@ -184,6 +196,9 @@
                                                 <label>{{ strip_tags($amenities->open_time_second) }}</label>
                                             </div>
                                         </div>
+                                        @else
+                                        @endif
+                                        @if(!empty($amenities->close_time_second))
                                         <div class="row ">
                                             <div class="col-lg-3 col-md-3 col-sm-3">
                                                 <label>Close Time :</label>
@@ -192,6 +207,8 @@
                                                 <label>{{ strip_tags($amenities->close_time_second) }}</label>
                                             </div>
                                         </div>
+                                        @else
+                                        @endif
                                     </div>
                                 </div>
                             </div>

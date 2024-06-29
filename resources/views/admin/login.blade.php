@@ -85,13 +85,39 @@
                     <p></p>
                 </div>
                 <div class="hpanel">
+                  
+                  @if (isset($return_data['msg_alert']) && $return_data['msg_alert'] == 'green')
+                  <div class="alert alert-success" role="alert">
+                      {{ $return_data['msg'] }}
+                  </div>
+              @endif
+
+              @if (session('error'))
+                  <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                      <p>{{ session()->get('error') }} </p>
+                  </div>
+              @endif
+              @if (session('success'))
+                  <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                      <p> {{ session('success') }} </p>
+                  </div>
+              @endif
+
+              
+
                     <div class="panel-body">
                         <form action="{{ route('submitLogin') }}" method="POST" id="loginForm">
                             @csrf
                             <div class="form-group">
-                                <label class="control-label" for="username">Username</label>
+                                <label class="control-label" for="username">Email</label>
                                 <input type="text" placeholder="example@gmail.com" title="Please enter your Email" required="" value="" name="email" id="username" class="form-control">
-                                <span class="help-block small">Your unique username for the app</span>
+                                <span class="help-block small">Your unique email for the app</span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password">Password</label>

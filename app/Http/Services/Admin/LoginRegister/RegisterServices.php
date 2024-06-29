@@ -80,10 +80,10 @@ class RegisterServices
         return $data_users;
     }
     
-
-    public function delete($id){
+    public function deleteById($id)
+    {
         try {
-            $delete = $this->repo->delete($id);
+            $delete = $this->repo->deleteById($id);
             if ($delete) {
                 return ['status' => 'success', 'msg' => 'Deleted Successfully.'];
             } else {
@@ -93,7 +93,6 @@ class RegisterServices
             return ['status' => 'error', 'msg' => $e->getMessage()];
         } 
     }
-   
     public function getById($id){
         try {
             return $this->repo->getById($id);

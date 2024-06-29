@@ -64,14 +64,6 @@
                                                             </label>
 
                                                         </td>
-
-
-                                                        {{-- <td>@if ($item->is_active)
-                                                        <button type="button" class="btn btn-success btn-sm">Active</button>
-                                                        @else 
-                                                        <button type="button" class="btn btn-danger btn-sm">In Active</button>
-                                                        
-                                                        @endif</td> --}}
                                                         <td class="d-flex">
                                                             <a href="{{ route('edit-users', base64_encode($item->id)) }}"
                                                                 class="edit-btn btn btn-sm btn-outline-primary m-1"><i
@@ -79,9 +71,10 @@
                                                             <a data-id="{{ $item->id }}"
                                                                 class="show-btn btn btn-sm btn-outline-primary m-1"><i
                                                                     class="fas fa-eye"></i></a>
+                                                                  
                                                             <a data-id="{{ $item->id }}"
                                                                 class="delete-btn btn btn-sm btn-outline-danger m-1"
-                                                                title="Delete Tender"><i class="fas fa-archive"></i></a>
+                                                                title="Delete"><i class="fas fa-archive"></i></a>
 
 
                                                         </td>
@@ -112,6 +105,28 @@
             @csrf
             <input type="hidden" name="active_id" id="active_id" value="">
         </form>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            $('.delete-btn').click(function(e) {
+        
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $("#delete_id").val($(this).attr("data-id"));
+                        $("#deleteform").submit();
+                    }
+                })
+        
+            });
+        </script>
         <!-- content-wrapper ends -->
     @endsection

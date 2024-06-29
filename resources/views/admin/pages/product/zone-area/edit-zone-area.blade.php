@@ -202,6 +202,27 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
+                                            <label for="open_time_first">Open Time </label>&nbsp<span class="red-text">*</span>
+                                            <input type="time" class="form-control mb-2" id="open_time_first" name="open_time_first" placeholder="Enter the Open Time"
+                                                value="{{ old('open_time_first') ?? $zonearea->open_time_first }}">
+                                            @if ($errors->has('open_time_first'))
+                                                <span class="red-text">{{ $errors->first('open_time_first') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="close_time_first">Close Time </label>&nbsp<span class="red-text">*</span>
+                                            <input type="time" class="form-control mb-2" id="close_time_first" name="close_time_first" placeholder="Enter the Close Time"
+                                                value="{{ old('close_time_first') ?? $zonearea->close_time_first }}">
+                                            @if ($errors->has('close_time_first'))
+                                                <span class="red-text">{{ $errors->first('close_time_first') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
                                             <label for="image"> Image</label>
                                             <input type="file" name="image" class="form-control"
                                                 id="image" accept="image/*" placeholder="image">
@@ -216,6 +237,78 @@
                                             <div class="red-text"><?php echo $errors->first('image', ':message'); ?>
                                             </div>
                                         @endif
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="image_two"> Image</label> (optional)
+                                                <input type="file" name="image_two" class="form-control"
+                                                    id="image_two" accept="image/*" placeholder="upload image">
+
+                                            </div>
+                                            <img id="english_two"
+                                                src="{{ Config::get('DocumentConstant.ZONESAREA_VIEW') }}{{ $zonearea->image_two }}"
+                                                class="img-fluid img-thumbnail" width="150">
+                                            <img id="english_imgPreview_two" src="#" alt="pic"
+                                                class="img-fluid img-thumbnail" width="150"
+                                                style="display:none">
+                                            @if ($errors->has('image_two'))
+                                                <div class="red-text"><?php echo $errors->first('image_two', ':message'); ?>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="image_three"> Image</label> (optional)
+                                                <input type="file" name="image_three" class="form-control"
+                                                    id="image_three" accept="image/*" placeholder="upload image">
+
+                                            </div>
+                                            <img id="english_three"
+                                                src="{{ Config::get('DocumentConstant.ZONESAREA_VIEW') }}{{ $zonearea->image_three }}"
+                                                class="img-fluid img-thumbnail" width="150">
+                                            <img id="english_imgPreview_three" src="#" alt="pic"
+                                                class="img-fluid img-thumbnail" width="150"
+                                                style="display:none">
+                                            @if ($errors->has('image_three'))
+                                                <div class="red-text"><?php echo $errors->first('image_three', ':message'); ?>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="image_four"> Image</label> (optional)
+                                                <input type="file" name="image_four" class="form-control"
+                                                    id="image_four" accept="image/*" placeholder="upload image">
+
+                                            </div>
+                                            <img id="english_four"
+                                                src="{{ Config::get('DocumentConstant.ZONESAREA_VIEW') }}{{ $zonearea->image_four }}"
+                                                class="img-fluid img-thumbnail" width="150">
+                                            <img id="english_imgPreview_four" src="#" alt="pic"
+                                                class="img-fluid img-thumbnail" width="150"
+                                                style="display:none">
+                                            @if ($errors->has('image_four'))
+                                                <div class="red-text"><?php echo $errors->first('image_four', ':message'); ?>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label for="image_five"> Image</label> (optional)
+                                                <input type="file" name="image_five" class="form-control"
+                                                    id="image_five" accept="image/*" placeholder="upload image">
+
+                                            </div>
+                                            <img id="english_five"
+                                                src="{{ Config::get('DocumentConstant.ZONESAREA_VIEW') }}{{ $zonearea->image_five }}"
+                                                class="img-fluid img-thumbnail" width="150">
+                                            <img id="english_imgPreview_five" src="#" alt="pic"
+                                                class="img-fluid img-thumbnail" width="150"
+                                                style="display:none">
+                                            @if ($errors->has('image_five'))
+                                                <div class="red-text"><?php echo $errors->first('image_five', ':message'); ?>
+                                                </div>
+                                            @endif
                                         </div>
                                     <div class="col-md-12 col-sm-12 text-center">
                                         <button type="submit" class="btn btn-sm btn-success" >
@@ -260,6 +353,12 @@
                 longitude: {
                     required: true,
                 },
+                open_time_first: {
+                        required: true,
+                    },
+                    close_time_first: {
+                        required: true,
+                    },
                 // image: {
                 //     required: true,
                 //     fileExtension: ["jpg", "jpeg", "png"],
@@ -306,6 +405,12 @@
                 longitude: {
                     required: "Please enter the Longitude.",
                 },
+                open_time_first: {
+                        required: "Please select open time.",
+                    },
+                    close_time_first: {
+                        required: "Please select close time.",
+                    },
                 // image: {
                 //     required: "Please upload an Image (JPG, JPEG, PNG).",
                 //     fileExtension: "Only JPG, JPEG, and PNG images are allowed.",

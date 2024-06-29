@@ -147,6 +147,30 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="open_time_first">Open Time </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" id="open_time_first" name="open_time_first"
+                                                            id="open_time_first" placeholder="Enter the Name"
+                                                            name="open_time_first" value="{{ old('open_time_first') }}">
+                                                        @if ($errors->has('open_time_first'))
+                                                            <span class="red-text"><?php echo $errors->first('open_time_first', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="close_time_first">Close Time </label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input type="time" class="form-control mb-2" name="close_time_first"
+                                                            id="close_time_first" placeholder="Enter the Name"
+                                                            name="close_time_first" value="{{ old('close_time_first') }}">
+                                                        @if ($errors->has('close_time_first'))
+                                                            <span class="red-text"><?php echo $errors->first('close_time_first', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="image">Image </label>&nbsp<span
                                                             class="red-text">*</span><br>
                                                         <input type="file" name="image" id="image"
@@ -154,6 +178,50 @@
                                                             class="form-control mb-2">
                                                         @if ($errors->has('image'))
                                                             <span class="red-text"><?php echo $errors->first('image', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_two">Image </label> (optional)<br>
+                                                        <input type="file" name="image_two" id="image_two"
+                                                            accept="image_two/*" value="{{ old('image_two') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_two'))
+                                                            <span class="red-text"><?php echo $errors->first('image_two', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_three">Image </label> (optional)<br>
+                                                        <input type="file" name="image_three" id="image_three"
+                                                            accept="image_three/*" value="{{ old('image_three') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_three'))
+                                                            <span class="red-text"><?php echo $errors->first('image_three', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_four">Image </label> (optional)<br>
+                                                        <input type="file" name="image_four" id="image_four"
+                                                            accept="image_four/*" value="{{ old('image_four') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_four'))
+                                                            <span class="red-text"><?php echo $errors->first('image_four', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="image_five">Image </label> (optional)<br>
+                                                        <input type="file" name="image_five" id="image_five"
+                                                            accept="image_five/*" value="{{ old('image_five') }}"
+                                                            class="form-control mb-2">
+                                                        @if ($errors->has('image_five'))
+                                                            <span class="red-text"><?php echo $errors->first('image_five', ':message'); ?></span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -198,6 +266,12 @@
                         required: true,
                     },
                     longitude: {
+                        required: true,
+                    },
+                    open_time_first: {
+                        required: true,
+                    },
+                    close_time_first: {
                         required: true,
                     },
                     image: {
@@ -245,6 +319,12 @@
                     },
                     longitude: {
                         required: "Please enter the Longitude.",
+                    },
+                    open_time_first: {
+                        required: "Please select open time.",
+                    },
+                    close_time_first: {
+                        required: "Please select close time.",
                     },
                     image: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",

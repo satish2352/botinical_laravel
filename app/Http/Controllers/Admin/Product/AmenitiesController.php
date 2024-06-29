@@ -46,10 +46,10 @@ class AmenitiesController extends Controller {
             'english_description' => 'required',
             'hindi_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:' . Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' ),
-            'english_audio_link' => 'required|mimes:mp3|max:' . Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' ),
-            'hindi_audio_link' => 'required|mimes:mp3|max:' . Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' ),
-            'english_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' ),
-            'hindi_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' ),
+            // 'english_audio_link' => 'required|mimes:mp3|max:' . Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' ),
+            // 'hindi_audio_link' => 'required|mimes:mp3|max:' . Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' ),
+            // 'english_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' ),
+            // 'hindi_video_upload' => 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' ),
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
         ];
@@ -64,6 +64,18 @@ class AmenitiesController extends Controller {
         }
         if ( $request->has( 'image_five' ) ) {
             $rules[ 'image_five' ] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ).'|min:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' );
+        }
+        if ( $request->has( 'english_audio_link' ) ) {
+            $rules[ 'english_audio_link' ] = 'required|mimes:mp3|max:'. Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' );
+        }
+        if ( $request->has( 'hindi_audio_link' ) ) {
+            $rules[ 'hindi_audio_link' ] = 'required|mimes:mp3|max:'. Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' );
+        }
+        if ( $request->has( 'english_video_upload' ) ) {
+            $rules[ 'english_video_upload' ] = 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' );
+        }
+        if ( $request->has( 'hindi_video_upload' ) ) {
+            $rules[ 'hindi_video_upload' ] = 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' );
         }
 
         $messages = [
@@ -183,6 +195,18 @@ class AmenitiesController extends Controller {
 
         if ( $request->has( 'image' ) ) {
             $rules[ 'image' ] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ).'|min:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' );
+        }
+        if ( $request->has( 'image_two' ) ) {
+            $rules[ 'image_two' ] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ).'|min:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' );
+        }
+        if ( $request->has( 'image_three' ) ) {
+            $rules[ 'image_three' ] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ).'|min:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' );
+        }
+        if ( $request->has( 'image_four' ) ) {
+            $rules[ 'image_four' ] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ).'|min:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' );
+        }
+        if ( $request->has( 'image_five' ) ) {
+            $rules[ 'image_five' ] = 'required|image|mimes:jpeg,png,jpg|max:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MAX_SIZE' ).'|min:'.Config::get( 'AllFileValidation.AMENITIES_IMAGE_MIN_SIZE' );
         }
         if ( $request->has( 'english_audio_link' ) ) {
             $rules[ 'english_audio_link' ] = 'required|mimes:mp3|max:'. Config::get( 'AllFileValidation.AUDIO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.AUDIO_MIN_SIZE' );
