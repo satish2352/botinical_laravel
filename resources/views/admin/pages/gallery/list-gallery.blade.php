@@ -22,7 +22,7 @@
                                             @if (in_array('per_add', $data_permission))
                                             <a href="{{ route('add-gallery') }}"><button
                                                     class="btn btn-sm btn-primary login-submit-cs" type="submit"
-                                                    href="{{ route('add-gallery') }}">Add Flower</button></a>
+                                                    href="{{ route('add-gallery') }}">Add Gallery</button></a>
                                                     @endif
                                                 </div>
                                     </div>

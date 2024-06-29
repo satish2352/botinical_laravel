@@ -80,7 +80,7 @@
 	color:#fff;
 }
 .btn-success-bg .btn-dropdown-menu li .btn-setting-icon .btn-icon-st a{
-	background: #449d44;
+	background: #01595A;
 	color:#fff;
 }
 .btn-success-bg .btn-dropdown-menu li .btn-setting-icon .btn-icon-st a:hover{
@@ -111,7 +111,7 @@
 	color:#303030;
 }
 .btn-success-bg .btn-dropdown-menu li a:hover{
-	background: #449d44;
+	background: #01595A;
 	color:#fff;
 }
 .btn-warning-bg .btn-dropdown-menu li a:hover{
@@ -181,11 +181,11 @@
 	vertical-align: middle; 
 }
 .button-drop-style-one .btn-button-ct.btn-button-success-ct{
-    background: #398439;
-	border-right:1px solid #398439;
-	border-left:0px solid #398439;
-	border-top:1px solid #398439;
-	border-bottom:1px solid #398439;
+    background: #01595A;
+	border-right:1px solid #01595A;
+	border-left:0px solid #01595A;
+	border-top:1px solid #01595A;
+	border-bottom:1px solid #01595A;
 	color: #fff;
 	vertical-align: middle; 
 }

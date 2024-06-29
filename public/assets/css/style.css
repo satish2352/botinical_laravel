@@ -681,8 +681,8 @@ table.dataTable thead>tr>td.sorting {
 }
 
 .btn-success {
-	background-color: #55ce63;
-	border: 1px solid #55ce63
+	background-color: #01595A;
+	border: 1px solid #01595A;
 }
 
 .btn-success:hover,
@@ -690,8 +690,8 @@ table.dataTable thead>tr>td.sorting {
 .btn-success.active,
 .btn-success:active,
 .open>.dropdown-toggle.btn-success {
-	background: #4ab657;
-	border: 1px solid #4ab657;
+	background: #01595A;
+	border: 1px solid #01595A;
 	color: #fff;
 }
 
@@ -704,8 +704,8 @@ table.dataTable thead>tr>td.sorting {
 .open>.dropdown-toggle.btn-success.focus,
 .open>.dropdown-toggle.btn-success:focus,
 .open>.dropdown-toggle.btn-success:hover {
-	background: #4ab657;
-	border: 1px solid #4ab657
+	background: #01595A;
+	border: 1px solid #01595A;
 }
 
 .btn-success.active:focus:not(:disabled):not(.disabled),
@@ -9730,5 +9730,12 @@ ul.comment-list li ul.children {
 	.add-btn {
 		font-size: 14px;
 		min-width: inherit;
+	}
+	.btn-success{
+		background-color: #01595A !important;
+    border-color: #01595A !important;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 0px;
 	}
 }
