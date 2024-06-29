@@ -17,9 +17,12 @@
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
                 <ul class="metismenu" id="menu1">
+                  
                     <li class="{{ Request::is('/dashboard') ? 'active' : '' }}">
+                       
                         <a class="" href="{{ route('/dashboard') }}" aria-expanded="false">
                             <i class="fa fa-home icon-wrap"></i>
+                            
                             <span class="mini-click-non">Dashboard</span>
                         </a>
                     </li> 
@@ -226,10 +229,10 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12 d-flex justify-content-start align-items-center">
                                     <div class="header-top-menu tabl-d-n">
                                         <ul class="nav navbar-nav mai-top-nav">
-
+                                           <h3 style="color: #fff;">Botanical Garden</h3>
                                         </ul>
                                     </div>
                                 </div>

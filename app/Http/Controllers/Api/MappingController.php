@@ -45,7 +45,7 @@ class MappingController extends Controller
                 'tbl_trees.hindi_video_upload as video_upload',
                 'tbl_trees.latitude',
                 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type',
-                'tbl_trees.longitude', 'tbl_trees.image')
+                'tbl_trees.longitude', 'tbl_trees.image', 'tbl_trees.image_two', 'tbl_trees.three', 'tbl_trees.image_four', 'tbl_trees.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -58,7 +58,7 @@ class MappingController extends Controller
                     'tbl_trees.english_audio_link as audio_link',
                     'tbl_trees.english_video_upload as video_upload',
                     'tbl_trees.latitude',
-                    'tbl_trees.longitude', 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type', 'tbl_trees.image')
+                    'tbl_trees.longitude', 'tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type', 'tbl_trees.image', 'tbl_trees.image_two', 'tbl_trees.three', 'tbl_trees.image_four', 'tbl_trees.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -68,6 +68,10 @@ class MappingController extends Controller
     
             foreach ($data_output_trees as &$treeDetail) {
                 $treeDetail['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image'];
+                $treeDetail['image_two'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_two'];
+                $treeDetail['image_three'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_three'];
+                $treeDetail['image_four'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_four'];
+                $treeDetail['image_five'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_five'];
                 $treeDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $treeDetail['icon_image'];
 
                 if ($language == 'hindi') {
@@ -100,7 +104,7 @@ class MappingController extends Controller
                     'tbl_flowers.latitude',
                     'tbl_flowers.longitude', 
                     'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type',
-                    'tbl_flowers.image')
+                    'tbl_flowers.image', 'tbl_flowers.image_two', 'tbl_flowers.three', 'tbl_flowers.image_four', 'tbl_flowers.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -113,7 +117,7 @@ class MappingController extends Controller
                     'tbl_flowers.english_audio_link as audio_link',
                     'tbl_flowers.english_video_upload as video_upload',
                     'tbl_flowers.latitude',
-                    'tbl_flowers.longitude', 'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type', 'tbl_flowers.image')
+                    'tbl_flowers.longitude', 'tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type', 'tbl_flowers.image', 'tbl_flowers.image_two', 'tbl_flowers.three', 'tbl_flowers.image_four', 'tbl_flowers.image_five')
                     ->when($category_id, function ($query) use ($category_id) {
                         $query->where('icon_master.id', $category_id);
                     })
@@ -123,6 +127,10 @@ class MappingController extends Controller
     
             foreach ($data_output_flowers as &$flowerDetail) {
                 $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
+                $flowerDetail['image_two'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_two'];
+                $flowerDetail['image_three'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_three'];
+                $flowerDetail['image_four'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_four'];
+                $flowerDetail['image_five'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_five'];
                 $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
             
                 if ($language == 'hindi') {
@@ -153,7 +161,7 @@ class MappingController extends Controller
                       'tbl_amenities.hindi_video_upload as video_upload',
                       'tbl_amenities.latitude',
                       'tbl_amenities.longitude', 
-                      'tbl_amenities.image')
+                      'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
                       ->when($category_id, function ($query) use ($category_id) {
                           $query->where('icon_master.id', $category_id);
                       })
@@ -166,7 +174,7 @@ class MappingController extends Controller
                       'tbl_amenities.english_audio_link as audio_link',
                       'tbl_amenities.english_video_upload as video_upload',
                       'tbl_amenities.latitude',
-                      'tbl_amenities.longitude', 'tbl_amenities.image')
+                      'tbl_amenities.longitude', 'tbl_amenities.image', 'tbl_amenities.image_two', 'tbl_amenities.three', 'tbl_amenities.image_four', 'tbl_amenities.image_five')
                       ->when($category_id, function ($query) use ($category_id) {
                           $query->where('icon_master.id', $category_id);
                       })
@@ -176,6 +184,10 @@ class MappingController extends Controller
       
               foreach ($data_output_aminities as &$aminitiesDetail) {
                   $aminitiesDetail['image'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image'];
+                  $aminitiesDetail['image_two'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_two'];
+                  $aminitiesDetail['image_three'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_three'];
+                  $aminitiesDetail['image_four'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_four'];
+                  $aminitiesDetail['image_five'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_five'];
                   $aminitiesDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $aminitiesDetail['icon_image'];
               
                   if ($language == 'hindi') {
