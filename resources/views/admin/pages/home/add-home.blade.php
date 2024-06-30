@@ -122,7 +122,7 @@
                     english_image: {
                         required: true,
                         fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
+                        fileSize: [10, 10240],
                     },
                  
 
@@ -143,7 +143,7 @@
                     english_image: {
                         required: "Please upload an Image (JPG, JPEG, PNG).",
                         fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
+                        fileSize: "File size must be between 10 KB and 10 MB.",
                     },                   
                 },
             });
