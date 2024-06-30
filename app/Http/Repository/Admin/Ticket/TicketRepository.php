@@ -104,7 +104,7 @@ class TicketRepository  {
             $data = Ticket::find($request); 
 
             if ($data) {
-                $is_active = $data->is_active === 1 ? 0 : 1;
+                $is_active = $data->is_active === '1' ? '0' : '1';
                 $data->is_active = $is_active;
                 $data->save();
 
