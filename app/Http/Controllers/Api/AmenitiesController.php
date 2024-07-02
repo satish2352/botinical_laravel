@@ -227,25 +227,41 @@ class AmenitiesController extends Controller
             ->take($rowperpage)->get()
             ->toArray();
 
-            foreach ( $data_output as &$flowerdetail ) {
-                $flowerdetail[ 'image' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image' ];
-                $flowerdetail[ 'image_two' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_two' ];
-                $flowerdetail[ 'image_three' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_three' ];
-                $flowerdetail[ 'image_four' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_four' ];
-                $flowerdetail[ 'image_five' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_five' ];
+            // foreach ( $data_output as &$flowerdetail ) {
+            //     $flowerdetail[ 'image' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image' ];
+            //     $flowerdetail[ 'image_two' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_two' ];
+            //     $flowerdetail[ 'image_three' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_three' ];
+            //     $flowerdetail[ 'image_four' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_four' ];
+            //     $flowerdetail[ 'image_five' ] = Config::get( 'DocumentConstant.AMENITIES_VIEW' ) . $flowerdetail[ 'image_five' ];
                                 
-                if ($language == 'hindi') {
-                    $flowerdetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['audio_link'];
-                } else {
-                    $flowerdetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['audio_link'];
-                }
-                if ($language == 'hindi') {
-                    $flowerdetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['video_upload'];
-                } else {
-                    $flowerdetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['video_upload'];
-                }
+            //     if ($language == 'hindi') {
+            //         $flowerdetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['audio_link'];
+            //     } else {
+            //         $flowerdetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['audio_link'];
+            //     }
+            //     if ($language == 'hindi') {
+            //         $flowerdetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['video_upload'];
+            //     } else {
+            //         $flowerdetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $flowerdetail['video_upload'];
+            //     }
 
+            // }
+
+            foreach ($data_output as &$amenity) {
+            $amenity['image'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image'];
+            $amenity['image_two'] = $amenity['image_two'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_two'] : null;
+            $amenity['image_three'] = $amenity['image_three'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_three'] : null;
+            $amenity['image_four'] = $amenity['image_four'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_four'] : null;
+            $amenity['image_five'] = $amenity['image_five'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_five'] : null;
+
+            if ($language == 'hindi') {
+                $amenity['audio_link'] = $amenity['audio_link'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['audio_link'] : null;
+                $amenity['video_upload'] = $amenity['video_upload'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['video_upload'] : null;
+            } else {
+                $amenity['audio_link'] = $amenity['audio_link'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['audio_link'] : null;
+                $amenity['video_upload'] = $amenity['video_upload'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['video_upload'] : null;
             }
+        }
 
 
             if ( sizeof( $data_output ) > 0 ) {

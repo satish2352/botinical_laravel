@@ -227,7 +227,7 @@ class MappingController extends Controller
     //     try {
     //         $language = $request->input('language', 'english');
     //         $category_id = $request->input('icon_id');
-    //         $tress_id = $request->input('tress_id');
+    //         $tress_id = $request->input('id');
     //         $flowers_id = $request->input('flowers_id');
     //         $amenities_id = $request->input('amenities_id');
     

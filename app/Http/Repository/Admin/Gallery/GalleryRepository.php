@@ -105,7 +105,6 @@ class GalleryRepository  {
                 $is_active = $data->is_active === '1' ? '0' : '1';
                 $data->is_active = $is_active;
                 $data->save();
-
                 return [
                     'msg' => 'Data updated successfully.',
                     'status' => 'success'
@@ -123,6 +122,8 @@ class GalleryRepository  {
             ];
         }
     }
+
+   
 
     public function deleteById($id){
             try {

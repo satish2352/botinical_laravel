@@ -130,7 +130,6 @@
         @csrf
         <input type="hidden" name="delete_id" id="delete_id" value="">
     </form>
-
     <form method="POST" action="{{ url('/update-active-gallery') }}" id="activeform">
         @csrf
         <input type="hidden" name="active_id" id="active_id" value="">
@@ -166,7 +165,7 @@
     <script>
         
         $('.show-btn').click(function(e) {
-            alert('hii');
+            
             $("#show_id").val($(this).attr("data-id"));
             $("#showform").submit();
         })
