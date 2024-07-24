@@ -64,7 +64,7 @@ Route::group([
         Route::post('/get-tress-video', [TressController::class, 'getParticularTressVideo']);
        
         Route::post('/get-map-data', [MappingController::class, 'filterMapData']);
-
+        Route::post('/get-map-data-new', [MappingController::class, 'filterMapDataNew']);
 
         
         // =========Flowers===================
