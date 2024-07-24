@@ -71,7 +71,7 @@ class MappingController extends Controller
                 $treeDetail['image_three'] = $treeDetail['image_three'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_three'] : null;
                 $treeDetail['image_four'] = $treeDetail['image_four'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_four'] : null;
                 $treeDetail['image_five'] = $treeDetail['image_five'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_five'] : null;
-    
+                $treeDetail['icon_image'] = $treeDetail['icon_image'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['icon_image'] : null;
                 if ($language == 'hindi') {
                     $treeDetail['audio_link'] = $treeDetail['audio_link'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['audio_link'] : null;
                     $treeDetail['video_upload'] = $treeDetail['video_upload'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['video_upload'] : null;
@@ -144,6 +144,7 @@ class MappingController extends Controller
                 $flowerDetail['image_three'] = $flowerDetail['image_three'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_three'] : null;
                 $flowerDetail['image_four'] = $flowerDetail['image_four'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_four'] : null;
                 $flowerDetail['image_five'] = $flowerDetail['image_five'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_five'] : null;
+                $flowerDetail['icon_image'] = $flowerDetail['icon_image'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['icon_image'] : null;
     
                 if ($language == 'hindi') {
                     $flowerDetail['audio_link'] = $flowerDetail['audio_link'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['audio_link'] : null;
@@ -215,7 +216,8 @@ class MappingController extends Controller
                 $aminitiesDetail['image_three'] = $aminitiesDetail['image_three'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_three'] : null;
                 $aminitiesDetail['image_four'] = $aminitiesDetail['image_four'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_four'] : null;
                 $aminitiesDetail['image_five'] = $aminitiesDetail['image_five'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['image_five'] : null;
-    
+                $aminitiesDetail['icon_image'] = $aminitiesDetail['icon_image'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['icon_image'] : null;
+
                 if ($language == 'hindi') {
                     $aminitiesDetail['audio_link'] = $aminitiesDetail['audio_link'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['audio_link'] : null;
                     $aminitiesDetail['video_upload'] = $aminitiesDetail['video_upload'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $aminitiesDetail['video_upload'] : null;
