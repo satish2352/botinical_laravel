@@ -276,7 +276,6 @@ class MappingController extends Controller
             $flowers_id = $request->input('flowers_id');
             $amenities_id = $request->input('amenities_id');
     
-            // Initialize response variables
             $treesData = [];
             $flowersData = [];
             $amenitiesData = [];
@@ -305,14 +304,20 @@ class MappingController extends Controller
                 ->toArray();
     
             foreach ($data_output_trees as &$treeDetail) {
-                $treeDetail['image'] = Config::get('DocumentConstant.TREES_VIEW') . $treeDetail['image'];
-                $treeDetail['image_two'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_two'];
-                $treeDetail['image_three'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_three'];
-                $treeDetail['image_four'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_four'];
-                $treeDetail['image_five'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_five'];
-                $treeDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $treeDetail['icon_image'];
-                $treeDetail['audio_link'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['audio_link'];
-                $treeDetail['video_upload'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['video_upload'];
+                $treeDetail['image'] = Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image'];
+                $treeDetail['image_two'] = $treeDetail['image_two'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_two'] : null;
+                $treeDetail['image_three'] = $treeDetail['image_three'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_three'] : null;
+                $treeDetail['image_four'] = $treeDetail['image_four'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_four'] : null;
+                $treeDetail['image_five'] = $treeDetail['image_five'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['image_five'] : null;
+                $treeDetail['icon_image'] = $treeDetail['icon_image'] ? Config::get('DocumentConstant.ICON_MASTER_VIEW') . $treeDetail['icon_image'] : null;
+
+                if ($language == 'hindi') {
+                    $treeDetail['audio_link'] = $treeDetail['audio_link'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['audio_link'] : null;
+                    $treeDetail['video_upload'] = $treeDetail['video_upload'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['video_upload'] : null;
+                } else {
+                    $treeDetail['audio_link'] = $treeDetail['audio_link'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['audio_link'] : null;
+                    $treeDetail['video_upload'] = $treeDetail['video_upload'] ? Config::get('DocumentConstant.TRESS_VIEW') . $treeDetail['video_upload'] : null;
+                }
             }
     
             $treesData = $data_output_trees;
@@ -339,16 +344,21 @@ class MappingController extends Controller
                 })
                 ->get()
                 ->toArray();
-    
-            foreach ($data_output_flowers as &$flowerDetail) {
+                foreach ($data_output_flowers as &$flowerDetail) {
                 $flowerDetail['image'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image'];
-                $flowerDetail['image_two'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_two'];
-                $flowerDetail['image_three'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_three'];
-                $flowerDetail['image_four'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_four'];
-                $flowerDetail['image_five'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_five'];
-                $flowerDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'];
-                $flowerDetail['audio_link'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['audio_link'];
-                $flowerDetail['video_upload'] = Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['video_upload'];
+                $flowerDetail['image_two'] = $flowerDetail['image_two'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_two'] : null;
+                $flowerDetail['image_three'] = $flowerDetail['image_three'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_three'] : null;
+                $flowerDetail['image_four'] = $flowerDetail['image_four'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_four'] : null;
+                $flowerDetail['image_five'] = $flowerDetail['image_five'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['image_five'] : null;
+                $flowerDetail['icon_image'] = $flowerDetail['icon_image'] ? Config::get('DocumentConstant.ICON_MASTER_VIEW') . $flowerDetail['icon_image'] : null;
+
+                if ($language == 'hindi') {
+                    $flowerDetail['audio_link'] = $flowerDetail['audio_link'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['audio_link'] : null;
+                    $flowerDetail['video_upload'] = $flowerDetail['video_upload'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['video_upload'] : null;
+                } else {
+                    $flowerDetail['audio_link'] = $flowerDetail['audio_link'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['audio_link'] : null;
+                    $flowerDetail['video_upload'] = $flowerDetail['video_upload'] ? Config::get('DocumentConstant.FLOWERS_VIEW') . $flowerDetail['video_upload'] : null;
+                }
             }
     
             $flowersData = $data_output_flowers;
@@ -376,21 +386,25 @@ class MappingController extends Controller
                 })
                 ->get()
                 ->toArray();
-    
             foreach ($data_output_amenities as &$amenitiesDetail) {
                 $amenitiesDetail['image'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image'];
-                $amenitiesDetail['image_two'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_two'];
-                $amenitiesDetail['image_three'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_three'];
-                $amenitiesDetail['image_four'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_four'];
-                $amenitiesDetail['image_five'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_five'];
-                $amenitiesDetail['icon_image'] = Config::get('DocumentConstant.ICON_MASTER_VIEW') . $amenitiesDetail['icon_image'];
-                $amenitiesDetail['audio_link'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['audio_link'];
-                $amenitiesDetail['video_upload'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['video_upload'];
+                $amenitiesDetail['image_two'] = $amenitiesDetail['image_two'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_two'] : null;
+                $amenitiesDetail['image_three'] = $amenitiesDetail['image_three'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_three'] : null;
+                $amenitiesDetail['image_four'] = $amenitiesDetail['image_four'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_four'] : null;
+                $amenitiesDetail['image_five'] = $amenitiesDetail['image_five'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['image_five'] : null;
+                $amenitiesDetail['icon_image'] = $amenitiesDetail['icon_image'] ? Config::get('DocumentConstant.ICON_MASTER_VIEW') . $amenitiesDetail['icon_image'] : null;
+
+                if ($language == 'hindi') {
+                    $amenitiesDetail['audio_link'] = $amenitiesDetail['audio_link'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['audio_link'] : null;
+                    $amenitiesDetail['video_upload'] = $amenitiesDetail['video_upload'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['video_upload'] : null;
+                } else {
+                    $amenitiesDetail['audio_link'] = $amenitiesDetail['audio_link'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['audio_link'] : null;
+                    $amenitiesDetail['video_upload'] = $amenitiesDetail['video_upload'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenitiesDetail['video_upload'] : null;
+                }
             }
     
             $amenitiesData = $data_output_amenities;
     
-            // Conditionally return only the specific data if any ID parameters are provided
             if ($tress_id) {
                 return response()->json([
                     'status' => 'true',
