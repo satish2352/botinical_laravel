@@ -24,6 +24,11 @@ use App\Http\Controllers\Api\MappingController;
 */
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/verifyotp', [AuthController::class, 'verifyOTP']);
+Route::post('/get-home-data', [AboutUsListController::class, 'getHomeData']);
+Route::post('/get-aboutus-element-list', [AboutUsListController::class, 'getAllAboutUsElementList']);
+Route::post('/add-contactus-form', [ContactInformationController::class, 'addContactUs']);
+      
+Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
 // Route::post('login', 'AuthController@login')->middleware('api');
 
 Route::group([
@@ -41,9 +46,9 @@ Route::group([
     Route::middleware('auth:api')->group(function () {
         Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
         
-        Route::post('/get-home-data', [AboutUsListController::class, 'getHomeData']);
+       
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
-        Route::post('/get-aboutus-element-list', [AboutUsListController::class, 'getAllAboutUsElementList']);
+       
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
       
         Route::post('/get-ticket-list', [AboutUsListController::class, 'getAllTicketList']);
@@ -84,9 +89,7 @@ Route::group([
 
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
           
-        Route::post('/add-contactus-form', [ContactInformationController::class, 'addContactUs']);
-      
-        Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
+       
         
 
         });
