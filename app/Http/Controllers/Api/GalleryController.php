@@ -14,6 +14,32 @@ use App\Models\ {
 
 class GalleryController extends Controller
  {
+
+    public function getAllGalleryCategory(Request $request) {
+        try {
+            $language = $request->input('language', 'english'); 
+            $data_output = GalleryCategory::where('is_active','=',true);
+            if ($language == 'hindi') {
+                $data_output =  $data_output->select('id','hindi_name as name');
+            } else {
+                $data_output = $data_output->select('id','english_name as name');
+            }
+            $data_output =  $data_output->get()
+                            ->toArray();
+                            
+            return response()->json([
+                'status' => true,
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Gallery Category List Fail',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
     public function getGallery(Request $request)
 {
     try {
