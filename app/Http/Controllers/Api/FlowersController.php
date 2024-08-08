@@ -223,7 +223,6 @@ class FlowersController extends Controller {
     
             // Set common attributes
             $data->icon_id = $request->icon_id;
-            $data->tree_plant_id = $request->tree_plant_id;
             $data->english_description = $request->english_description;
             $data->hindi_description = $request->hindi_description;
             $data->latitude = $request->latitude;
@@ -236,6 +235,7 @@ class FlowersController extends Controller {
                 $data->girth = $request->girth;
                 $data->girth_type = $request->girth_type;
             } else {
+                $data->tree_plant_id = $request->tree_plant_id;
                 $data->open_time_first = $request->open_time_first;
                 $data->close_time_first = $request->close_time_first;
                 $data->open_time_second = $request->open_time_second;
