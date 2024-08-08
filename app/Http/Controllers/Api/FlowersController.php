@@ -228,6 +228,7 @@ class FlowersController extends Controller {
             $data->latitude = $request->latitude;
             $data->longitude = $request->longitude;
             if ($type != 'aminities') {
+                $data->tree_plant_id = $request->tree_plant_id;
                 $data->height = $request->height;
                 $data->height_type = $request->height_type;
                 $data->canopy = $request->canopy;
@@ -235,7 +236,7 @@ class FlowersController extends Controller {
                 $data->girth = $request->girth;
                 $data->girth_type = $request->girth_type;
             } else {
-                $data->tree_plant_id = $request->tree_plant_id;
+                
                 $data->open_time_first = $request->open_time_first;
                 $data->close_time_first = $request->close_time_first;
                 $data->open_time_second = $request->open_time_second;
