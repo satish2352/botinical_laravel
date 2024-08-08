@@ -75,7 +75,9 @@ Route::group([
         
         // =========Flowers===================
         
-        Route::post('/add-plant', [FlowersController::class, 'addPlant']);
+        // Route::post('/add-plant', [FlowersController::class, 'addPlant']);
+        Route::post('/add-tree-plant-aminities', [FlowersController::class, 'addTreePlantAminities']);
+        
         Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
         Route::post('/get-flowers-audio', [FlowersController::class, 'getParticularFlowersAudio']);
         Route::post('/get-flowers-video', [FlowersController::class, 'getParticularFlowersVideo']);
