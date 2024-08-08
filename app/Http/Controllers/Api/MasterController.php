@@ -16,7 +16,7 @@ class MasterController extends Controller
 {
       public function getTreePlantMaster(Request $request) {
         try {
-            $language = $request->input('language', 'english'); 
+            // $language = $request->input('language', 'english'); 
             $tree_plant_id = $request->input('tree_plant_id');
 
             $data_output = TreePlantMaster::where('is_active','=',true)
@@ -24,11 +24,8 @@ class MasterController extends Controller
                 $query->where('tbl_tree_plant.id', $tree_plant_id); 
             });
             
-            if ($language == 'hindi') {
-                $data_output =  $data_output->select('id','hindi_name as name', 'hindi_botnical_name as botnical_name', 'hindi_common_name as common_name');
-            } else {
-                $data_output = $data_output->select('id','english_name as name', 'english_botnical_name as botnical_name', 'english_common_name as common_name');
-            }
+            $data_output =  $data_output->select('id', 'english_name','hindi_name', 'english_botnical_name', 'hindi_botnical_name', 'english_common_name', 'hindi_common_name');
+           
             $data_output =  $data_output->get()
                             ->toArray();
                             
