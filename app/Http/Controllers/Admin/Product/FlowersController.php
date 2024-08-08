@@ -24,8 +24,7 @@ class FlowersController extends Controller {
     public function index() {
         try {
             $flowers = $this->service->getAll();
-            dd($flowers);
-            die();
+           
             return view( 'admin.pages.product.flowers.list-flowers', compact( 'flowers' ) );
         } catch ( \Exception $e ) {
             return $e;

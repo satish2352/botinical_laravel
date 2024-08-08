@@ -28,6 +28,8 @@ class FlowersRepository  {
             )
             ->orderBy('tbl_flowers.id', 'desc')
             ->get();
+
+         return $data_output;
         } catch (\Exception $e) {
             return $e;
         }

@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Validator;
 use App\Models\ {
-    TreePlantMaster
+    TreePlantMaster,
+    IconMaster,
+    Roles
 };
 
 
@@ -38,6 +40,49 @@ class MasterController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Tree Plant List Fail',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+
+    public function getIconMaster(Request $request) {
+        try {
+            $data_output = IconMaster::where('is_active','=',true)
+            ->select('id', 'name','image')
+           ->get()
+           ->toArray();
+                            
+            return response()->json([
+                'status' => true,
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Tree Icon List Fail',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getRole(Request $request) {
+        try {
+            $data_output = Roles::where('is_active','=',true)
+            ->select('id', 'role_name')
+           ->get()
+           ->toArray();
+                            
+            return response()->json([
+                'status' => true,
+                'message' => 'All data retrieved successfully',
+                'data' => $data_output
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Tree Icon List Fail',
                 'error' => $e->getMessage()
             ], 500);
         }

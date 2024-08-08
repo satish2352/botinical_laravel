@@ -25,71 +25,108 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
+    // public function submitLogin(Request $request) {
+
+    //     $get_user = User::where([
+    //         'email' => $request['email'],
+    //         ])->first();
+    //         if(!empty($get_user)){
+           
+    //             if($get_user->ip_address!=$request->ip() ){
+    //                 $update = User::where([
+    //                     'email' => $request['email'],
+    //                     ])
+    //                     ->update([
+    //                         'ip_address'=>'null',
+    //                         // 'user_agent'=>'null',
+    //                     ]);        
+    //             }
+    //         }
+            
+    //     $rules = [
+    //         // 'email' => 'required | email', 
+    //         // 'password' => 'required',
+    //         // 'g-recaptcha-response' => 'required|captcha',
+    //         ];
+    //     $messages = [   
+    //         // 'email.required' => 'Please Enter Email.',
+    //         // 'email.email' => 'Please Enter a Valid Email Address.',
+    //         // 'password.required' => 'Please Enter Password.',
+    //         // 'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
+    //         // 'g-recaptcha-response.required' =>'Please verify that you are not a robot.',
+    //     ];
+    
+    //     try {
+    //         $validation = Validator::make($request->all(),$rules,$messages);
+    //         if($validation->fails() )
+    //         {
+    //             return redirect('login')
+    //                 ->withInput()
+    //                 ->withErrors($validation);
+    //         } else {
+
+    //             $update_values = User::where([
+    //                 'email' => $request['email']
+    //                 ])->get()->toArray();
+
+    //             if(!($update_values[0]['ip_address'] == $request->ip()) &&
+    //             !($update_values[0]['ip_address'] == 'null')) {
+    //                 return redirect('/login')->with('error','Please logout from another browser');
+
+    //             }
+                    
+    //                 $resp  = self::$loginServe->checkLogin($request);
+    //                 if($resp['status']=='success') {
+    //                     return redirect('/dashboard');
+    //                 } else {
+    //                     return redirect('/login')->with('error', $resp['msg']);
+    //                 }
+
+    //         }
+
+    //     } catch (Exception $e) {
+    //         return redirect('feedback-suggestions')->withInput()->with(['msg' => $e->getMessage(), 'status' => 'error']);
+    //     }
+        
+    // }
     public function submitLogin(Request $request) {
 
-        $get_user = User::where([
-            'email' => $request['email'],
-            ])->first();
-            if(!empty($get_user)){
-           
-                if($get_user->ip_address!=$request->ip() ){
-                    $update = User::where([
-                        'email' => $request['email'],
-                        ])
-                        ->update([
-                            'ip_address'=>'null',
-                            // 'user_agent'=>'null',
-                        ]);        
-                }
-            }
-            
         $rules = [
-            // 'email' => 'required | email', 
-            // 'password' => 'required',
-            // 'g-recaptcha-response' => 'required|captcha',
-            ];
-        $messages = [   
-            // 'email.required' => 'Please Enter Email.',
-            // 'email.email' => 'Please Enter a Valid Email Address.',
-            // 'password.required' => 'Please Enter Password.',
-            // 'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
-            // 'g-recaptcha-response.required' =>'Please verify that you are not a robot.',
+            'email' => 'required | email', 
+            'password' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     
+        $messages = [   
+            'email.required' => 'Please Enter Email.',
+            'email.email' => 'Please Enter a Valid Email Address.',
+            'password.required' => 'Please Enter Password.',
+            'g-recaptcha-response.captcha' => 'Captcha error! try again later or contact site admin.',
+            'g-recaptcha-response.required' =>'Please verify that you are not a robot.',
+        ];
+        
         try {
-            $validation = Validator::make($request->all(),$rules,$messages);
-            if($validation->fails() )
-            {
+            $validation = Validator::make($request->all(), $rules, $messages);
+    
+            if ($validation->fails()) {
                 return redirect('login')
                     ->withInput()
                     ->withErrors($validation);
             } else {
-
-                $update_values = User::where([
-                    'email' => $request['email']
-                    ])->get()->toArray();
-
-                if(!($update_values[0]['ip_address'] == $request->ip()) &&
-                !($update_values[0]['ip_address'] == 'null')) {
-                    return redirect('/login')->with('error','Please logout from another browser');
-
+                $resp = self::$loginServe->checkLogin($request);
+    
+                if ($resp['status'] == 'success') {
+                    return redirect('/dashboard');
+                } else {
+                    return redirect('/login')->with('error', $resp['msg']);
                 }
-                    
-                    $resp  = self::$loginServe->checkLogin($request);
-                    if($resp['status']=='success') {
-                        return redirect('/dashboard');
-                    } else {
-                        return redirect('/login')->with('error', $resp['msg']);
-                    }
-
             }
-
+    
         } catch (Exception $e) {
-            return redirect('feedback-suggestions')->withInput()->with(['msg' => $e->getMessage(), 'status' => 'error']);
+            return redirect('/login')->withInput()->with(['msg' => $e->getMessage(), 'status' => 'error']);
         }
-        
     }
-
+    
     public function logout(Request $request)
     {
 
@@ -98,7 +135,7 @@ class LoginController extends Controller
             'is_active' =>true
             ])
             ->update([
-                'ip_address'=>'null',
+                // 'ip_address'=>'null',
                 // 'user_agent'=>'null'
             ]);
 

@@ -91,7 +91,7 @@ class RegisterRepository
 		// $user_data->state = $request['state'];
 		// $user_data->city = $request['city'];
 		$user_data->occupation = $request['occupation'];
-		$user_data->ip_address = 'null';
+		// $user_data->ip_address = 'null';
 		$user_data->is_active = isset($request['is_active']) ? true : false;
 		$user_data->save();
 

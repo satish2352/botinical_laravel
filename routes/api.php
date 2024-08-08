@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\FacilitiesController;
 use App\Http\Controllers\Api\ZoneAreaController;
 use App\Http\Controllers\Api\MappingController;
 use App\Http\Controllers\Api\MasterController;
+use App\Http\Controllers\Api\UserProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,9 +47,8 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
     Route::middleware('auth:api')->group(function () {
-        Route::post('/update-user-form', [AuthController::class, 'updateUserDetails']);
+        Route::post('/user-registration', [AuthController::class, 'userRegistration']);
         
-       
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
        
         Route::post('/get-charges-list', [AboutUsListController::class, 'getAllChargesList']);
@@ -92,10 +93,14 @@ Route::group([
 
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
         Route::post('/get-tree-plant', [MasterController::class, 'getTreePlantMaster']);
-       
-        
+        Route::post('/get-icon', [MasterController::class, 'getIconMaster']);
+        Route::post('/get-role', [MasterController::class, 'getRole']);
 
-        });
+        Route::post('/change-password-profile', [UserProfileController::class, 'changePasswordProfile']);
+        Route::post('/particular-user-profile', [UserProfileController::class, 'getParticularUserProfile']);
+        
+        
+    });
 
 });
 

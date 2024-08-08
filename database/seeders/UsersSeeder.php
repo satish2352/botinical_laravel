@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
                 'gender' => 'gender',
                 'address' => 'address',
                 'occupation' => 'occupation',
-                'ip_address' => '192.168.1.32',
+                // 'ip_address' => '192.168.1.32',
             ]);
             
         User::create(
@@ -42,7 +42,7 @@ class UsersSeeder extends Seeder
             'gender' => 'gender',
             'address' => 'address',
             'occupation' => 'occupation',
-            'ip_address' => '192.168.1.32',
+            // 'ip_address' => '192.168.1.32',
         ]);
 
         

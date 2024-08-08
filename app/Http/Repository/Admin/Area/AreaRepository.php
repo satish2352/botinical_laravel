@@ -391,7 +391,7 @@ class AreaRepository
 		$user_data->user_district = $request['user_district'];
 		$user_data->user_taluka = $request['user_taluka'];
 		$user_data->user_village = $request['user_village'];
-		$user_data->ip_address = 'null';
+		// $user_data->ip_address = 'null';
 		$user_data->is_active = isset($request['is_active']) ? true : false;
 		$user_data->save();
 

@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('admin.login');
 });
 

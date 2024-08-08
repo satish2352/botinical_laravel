@@ -124,7 +124,16 @@
                                 <input type="password" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control">
                                 <span class="help-block small">Your strong password</span>
                             </div>
-                            
+                             <div class="form-group">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <span class="red-text">{{ $errors->first('g-recaptcha-response') }}</span>
+                                        </span>
+                                    @endif
+                                </div>
                             <button type="submit" class="btn btn-success btn-block loginbtn">Login</button>
                         </form>
 
