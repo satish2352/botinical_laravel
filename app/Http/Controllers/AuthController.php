@@ -49,55 +49,6 @@ public function __construct()
     // ====================
 
     public function login( Request $request ){
-        try {
-            $all_data_validation = [
-                'mobile_number' => [ 'required', 'digits:10', 'regex:/^[6789]\d{9}$/' ],
-            ];
-
-            $customMessages = [
-                'mobile_number.required' => 'Mobile number is required.',
-                'mobile_number.digits' => 'Mobile number must be 10 digits.',
-                'mobile_number.regex' => 'Mobile number must start with 9, 8, 7 or 6.',
-            ];
-
-            $validator = Validator::make( $request->all(), $all_data_validation, $customMessages );
-
-            if ( $validator->fails() ) {
-                $errors = $validator->errors()->all();
-                $errorMessage = implode( ' \n ', $errors );
-                return response()->json( [
-                    'status' => 'false',
-                    'message' => 'Validation Fail: ' . $errorMessage,
-                ], 200 );
-            }
-
-            // Fetch mobile number directly from request
-            $mobileNumber = $request->input( 'mobile_number' );
-
-            // Check if user exists with the provided mobile number
-            $user = User::where( 'mobile_number', $mobileNumber )->first();
-
-            if ( !$user ) {
-                // If user doesn't exist, create a new one
-                $user = new User();
-                $user->mobile_number = $mobileNumber;
-                $user->save();
-            }
-
-            // Generate OTP (You can implement your OTP generation logic here)
-            $otp = "1234";
-
-            // Update user's OTP
-                $user->user_otp = $otp;
-                $user->save();
-
-                return response()->json( [
-                    'status' => 'true',
-                    'message' => 'OTP sent successfully.',
-                ] );
-            } catch ( \Exception $e ) {
-                return response()->json( [ 'status' => 'false', 'message' => 'Login fail', 'error' => $e->getMessage() ], 500 );
-            }
         }
 
         /**
@@ -107,53 +58,6 @@ public function __construct()
         */
 
         public function verifyOTP( Request $request ){
-            try {
-                // Validate the request data
-                $request->validate( [
-                    'mobile_number' => 'required|string',
-                    'user_otp' => 'required|string'
-                ] );
-
-                // Retrieve mobile number and OTP from the request
-                $mobileNumber = $request->input( 'mobile_number' );
-                $otpEntered = $request->input( 'user_otp' );
-
-                // Retrieve the user record by mobile number
-                $user = User::where( 'mobile_number', $mobileNumber )->first();
-
-                // Check if the user exists
-                if ( !$user ) {
-                    return response()->json( [ 'status' => 'false', 'message' => 'User not found' ], 200 );
-                }
-
-                // Retrieve OTP stored for the user
-                $otpStored = $user->user_otp;
-
-                // Check if OTPs match
-                if ( $otpStored && $otpStored === $otpEntered ) {
-
-                    $token = auth()->login( $user );
-                   
-                    if (!$token) {
-                        return response()->json(['error' => 'Unauthorized'], 401);
-                    }
-                    
-                    $user->update( [ 'remember_token' => $token ] );
-
-                    return response()->json( [
-                        'status' => 'true',
-                        'message' => 'OTP verification successful. Login successful!',
-                        'data'=>$user,
-                        'token' => $token,
-                        'token_type' => 'bearer',
-                        'expires_in' => auth()->factory()->getTTL() * 60
-                    ] );
-                } else {
-                    return response()->json( [ 'status' => 'false', 'message' => 'Invalid OTP' ], 200 );
-                }
-            } catch ( \Exception $e ) {
-                return response()->json( [ 'status' => 'false', 'error' => $e->getMessage() ], 500 );
-            }
         }
     // =================
 
