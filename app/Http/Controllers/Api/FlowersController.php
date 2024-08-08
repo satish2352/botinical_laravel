@@ -18,7 +18,16 @@ class FlowersController extends Controller {
 
     public function addTreePlantAminities(Request $request) {
         $type = $request->input('type'); // Get the type from the request
-    
+        $typeMap = [
+            1 => 'tree',
+            2 => 'flower',
+            3 => 'aminities',
+        ];
+        if (!array_key_exists($type, $typeMap)) {
+            return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
+        }
+       $typeName = $typeMap[$type];
+       
         // Define validation rules and custom messages for tree, flower, and amenities
         $validationRules = [
             'tree' => [
