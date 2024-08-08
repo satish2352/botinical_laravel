@@ -8,80 +8,202 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Validator;
 use App\Models\ {
-    Flowers
+    Flowers,
+    Tress,
+    Amenities
 };
 
 class FlowersController extends Controller {
 
-    public function addPlant(Request $request) {
-        // Define the validation rules
-        $validator = Validator::make($request->all(), [
-            'tree_plant_id' => 'required',
-            // 'english_name' => 'required',
-            // 'hindi_name' => 'required',
-            // 'english_botnical_name' => 'required', 
-            // 'hindi_botnical_name' => 'required',
-            // 'english_common_name' => 'required',
-            // 'hindi_common_name' => 'required',
-            'english_description' => 'required',
-            'hindi_description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'english_audio_link' => 'required',
-            'hindi_audio_link' => 'required',
-            'english_video_upload' => 'required|mimes:mp4,mov,avi|max:10000',
-            'hindi_video_upload' => 'required|mimes:mp4,mov,avi|max:10000',
-            'latitude' => 'required|numeric|between:-90,90',
-            'longitude' => 'required|numeric|between:-180,180',
-            'height' => 'required|numeric',
-            'height_type' => 'required|string',
-            'canopy' => 'required|numeric',
-            'canopy_type' => 'required|string',
-            'girth' => 'required|numeric',
-            'girth_type' => 'required|string',
-        ]);
+
+    public function addTreePlantAminities(Request $request) {
+        $type = $request->input('type'); // Get the type from the request
     
-        // Define custom validation messages
-        $customMessages = [
-            // 'english_name.required' => 'English name is required.',
-            // 'hindi_name.required' => 'Hindi name is required.',
-            // 'english_botnical_name.required' => 'English botanical name is required.',
-            // 'hindi_botnical_name.required' => 'Hindi botanical name is required.',
-            // 'english_common_name.required' => 'English common name is required.',
-            // 'hindi_common_name.required' => 'Hindi common name is required.',
-            'tree_plant_id.required' => 'Please select tree plant name.',
-            'english_description.required' => 'English description is required.',
-            'hindi_description.required' => 'Hindi description is required.',
-            'image.required' => 'Image is required.',
-            'image.image' => 'Image must be a valid image file.',
-            'image.mimes' => 'Image must be a file of type: jpeg, png, jpg.',
-            'image.max' => 'Image size must not exceed 2048 KB.',
-            'english_audio_link.required' => 'English audio link is required.',
-            'hindi_audio_link.required' => 'Hindi audio link is required.',
-            'english_video_upload.required' => 'English video upload is required.',
-            'english_video_upload.mimes' => 'English video must be a file of type: mp4, mov, avi.',
-            'english_video_upload.max' => 'English video size must not exceed 10000 KB.',
-            'hindi_video_upload.required' => 'Hindi video upload is required.',
-            'hindi_video_upload.mimes' => 'Hindi video must be a file of type: mp4, mov, avi.',
-            'hindi_video_upload.max' => 'Hindi video size must not exceed 10000 KB.',
-            'latitude.required' => 'Latitude is required.',
-            'latitude.numeric' => 'Latitude must be a number.',
-            'latitude.between' => 'Latitude must be between -90 and 90.',
-            'longitude.required' => 'Longitude is required.',
-            'longitude.numeric' => 'Longitude must be a number.',
-            'longitude.between' => 'Longitude must be between -180 and 180.',
-            'height.required' => 'Height is required.',
-            'height.numeric' => 'Height must be a number.',
-            'height_type.required' => 'Height type is required.',
-            'height_type.string' => 'Height type must be a string.',
-            'canopy.required' => 'Canopy is required.',
-            'canopy.numeric' => 'Canopy must be a number.',
-            'canopy_type.required' => 'Canopy type is required.',
-            'canopy_type.string' => 'Canopy type must be a string.',
-            'girth.required' => 'Girth is required.',
-            'girth.numeric' => 'Girth must be a number.',
-            'girth_type.required' => 'Girth type is required.',
-            'girth_type.string' => 'Girth type must be a string.',
+        // Define validation rules and custom messages for tree, flower, and amenities
+        $validationRules = [
+            'tree' => [
+                'tree_plant_id' => 'required',
+                'english_description' => 'required',
+                'hindi_description' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'english_audio_link' => 'required',
+                'hindi_audio_link' => 'required',
+                'english_video_upload' => 'required|mimes:mp4|max:10000',
+                'hindi_video_upload' => 'required|mimes:mp4|max:10000',
+                'latitude' => 'required|numeric|between:-90,90',
+                'longitude' => 'required|numeric|between:-180,180',
+                'height' => 'required|numeric',
+                'height_type' => 'required|string',
+                'canopy' => 'required|numeric',
+                'canopy_type' => 'required|string',
+                'girth' => 'required|numeric',
+                'girth_type' => 'required|string',
+                'image_two' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.TRESS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.TRESS_IMAGE_MIN_SIZE'),
+                'image_three' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.TRESS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.TRESS_IMAGE_MIN_SIZE'),
+                'image_four' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.TRESS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.TRESS_IMAGE_MIN_SIZE'),
+                'image_five' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.TRESS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.TRESS_IMAGE_MIN_SIZE'),
+            ],
+            'flower' => [
+                'tree_plant_id' => 'required',
+                'english_description' => 'required',
+                'hindi_description' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'english_audio_link' => 'required',
+                'hindi_audio_link' => 'required',
+                'english_video_upload' => 'required|mimes:mp4|max:10000',
+                'hindi_video_upload' => 'required|mimes:mp4|max:10000',
+                'latitude' => 'required|numeric|between:-90,90',
+                'longitude' => 'required|numeric|between:-180,180',
+                'height' => 'required|numeric',
+                'height_type' => 'required|string',
+                'canopy' => 'required|numeric',
+                'canopy_type' => 'required|string',
+                'girth' => 'required|numeric',
+                'girth_type' => 'required|string',
+                'image_two' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MIN_SIZE'),
+                'image_three' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MIN_SIZE'),
+                'image_four' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MIN_SIZE'),
+                'image_five' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.FLOWERS_IMAGE_MIN_SIZE'),
+            ],
+            'aminities' => [
+                'english_name' => 'required',
+                'hindi_name' => 'required',
+                'english_description' => 'required',
+                'hindi_description' => 'required',
+                'latitude' => 'required|numeric|between:-90,90',
+                'longitude' => 'required|numeric|between:-180,180',
+                'english_audio_link' => 'sometimes|nullable|image|mimes:mp3|max:'.Config::get('AllFileValidation.AUDIO_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AUDIO_MIN_SIZE'),
+                'hindi_audio_link' => 'sometimes|nullable|image|mimes:mp3|max:'.Config::get('AllFileValidation.AUDIO_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AUDIO_MIN_SIZE'),
+                'english_video_upload' => 'sometimes|nullable|image|mimetypes:video/mp4|max:'.Config::get('AllFileValidation.VIDEO_MAX_SIZE').'|min:'.Config::get('AllFileValidation.VIDEO_MIN_SIZE'),
+                'hindi_video_upload' => 'sometimes|nullable|image|mimetypes:video/mp4|max:'.Config::get('AllFileValidation.VIDEO_MAX_SIZE').'|min:'.Config::get('AllFileValidation.VIDEO_MIN_SIZE'),
+                'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MIN_SIZE'),
+                'image_two' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MIN_SIZE'),
+                'image_three' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MIN_SIZE'),
+                'image_four' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MIN_SIZE'),
+                'image_five' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MAX_SIZE').'|min:'.Config::get('AllFileValidation.AMENITIES_IMAGE_MIN_SIZE'),
+            ]
         ];
+    
+        $customMessages = [
+            // Tree validation messages
+            'tree.tree_plant_id.required' => 'Please select tree plant name.',
+            'tree.english_description.required' => 'English description is required.',
+            'tree.hindi_description.required' => 'Hindi description is required.',
+            'tree.image.required' => 'Image is required.',
+            'tree.image.image' => 'Image must be a valid image file.',
+            'tree.image.mimes' => 'Image must be a file of type: jpeg, png, jpg.',
+            'tree.image.max' => 'Image size must not exceed 2048 KB.',
+            'tree.english_audio_link.required' => 'English audio link is required.',
+            'tree.hindi_audio_link.required' => 'Hindi audio link is required.',
+            'tree.english_video_upload.required' => 'English video upload is required.',
+            'tree.english_video_upload.mimes' => 'English video must be a file of type: mp4.',
+            'tree.english_video_upload.max' => 'English video size must not exceed 10000 KB.',
+            'tree.hindi_video_upload.required' => 'Hindi video upload is required.',
+            'tree.hindi_video_upload.mimes' => 'Hindi video must be a file of type: mp4.',
+            'tree.hindi_video_upload.max' => 'Hindi video size must not exceed 10000 KB.',
+            'tree.latitude.required' => 'Latitude is required.',
+            'tree.latitude.numeric' => 'Latitude must be a number.',
+            'tree.latitude.between' => 'Latitude must be between -90 and 90.',
+            'tree.longitude.required' => 'Longitude is required.',
+            'tree.longitude.numeric' => 'Longitude must be a number.',
+            'tree.longitude.between' => 'Longitude must be between -180 and 180.',
+            'tree.height.required' => 'Height is required.',
+            'tree.height.numeric' => 'Height must be a number.',
+            'tree.height_type.required' => 'Height type is required.',
+            'tree.height_type.string' => 'Height type must be a string.',
+            'tree.canopy.required' => 'Canopy is required.',
+            'tree.canopy.numeric' => 'Canopy must be a number.',
+            'tree.canopy_type.required' => 'Canopy type is required.',
+            'tree.canopy_type.string' => 'Canopy type must be a string.',
+            'tree.girth.required' => 'Girth is required.',
+            'tree.girth.numeric' => 'Girth must be a number.',
+            'tree.girth_type.required' => 'Girth type is required.',
+            'tree.girth_type.string' => 'Girth type must be a string.',
+            'tree.image_two.sometimes' => 'The image is required.',
+            'tree.image_two.image' => 'The file must be an image.',
+            'tree.image_two.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'tree.image_two.max' => 'The image size must not exceed ' . Config::get('AllFileValidation.TRESS_IMAGE_MAX_SIZE') . ' KB.',
+            'tree.image_two.min' => 'The image size must be at least ' . Config::get('AllFileValidation.TRESS_IMAGE_MIN_SIZE') . ' KB.',
+            // Repeat similar structure for image_three, image_four, image_five...
+        
+            // Flower validation messages
+            'flower.tree_plant_id.required' => 'Please select tree plant name.',
+            'flower.english_description.required' => 'English description is required.',
+            'flower.hindi_description.required' => 'Hindi description is required.',
+            'flower.image.required' => 'Image is required.',
+            'flower.image.image' => 'Image must be a valid image file.',
+            'flower.image.mimes' => 'Image must be a file of type: jpeg, png, jpg.',
+            'flower.image.max' => 'Image size must not exceed 2048 KB.',
+            'flower.english_audio_link.required' => 'English audio link is required.',
+            'flower.hindi_audio_link.required' => 'Hindi audio link is required.',
+            'flower.english_video_upload.required' => 'English video upload is required.',
+            'flower.english_video_upload.mimes' => 'English video must be a file of type: mp4.',
+            'flower.english_video_upload.max' => 'English video size must not exceed 10000 KB.',
+            'flower.hindi_video_upload.required' => 'Hindi video upload is required.',
+            'flower.hindi_video_upload.mimes' => 'Hindi video must be a file of type: mp4.',
+            'flower.hindi_video_upload.max' => 'Hindi video size must not exceed 10000 KB.',
+            'flower.latitude.required' => 'Latitude is required.',
+            'flower.latitude.numeric' => 'Latitude must be a number.',
+            'flower.latitude.between' => 'Latitude must be between -90 and 90.',
+            'flower.longitude.required' => 'Longitude is required.',
+            'flower.longitude.numeric' => 'Longitude must be a number.',
+            'flower.longitude.between' => 'Longitude must be between -180 and 180.',
+            'flower.height.required' => 'Height is required.',
+            'flower.height.numeric' => 'Height must be a number.',
+            'flower.height_type.required' => 'Height type is required.',
+            'flower.height_type.string' => 'Height type must be a string.',
+            'flower.canopy.required' => 'Canopy is required.',
+            'flower.canopy.numeric' => 'Canopy must be a number.',
+            'flower.canopy_type.required' => 'Canopy type is required.',
+            'flower.canopy_type.string' => 'Canopy type must be a string.',
+            'flower.girth.required' => 'Girth is required.',
+            'flower.girth.numeric' => 'Girth must be a number.',
+            'flower.girth_type.required' => 'Girth type is required.',
+            'flower.girth_type.string' => 'Girth type must be a string.',
+            'flower.image_two.sometimes' => 'The image is required.',
+            'flower.image_two.image' => 'The file must be an image.',
+            'flower.image_two.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
+            'flower.image_two.max' => 'The image size must not exceed ' . Config::get('AllFileValidation.FLOWERS_IMAGE_MAX_SIZE') . ' KB.',
+            'flower.image_two.min' => 'The image size must be at least ' . Config::get('AllFileValidation.FLOWERS_IMAGE_MIN_SIZE') . ' KB.',
+            // Repeat similar structure for image_three, image_four, image_five...
+        
+            // Amenities validation messages
+            'aminities.english_name.required' => 'English name is required.',
+            'aminities.hindi_name.required' => 'Hindi name is required.',
+            'aminities.english_description.required' => 'English description is required.',
+            'aminities.hindi_description.required' => 'Hindi description is required.',
+            'aminities.latitude.required' => 'Latitude is required.',
+            'aminities.latitude.numeric' => 'Latitude must be a number.',
+            'aminities.latitude.between' => 'Latitude must be between -90 and 90.',
+            'aminities.longitude.required' => 'Longitude is required.',
+            'aminities.longitude.numeric' => 'Longitude must be a number.',
+            'aminities.longitude.between' => 'Longitude must be between -180 and 180.',
+            'aminities.english_audio_link.sometimes' => 'English audio link is required.',
+            'aminities.english_audio_link.mimes' => 'English audio must be a file of type: mp3.',
+            'aminities.english_audio_link.max' => 'English audio size must not exceed ' . Config::get('AllFileValidation.AUDIO_MAX_SIZE') . ' KB.',
+            'aminities.english_audio_link.min' => 'English audio size must be at least ' . Config::get('AllFileValidation.AUDIO_MIN_SIZE') . ' KB.',
+            'aminities.hindi_audio_link.sometimes' => 'Hindi audio link is required.',
+            'aminities.hindi_audio_link.mimes' => 'Hindi audio must be a file of type: mp3.',
+            'aminities.hindi_audio_link.max' => 'Hindi audio size must not exceed ' . Config::get('AllFileValidation.AUDIO_MAX_SIZE') . ' KB.',
+            'aminities.hindi_audio_link.min' => 'Hindi audio size must be at least ' . Config::get('AllFileValidation.AUDIO_MIN_SIZE') . ' KB.',
+            'aminities.english_video_upload.sometimes' => 'English video upload is required.',
+            'aminities.english_video_upload.mimetypes' => 'English video must be of type: video/mp4.',
+            'aminities.english_video_upload.max' => 'English video size must not exceed ' . Config::get('AllFileValidation.VIDEO_MAX_SIZE') . ' KB.',
+            'aminities.english_video_upload.min' => 'English video size must be at least ' . Config::get('AllFileValidation.VIDEO_MIN_SIZE') . ' KB.',
+            'aminities.hindi_video_upload.sometimes' => 'Hindi video upload is required.',
+            'aminities.hindi_video_upload.mimetypes' => 'Hindi video must be of type: video/mp4.',
+            'aminities.hindi_video_upload.max' => 'Hindi video size must not exceed ' . Config::get('AllFileValidation.VIDEO_MAX_SIZE') . ' KB.',
+            'aminities.hindi_video_upload.min' => 'Hindi video size must be at least ' . Config::get('AllFileValidation.VIDEO_MIN_SIZE') . ' KB.',
+        ];
+        
+    
+        // Check if type is valid
+        if (!array_key_exists($type, $validationRules)) {
+            return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
+        }
+    
+        // Validate request based on type
+        $validator = Validator::make($request->all(), $validationRules[$type], $customMessages);
     
         // Check if validation fails
         if ($validator->fails()) {
@@ -89,30 +211,49 @@ class FlowersController extends Controller {
         }
     
         try {
-            // Save tree data
-            $flower_data = new Flowers();
-            $flower_data->icon_id = $request->icon_id;
-            $flower_data->tree_plant_id = $request->tree_plant_id;
-            // $flower_data->english_name = $request->english_name;
-            // $flower_data->hindi_name = $request->hindi_name;
-            // $flower_data->english_botnical_name = $request->english_botnical_name;
-            // $flower_data->hindi_botnical_name = $request->hindi_botnical_name;
-            // $flower_data->english_common_name = $request->english_common_name;
-            // $flower_data->hindi_common_name = $request->hindi_common_name;
-            $flower_data->english_description = $request->english_description;
-            $flower_data->hindi_description = $request->hindi_description;
-            $flower_data->latitude = $request->latitude;
-            $flower_data->longitude = $request->longitude;
-            $flower_data->height = $request->height;
-            $flower_data->height_type = $request->height_type;
-            $flower_data->canopy = $request->canopy;
-            $flower_data->canopy_type = $request->canopy_type;
-            $flower_data->girth = $request->girth;
-            $flower_data->girth_type = $request->girth_type;
-            $flower_data->save();
+            if ($type == 'tree') {
+                $data = new Tress();
+            } elseif ($type == 'flower') {
+                $data = new Flowers();
+            } elseif ($type == 'aminities') {
+                $data = new Amenities();
+                $data->english_name = $request->english_name;
+                $data->hindi_name = $request->hindi_name;
+            }
+    
+            // Set common attributes
+            $data->icon_id = $request->icon_id;
+            $data->tree_plant_id = $request->tree_plant_id;
+            $data->english_description = $request->english_description;
+            $data->hindi_description = $request->hindi_description;
+            $data->latitude = $request->latitude;
+            $data->longitude = $request->longitude;
+            if ($type != 'aminities') {
+                $data->height = $request->height;
+                $data->height_type = $request->height_type;
+                $data->canopy = $request->canopy;
+                $data->canopy_type = $request->canopy_type;
+                $data->girth = $request->girth;
+                $data->girth_type = $request->girth_type;
+            } else {
+                $data->open_time_first = $request->open_time_first;
+                $data->close_time_first = $request->close_time_first;
+                $data->open_time_second = $request->open_time_second;
+                $data->close_time_second = $request->close_time_second;
+            }
+            $data->save();
     
             // Get last inserted ID
-            $last_insert_id = $flower_data->id;
+            $last_insert_id = $data->id;
+    
+            // Define path based on type
+            if ($type == 'tree') {
+                $path = Config::get('DocumentConstant.TREE_ADD');
+            } elseif ($type == 'flower') {
+                $path = Config::get('DocumentConstant.FLOWERS_ADD');
+            } else {
+                $path = Config::get('DocumentConstant.AMENITIES_ADD');
+            }
     
             // Handle file uploads
             $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
@@ -120,8 +261,7 @@ class FlowersController extends Controller {
             $hindiAudio = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
             $englishVideo = $last_insert_id . '_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
             $hindiVideo = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
-            $path = Config::get('DocumentConstant.FLOWERS_ADD');
-    
+            
             // Save files
             $request->image->move(public_path($path), $treeImage);
             $request->english_audio_link->move(public_path($path), $englishAudio);
@@ -129,19 +269,21 @@ class FlowersController extends Controller {
             $request->english_video_upload->move(public_path($path), $englishVideo);
             $request->hindi_video_upload->move(public_path($path), $hindiVideo);
     
-            // Update tree data with file names
-            $flower_data->image = $treeImage;
-            $flower_data->english_audio_link = $englishAudio;
-            $flower_data->hindi_audio_link = $hindiAudio;
-            $flower_data->english_video_upload = $englishVideo;
-            $flower_data->hindi_video_upload = $hindiVideo;
-            $flower_data->save();
+            // Update file paths in database
+            $data->image = $treeImage;
+            $data->english_audio_link = $englishAudio;
+            $data->hindi_audio_link = $hindiAudio;
+            $data->english_video_upload = $englishVideo;
+            $data->hindi_video_upload = $hindiVideo;
+            $data->save();
     
-            return response()->json(['status' => 'true', 'message' => 'Plant added successfully'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['status' => 'false', 'message' => 'Plant addition failed', 'error' => $e->getMessage()], 500);
+            return response()->json(['status' => 'true', 'message' => ucfirst($type) . ' Added Successfully.'], 200);
+        } catch (Exception $e) {
+            return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
+    
+    
 
     public function getFlowersList( Request $request ) {
         try {

@@ -18,12 +18,6 @@ class TressController extends Controller
         // Define the validation rules
         $validator = Validator::make($request->all(), [
             'tree_plant_id' => 'required',
-            // 'english_name' => 'required',
-            // 'hindi_name' => 'required',
-            // 'english_botnical_name' => 'required', 
-            // 'hindi_botnical_name' => 'required',
-            // 'english_common_name' => 'required',
-            // 'hindi_common_name' => 'required',
             'english_description' => 'required',
             'hindi_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -44,12 +38,6 @@ class TressController extends Controller
         // Define custom validation messages
         $customMessages = [
             'tree_plant_id.required' => 'Please select tree plant name.',
-            // 'english_name.required' => 'English name is required.',
-            // 'hindi_name.required' => 'Hindi name is required.',
-            // 'english_botnical_name.required' => 'English botanical name is required.',
-            // 'hindi_botnical_name.required' => 'Hindi botanical name is required.',
-            // 'english_common_name.required' => 'English common name is required.',
-            // 'hindi_common_name.required' => 'Hindi common name is required.',
             'english_description.required' => 'English description is required.',
             'hindi_description.required' => 'Hindi description is required.',
             'image.required' => 'Image is required.',
@@ -94,12 +82,6 @@ class TressController extends Controller
             $tree_data = new Tress();
             $tree_data->icon_id = $request->icon_id;
             $tree_data->tree_plant_id = $request->tree_plant_id;
-            // $tree_data->english_name = $request->english_name;
-            // $tree_data->hindi_name = $request->hindi_name;
-            // $tree_data->english_botnical_name = $request->english_botnical_name;
-            // $tree_data->hindi_botnical_name = $request->hindi_botnical_name;
-            // $tree_data->english_common_name = $request->english_common_name;
-            // $tree_data->hindi_common_name = $request->hindi_common_name;
             $tree_data->english_description = $request->english_description;
             $tree_data->hindi_description = $request->hindi_description;
             $tree_data->latitude = $request->latitude;
