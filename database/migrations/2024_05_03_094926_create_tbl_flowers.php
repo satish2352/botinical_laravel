@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('tbl_flowers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('icon_id')->nullable();
-            $table->string('english_name');
-            $table->string('hindi_name');
-            $table->string('english_botnical_name');
-            $table->string('hindi_botnical_name');
-            $table->string('english_common_name');
-            $table->string('hindi_common_name');
+            $table->string('tree_plant_id');
+            // $table->string('english_name');
+            // $table->string('hindi_name');
+            // $table->string('english_botnical_name');
+            // $table->string('hindi_botnical_name');
+            // $table->string('english_common_name');
+            // $table->string('hindi_common_name');
             $table->text('english_description');
             $table->text('hindi_description');
             $table->string('image')->nullable();

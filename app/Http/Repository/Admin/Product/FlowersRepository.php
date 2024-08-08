@@ -6,14 +6,28 @@ use DB;
 use Illuminate\Support\Carbon;
 // use Session;
 use App\Models\ {
-	Flowers
+	Flowers,
+    TreePlantMaster
 };
 use Config;
 
 class FlowersRepository  {
 	public function getAll(){
         try {
-            return Flowers::orderBy('updated_at', 'desc')->get();
+            $data_output = Flowers::join('tbl_tree_plant', 'tbl_tree_plant.id', '=', 'tbl_flowers.tree_plant_id')
+            ->select(
+                'tbl_flowers.id',
+                'tbl_flowers.english_description', 
+                'tbl_flowers.hindi_description', 
+                'tbl_tree_plant.english_name',
+                'tbl_tree_plant.hindi_name',
+                'tbl_tree_plant.english_botnical_name',
+                'tbl_tree_plant.hindi_botnical_name',
+                'tbl_tree_plant.english_common_name',
+                'tbl_tree_plant.hindi_common_name',
+            )
+            ->orderBy('tbl_flowers.id', 'desc')
+            ->get();
         } catch (\Exception $e) {
             return $e;
         }
@@ -24,12 +38,7 @@ class FlowersRepository  {
             $data =array();
             $add_data = new Flowers();
             $add_data->icon_id = $request['icon_id'];
-            $add_data->english_name = $request['english_name'];
-            $add_data->hindi_name = $request['hindi_name'];
-            $add_data->english_botnical_name = $request['english_botnical_name'];
-            $add_data->hindi_botnical_name = $request['hindi_botnical_name'];
-            $add_data->english_common_name = $request['english_common_name'];
-            $add_data->hindi_common_name = $request['hindi_common_name'];
+            $add_data->tree_plant_id = $request['tree_plant_id'];
             $add_data->english_description = $request['english_description'];
             $add_data->hindi_description = $request['hindi_description'];
             $add_data->latitude = $request['latitude'];
@@ -113,8 +122,14 @@ class FlowersRepository  {
 
     public function getById($id){
         try {
-            $data_output = Flowers::find($id);
-          
+            $data_output = Flowers::join('tbl_tree_plant', 'tbl_tree_plant.id', '=', 'tbl_flowers.tree_plant_id')
+            ->select(
+                'tbl_flowers.*', 
+                'tbl_tree_plant.*'
+            )
+            ->where('tbl_flowers.id', $id)
+            ->first();
+
             if ($data_output) {
                 return $data_output;
             } else {
@@ -151,12 +166,7 @@ class FlowersRepository  {
 
             // Update the fields from the request
             $data_output->icon_id = $request['icon_id'];
-            $data_output->english_name = $request['english_name'];
-            $data_output->hindi_name = $request['hindi_name'];
-            $data_output->english_botnical_name = $request['english_botnical_name'];
-            $data_output->hindi_botnical_name = $request['hindi_botnical_name'];
-            $data_output->english_common_name = $request['english_common_name'];
-            $data_output->hindi_common_name = $request['hindi_common_name'];
+            $data_output->tree_plant_id = $request['tree_plant_id'];
             $data_output->english_description = $request['english_description'];
             $data_output->hindi_description = $request['hindi_description'];
             $data_output->latitude = $request['latitude'];

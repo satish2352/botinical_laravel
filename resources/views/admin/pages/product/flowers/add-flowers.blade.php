@@ -26,13 +26,15 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_name">Name</label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="english_name"
-                                                            id="english_name" placeholder="Enter the Name"
-                                                            name="english_name" value="{{ old('english_name') }}">
-                                                        @if ($errors->has('english_name'))
-                                                            <span class="red-text"><?php echo $errors->first('english_name', ':message'); ?></span>
+                                                        <label for="tree_plant_id">Name</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="tree_plant_id" name="tree_plant_id">
+                                                            <option value="">Select</option>
+                                                            @foreach ($dataOutputTreePlant as $data)
+                                                                <option value="{{ $data['id'] }}">{{ $data['english_name'] }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('tree_plant_id'))
+                                                            <span class="red-text">{{ $errors->first('tree_plant_id', ':message') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -42,7 +44,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="hindi_name" id="hindi_name"
                                                             placeholder="नाम दर्ज करें" name="hindi_name"
-                                                            value="{{ old('hindi_name') }}">
+                                                            value="{{ old('hindi_name') }}" readonly>
                                                         @if ($errors->has('hindi_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_name', ':message'); ?></span>
                                                         @endif
@@ -55,7 +57,7 @@
                                                         <input class="form-control mb-2" name="english_botnical_name"
                                                             id="english_botnical_name" placeholder="Enter the Name"
                                                             name="english_botnical_name"
-                                                            value="{{ old('english_botnical_name') }}">
+                                                            value="{{ old('english_botnical_name') }}" readonly>
                                                         @if ($errors->has('english_botnical_name'))
                                                             <span class="red-text"><?php echo $errors->first('english_botnical_name', ':message'); ?></span>
                                                         @endif
@@ -68,7 +70,7 @@
                                                         <input class="form-control mb-2" name="hindi_botnical_name"
                                                             id="hindi_botnical_name" placeholder="वानस्पतिक नाम दर्ज करें"
                                                             name="hindi_botnical_name"
-                                                            value="{{ old('hindi_botnical_name') }}">
+                                                            value="{{ old('hindi_botnical_name') }}" readonly>
                                                         @if ($errors->has('hindi_botnical_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_botnical_name', ':message'); ?></span>
                                                         @endif
@@ -81,7 +83,7 @@
                                                         <input class="form-control mb-2" name="english_common_name"
                                                             id="english_common_name" placeholder="Enter the Name"
                                                             name="english_common_name"
-                                                            value="{{ old('english_common_name') }}">
+                                                            value="{{ old('english_common_name') }}" readonly>
                                                         @if ($errors->has('english_common_name'))
                                                             <span class="red-text"><?php echo $errors->first('english_common_name', ':message'); ?></span>
                                                         @endif
@@ -93,7 +95,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="hindi_common_name"
                                                             id="hindi_common_name" placeholder="साधारण नाम दर्ज करें"
-                                                            name="hindi_common_name" value="{{ old('hindi_common_name') }}">
+                                                            name="hindi_common_name" value="{{ old('hindi_common_name') }}" readonly>
                                                         @if ($errors->has('hindi_common_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_common_name', ':message'); ?></span>
                                                         @endif
@@ -372,11 +374,49 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tree_plant_id').change(function(e) {
+            e.preventDefault();
+            var treePlantId = $(this).val();
+            $('#hindi_name').val(''); // Clear the current value
+            $('#english_botnical_name').val(''); // Clear the current value
+            $('#hindi_botnical_name').val(''); // Clear the current value
+            $('#english_common_name').val(''); // Clear the current value
+            $('#hindi_common_name').val(''); // Clear the current value
+
+            if (treePlantId !== '') {
+                $.ajax({
+                    url: "{{ url('/search-tree') }}/" + treePlantId, // Include id in URL
+                    type: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        if (response && response.english_botnical_name && response.hindi_name && response.hindi_botnical_name && response.english_common_name && response.hindi_common_name) { // Match JSON key
+                            $('#hindi_name').val(response.hindi_name);
+                            $('#english_botnical_name').val(response.english_botnical_name);
+                            $('#hindi_botnical_name').val(response.hindi_botnical_name);
+                            $('#english_common_name').val(response.english_common_name);
+                            $('#hindi_common_name').val(response.hindi_common_name);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error: ', status, error);
+                    }
+                });
+            }
+        });
+    });
+</script>
     <script>
         jQuery.noConflict();
         jQuery(document).ready(function($) {
             $("#regForm").validate({
                 rules: {
+                    tree_plant_id: {
+                    required: true
+                },
                     english_name: {
                         required: true
                     },
@@ -456,6 +496,9 @@
 
                 },
                 messages: {
+                    tree_plant_id: {
+                    required: "Please select the tree plant."
+                    },
                     english_name: {
                         required: "Please Enter Name.",
                     },

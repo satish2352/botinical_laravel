@@ -65,6 +65,13 @@
                                     <span class="mini-sub-pro">Upload Icon</span>
                                 </a>
                             </li>
+                            <li class="nav-item {{ Request::is('list-tree-plant') ? 'active' : '' }}">
+                                <a title="Inbox" href="{{ route('list-tree-plant') }}">
+                                    <i class="fa fa-inbox sub-icon-mg" aria-hidden="true"></i>
+                                    <span class="mini-sub-pro">Tree Plant</span>
+                                </a>
+                            </li>
+                            
                             {{-- <li class="{{ Request::is('list-charges') ? 'active' : '' }}">
                                 <a class="has-arrow" href="{{ route('list-charges') }}" aria-expanded="false">
                                     <i class="fa big-icon fa-envelope icon-wrap"></i>

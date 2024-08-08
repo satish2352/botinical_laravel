@@ -79,7 +79,7 @@
     });
 </script>
 
-<script>
+{{-- <script>
     ClassicEditor
         .create(document.querySelector('.english_description'))
         .catch(error => {
@@ -92,7 +92,7 @@
         .catch(error => {
             console.error(error);
         });
-</script>
+</script> --}}
 <script>
     $(document).ready(() => {
         $("#image").change(function() {

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Services\Admin\Product\TressServices;
 use App\Models\ {
     Tress,
-    IconMaster
+    IconMaster,
+    TreePlantMaster
 }
 ;
 use Validator;
@@ -31,15 +32,51 @@ class TressController extends Controller
     }
 
     public function add() {
-        $dataOutputIcon = IconMaster::get();
-        return view( 'admin.pages.product.tress.add-tress', compact( 'dataOutputIcon' ) );
+        $dataOutputIcon = IconMaster::where('is_active', true)->get();
+        $dataOutputTreePlant = TreePlantMaster::where('is_active', true)->get();
+        
+        return view( 'admin.pages.product.tress.add-tress', compact( 'dataOutputIcon', 'dataOutputTreePlant' ) );
     }
+    // TreeController.php
+// public function getTreeData($id)
+// {
+//     $tree = TreePlantMaster::find($id); // Adjust this line to match your model and table structure
+//     return response()->json($tree);
+// }
+// In TreeController.php
+// public function searchTree(Request $request)
+// {
+//     $treePlantId = $request->query('treePlantId');
+//     $botanicalName = TreePlant::find($treePlantId)->botanical_name ?? '';
+// dd($botanicalName);
+// die();
+//     return response()->json([
+//         'botanical_name' => $botanicalName,
+//     ]);
+// }
+
+public function getTreeData($id)
+{
+    $tree = TreePlantMaster::find($id); // or your model to fetch tree data
+
+    if ($tree) {
+        return response()->json([
+            'hindi_name' => $tree->hindi_name,
+            'english_botnical_name' => $tree->english_botnical_name,
+            'hindi_botnical_name' => $tree->hindi_botnical_name,
+            'english_common_name' => $tree->english_common_name,
+            'hindi_common_name' => $tree->hindi_common_name,
+        ]);
+    } else {
+        return response()->json([], 404);
+    }
+}
 
     public function store( Request $request ) {
 
         $rules = [
-            'english_name' => 'required|max:255',
-            'hindi_name' => 'required|max:255',
+            // 'english_name' => 'required|max:255',
+            // 'hindi_name' => 'required|max:255',
             'english_description' => 'required',
             'hindi_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:' . Config::get( 'AllFileValidation.TRESS_IMAGE_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.TRESS_IMAGE_MIN_SIZE' ),
@@ -67,10 +104,10 @@ class TressController extends Controller
         }
 
         $messages = [
-            'english_name.required' => 'Please enter the name.',
-            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
-            'hindi_name.required' => 'कृपया नाम दर्ज करें |',
-            'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
+            // 'english_name.required' => 'Please enter the name.',
+            // 'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            // 'hindi_name.required' => 'कृपया नाम दर्ज करें |',
+            // 'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
             'english_description.required' => 'Please enter the description.',
             'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
             'image.required' => 'The image is required.',
@@ -166,17 +203,18 @@ class TressController extends Controller
     }
 
     public function edit( Request $request ) {
-        $dataOutputIcon = IconMaster::get();
+        $dataOutputIcon = IconMaster::where('is_active', true)->get();
+        $dataOutputTreePlant = TreePlantMaster::where('is_active', true)->get();
         $edit_data_id = base64_decode( $request->edit_id );
 
         $tress = $this->service->getById( $edit_data_id );
-        return view( 'admin.pages.product.tress.edit-tress', compact( 'tress', 'dataOutputIcon' ) );
+        return view( 'admin.pages.product.tress.edit-tress', compact( 'tress', 'dataOutputIcon', 'dataOutputTreePlant' ) );
     }
 
     public function update( Request $request ) {
         $rules = [
-            'english_name' => 'required|max:255',
-            'hindi_name' => 'required|max:255',
+            // 'english_name' => 'required|max:255',
+            // 'hindi_name' => 'required|max:255',
             'english_description' => 'required',
             'hindi_description' => 'required',
             'latitude' => 'required|numeric|between:-90,90',
@@ -211,8 +249,8 @@ class TressController extends Controller
             $rules[ 'hindi_video_upload' ] = 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' );
         }
         $messages = [
-            'english_name.required' => 'Please enter the name.',
-            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            // 'english_name.required' => 'Please enter the name.',
+            // 'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
             'hindi_name.required' => 'कृपया नाम दर्ज करें |',
             'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
             'english_description.required' => 'Please enter the description.',

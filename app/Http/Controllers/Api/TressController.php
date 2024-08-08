@@ -17,12 +17,13 @@ class TressController extends Controller
     public function addTrees(Request $request) {
         // Define the validation rules
         $validator = Validator::make($request->all(), [
-            'english_name' => 'required',
-            'hindi_name' => 'required',
-            'english_botnical_name' => 'required', 
-            'hindi_botnical_name' => 'required',
-            'english_common_name' => 'required',
-            'hindi_common_name' => 'required',
+            'tree_plant_id' => 'required',
+            // 'english_name' => 'required',
+            // 'hindi_name' => 'required',
+            // 'english_botnical_name' => 'required', 
+            // 'hindi_botnical_name' => 'required',
+            // 'english_common_name' => 'required',
+            // 'hindi_common_name' => 'required',
             'english_description' => 'required',
             'hindi_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -42,12 +43,13 @@ class TressController extends Controller
     
         // Define custom validation messages
         $customMessages = [
-            'english_name.required' => 'English name is required.',
-            'hindi_name.required' => 'Hindi name is required.',
-            'english_botnical_name.required' => 'English botanical name is required.',
-            'hindi_botnical_name.required' => 'Hindi botanical name is required.',
-            'english_common_name.required' => 'English common name is required.',
-            'hindi_common_name.required' => 'Hindi common name is required.',
+            'tree_plant_id.required' => 'Please select tree plant name.',
+            // 'english_name.required' => 'English name is required.',
+            // 'hindi_name.required' => 'Hindi name is required.',
+            // 'english_botnical_name.required' => 'English botanical name is required.',
+            // 'hindi_botnical_name.required' => 'Hindi botanical name is required.',
+            // 'english_common_name.required' => 'English common name is required.',
+            // 'hindi_common_name.required' => 'Hindi common name is required.',
             'english_description.required' => 'English description is required.',
             'hindi_description.required' => 'Hindi description is required.',
             'image.required' => 'Image is required.',
@@ -91,12 +93,13 @@ class TressController extends Controller
             // Save tree data
             $tree_data = new Tress();
             $tree_data->icon_id = $request->icon_id;
-            $tree_data->english_name = $request->english_name;
-            $tree_data->hindi_name = $request->hindi_name;
-            $tree_data->english_botnical_name = $request->english_botnical_name;
-            $tree_data->hindi_botnical_name = $request->hindi_botnical_name;
-            $tree_data->english_common_name = $request->english_common_name;
-            $tree_data->hindi_common_name = $request->hindi_common_name;
+            $tree_data->tree_plant_id = $request->tree_plant_id;
+            // $tree_data->english_name = $request->english_name;
+            // $tree_data->hindi_name = $request->hindi_name;
+            // $tree_data->english_botnical_name = $request->english_botnical_name;
+            // $tree_data->hindi_botnical_name = $request->hindi_botnical_name;
+            // $tree_data->english_common_name = $request->english_common_name;
+            // $tree_data->hindi_common_name = $request->hindi_common_name;
             $tree_data->english_description = $request->english_description;
             $tree_data->hindi_description = $request->hindi_description;
             $tree_data->latitude = $request->latitude;
@@ -151,28 +154,29 @@ class TressController extends Controller
             $rowperpage = DEFAULT_LENGTH;
             $start = ( $page - 1 ) * $rowperpage;
                                         
-            $basic_query_object = Tress::where('is_active', true)
+            $basic_query_object = Tress::join('tbl_tree_plant', 'tbl_tree_plant.id', '=', 'tbl_trees.tree_plant_id')
+            ->where('tbl_tree_plant.is_active', true)
             ->when($tress_id, function ($query) use ($tress_id) {
-                $query->where('id', $tress_id);
+                $query->where('tbl_trees.id', $tress_id);
             });
              $totalRecords = $basic_query_object->select( 'tbl_trees.id' )->get()->count();                
                             
             if ($language == 'hindi') {
-                $data_output =  $basic_query_object->select('id', 'hindi_name as name',
-                'hindi_description as description',
-                'hindi_audio_link as audio_link',
-                'hindi_video_upload as video_upload',
-                'image',
-                'latitude',
-                'longitude', 'hindi_botnical_name as botnical_name','hindi_common_name as common_name','height','height_type', 'canopy', 'canopy_type','girth','girth_type','image_two', 'image_three', 'image_four', 'image_five');
+                $data_output =  $basic_query_object->select('tbl_trees.id', 'tbl_tree_plant.hindi_name as name',
+                'tbl_trees.hindi_description as description',
+                'tbl_trees.hindi_audio_link as audio_link',
+                'tbl_trees.hindi_video_upload as video_upload',
+                'tbl_trees.image',
+                'tbl_trees.latitude',
+                'tbl_trees.longitude', 'tbl_tree_plant.hindi_botnical_name as botnical_name','tbl_tree_plant.hindi_common_name as common_name','tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type','tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five');
             } else {
-                $data_output = $basic_query_object->select('id', 'english_name as name',
-                'english_description as description',
-                'english_audio_link as audio_link',
-                'english_video_upload as video_upload',
-                'image',
-                'latitude',
-                'longitude', 'english_botnical_name as botnical_name', 'english_common_name as common_name','height','height_type', 'canopy', 'canopy_type','girth','girth_type','image_two', 'image_three', 'image_four', 'image_five');
+                $data_output = $basic_query_object->select('tbl_trees.id', 'tbl_tree_plant.english_name as name',
+                'tbl_trees.english_description as description',
+                'tbl_trees.english_audio_link as audio_link',
+                'tbl_trees.english_video_upload as video_upload',
+                'tbl_trees.image',
+                'tbl_trees.latitude',
+                'tbl_trees.longitude', 'tbl_tree_plant.english_botnical_name as botnical_name', 'tbl_tree_plant.english_common_name as common_name','tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type','tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five');
             }
 
             $data_output =  $basic_query_object->skip($start)

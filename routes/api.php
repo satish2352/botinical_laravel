@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\TressController;
 use App\Http\Controllers\Api\FacilitiesController;
 use App\Http\Controllers\Api\ZoneAreaController;
 use App\Http\Controllers\Api\MappingController;
+use App\Http\Controllers\Api\MasterController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -88,7 +89,7 @@ Route::group([
         Route::post('/get-gallery', [GalleryController::class, 'getGallery']);
 
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
-          
+        Route::post('/get-tree-plant', [MasterController::class, 'getTreePlantMaster']);
        
         
 

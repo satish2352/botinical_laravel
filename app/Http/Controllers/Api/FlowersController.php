@@ -16,12 +16,13 @@ class FlowersController extends Controller {
     public function addPlant(Request $request) {
         // Define the validation rules
         $validator = Validator::make($request->all(), [
-            'english_name' => 'required',
-            'hindi_name' => 'required',
-            'english_botnical_name' => 'required', 
-            'hindi_botnical_name' => 'required',
-            'english_common_name' => 'required',
-            'hindi_common_name' => 'required',
+            'tree_plant_id' => 'required',
+            // 'english_name' => 'required',
+            // 'hindi_name' => 'required',
+            // 'english_botnical_name' => 'required', 
+            // 'hindi_botnical_name' => 'required',
+            // 'english_common_name' => 'required',
+            // 'hindi_common_name' => 'required',
             'english_description' => 'required',
             'hindi_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
@@ -41,12 +42,13 @@ class FlowersController extends Controller {
     
         // Define custom validation messages
         $customMessages = [
-            'english_name.required' => 'English name is required.',
-            'hindi_name.required' => 'Hindi name is required.',
-            'english_botnical_name.required' => 'English botanical name is required.',
-            'hindi_botnical_name.required' => 'Hindi botanical name is required.',
-            'english_common_name.required' => 'English common name is required.',
-            'hindi_common_name.required' => 'Hindi common name is required.',
+            // 'english_name.required' => 'English name is required.',
+            // 'hindi_name.required' => 'Hindi name is required.',
+            // 'english_botnical_name.required' => 'English botanical name is required.',
+            // 'hindi_botnical_name.required' => 'Hindi botanical name is required.',
+            // 'english_common_name.required' => 'English common name is required.',
+            // 'hindi_common_name.required' => 'Hindi common name is required.',
+            'tree_plant_id.required' => 'Please select tree plant name.',
             'english_description.required' => 'English description is required.',
             'hindi_description.required' => 'Hindi description is required.',
             'image.required' => 'Image is required.',
@@ -88,28 +90,29 @@ class FlowersController extends Controller {
     
         try {
             // Save tree data
-            $tree_data = new Flowers();
-            $tree_data->icon_id = $request->icon_id;
-            $tree_data->english_name = $request->english_name;
-            $tree_data->hindi_name = $request->hindi_name;
-            $tree_data->english_botnical_name = $request->english_botnical_name;
-            $tree_data->hindi_botnical_name = $request->hindi_botnical_name;
-            $tree_data->english_common_name = $request->english_common_name;
-            $tree_data->hindi_common_name = $request->hindi_common_name;
-            $tree_data->english_description = $request->english_description;
-            $tree_data->hindi_description = $request->hindi_description;
-            $tree_data->latitude = $request->latitude;
-            $tree_data->longitude = $request->longitude;
-            $tree_data->height = $request->height;
-            $tree_data->height_type = $request->height_type;
-            $tree_data->canopy = $request->canopy;
-            $tree_data->canopy_type = $request->canopy_type;
-            $tree_data->girth = $request->girth;
-            $tree_data->girth_type = $request->girth_type;
-            $tree_data->save();
+            $flower_data = new Flowers();
+            $flower_data->icon_id = $request->icon_id;
+            $flower_data->tree_plant_id = $request->tree_plant_id;
+            // $flower_data->english_name = $request->english_name;
+            // $flower_data->hindi_name = $request->hindi_name;
+            // $flower_data->english_botnical_name = $request->english_botnical_name;
+            // $flower_data->hindi_botnical_name = $request->hindi_botnical_name;
+            // $flower_data->english_common_name = $request->english_common_name;
+            // $flower_data->hindi_common_name = $request->hindi_common_name;
+            $flower_data->english_description = $request->english_description;
+            $flower_data->hindi_description = $request->hindi_description;
+            $flower_data->latitude = $request->latitude;
+            $flower_data->longitude = $request->longitude;
+            $flower_data->height = $request->height;
+            $flower_data->height_type = $request->height_type;
+            $flower_data->canopy = $request->canopy;
+            $flower_data->canopy_type = $request->canopy_type;
+            $flower_data->girth = $request->girth;
+            $flower_data->girth_type = $request->girth_type;
+            $flower_data->save();
     
             // Get last inserted ID
-            $last_insert_id = $tree_data->id;
+            $last_insert_id = $flower_data->id;
     
             // Handle file uploads
             $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
@@ -127,12 +130,12 @@ class FlowersController extends Controller {
             $request->hindi_video_upload->move(public_path($path), $hindiVideo);
     
             // Update tree data with file names
-            $tree_data->image = $treeImage;
-            $tree_data->english_audio_link = $englishAudio;
-            $tree_data->hindi_audio_link = $hindiAudio;
-            $tree_data->english_video_upload = $englishVideo;
-            $tree_data->hindi_video_upload = $hindiVideo;
-            $tree_data->save();
+            $flower_data->image = $treeImage;
+            $flower_data->english_audio_link = $englishAudio;
+            $flower_data->hindi_audio_link = $hindiAudio;
+            $flower_data->english_video_upload = $englishVideo;
+            $flower_data->hindi_video_upload = $hindiVideo;
+            $flower_data->save();
     
             return response()->json(['status' => 'true', 'message' => 'Plant added successfully'], 200);
         } catch (\Exception $e) {
@@ -150,7 +153,9 @@ class FlowersController extends Controller {
             $rowperpage = DEFAULT_LENGTH;
             $start = ( $page - 1 ) * $rowperpage;
 
-            $basic_query_object = Flowers::where('is_active', true)
+            $basic_query_object = Flowers::join('tbl_tree_plant', 'tbl_tree_plant.id', '=', 'tbl_flowers.tree_plant_id')
+            ->where('tbl_tree_plant.is_active', true)
+            ->where('tbl_flowers.is_active', true)
             ->when($flowers_id, function ($query) use ($flowers_id) {
                 $query->where('id', $flowers_id);
             });
@@ -158,9 +163,9 @@ class FlowersController extends Controller {
             $totalRecords = $basic_query_object->select('tbl_flowers.id')->get()->count();
 
             if ( $language == 'hindi' ) {
-                $data_output =   $basic_query_object->select('id', 'hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude', 'hindi_botnical_name as botnical_name','hindi_common_name as common_name','height','height_type', 'canopy', 'canopy_type','girth','image_two', 'image_three', 'image_four', 'image_five' );
+                $data_output =   $basic_query_object->select('tbl_flowers.id', 'tbl_tree_plant.hindi_name as name', 'tbl_flowers.hindi_description as description', 'tbl_flowers.hindi_audio_link as audio_link', 'tbl_flowers.hindi_video_upload as video_upload', 'tbl_flowers.image', 'tbl_flowers.latitude', 'tbl_flowers.longitude', 'tbl_tree_plant.hindi_botnical_name as botnical_name','tbl_tree_plant.hindi_common_name as common_name','tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five' );
             } else {
-                $data_output =  $basic_query_object->select('id', 'english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude', 'english_botnical_name as botnical_name', 'english_common_name as common_name','height','height_type', 'canopy', 'canopy_type','girth','girth_type','image_two', 'image_three', 'image_four','image_five' );
+                $data_output =  $basic_query_object->select('tbl_flowers.id', 'tbl_tree_plant.english_name as name', 'tbl_flowers.english_description as description', 'tbl_flowers.english_audio_link as audio_link', 'tbl_flowers.english_video_upload as video_upload', 'tbl_flowers.image', 'tbl_flowers.latitude', 'tbl_flowers.longitude', 'tbl_tree_plant.english_botnical_name as botnical_name', 'tbl_tree_plant.english_common_name as common_name','tbl_flowers.height','tbl_flowers.height_type', 'tbl_flowers.canopy', 'tbl_flowers.canopy_type','tbl_flowers.girth','tbl_flowers.girth_type','tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four','tbl_flowers.image_five' );
             }
 
             $data_output =  $data_output->skip($start)

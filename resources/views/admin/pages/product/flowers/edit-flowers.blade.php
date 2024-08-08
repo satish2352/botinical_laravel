@@ -26,15 +26,22 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_name">Name </label>&nbsp<span
+                                                        <label for="tree_plant_id">Name :</label> &nbsp<span
                                                             class="red-text">*</span>
-                                                        <input class="form-control" name="english_name" id="english_name"
-                                                            placeholder="Enter the Name"
-                                                            value=" @if (old('english_name')) {{ old('english_name') }}@else{{ $flowers->english_name }} @endif">
-                                                        <label class="error py-2" for="english_name"
-                                                            id="english_name_error"></label>
-                                                        @if ($errors->has('english_name'))
-                                                            <span class="red-text"><?php echo $errors->first('english_name', ':message'); ?></span>
+                                                        <select class="form-control mb-2" name="tree_plant_id"
+                                                            id="tree_plant_id">
+                                                            <option value="" default>Select Category</option>
+                                                            @foreach ($dataOutputTreePlant as $data)
+                                                                <option value="{{ $data->id }}"
+                                                                    @if ($flowers->tree_plant_id == $data->id) {{ 'selected' }} @endif>
+                                                                    {{ $data->english_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('tree_plant_id'))
+                                                            <span class="red-text">
+                                                                <?php echo $errors->first('tree_plant_id', ':message'); ?>
+                                                            </span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -44,7 +51,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="hindi_name" id="hindi_name"
                                                             placeholder="नाम दर्ज करें"
-                                                            value="@if (old('hindi_name')) {{ old('hindi_name') }}@else{{ $flowers->hindi_name }} @endif">
+                                                            value="@if (old('hindi_name')) {{ old('hindi_name') }}@else{{ $flowers->hindi_name }} @endif" readonly>
                                                         <label class="error py-2" for="hindi_name"
                                                             id="hindi_name_error"></label>
                                                         @if ($errors->has('hindi_name'))
@@ -58,7 +65,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="english_botnical_name"
                                                             id="english_botnical_name" placeholder="Enter the Name"
-                                                            value=" @if (old('english_botnical_name')) {{ old('english_botnical_name') }}@else{{ $flowers->english_botnical_name }} @endif">
+                                                            value=" @if (old('english_botnical_name')) {{ old('english_botnical_name') }}@else{{ $flowers->english_botnical_name }} @endif" readonly>
                                                         <label class="error py-2" for="english_botnical_name"
                                                             id="english_botnical_name_error"></label>
                                                         @if ($errors->has('english_botnical_name'))
@@ -72,7 +79,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="hindi_botnical_name"
                                                             id="hindi_botnical_name" placeholder="वानस्पतिक नाम दर्ज करें"
-                                                            value="@if (old('hindi_botnical_name')) {{ old('hindi_botnical_name') }}@else{{ $flowers->hindi_botnical_name }} @endif">
+                                                            value="@if (old('hindi_botnical_name')) {{ old('hindi_botnical_name') }}@else{{ $flowers->hindi_botnical_name }} @endif" readonly>
                                                         <label class="error py-2" for="hindi_botnical_name"
                                                             id="hindi_botnical_name_error"></label>
                                                         @if ($errors->has('hindi_botnical_name'))
@@ -86,7 +93,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="english_common_name"
                                                             id="english_common_name" placeholder="Enter the Name"
-                                                            value=" @if (old('english_common_name')) {{ old('english_common_name') }}@else{{ $flowers->english_common_name }} @endif">
+                                                            value=" @if (old('english_common_name')) {{ old('english_common_name') }}@else{{ $flowers->english_common_name }} @endif" readonly>
                                                         <label class="error py-2" for="english_common_name"
                                                             id="english_common_name_error"></label>
                                                         @if ($errors->has('english_common_name'))
@@ -100,7 +107,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control" name="hindi_common_name"
                                                             id="hindi_common_name" placeholder="साधारण नाम दर्ज करें"
-                                                            value="@if (old('hindi_common_name')) {{ old('hindi_common_name') }}@else{{ $flowers->hindi_common_name }} @endif">
+                                                            value="@if (old('hindi_common_name')) {{ old('hindi_common_name') }}@else{{ $flowers->hindi_common_name }} @endif" readonly>
                                                         <label class="error py-2" for="hindi_common_name"
                                                             id="hindi_common_name_error"></label>
                                                         @if ($errors->has('hindi_common_name'))
@@ -490,11 +497,49 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tree_plant_id').change(function(e) {
+            e.preventDefault();
+            var treePlantId = $(this).val();
+            $('#hindi_name').val(''); // Clear the current value
+            $('#english_botnical_name').val(''); // Clear the current value
+            $('#hindi_botnical_name').val(''); // Clear the current value
+            $('#english_common_name').val(''); // Clear the current value
+            $('#hindi_common_name').val(''); // Clear the current value
+
+            if (treePlantId !== '') {
+                $.ajax({
+                    url: "{{ url('/search-tree') }}/" + treePlantId, // Include id in URL
+                    type: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        if (response && response.english_botnical_name && response.hindi_name && response.hindi_botnical_name && response.english_common_name && response.hindi_common_name) { // Match JSON key
+                            $('#hindi_name').val(response.hindi_name);
+                            $('#english_botnical_name').val(response.english_botnical_name);
+                            $('#hindi_botnical_name').val(response.hindi_botnical_name);
+                            $('#english_common_name').val(response.english_common_name);
+                            $('#hindi_common_name').val(response.hindi_common_name);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error: ', status, error);
+                    }
+                });
+            }
+        });
+    });
+</script>
     <script>
         jQuery.noConflict();
         jQuery(document).ready(function($) {
             $("#regForm").validate({
                 rules: {
+                    tree_plant_id: {
+                    required: true
+                },
                     english_name: {
                         required: true
                     },
@@ -574,6 +619,9 @@
 
                 },
                 messages: {
+                    tree_plant_id: {
+                    required: "Please select the tree plant."
+                },
                     english_name: {
                         required: "Please Enter Name.",
                     },

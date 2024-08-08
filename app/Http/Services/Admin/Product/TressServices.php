@@ -24,7 +24,11 @@ class TressServices
     
     public function getAll(){
         try {
-            return $this->repo->getAll();
+            $data_output = $this->repo->getAll();
+            // dd($data_output);
+            // die();
+            return $data_output;
+
         } catch (\Exception $e) {
             return $e;
         }
@@ -228,7 +232,8 @@ class TressServices
     public function updateAll($request) {
         try {
             $return_data = $this->repo->updateAll($request);
-           
+        //    dd($return_data);
+        //    die();
             $path = Config::get('DocumentConstant.TRESS_ADD');
             
             if ($request->hasFile('image')) {

@@ -1,6 +1,11 @@
 @extends('admin.layouts.master')
 
 @section('content')
+<style>
+    .form-control{
+        color: black !important;
+    }
+    </style>
     <div class="container-fluid">
         <div class="row paddingbottom">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -26,13 +31,15 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
-                                                        <label for="english_name">Name</label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="english_name"
-                                                            id="english_name" placeholder="Enter the Title"
-                                                            name="english_name" value="{{ old('english_name') }}">
-                                                        @if ($errors->has('english_name'))
-                                                            <span class="red-text"><?php echo $errors->first('english_name', ':message'); ?></span>
+                                                        <label for="tree_plant_id">Name</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="tree_plant_id" name="tree_plant_id">
+                                                            <option value="">Select</option>
+                                                            @foreach ($dataOutputTreePlant as $data)
+                                                                <option value="{{ $data['id'] }}">{{ $data['english_name'] }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @if ($errors->has('tree_plant_id'))
+                                                            <span class="red-text">{{ $errors->first('tree_plant_id', ':message') }}</span>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -42,7 +49,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="hindi_name" id="hindi_name"
                                                             placeholder="नाव प्रविष्ट करा " name="hindi_name"
-                                                            value="{{ old('hindi_name') }}">
+                                                            value="{{ old('hindi_name') }}" readonly>
                                                         @if ($errors->has('hindi_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_name', ':message'); ?></span>
                                                         @endif
@@ -54,7 +61,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="english_botnical_name"
                                                             id="english_botnical_name" placeholder="Enter the Name"
-                                                            name="english_botnical_name" value="{{ old('english_botnical_name') }}">
+                                                            name="english_botnical_name" value="{{ old('english_botnical_name') }}" readonly>
                                                         @if ($errors->has('english_botnical_name'))
                                                             <span class="red-text"><?php echo $errors->first('english_botnical_name', ':message'); ?></span>
                                                         @endif
@@ -66,7 +73,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="hindi_botnical_name" id="hindi_botnical_name"
                                                             placeholder="वानस्पतिक नाम दर्ज करें" name="hindi_botnical_name"
-                                                            value="{{ old('hindi_botnical_name') }}">
+                                                            value="{{ old('hindi_botnical_name') }}" readonly>
                                                         @if ($errors->has('hindi_botnical_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_botnical_name', ':message'); ?></span>
                                                         @endif
@@ -78,7 +85,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="english_common_name"
                                                             id="english_common_name" placeholder="Enter the Name"
-                                                            name="english_common_name" value="{{ old('english_common_name') }}">
+                                                            name="english_common_name" value="{{ old('english_common_name') }}" readonly>
                                                         @if ($errors->has('english_common_name'))
                                                             <span class="red-text"><?php echo $errors->first('english_common_name', ':message'); ?></span>
                                                         @endif
@@ -90,7 +97,7 @@
                                                             class="red-text">*</span>
                                                         <input class="form-control mb-2" name="hindi_common_name" id="hindi_common_name"
                                                             placeholder="साधारण नाम दर्ज करें" name="hindi_common_name"
-                                                            value="{{ old('hindi_common_name') }}">
+                                                            value="{{ old('hindi_common_name') }}" readonly>
                                                         @if ($errors->has('hindi_common_name'))
                                                             <span class="red-text"><?php echo $errors->first('hindi_common_name', ':message'); ?></span>
                                                         @endif
@@ -195,9 +202,84 @@
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                                     <div class="form-group">
+                                                        <label for="height">Height</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="height"
+                                                            id="height" placeholder="Enter the Height"
+                                                            name="height" value="{{ old('height') }}">
+                                                        @if ($errors->has('height'))
+                                                            <span class="red-text"><?php echo $errors->first('height', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="height_type">Height Type</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="height_type" name="height_type">
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
+                                                        </select>
+                                                        @if ($errors->has('height_type'))
+                                                            <span class="red-text">{{ $errors->first('height_type', ':message') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="canopy">Canopy</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="canopy"
+                                                            id="canopy" placeholder="Enter the canopy"
+                                                            name="canopy" value="{{ old('canopy') }}">
+                                                        @if ($errors->has('canopy'))
+                                                            <span class="red-text"><?php echo $errors->first('canopy', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="canopy_type">Canopy Type</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="canopy_type" name="canopy_type">
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
+                                                        </select>
+                                                        @if ($errors->has('canopy_type'))
+                                                        <span class="red-text"><?php echo $errors->first('canopy_type', ':message'); ?></span>
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="girth">Girth</label>&nbsp<span
+                                                            class="red-text">*</span>
+                                                        <input class="form-control mb-2" name="girth"
+                                                            id="girth" placeholder="Enter the girth"
+                                                            name="girth" value="{{ old('girth') }}">
+                                                        @if ($errors->has('girth'))
+                                                            <span class="red-text"><?php echo $errors->first('canopy', ':message'); ?></span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="girth_type">Girth Type</label>&nbsp;<span class="red-text">*</span>
+                                                        <select class="form-control" id="girth_type" name="girth_type">
+                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
+                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
+                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
+                                                        </select>
+                                                        @if ($errors->has('girth_type'))
+                                                        <span class="red-text"><?php echo $errors->first('girth_type', ':message'); ?></span>
+                                                    @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="form-group">
                                                         <label for="icon_id">Icon</label>&nbsp<span class="red-text">*</span>
                                                         <select class="form-control" id="icon_id" name="icon_id">
-                                                            <option selected>Select</option>
+                                                            <option value="">Select</option>
                                                             @foreach ($dataOutputIcon as $data)
                                                                 @if (old('icon_id') == $data['id'])
                                                                     <option value="{{ $data['id'] }}" data-image="{{ Config::get('DocumentConstant.ICON_MASTER_VIEW') }}{{ $data->image }}" selected>
@@ -271,85 +353,6 @@
                                                         @endif
                                                     </div>
                                                 </div>
-
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="height">Height</label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="height"
-                                                            id="height" placeholder="Enter the Height"
-                                                            name="height" value="{{ old('height') }}">
-                                                        @if ($errors->has('height'))
-                                                            <span class="red-text"><?php echo $errors->first('height', ':message'); ?></span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="height_type">Height Type</label>&nbsp;<span class="red-text">*</span>
-                                                        <select class="form-control" id="height_type" name="height_type">
-                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
-                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
-                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
-                                                        </select>
-                                                        @if ($errors->has('height_type'))
-                                                            <span class="red-text">{{ $errors->first('height_type', ':message') }}</span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="canopy">Canopy</label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="canopy"
-                                                            id="canopy" placeholder="Enter the canopy"
-                                                            name="canopy" value="{{ old('canopy') }}">
-                                                        @if ($errors->has('canopy'))
-                                                            <span class="red-text"><?php echo $errors->first('canopy', ':message'); ?></span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="canopy_type">Canopy Type</label>&nbsp;<span class="red-text">*</span>
-                                                        <select class="form-control" id="canopy_type" name="canopy_type">
-                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
-                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
-                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
-                                                        </select>
-                                                        @if ($errors->has('canopy_type'))
-                                                        <span class="red-text"><?php echo $errors->first('canopy_type', ':message'); ?></span>
-                                                    @endif
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="girth">Girth</label>&nbsp<span
-                                                            class="red-text">*</span>
-                                                        <input class="form-control mb-2" name="girth"
-                                                            id="girth" placeholder="Enter the girth"
-                                                            name="girth" value="{{ old('girth') }}">
-                                                        @if ($errors->has('girth'))
-                                                            <span class="red-text"><?php echo $errors->first('canopy', ':message'); ?></span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="girth_type">Girth Type</label>&nbsp;<span class="red-text">*</span>
-                                                        <select class="form-control" id="girth_type" name="girth_type">
-                                                            <option value="" disabled {{ old('height_type') == '' ? 'selected' : '' }}>Select Height Type</option>
-                                                            <option value="feet" {{ old('height_type') == 'feet' ? 'selected' : '' }}>Feet</option>
-                                                            <option value="cm" {{ old('height_type') == 'cm' ? 'selected' : '' }}>CM</option>
-                                                        </select>
-                                                        @if ($errors->has('girth_type'))
-                                                        <span class="red-text"><?php echo $errors->first('girth_type', ':message'); ?></span>
-                                                    @endif
-                                                    </div>
-                                                </div>
-                                                
-
                                                 <div class="col-md-12 col-sm-12 text-center">
                                                     <button type="submit" class="btn btn-sm btn-success">
                                                         Save &amp; Submit
@@ -370,220 +373,258 @@
             </div>
         </div>
     </div>
-  
-    <script>
-        jQuery.noConflict();
-        jQuery(document).ready(function($) {
-            $("#regForm").validate({
-                rules: {
-                    english_name: {
-                        required: true
-                    },
-                    hindi_name: {
-                        required: true,
-                    },
-                    english_botnical_name: {
-                        required: true
-                    },
-                    hindi_botnical_name: {
-                        required: true,
-                    },
-                    english_common_name: {
-                        required: true
-                    },
-                    hindi_common_name: {
-                        required: true,
-                    },
-                    english_description: {
-                        required: true
-                    },
-                    hindi_description: {
-                        required: true,
-                    },
-                    latitude: {
-                        required: true,
-                    },
-                    icon_id:{
-                        required: true,
-                    },
-                    longitude: {
-                        required: true,
-                    },
-                    height:{
-                        required: true,
-                    },
-                    height_type:{
-                        required: true,
-                    },
-                    canopy:{
-                        required: true,
-                    },
-                    canopy_type:{
-                        required: true,
-                    },
-                    girth:{
-                        required: true,
-                    },
-                    girth_type:{
-                        required: true,
-                    },
-                    image: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image2: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image3: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image4: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    image5: {
-                        required: true,
-                        fileExtension: ["jpg", "jpeg", "png"],
-                        fileSize: [10, 2048],
-                    },
-                    english_audio_link: {
-                        required: true,
-                        extension: "mp3",
-                        fileSize: [10240, 1048576]
-                    },
-                    hindi_audio_link: {
-                        required: true,
-                        extension: "mp3",
-                        fileSize: [10240, 1048576]
-                    },
-                    english_video_upload: {
-                        required: true,
-                        extension: "mp4",
-                        fileSize: [102400, 5242880]
-                    },
-                    hindi_video_upload: {
-                        required: true,
-                        extension: "mp4",
-                        fileSize: [102400, 5242880]
-                    },
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tree_plant_id').change(function(e) {
+            e.preventDefault();
+            var treePlantId = $(this).val();
+            $('#hindi_name').val(''); // Clear the current value
+            $('#english_botnical_name').val(''); // Clear the current value
+            $('#hindi_botnical_name').val(''); // Clear the current value
+            $('#english_common_name').val(''); // Clear the current value
+            $('#hindi_common_name').val(''); // Clear the current value
 
-                },
-                messages: {
-                    english_name: {
-                        required: "Please Enter Name.",
+            if (treePlantId !== '') {
+                $.ajax({
+                    url: "{{ url('/search-tree') }}/" + treePlantId, // Include id in URL
+                    type: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        if (response && response.english_botnical_name && response.hindi_name && response.hindi_botnical_name && response.english_common_name && response.hindi_common_name) { // Match JSON key
+                            $('#hindi_name').val(response.hindi_name);
+                            $('#english_botnical_name').val(response.english_botnical_name);
+                            $('#hindi_botnical_name').val(response.hindi_botnical_name);
+                            $('#english_common_name').val(response.english_common_name);
+                            $('#hindi_common_name').val(response.hindi_common_name);
+                        }
                     },
-                    hindi_name: {
-                        required: "कृपया नाम दर्ज करें |",
-                    },
-                    english_botnical_name: {
-                        required: "Please Enter Botnical Name.",
-                    },
-                    hindi_botnical_name: {
-                        required: "कृपया वानस्पतिक नाम दर्ज करें. |",
-                    },
-                    english_common_name: {
-                        required: "Please Enter Common Name.",
-                    },
-                    hindi_common_name: {
-                        required: "कृपया सामान्य नाम दर्ज करें. |",
-                    },
-                    english_description: {
-                        required: "Please Enter Description.",
-                    },
-                    hindi_description: {
-                        required: "कृपया वर्णन दर्ज करें.",
-                    },
-                    latitude: {
-                        required: "Please enter the Latitude.",
-                    },
-                    longitude: {
-                        required: "Please enter the Longitude.",
-                    },
-                    icon_id: {
-                        required: "Please select the Icon.",
-                    },
-                    height: {
-                        required: "Please enter the height.",
-                    },
-                    height_type: {
-                        required: "Please select the height type.",
-                    },
-                    canopy:{
-                        required: "Please enter the canopy.",
-                    },
-                    canopy_type:{
-                        required: "Please select the canopy type.",
-                    },
-                    girth:{
-                        required: "Please enter the girth.",
-                    },
-                    girth_type:{
-                        required: "Please select the girth type.",
-                    },
-                    image: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image2: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image3: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image4: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-                    image5: {
-                        required: "Please upload an Image (JPG, JPEG, PNG).",
-                        fileExtension: "Only JPG, JPEG, and PNG images are allowed.",
-                        fileSize: "File size must be between 10 KB and 2 MB.",
-                    },
-
-                    english_audio_link: {
-                        required: "Please upload an Audio file MP3.",
-                        extension: "Only MP3 audio files are allowed.",
-                        fileSize: "File size must be between 10 KB and 1 MB.",
-                    },
-                    hindi_audio_link: {
-                        required: "कृपया ऑडियो फ़ाइल MP3 अपलोड करें।",
-                        extension: "केवल MP3 ऑडियो फ़ाइलें अनुमत हैं।",
-                        fileSize: "फ़ाइल का आकार 10 KB और 1 MB के बीच होना चाहिए।",
-                    },
-                   
-                    english_video_upload: {
-                        required: "Please upload a Video file MP4.",
-                        extension: "Only MP4 video files are allowed.",
-                        fileSize: "File size must be between 100 KB and 5 MB.",
-                    },
-                    hindi_video_upload: {
-                        required: "कृपया वीडियो फ़ाइल MP4 अपलोड करें।",
-                        extension: "केवल MP4 वीडियो फ़ाइलें अनुमत हैं।",
-                        fileSize: "फ़ाइल का आकार 100 KB और 5 MB के बीच होना चाहिए।",
-                    },
-
-                },
-            });
-
-             // Event listener for file inputs to remove validation messages
-             $('input[type="file"]').change(function() {
-                var input = $(this);
-                var fieldName = input.attr('name');
-                var errorLabel = $('label.error[for="' + fieldName + '"]');
-                errorLabel.remove();
-            });
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error: ', status, error);
+                    }
+                });
+            }
         });
-    </script>
+    });
+</script>
+
+<script>
+    jQuery.noConflict();
+    jQuery(document).ready(function($) {
+        $("#regForm").validate({
+            rules: {
+                tree_plant_id: {
+                    required: true
+                },
+                english_name: {
+                    required: true
+                },
+                hindi_name: {
+                    required: true
+                },
+                english_botnical_name: {
+                    required: true
+                },
+                hindi_botnical_name: {
+                    required: true
+                },
+                english_common_name: {
+                    required: true
+                },
+                hindi_common_name: {
+                    required: true
+                },
+                english_description: {
+                    required: true
+                },
+                hindi_description: {
+                    required: true
+                },
+                latitude: {
+                    required: true
+                },
+                icon_id: {
+                    required: true
+                },
+                longitude: {
+                    required: true
+                },
+                height: {
+                    required: true
+                },
+                height_type: {
+                    required: true
+                },
+                canopy: {
+                    required: true
+                },
+                canopy_type: {
+                    required: true
+                },
+                girth: {
+                    required: true
+                },
+                girth_type: {
+                    required: true
+                },
+                image: {
+                    required: true,
+                    extension: "jpg|jpeg|png",
+                    filesize: [10, 2048]
+                },
+                image2: {
+                    required: true,
+                    extension: "jpg|jpeg|png",
+                    filesize: [10, 2048]
+                },
+                image3: {
+                    required: true,
+                    extension: "jpg|jpeg|png",
+                    filesize: [10, 2048]
+                },
+                image4: {
+                    required: true,
+                    extension: "jpg|jpeg|png",
+                    filesize: [10, 2048]
+                },
+                image5: {
+                    required: true,
+                    extension: "jpg|jpeg|png",
+                    filesize: [10, 2048]
+                },
+                english_audio_link: {
+                    required: true,
+                    extension: "mp3",
+                    filesize: [10240, 1048576]
+                },
+                hindi_audio_link: {
+                    required: true,
+                    extension: "mp3",
+                    filesize: [10240, 1048576]
+                },
+                english_video_upload: {
+                    required: true,
+                    extension: "mp4",
+                    filesize: [102400, 5242880]
+                },
+                hindi_video_upload: {
+                    required: true,
+                    extension: "mp4",
+                    filesize: [102400, 5242880]
+                }
+            },
+            messages: {
+                tree_plant_id: {
+                    required: "Please select the tree plant."
+                },
+                english_name: {
+                    required: "Please Enter Name."
+                },
+                hindi_name: {
+                    required: "कृपया नाम दर्ज करें |"
+                },
+                english_botnical_name: {
+                    required: "Please Enter Botnical Name."
+                },
+                hindi_botnical_name: {
+                    required: "कृपया वानस्पतिक नाम दर्ज करें. |"
+                },
+                english_common_name: {
+                    required: "Please Enter Common Name."
+                },
+                hindi_common_name: {
+                    required: "कृपया सामान्य नाम दर्ज करें. |"
+                },
+                english_description: {
+                    required: "Please Enter Description."
+                },
+                hindi_description: {
+                    required: "कृपया वर्णन दर्ज करें."
+                },
+                latitude: {
+                    required: "Please enter the Latitude."
+                },
+                longitude: {
+                    required: "Please enter the Longitude."
+                },
+                icon_id: {
+                    required: "Please select the Icon."
+                },
+                height: {
+                    required: "Please enter the height."
+                },
+                height_type: {
+                    required: "Please select the height type."
+                },
+                canopy: {
+                    required: "Please enter the canopy."
+                },
+                canopy_type: {
+                    required: "Please select the canopy type."
+                },
+                girth: {
+                    required: "Please enter the girth."
+                },
+                girth_type: {
+                    required: "Please select the girth type."
+                },
+                image: {
+                    required: "Please upload an Image (JPG, JPEG, PNG).",
+                    extension: "Only JPG, JPEG, and PNG images are allowed.",
+                    filesize: "File size must be between 10 KB and 2 MB."
+                },
+                image2: {
+                    required: "Please upload an Image (JPG, JPEG, PNG).",
+                    extension: "Only JPG, JPEG, and PNG images are allowed.",
+                    filesize: "File size must be between 10 KB and 2 MB."
+                },
+                image3: {
+                    required: "Please upload an Image (JPG, JPEG, PNG).",
+                    extension: "Only JPG, JPEG, and PNG images are allowed.",
+                    filesize: "File size must be between 10 KB and 2 MB."
+                },
+                image4: {
+                    required: "Please upload an Image (JPG, JPEG, PNG).",
+                    extension: "Only JPG, JPEG, and PNG images are allowed.",
+                    filesize: "File size must be between 10 KB and 2 MB."
+                },
+                image5: {
+                    required: "Please upload an Image (JPG, JPEG, PNG).",
+                    extension: "Only JPG, JPEG, and PNG images are allowed.",
+                    filesize: "File size must be between 10 KB and 2 MB."
+                },
+                english_audio_link: {
+                    required: "Please upload an Audio file MP3.",
+                    extension: "Only MP3 audio files are allowed.",
+                    filesize: "File size must be between 10 KB and 1 MB."
+                },
+                hindi_audio_link: {
+                    required: "कृपया ऑडियो फ़ाइल MP3 अपलोड करें।",
+                    extension: "केवल MP3 ऑडियो फ़ाइलें अनुमत हैं।",
+                    filesize: "फ़ाइल का आकार 10 KB और 1 MB के बीच होना चाहिए।"
+                },
+                english_video_upload: {
+                    required: "Please upload a Video file MP4.",
+                    extension: "Only MP4 video files are allowed.",
+                    filesize: "File size must be between 100 KB and 5 MB."
+                },
+                hindi_video_upload: {
+                    required: "कृपया वीडियो फ़ाइल MP4 अपलोड करें।",
+                    extension: "केवल MP4 वीडियो फ़ाइलें अनुमत हैं।",
+                    filesize: "फ़ाइल का आकार 100 KB और 5 MB के बीच होना चाहिए।"
+                }
+            }
+        });
+
+        // Event listener for file inputs to remove validation messages
+        $('input[type="file"]').change(function() {
+            var input = $(this);
+            var fieldName = input.attr('name');
+            var errorLabel = $('label.error[for="' + fieldName + '"]');
+            errorLabel.remove();
+        });
+    });
+</script>
+
 @endsection

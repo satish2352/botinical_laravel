@@ -7,13 +7,28 @@ use Illuminate\Support\Carbon;
 // use Session;
 use App\Models\ {
 	Tress,
+    TreePlantMaster
 };
 use Config;
 
 class TressRepository  {
 	public function getAll(){
         try {
-            return Tress::orderBy('updated_at', 'desc')->get();
+            $data_output = Tress::join('tbl_tree_plant', 'tbl_tree_plant.id', '=', 'tbl_trees.tree_plant_id')
+            ->select(
+                'tbl_trees.id',
+                'tbl_trees.english_description', 
+                'tbl_trees.hindi_description', 
+                'tbl_tree_plant.english_name',
+                'tbl_tree_plant.hindi_name',
+                'tbl_tree_plant.english_botnical_name',
+                'tbl_tree_plant.hindi_botnical_name',
+                'tbl_tree_plant.english_common_name',
+                'tbl_tree_plant.hindi_common_name',
+            )
+            ->orderBy('tbl_trees.id', 'desc')
+            ->get();  
+            return $data_output;
         } catch (\Exception $e) {
             return $e;
         }
@@ -23,12 +38,7 @@ class TressRepository  {
             $data = [];
             $add_data = new Tress();
             $add_data->icon_id = $request['icon_id'];
-            $add_data->english_name = $request['english_name'];
-            $add_data->hindi_name = $request['hindi_name'];
-            $add_data->english_botnical_name = $request['english_botnical_name'];
-            $add_data->hindi_botnical_name = $request['hindi_botnical_name'];
-            $add_data->english_common_name = $request['english_common_name'];
-            $add_data->hindi_common_name = $request['hindi_common_name'];
+            $add_data->tree_plant_id = $request['tree_plant_id'];
             $add_data->english_description = $request['english_description'];
             $add_data->hindi_description = $request['hindi_description'];
             $add_data->latitude = $request['latitude'];
@@ -104,8 +114,15 @@ class TressRepository  {
 
     public function getById($id){
         try {
-            $tress = Tress::find($id);
+            $tress = Tress::join('tbl_tree_plant', 'tbl_tree_plant.id', '=', 'tbl_trees.tree_plant_id')
+            ->select(
+                'tbl_trees.*', 
+                'tbl_tree_plant.*'
+            )
+            ->where('tbl_trees.id', $id)
+            ->first();
           
+
             if ($tress) {
                 return $tress;
             } else {
@@ -142,12 +159,7 @@ class TressRepository  {
 
             // Update the fields from the request
             $data_output->icon_id = $request['icon_id'];
-            $data_output->english_name = $request['english_name'];
-            $data_output->hindi_name = $request['hindi_name'];
-            $data_output->english_botnical_name = $request['english_botnical_name'];
-            $data_output->hindi_botnical_name = $request['hindi_botnical_name'];
-            $data_output->english_common_name = $request['english_common_name'];
-            $data_output->hindi_common_name = $request['hindi_common_name'];
+            $data_output->tree_plant_id = $request['tree_plant_id'];
             $data_output->english_description = $request['english_description'];
             $data_output->hindi_description = $request['hindi_description'];
             $data_output->latitude = $request['latitude'];

@@ -10,7 +10,8 @@ use Illuminate\Validation\Rule;
 use Config;
 use App\Models\ {
     FLOWERS,
-    IconMaster
+    IconMaster,
+    TreePlantMaster
 }
 ;
 
@@ -23,6 +24,8 @@ class FlowersController extends Controller {
     public function index() {
         try {
             $flowers = $this->service->getAll();
+            dd($flowers);
+            die();
             return view( 'admin.pages.product.flowers.list-flowers', compact( 'flowers' ) );
         } catch ( \Exception $e ) {
             return $e;
@@ -30,15 +33,16 @@ class FlowersController extends Controller {
     }
 
     public function add() {
-        $dataOutputIcon = IconMaster::get();
-        return view( 'admin.pages.product.flowers.add-flowers', compact( 'dataOutputIcon' ) );
+        $dataOutputIcon = IconMaster::where('is_active', true)->get();
+        $dataOutputTreePlant = TreePlantMaster::where('is_active', true)->get();
+        return view( 'admin.pages.product.flowers.add-flowers', compact( 'dataOutputIcon', 'dataOutputTreePlant' ) );
     }
 
     public function store( Request $request ) {
 
         $rules = [
-            'english_name' => 'required|max:255',
-            'hindi_name' => 'required|max:255',
+            // 'english_name' => 'required|max:255',
+            // 'hindi_name' => 'required|max:255',
             'english_description' => 'required',
             'hindi_description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.FLOWERS_IMAGE_MIN_SIZE' ),
@@ -63,10 +67,10 @@ class FlowersController extends Controller {
         }
 
         $messages = [
-            'english_name.required' => 'Please enter the name.',
-            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
-            'hindi_name.required' => 'कृपया नाम दर्ज करें |',
-            'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
+            // 'english_name.required' => 'Please enter the name.',
+            // 'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            // 'hindi_name.required' => 'कृपया नाम दर्ज करें |',
+            // 'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
             'english_description.required' => 'Please enter the description.',
             'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
             'image.required' => 'The image is required.',
@@ -159,18 +163,19 @@ class FlowersController extends Controller {
     }
 
     public function edit( Request $request ) {
-        $dataOutputIcon = IconMaster::get();
+        $dataOutputIcon = IconMaster::where('is_active', true)->get();
+        $dataOutputTreePlant = TreePlantMaster::where('is_active', true)->get();
         $edit_data_id = base64_decode( $request->edit_id );
 
         $flowers = $this->service->getById( $edit_data_id );
-        return view( 'admin.pages.product.flowers.edit-flowers', compact( 'flowers', 'dataOutputIcon' ) );
+        return view( 'admin.pages.product.flowers.edit-flowers', compact( 'flowers', 'dataOutputIcon', 'dataOutputTreePlant' ) );
     }
 
     public function update( Request $request ) {
         $rules = [
-            'english_name' => 'required|max:255',
-            'hindi_name' => 'required|max:255',
-            'english_description' => 'required',
+            // 'english_name' => 'required|max:255',
+            // 'hindi_name' => 'required|max:255',
+            // 'english_description' => 'required',
             'hindi_description' => 'required',
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
@@ -204,10 +209,10 @@ class FlowersController extends Controller {
             $rules[ 'hindi_video_upload' ] = 'required|mimetypes:video/mp4|max:' . Config::get( 'AllFileValidation.VIDEO_MAX_SIZE' ) . '|min:' . Config::get( 'AllFileValidation.VIDEO_MIN_SIZE' );
         }
         $messages = [
-            'english_name.required' => 'Please enter the name.',
-            'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
-            'hindi_name.required' => 'कृपया नाम दर्ज करें |',
-            'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
+            // 'english_name.required' => 'Please enter the name.',
+            // 'english_name.max' => 'Please enter an name with a maximum length of 255 characters.',
+            // 'hindi_name.required' => 'कृपया नाम दर्ज करें |',
+            // 'hindi_name.max' => 'कृपया अधिकतम 255 अक्षरों वाला नाम दर्ज करें |',
             'english_description.required' => 'Please enter the description.',
             'hindi_description.required' => 'कृपया विवरण दर्ज करें |',
 

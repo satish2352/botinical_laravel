@@ -77,6 +77,14 @@ Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\
     Route::post('/delete-amenities-category', ['as' => 'delete-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@destroy']);
     Route::post('/update-one-amenities-category', ['as' => 'update-one-amenities-category', 'uses' => 'App\Http\Controllers\Admin\AmenitiesCategory\AmenitiesCategoryController@updateOneCategory']);
 
+    Route::any('/list-tree-plant', ['as' => 'list-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@index']);
+    Route::any('/add-tree-plant', ['as' => 'add-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@add']);
+    Route::any('/store-tree-plant', ['as' => 'store-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@store']);
+    Route::any('/edit-tree-plant/{edit_id}', ['as' => 'edit-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@edit']);
+    Route::any('/update-tree-plant', ['as' => 'update-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@update']);
+    Route::post('/delete-tree-plant', ['as' => 'delete-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@destroy']);
+    Route::post('/update-one-tree-plant', ['as' => 'update-one-tree-plant', 'uses' => 'App\Http\Controllers\Admin\Master\TreePlantController@updateOneCategory']);
+
 
     Route::any('/list-roles', ['as' => 'list-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@index']);
     Route::any('/add-roles', ['as' => 'add-roles', 'uses' => 'App\Http\Controllers\Admin\Roles\RolesController@add']);
@@ -121,6 +129,10 @@ Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\
     Route::post('/show-tress', ['as' => 'show-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@show']);
     Route::post('/delete-tress', ['as' => 'delete-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@destroy']);
     Route::post('/update-active-tress', ['as' => 'update-active-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@updateOne']);
+
+    Route::get('/search-tree/{id}', ['as' => 'search-tree', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@getTreeData']);
+
+    // Route::get('/tree-data/{id}', [TreeController::class, 'getTreeData'])->name('get-tree-data');
 
 
     Route::any('/list-flowers', ['as' => 'list-flowers', 'uses' => 'App\Http\Controllers\Admin\Product\FlowersController@index']);
