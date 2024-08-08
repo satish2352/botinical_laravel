@@ -27,7 +27,7 @@ class FlowersController extends Controller {
             return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
         }
        $typeName = $typeMap[$type];
-       
+
         // Define validation rules and custom messages for tree, flower, and amenities
         $validationRules = [
             'tree' => [
@@ -207,12 +207,12 @@ class FlowersController extends Controller {
         
     
         // Check if type is valid
-        if (!array_key_exists($type, $validationRules)) {
+        if (!array_key_exists($typeName, $validationRules)) {
             return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
         }
     
         // Validate request based on type
-        $validator = Validator::make($request->all(), $validationRules[$type], $customMessages);
+        $validator = Validator::make($request->all(), $validationRules[$typeName], $customMessages);
     
         // Check if validation fails
         if ($validator->fails()) {
@@ -220,11 +220,11 @@ class FlowersController extends Controller {
         }
     
         try {
-            if ($type == 'tree') {
+            if ($typeName == 'tree') {
                 $data = new Tress();
-            } elseif ($type == 'flower') {
+            } elseif ($typeName == 'flower') {
                 $data = new Flowers();
-            } elseif ($type == 'aminities') {
+            } elseif ($typeName == 'aminities') {
                 $data = new Amenities();
                 $data->english_name = $request->english_name;
                 $data->hindi_name = $request->hindi_name;
@@ -236,7 +236,7 @@ class FlowersController extends Controller {
             $data->hindi_description = $request->hindi_description;
             $data->latitude = $request->latitude;
             $data->longitude = $request->longitude;
-            if ($type != 'aminities') {
+            if ($typeName != 'aminities') {
                 $data->tree_plant_id = $request->tree_plant_id;
                 $data->height = $request->height;
                 $data->height_type = $request->height_type;
@@ -257,9 +257,9 @@ class FlowersController extends Controller {
             $last_insert_id = $data->id;
     
             // Define path based on type
-            if ($type == 'tree') {
+            if ($typeName == 'tree') {
                 $path = Config::get('DocumentConstant.TREE_ADD');
-            } elseif ($type == 'flower') {
+            } elseif ($typeName == 'flower') {
                 $path = Config::get('DocumentConstant.FLOWERS_ADD');
             } else {
                 $path = Config::get('DocumentConstant.AMENITIES_ADD');
@@ -287,7 +287,7 @@ class FlowersController extends Controller {
             $data->hindi_video_upload = $hindiVideo;
             $data->save();
     
-            return response()->json(['status' => 'true', 'message' => ucfirst($type) . ' Added Successfully.'], 200);
+            return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.'], 200);
         } catch (Exception $e) {
             return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
         }
