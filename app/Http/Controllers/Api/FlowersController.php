@@ -258,7 +258,7 @@ class FlowersController extends Controller {
     
             // Define path based on type
             if ($typeName == 'tree') {
-                $path = Config::get('DocumentConstant.TREE_ADD');
+                $path = Config::get('DocumentConstant.TRESS_ADD');
             } elseif ($typeName == 'flower') {
                 $path = Config::get('DocumentConstant.FLOWERS_ADD');
             } else {
@@ -273,11 +273,31 @@ class FlowersController extends Controller {
             $hindiVideo = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
             
             // Save files
-            $request->image->move(public_path($path), $treeImage);
-            $request->english_audio_link->move(public_path($path), $englishAudio);
-            $request->hindi_audio_link->move(public_path($path), $hindiAudio);
-            $request->english_video_upload->move(public_path($path), $englishVideo);
-            $request->hindi_video_upload->move(public_path($path), $hindiVideo);
+
+
+            uploadImage($request, 'image', $path, $treeImage);
+            uploadImage($request, 'english_audio_link', $path, $englishAudio);
+            uploadImage($request, 'hindi_audio_link', $path, $hindiAudio);
+            uploadImage($request, 'english_video_upload', $path, $englishVideo);
+            uploadImage($request, 'hindi_video_upload', $path, $hindiVideo);
+
+
+              // Handle optional file uploads
+        $optionalImages = ['image_two', 'image_three', 'image_four', 'image_five'];
+        foreach ($optionalImages as $imageField) {
+            if ($request->hasFile($imageField)) {
+                $imageName = $last_insert_id . '_' . rand(100000, 999999) . '_' . $imageField . '.' . $request->$imageField->extension();
+                uploadImage($request, $imageField, $path, $imageName);
+                $data->$imageField = $imageName;
+            }
+        }
+        
+            // $labour_data->image =  $treeImage;
+            // $labour_data->english_audio_link = $englishAudio;
+            // $labour_data->hindi_audio_link = $hindiAudio;
+            // $labour_data->english_video_upload =  $englishVideo;
+            // $labour_data->hindi_video_upload =  $hindiVideo;
+     
     
             // Update file paths in database
             $data->image = $treeImage;
@@ -287,7 +307,8 @@ class FlowersController extends Controller {
             $data->hindi_video_upload = $hindiVideo;
             $data->save();
     
-            return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.'], 200);
+          
+            return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.', $data], 200);
         } catch (Exception $e) {
             return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
         }
