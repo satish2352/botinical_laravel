@@ -33,6 +33,7 @@ Route::post('/add-contactus-form', [ContactInformationController::class, 'addCon
       
 Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
 // Route::post('login', 'AuthController@login')->middleware('api');
+Route::post('/user-registration', [AuthController::class, 'userRegistration']);
 
 Route::group([
 
@@ -47,7 +48,7 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
     Route::middleware('auth:api')->group(function () {
-        Route::post('/user-registration', [AuthController::class, 'userRegistration']);
+     
         
         Route::post('/get-aboutus-list', [AboutUsListController::class, 'getAllAboutUsList']);
        
