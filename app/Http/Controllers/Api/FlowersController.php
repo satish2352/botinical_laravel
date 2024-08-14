@@ -181,7 +181,7 @@ class FlowersController extends Controller {
             'flower.image_two.mimes' => 'The image must be in JPEG, PNG, or JPG format.',
             'flower.image_two.max' => 'The image size must not exceed ' . Config::get('AllFileValidation.FLOWERS_IMAGE_MAX_SIZE') . ' KB.',
             'flower.image_two.min' => 'The image size must be at least ' . Config::get('AllFileValidation.FLOWERS_IMAGE_MIN_SIZE') . ' KB.',
-            // Repeat similar structure for image_three, image_four, image_five...
+           
         
             // Amenities validation messages
             'aminities.english_name.required' => 'English name is required.',
@@ -309,14 +309,24 @@ try {
     }
 
     // Update file paths in database
-    $data->image = $treeImage;
-    if ($typeName != 'aminities') {
-        $data->english_audio_link = $englishAudio ?? null;
-        $data->hindi_audio_link = $hindiAudio ?? null;
-        $data->english_video_upload = $englishVideo ?? null;
-        $data->hindi_video_upload = $hindiVideo ?? null;
-    }
-    $data->save();
+    // $data->image = $treeImage;
+    // if ($typeName != 'aminities') {
+    //     $data->english_audio_link = $englishAudio ?? null;
+    //     $data->hindi_audio_link = $hindiAudio ?? null;
+    //     $data->english_video_upload = $englishVideo ?? null;
+    //     $data->hindi_video_upload = $hindiVideo ?? null;
+    // }
+    // $data->save();
+
+    // Update file paths in database
+$data->image = $treeImage;
+if ($typeName != 'aminities') {
+    $data->english_audio_link = $englishAudio ?? null;
+    $data->hindi_audio_link = $hindiAudio ?? null;
+    $data->english_video_upload = $englishVideo ?? null;
+    $data->hindi_video_upload = $hindiVideo ?? null;
+}
+$data->save();
 
     return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.', 'data' => $data], 200);
 } catch (Exception $e) {
