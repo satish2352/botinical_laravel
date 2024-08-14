@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\FacilitiesController;
 use App\Http\Controllers\Api\ZoneAreaController;
 use App\Http\Controllers\Api\MappingController;
 use App\Http\Controllers\Api\MasterController;
-use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +33,9 @@ Route::post('/add-contactus-form', [ContactInformationController::class, 'addCon
       
 Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
 // Route::post('login', 'AuthController@login')->middleware('api');
-Route::post('/user-registration', [AuthController::class, 'userRegistration']);
+
+// In routes/api.php
+Route::post('/user-regs', [UserController::class, 'userRegistrationForm']);
 
 Route::group([
 
@@ -97,8 +99,8 @@ Route::group([
         Route::post('/get-icon', [MasterController::class, 'getIconMaster']);
         Route::post('/get-role', [MasterController::class, 'getRole']);
 
-        Route::post('/change-password-profile', [UserProfileController::class, 'changePasswordProfile']);
-        Route::post('/particular-user-profile', [UserProfileController::class, 'getParticularUserProfile']);
+        Route::post('/change-password-profile', [UserController::class, 'changePasswordProfile']);
+        Route::post('/particular-user-profile', [UserController::class, 'getParticularUserProfile']);
         
         
     });
