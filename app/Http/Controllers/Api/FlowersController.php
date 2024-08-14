@@ -265,7 +265,15 @@ try {
     $last_insert_id = $data->id;
 
     // Define path based on type
-    $path = Config::get('DocumentConstant.' . strtoupper($typeNameFolderName) . '_ADD');
+    
+
+    if ($typeName == 'tree') {
+        $path = Config::get('DocumentConstant.' . 'TRESS_ADD');
+    } elseif ($typeName == 'flower') {
+        $path = Config::get('DocumentConstant.' . 'FLOWERS_ADD');
+    } elseif ($typeName == 'aminities') {
+        $path = Config::get('DocumentConstant.' . 'AMENITIES_ADD');
+    }
 
     // Handle file uploads
     $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
