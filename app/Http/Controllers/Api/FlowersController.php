@@ -28,6 +28,13 @@ class FlowersController extends Controller {
         }
        $typeName = $typeMap[$type];
 
+
+       $typeNameFolderName =[
+        1 => 'TRESS',
+        2 => 'FLOWERS',
+        3 => 'AMENITIES',
+       ];
+
         // Define validation rules and custom messages for tree, flower, and amenities
         $validationRules = [
             'tree' => [
@@ -258,7 +265,7 @@ try {
     $last_insert_id = $data->id;
 
     // Define path based on type
-    $path = Config::get('DocumentConstant.' . strtoupper($typeName) . '_ADD');
+    $path = Config::get('DocumentConstant.' . strtoupper($typeNameFolderName) . '_ADD');
 
     // Handle file uploads
     $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
