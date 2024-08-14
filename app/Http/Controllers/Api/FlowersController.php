@@ -207,111 +207,107 @@ class FlowersController extends Controller {
         
     
         // Check if type is valid
-        if (!array_key_exists($typeName, $validationRules)) {
-            return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
-        }
-    
-        // Validate request based on type
-        $validator = Validator::make($request->all(), $validationRules[$typeName], $customMessages);
-    
-        // Check if validation fails
-        if ($validator->fails()) {
-            return response()->json(['status' => 'false', 'message' => $validator->errors()->all()], 200);
-        }
-    
-        try {
-            if ($typeName == 'tree') {
-                $data = new Tress();
-            } elseif ($typeName == 'flower') {
-                $data = new Flowers();
-            } elseif ($typeName == 'aminities') {
-                $data = new Amenities();
-                $data->english_name = $request->english_name;
-                $data->hindi_name = $request->hindi_name;
-            }
-    
-            // Set common attributes
-            $data->icon_id = $request->icon_id;
-            $data->english_description = $request->english_description;
-            $data->hindi_description = $request->hindi_description;
-            $data->latitude = $request->latitude;
-            $data->longitude = $request->longitude;
-            if ($typeName != 'aminities') {
-                $data->tree_plant_id = $request->tree_plant_id;
-                $data->height = $request->height;
-                $data->height_type = $request->height_type;
-                $data->canopy = $request->canopy;
-                $data->canopy_type = $request->canopy_type;
-                $data->girth = $request->girth;
-                $data->girth_type = $request->girth_type;
-            } else {
-                
-                $data->open_time_first = $request->open_time_first;
-                $data->close_time_first = $request->close_time_first;
-                $data->open_time_second = $request->open_time_second;
-                $data->close_time_second = $request->close_time_second;
-            }
-            $data->save();
-    
-            // Get last inserted ID
-            $last_insert_id = $data->id;
-    
-            // Define path based on type
-            if ($typeName == 'tree') {
-                $path = Config::get('DocumentConstant.TRESS_ADD');
-            } elseif ($typeName == 'flower') {
-                $path = Config::get('DocumentConstant.FLOWERS_ADD');
-            } else {
-                $path = Config::get('DocumentConstant.AMENITIES_ADD');
-            }
-    
-            // Handle file uploads
-            $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
+if (!array_key_exists($typeName, $validationRules)) {
+    return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
+}
+
+// Validate request based on type
+$validator = Validator::make($request->all(), $validationRules[$typeName], $customMessages);
+
+// Check if validation fails
+if ($validator->fails()) {
+    return response()->json(['status' => 'false', 'message' => $validator->errors()->all()], 200);
+}
+
+try {
+    if ($typeName == 'tree') {
+        $data = new Tress();
+    } elseif ($typeName == 'flower') {
+        $data = new Flowers();
+    } elseif ($typeName == 'aminities') {
+        $data = new Amenities();
+        $data->english_name = $request->english_name;
+        $data->hindi_name = $request->hindi_name;
+    }
+
+    // Set common attributes
+    $data->icon_id = $request->icon_id;
+    $data->english_description = $request->english_description;
+    $data->hindi_description = $request->hindi_description;
+    $data->latitude = $request->latitude;
+    $data->longitude = $request->longitude;
+
+    if ($typeName != 'aminities') {
+        $data->tree_plant_id = $request->tree_plant_id;
+        $data->height = $request->height;
+        $data->height_type = $request->height_type;
+        $data->canopy = $request->canopy;
+        $data->canopy_type = $request->canopy_type;
+        $data->girth = $request->girth;
+        $data->girth_type = $request->girth_type;
+    } else {
+        $data->amenities_category_id = $request->amenities_category_id;
+        $data->open_time_first = $request->open_time_first;
+        $data->close_time_first = $request->close_time_first;
+        $data->open_time_second = $request->open_time_second;
+        $data->close_time_second = $request->close_time_second;
+    }
+    $data->save();
+
+    // Get last inserted ID
+    $last_insert_id = $data->id;
+
+    // Define path based on type
+    $path = Config::get('DocumentConstant.' . strtoupper($typeName) . '_ADD');
+
+    // Handle file uploads
+    $treeImage = $last_insert_id . '_' . rand(100000, 999999) . '_image.' . $request->image->extension();
+    uploadImage($request, 'image', $path, $treeImage);
+
+    if ($typeName != 'aminities') {
+        if ($request->hasFile('english_audio_link')) {
             $englishAudio = $last_insert_id . '_' . rand(100000, 999999) . '_english.' . $request->english_audio_link->extension();
-            $hindiAudio = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
-            $englishVideo = $last_insert_id . '_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
-            $hindiVideo = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
-            
-            // Save files
-
-
-            uploadImage($request, 'image', $path, $treeImage);
             uploadImage($request, 'english_audio_link', $path, $englishAudio);
+        }
+        if ($request->hasFile('hindi_audio_link')) {
+            $hindiAudio = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_audio_link->extension();
             uploadImage($request, 'hindi_audio_link', $path, $hindiAudio);
+        }
+        if ($request->hasFile('english_video_upload')) {
+            $englishVideo = $last_insert_id . '_' . rand(100000, 999999) . '_english.' . $request->english_video_upload->extension();
             uploadImage($request, 'english_video_upload', $path, $englishVideo);
+        }
+        if ($request->hasFile('hindi_video_upload')) {
+            $hindiVideo = $last_insert_id . '_' . rand(100000, 999999) . '_hindi.' . $request->hindi_video_upload->extension();
             uploadImage($request, 'hindi_video_upload', $path, $hindiVideo);
-
-
-              // Handle optional file uploads
-        $optionalImages = ['image_two', 'image_three', 'image_four', 'image_five'];
-        foreach ($optionalImages as $imageField) {
-            if ($request->hasFile($imageField)) {
-                $imageName = $last_insert_id . '_' . rand(100000, 999999) . '_' . $imageField . '.' . $request->$imageField->extension();
-                uploadImage($request, $imageField, $path, $imageName);
-                $data->$imageField = $imageName;
-            }
         }
-        
-            // $labour_data->image =  $treeImage;
-            // $labour_data->english_audio_link = $englishAudio;
-            // $labour_data->hindi_audio_link = $hindiAudio;
-            // $labour_data->english_video_upload =  $englishVideo;
-            // $labour_data->hindi_video_upload =  $hindiVideo;
-     
-    
-            // Update file paths in database
-            $data->image = $treeImage;
-            $data->english_audio_link = $englishAudio;
-            $data->hindi_audio_link = $hindiAudio;
-            $data->english_video_upload = $englishVideo;
-            $data->hindi_video_upload = $hindiVideo;
-            $data->save();
-    
-          
-            return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.', $data], 200);
-        } catch (Exception $e) {
-            return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
+    }
+
+    // Handle optional file uploads
+    $optionalImages = ['image_two', 'image_three', 'image_four', 'image_five'];
+    foreach ($optionalImages as $imageField) {
+        if ($request->hasFile($imageField)) {
+            $imageName = $last_insert_id . '_' . rand(100000, 999999) . '_' . $imageField . '.' . $request->file($imageField)->extension();
+            uploadImage($request, $imageField, $path, $imageName);
+            $data->$imageField = $imageName;
         }
+    }
+
+    // Update file paths in database
+    $data->image = $treeImage;
+    if ($typeName != 'aminities') {
+        $data->english_audio_link = $englishAudio ?? null;
+        $data->hindi_audio_link = $hindiAudio ?? null;
+        $data->english_video_upload = $englishVideo ?? null;
+        $data->hindi_video_upload = $hindiVideo ?? null;
+    }
+    $data->save();
+
+    return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.', 'data' => $data], 200);
+} catch (Exception $e) {
+    return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
+}
+
     }
     
     

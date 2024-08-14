@@ -26,7 +26,7 @@ class AuthController extends Controller
 
 public function __construct()
 {
-    $this->middleware('auth:api', ['except' => ['login', 'verifyOTP', 'get-home-data', 'get-aboutus-element-list', 'add-contactus-form','get-contact-information', 'user-registration']]);
+    $this->middleware('auth:api', ['except' => ['user-registration','login', 'verifyOTP', 'get-home-data', 'get-aboutus-element-list', 'add-contactus-form','get-contact-information']]);
 }
 
 
