@@ -30,8 +30,8 @@ Route::post('/verifyotp', [AuthController::class, 'verifyOTP']);
 Route::post('/get-home-data', [AboutUsListController::class, 'getHomeData']);
 Route::post('/get-aboutus-element-list', [AboutUsListController::class, 'getAllAboutUsElementList']);
 Route::post('/add-contactus-form', [ContactInformationController::class, 'addContactUs']);
-      
 Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
+Route::post('/get-role', [MasterController::class, 'getRole']);
 // Route::post('login', 'AuthController@login')->middleware('api');
 
 // In routes/api.php
@@ -97,7 +97,7 @@ Route::group([
         Route::post('/get-facilities', [FacilitiesController::class, 'getFacilities']);
         Route::post('/get-tree-plant', [MasterController::class, 'getTreePlantMaster']);
         Route::post('/get-icon', [MasterController::class, 'getIconMaster']);
-        Route::post('/get-role', [MasterController::class, 'getRole']);
+       
 
         Route::post('/change-password-profile', [UserController::class, 'changePasswordProfile']);
         Route::post('/particular-user-profile', [UserController::class, 'getParticularUserProfile']);
