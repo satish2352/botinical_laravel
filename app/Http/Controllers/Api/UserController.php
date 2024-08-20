@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\Models\ {
     User,
@@ -153,5 +153,88 @@ class UserController extends Controller
             return response()->json(['status' => 'false', 'message' => 'Failed to update password', 'error' => $e->getMessage()], 500);
         }
     }
-        
+    // public function sendPasswordEmail($password, $email)
+    // {
+    //     try {
+    //        $msg= Mail::raw('Your new password is: ' . $password, function ($message) use ($email) {
+    //   info($msg);
+    //   die();
+    //         $message->to($email)->subject('Password Reset');
+          
+    //             $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+
+                
+    //         });           
+    //         return true;
+
+    //     } catch (\Exception $e) {
+    //         // Log the error
+    //         \Log::error($e);
+    //         return false;
+    //     }
+    // }
+
+ 
+    public function sendPasswordEmail($password, $email)
+    {
+        try {
+            Mail::raw('Your new password is: ' . $password, function ($message) use ($email) {
+                $message->to($email)->subject('Password Reset');
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+    
+                // Log the email details if needed
+                // info('Sending password reset email to: ' . $email);
+                // info('Email subject: ' . $message->getSubject());
+            });           
+            return true;
+    
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error($e);
+            return false;
+        }
+    }
+    public function resetPasswordEmailBased(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['status' => 'false', 'message' => 'Invalid email format'], 200);
+            }
+
+            $user = User::where('email', $request->email)->first();
+            
+            if (!$user) {
+                return response()->json(['status' => 'false', 'message' => 'Email not found'], 200);
+            }
+            
+
+            // $newPassword = Str::random(8); // Change the password length as needed
+            $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$!%*?&';
+            $newPassword = '';
+            $length = 8;
+            for ($i = 0; $i < $length; $i++) {
+                $newPassword .= $characters[random_int(0, strlen($characters) - 1)];
+            }
+            $emailSent = $this->sendPasswordEmail($newPassword, $request->email);
+            // info($emailSent);
+            // die();
+            if (!$emailSent) {
+                return response()->json(['status' => 'false', 'message' => 'Unable to reset password please try after some time'], 200);
+            }
+
+            
+            $user->password = Hash::make($newPassword);
+            $user->save();
+           
+            return response()->json(['status' => 'true', 'message' => 'Password updated successfully'], 200);
+        } catch (\Exception $e) {
+            
+            \Log::error($e);
+            return response()->json(['status' => 'false', 'message' => 'Failed to update password'], 500);
+        }
+    }   
 }

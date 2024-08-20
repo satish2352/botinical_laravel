@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Validator;
+
 use Illuminate\Http\Request;
 use App\Models\ {
     User
@@ -81,6 +82,9 @@ public function __construct()
         ]);
 
     }
+
+
+ 
     // public function login()
     // {
     //     $credentials = request( [ 'mobile_number' ] );
