@@ -203,9 +203,11 @@ public function extractCoordinates(Request $request)
         }
 
         // Return all coordinates as a JSON response
-        return response()->json('status' => true,
-        'message' => 'All data retrieved successfully',
-        'data' => $allCoordinates);
+        return response()->json([
+            'status' => true,
+            'message' => 'All data retrieved successfully',
+            'data' => $allCoordinates
+        ]);
     } catch (\Exception $e) {
         // Log the exception for debugging
         Log::error('Error extracting coordinates from KML files: ' . $e->getMessage());
