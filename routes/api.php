@@ -91,7 +91,7 @@ Route::group([
         Route::post('/get-zone-area-audio', [ZoneAreaController::class, 'getParticularZoneAreaAudio']);
         Route::post('/get-zone-area-video', [ZoneAreaController::class, 'getParticularZoneAreaVideo']);
 
-        Route::post('/get-zone-co-cordinate', [ZoneAreaController::class, 'extractCoordinates']);
+        Route::post('/get-zone-co-ordinate', [ZoneAreaController::class, 'extractCoordinates']);
         
 
         Route::post('/get-gallery-category', [GalleryController::class, 'getAllGalleryCategory']);
