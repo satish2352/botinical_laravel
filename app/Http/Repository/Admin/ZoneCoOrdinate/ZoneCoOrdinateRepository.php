@@ -35,7 +35,7 @@ class ZoneCoOrdinateRepository  {
                 throw new \Exception('The file must be a KML file.');
             }
     
-            $imageName = $last_insert_id . '_' . rand(100000, 999999) . $imageExtension;
+            $imageName = $last_insert_id . '_' . rand(100000, 999999) . '.' . $imageExtension;
             
             $add_data->image = $imageName;
             $add_data->save();
