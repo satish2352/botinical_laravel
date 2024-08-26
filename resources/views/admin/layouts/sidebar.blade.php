@@ -153,6 +153,12 @@
 
                         </ul>
                     </li>
+                    <li class="{{ Request::is('list-zone-co-ordinate') ? 'active' : '' }}">
+                        <a class="" href="{{ route('list-zone-co-ordinate') }}" aria-expanded="false">
+                            <i class="fa fa-file icon-wrap"></i>
+                            <span class="mini-click-non">Zone Co-ordinate</span>
+                        </a>
+                    </li> 
                     <li class="{{ Request::is('list-zone-area') ? 'active' : '' }}">
                         <a class="" href="{{ route('list-zone-area') }}" aria-expanded="false">
                             <i class="fa fa-file icon-wrap"></i>

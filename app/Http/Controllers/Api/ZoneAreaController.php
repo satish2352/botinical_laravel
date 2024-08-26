@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
+
 use App\Models\ {
-    ZonesArea
+    ZonesArea, 
+    ZoneCoOrdinate
 }
 ;
 
@@ -129,4 +132,83 @@ class ZoneAreaController extends Controller
             ], 500 );
         }
     } 
+public function extractCoordinates(Request $request)
+{
+    try {
+        $zoneCoordinates = ZoneCoOrdinate::where('is_active', true)->get();
+
+        if ($zoneCoordinates->isEmpty()) {
+            return response()->json(['error' => 'No active zone coordinates found'], 404);
+        }
+
+        $allCoordinates = [];
+
+        foreach ($zoneCoordinates as $zoneCoordinate) {
+            $kmlFileName = $zoneCoordinate->image;
+            $fillColor = $zoneCoordinate->colour_picker;
+            $kmlFilePath = base_path('storage/all_web_data/kml/cocordinate/' . $kmlFileName);
+                
+            if (!file_exists($kmlFilePath)) {
+                return response()->json(['error' => 'File not found: ' . $kmlFilePath], 404);
+            }
+
+            $kmlContent = file_get_contents($kmlFilePath);
+            if ($kmlContent === false) {
+                return response()->json(['error' => 'Error reading file: ' . $kmlFileName], 500);
+            }
+
+            $xml = new \SimpleXMLElement($kmlContent);
+            $namespaces = $xml->getNamespaces(true);
+
+            $polygons = [];
+
+            foreach ($xml->Document->Placemark as $placemark) {
+                if (isset($placemark->Polygon)) {
+                    $polygonData = [];
+                    
+                    $coordinates = $placemark->Polygon->outerBoundaryIs->LinearRing->coordinates;
+                    
+                    if ($coordinates) {
+                        $coords = (string) $coordinates;
+                        $coordsArray = explode(' ', trim($coords));
+
+                        foreach ($coordsArray as $coord) {
+                            $coordParts = explode(',', $coord);
+                            if (count($coordParts) >= 2) {
+                                list($longitude, $latitude) = array_slice($coordParts, 0, 2);
+                                $polygonData[] = [
+                                    'latitude' => (float) $latitude,
+                                    'longitude' => (float) $longitude,
+                                ];
+                            }
+                        }
+
+                        // Add the polygon data
+                        $polygons[] = [
+                            'coordinates' => $polygonData,
+                            'fillColor' => $fillColor, 
+                            'strokeColor' => '#000000', 
+                            'strokeWidth' => 1, 
+                            'type' => 'Polygon',
+                            'name' => (string) $placemark->name, 
+                        ];
+                    }
+                }
+            }
+            
+            $allCoordinates[] = [
+                'file' => $kmlFileName,
+                'polygons' => $polygons,
+            ];
+        }
+
+        // Return all coordinates as a JSON response
+        return response()->json($allCoordinates);
+    } catch (\Exception $e) {
+        // Log the exception for debugging
+        Log::error('Error extracting coordinates from KML files: ' . $e->getMessage());
+        return response()->json(['error' => 'An error occurred'], 500);
+    }
+}
+
 }

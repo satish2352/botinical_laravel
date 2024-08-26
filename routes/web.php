@@ -154,6 +154,15 @@ Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\
     Route::post('/delete-zone-area', ['as' => 'delete-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@destroy']);
     Route::post('/update-active-zone-area', ['as' => 'update-active-zone-area', 'uses' => 'App\Http\Controllers\Admin\Product\ZoneAreaController@updateOne']);
 
+    Route::any('/list-zone-co-ordinate', ['as' => 'list-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@index']);
+    Route::any('/add-zone-co-ordinate', ['as' => 'add-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@add']);
+    Route::any('/store-zone-co-ordinate', ['as' => 'store-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@store']);
+    Route::any('/edit-zone-co-ordinate/{edit_id}', ['as' => 'edit-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@edit']);
+    Route::any('/update-zone-co-ordinate', ['as' => 'update-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@update']);
+    Route::post('/show-zone-co-ordinate', ['as' => 'show-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@show']);
+    Route::post('/delete-zone-co-ordinate', ['as' => 'delete-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@destroy']);
+    Route::post('/update-active-zone-co-ordinate', ['as' => 'update-active-zone-co-ordinate', 'uses' => 'App\Http\Controllers\Admin\ZoneCoOrdinate\ZoneCoOrdinateController@updateOne']);
+
 
     Route::any('/list-amenities', ['as' => 'list-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@index']);
     Route::any('/add-amenities', ['as' => 'add-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@add']);

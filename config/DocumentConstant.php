@@ -53,7 +53,9 @@ return [
     'ICON_MASTER_VIEW'	         => env("FILE_VIEW").'/all_web_data/images/iconmaster/',
     // 'DB_BACKUP'	 => "/all_web_data/DBBackup//",
 
-    
+    'ZONE_CO_ORDINATE_KML_ADD'	         => "/all_web_data/kml/cocordinate/",
+    'ZONE_CO_ORDINATE_KML_DELETE'	         => '/all_web_data/kml/cocordinate/',
+    'ZONE_CO_ORDINATE_KML_VIEW'	         => env("FILE_VIEW").'/all_web_data/kml/cocordinate/',
   
 
 ];
