@@ -319,23 +319,197 @@ try {
     // $data->save();
 
     // Update file paths in database
-$data->image = $treeImage;
-if ($typeName != 'aminities') {
-    $data->english_audio_link = $englishAudio ?? null;
-    $data->hindi_audio_link = $hindiAudio ?? null;
-    $data->english_video_upload = $englishVideo ?? null;
-    $data->hindi_video_upload = $hindiVideo ?? null;
-}
-$data->save();
-
-    return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.', 'data' => $data], 200);
-} catch (Exception $e) {
-    return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
-}
-
+    $data->image = $treeImage;
+    if ($typeName != 'aminities') {
+        $data->english_audio_link = $englishAudio ?? null;
+        $data->hindi_audio_link = $hindiAudio ?? null;
+        $data->english_video_upload = $englishVideo ?? null;
+        $data->hindi_video_upload = $hindiVideo ?? null;
     }
+    $data->save();
+
+        return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' Added Successfully.', 'data' => $data], 200);
+    } catch (Exception $e) {
+        return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
+    }
+
+}
     
     
+// public function updateTreePlantAminities(Request $request)
+// {
+//     $typeMap = [
+//         1 => 'tree',
+//         2 => 'flower',
+//         3 => 'aminities',
+//     ];
+
+//     $type = $request->input('type'); // Get the type from the request
+
+//     // Check if the type is valid
+//     if (!array_key_exists($type, $typeMap)) {
+//         return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
+//     }
+
+//     $typeName = $typeMap[$type];
+
+//     // Define validation rules and custom messages
+//     $validationRules = [
+//         'tree' => [
+//         //   'tree_plant_id' => 'required',
+//         //     'latitude' => 'required|numeric|between:-90,90',
+//         //     'longitude' => 'required|numeric|between:-180,180',
+//         ],
+//         'flower' => [
+//             'tree_plant_id' => 'required|exists:flowers,id',
+//             'latitude' => 'required|numeric|between:-90,90',
+//             'longitude' => 'required|numeric|between:-180,180',
+//         ],
+//         'aminities' => [
+//             'aminities_id' => 'required|exists:amenities,id',
+//             'latitude' => 'required|numeric|between:-90,90',
+//             'longitude' => 'required|numeric|between:-180,180',
+//         ],
+//     ];
+
+//     $customMessages = [
+//         'tree_plant_id.required' => 'Please provide the Tree ID.',
+//         'tree_plant_id.exists' => 'The provided Tree ID does not exist.',
+//         'plant_id.required' => 'Please provide the Plant ID.',
+//         'plant_id.exists' => 'The provided Plant ID does not exist.',
+//         'aminities_id.required' => 'Please provide the Amenities ID.',
+//         'aminities_id.exists' => 'The provided Amenities ID does not exist.',
+//         'latitude.required' => 'Latitude is required.',
+//         'latitude.numeric' => 'Latitude must be a number.',
+//         'latitude.between' => 'Latitude must be between -90 and 90.',
+//         'longitude.required' => 'Longitude is required.',
+//         'longitude.numeric' => 'Longitude must be a number.',
+//         'longitude.between' => 'Longitude must be between -180 and 180.',
+//     ];
+
+//     // Determine the validation key and model class based on the type
+//     $validationKey = $typeName;
+//     $idField = $typeName . '_id';
+
+//     $validator = Validator::make($request->all(), $validationRules[$validationKey], $customMessages);
+
+//     // Check if validation fails
+//     if ($validator->fails()) {
+//         return response()->json(['status' => 'false', 'message' => $validator->errors()->all()], 200);
+//     }
+
+//     // Determine the model class dynamically
+//     $modelClass = [
+//         'tree' => Tress::class,
+//         'flower' => Flower::class,
+//         'aminities' => Amenities::class,
+//     ][$typeName];
+
+//     try {
+//         // Find the record by ID
+//         $data = $modelClass::find($request->input($idField));
+
+//         // Check if record exists
+//         if (!$data) {
+//             return response()->json(['status' => 'false', 'message' => ucfirst($validationKey) . ' not found.'], 404);
+//         }
+
+//         // Update latitude and longitude
+//         $data->latitude = $request->latitude;
+//         $data->longitude = $request->longitude;
+
+//         // Save the updated data
+//         $data->save();
+
+//         return response()->json(['status' => 'true', 'message' => ucfirst($validationKey) . ' updated successfully.', 'data' => $data], 200);
+//     } catch (Exception $e) {
+//         return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
+//     }
+// }
+public function updateTreePlantAminities(Request $request)
+{
+    $typeMap = [
+        1 => 'tree',
+        2 => 'flower',
+        3 => 'aminities',
+    ];
+
+    $type = $request->input('type'); // Get the type from the request
+    
+    // Check if the type is valid
+    if (!array_key_exists($type, $typeMap)) {
+        return response()->json(['status' => 'false', 'message' => 'Invalid type provided'], 400);
+    }
+
+    $typeName = $typeMap[$type];
+
+    // Define validation rules dynamically
+    $validationRules = [
+        'latitude' => 'required|numeric|between:-90,90',
+        'longitude' => 'required|numeric|between:-180,180',
+    ];
+
+    if ($typeName === 'tree') {
+        $validationRules['tree_plant_id'] = 'required|exists:tbl_trees,id';
+    } elseif ($typeName === 'flower') {
+        $validationRules['tree_plant_id'] = 'required|exists:tbl_flowers,id';
+    } elseif ($typeName === 'aminities') {
+        $validationRules['aminities_id'] = 'required|exists:tbl_amenities,id';
+    }
+
+    $customMessages = [
+        'tree_plant_id.required' => 'Please provide the Tree ID.',
+        'tree_plant_id.exists' => 'The provided Tree ID does not exist.',
+        'aminities_id.required' => 'Please provide the Amenities ID.',
+        'aminities_id.exists' => 'The provided Amenities ID does not exist.',
+        'latitude.required' => 'Latitude is required.',
+        'latitude.numeric' => 'Latitude must be a number.',
+        'latitude.between' => 'Latitude must be between -90 and 90.',
+        'longitude.required' => 'Longitude is required.',
+        'longitude.numeric' => 'Longitude must be a number.',
+        'longitude.between' => 'Longitude must be between -180 and 180.',
+    ];
+
+    $validator = Validator::make($request->all(), $validationRules, $customMessages);
+
+    // Check if validation fails
+    if ($validator->fails()) {
+        return response()->json(['status' => 'false', 'message' => $validator->errors()->all()], 400);
+    }
+
+    // Determine the model class dynamically
+    $modelClass = [
+        'tree' => Tress::class,
+        'flower' => Flowers::class,
+        'aminities' => Amenities::class,
+    ][$typeName];
+
+    $idField = $typeName === 'aminities' ? 'aminities_id' : 'tree_plant_id';
+
+    try {
+        // Find the record by ID
+        $data = $modelClass::find($request->input($idField));
+
+        // Check if record exists
+        if (!$data) {
+            return response()->json(['status' => 'false', 'message' => ucfirst($typeName) . ' not found.'], 404);
+        }
+
+        // Update latitude and longitude
+        $data->latitude = $request->latitude;
+        $data->longitude = $request->longitude;
+
+        // Save the updated data
+        $data->save();
+
+        return response()->json(['status' => 'true', 'message' => ucfirst($typeName) . ' updated successfully.', 'data' => $data], 200);
+    } catch (Exception $e) {
+        return response()->json(['status' => 'false', 'message' => 'An error occurred: ' . $e->getMessage()], 500);
+    }
+}
+
+
+
 
     public function getFlowersList( Request $request ) {
         try {

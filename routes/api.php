@@ -81,6 +81,8 @@ Route::group([
         
         // Route::post('/add-plant', [FlowersController::class, 'addPlant']);
         Route::post('/add-tree-plant-aminities', [FlowersController::class, 'addTreePlantAminities']);
+        Route::post('/update-tree-plant-aminities', [FlowersController::class, 'updateTreePlantAminities']);
+
         
         Route::post('/get-flowers-list', [FlowersController::class, 'getFlowersList']);
         Route::post('/get-flowers-audio', [FlowersController::class, 'getParticularFlowersAudio']);
