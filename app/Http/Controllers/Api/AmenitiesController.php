@@ -283,9 +283,9 @@ class AmenitiesController extends Controller
     public function getAllARVRAmenitiesList(Request $request){
         try {
             $language = $request->input('language', 'english');
-            $category_id = $request->input('amenities_category_id');
-            // $amenities_id = $request->input('amenities_id');
-            $amenities_id = 1;
+            // $category_id = $request->input('amenities_category_id');
+            $amenities_id = $request->input('amenities_id');
+            $category_id = 1;
             $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
             $rowperpage = DEFAULT_LENGTH;
             $start = ( $page - 1 ) * $rowperpage;
