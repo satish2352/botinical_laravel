@@ -35,7 +35,7 @@ class ZoneAreaController extends Controller
     
             $data_output = $data_output->get();
     
-            foreach ($data_output_trees as &$zoneimage) {
+            foreach ($data_output as &$zoneimage) {
                 $zoneimage['image'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image'];
                 $zoneimage['image_two'] = $zoneimage['image_two'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image_two'] : null;
                 $zoneimage['image_three'] = $zoneimage['image_three'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image_three'] : null;
