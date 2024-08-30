@@ -35,27 +35,22 @@ class ZoneAreaController extends Controller
     
             $data_output = $data_output->get();
     
-            foreach ( $data_output as &$zoneimage ) {
-                $zoneimage[ 'image' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image' ];
-                $zoneimage[ 'image_two' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_two' ];
-                $zoneimage[ 'image_three' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_three' ];
-                $zoneimage[ 'image_four' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_four' ];
-                $zoneimage[ 'image_five' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_five' ];
-                
+            foreach ($data_output_trees as &$zoneimage) {
+                $zoneimage['image'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image'];
+                $zoneimage['image_two'] = $zoneimage['image_two'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image_two'] : null;
+                $zoneimage['image_three'] = $zoneimage['image_three'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image_three'] : null;
+                $zoneimage['image_four'] = $zoneimage['image_four'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image_four'] : null;
+                $zoneimage['image_five'] = $zoneimage['image_five'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['image_five'] : null;
+                $zoneimage['icon_image'] = $zoneimage['icon_image'] ? Config::get('DocumentConstant.ICON_MASTER_VIEW') . $zoneimage['icon_image'] : null;
+    
                 if ($language == 'hindi') {
-                    $zoneimage['audio_link'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['audio_link'];
+                    $zoneimage['audio_link'] = $zoneimage['audio_link'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['audio_link'] : null;
+                    $zoneimage['video_upload'] = $zoneimage['video_upload'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['video_upload'] : null;
                 } else {
-                    $zoneimage['audio_link'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['audio_link'];
+                    $zoneimage['audio_link'] = $zoneimage['audio_link'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['audio_link'] : null;
+                    $zoneimage['video_upload'] = $zoneimage['video_upload'] ? Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['video_upload'] : null;
                 }
-                if ($language == 'hindi') {
-                    $zoneimage['video_upload'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['video_upload'];
-                } else {
-                    $zoneimage['video_upload'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['video_upload'];
-                }
-
             }
-
-          
     
             return response()->json(['status' => true, 'message' => 'All data retrieved successfully', 'data' => $data_output], 200);
         } catch (\Exception $e) {
