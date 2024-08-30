@@ -28,9 +28,9 @@ class ZoneAreaController extends Controller
             });                 
     
             if ($language == 'hindi') {
-                $data_output = $basic_query_object->select('id','hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude','tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five');
+                $data_output = $basic_query_object->select('id','hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude','image_two', 'image_three', 'image_four', 'image_five');
             } else {
-                $data_output = $basic_query_object->select('id','english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude','tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five');
+                $data_output = $basic_query_object->select('id','english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude','image_two', 'image_three', 'image_four', 'image_five');
             }
     
             $data_output = $data_output->get();
