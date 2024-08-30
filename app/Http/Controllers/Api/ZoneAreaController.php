@@ -28,15 +28,20 @@ class ZoneAreaController extends Controller
             });                 
     
             if ($language == 'hindi') {
-                $data_output = $basic_query_object->select('id','hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude');
+                $data_output = $basic_query_object->select('id','hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude','tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five');
             } else {
-                $data_output = $basic_query_object->select('id','english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude');
+                $data_output = $basic_query_object->select('id','english_name as name', 'english_description as description', 'english_audio_link as audio_link', 'english_video_upload as video_upload', 'image', 'latitude', 'longitude','tbl_flowers.image_two', 'tbl_flowers.image_three', 'tbl_flowers.image_four', 'tbl_flowers.image_five');
             }
     
             $data_output = $data_output->get();
     
             foreach ( $data_output as &$zoneimage ) {
                 $zoneimage[ 'image' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image' ];
+                $zoneimage[ 'image_two' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_two' ];
+                $zoneimage[ 'image_three' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_three' ];
+                $zoneimage[ 'image_four' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_four' ];
+                $zoneimage[ 'image_five' ] = Config::get( 'DocumentConstant.ZONESAREA_VIEW' ) . $zoneimage[ 'image_five' ];
+                
                 if ($language == 'hindi') {
                     $zoneimage['audio_link'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['audio_link'];
                 } else {
@@ -47,7 +52,10 @@ class ZoneAreaController extends Controller
                 } else {
                     $zoneimage['video_upload'] = Config::get('DocumentConstant.ZONESAREA_VIEW') . $zoneimage['video_upload'];
                 }
+
             }
+
+          
     
             return response()->json(['status' => true, 'message' => 'All data retrieved successfully', 'data' => $data_output], 200);
         } catch (\Exception $e) {
