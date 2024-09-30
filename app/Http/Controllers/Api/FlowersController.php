@@ -525,7 +525,7 @@ public function updateTreePlantAminities(Request $request)
             ->where('tbl_tree_plant.is_active', true)
             ->where('tbl_flowers.is_active', true)
             ->when($flowers_id, function ($query) use ($flowers_id) {
-                $query->where('id', $flowers_id);
+                $query->where('tbl_flowers.id', $flowers_id);
             });
 
             $totalRecords = $basic_query_object->select('tbl_flowers.id')->get()->count();
