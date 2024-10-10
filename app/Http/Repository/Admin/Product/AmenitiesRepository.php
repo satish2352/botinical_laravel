@@ -49,6 +49,10 @@ class AmenitiesRepository  {
                 'tbl_amenities_category.english_name',
                 'tbl_amenities_category.hindi_name',
                 'tbl_amenities.id',
+                'tbl_amenities.is_deleted',
+                'tbl_amenities.is_active',
+                'tbl_amenities.created_at',
+                'tbl_amenities.updated_at',
             )
             ->orderBy('tbl_amenities.id', 'desc')
             ->get();
@@ -326,7 +330,7 @@ class AmenitiesRepository  {
             $data = Amenities::find($request); 
 
             if ($data) {
-                $is_active = $data->is_active === '1' ? '0' : '1';
+                $is_active = $data->is_active === 1 ? 0 : 1;
                 $data->is_active = $is_active;
                 $data->save();
 
