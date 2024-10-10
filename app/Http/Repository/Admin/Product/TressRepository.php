@@ -28,7 +28,7 @@ class TressRepository  {
                 'tbl_trees.is_deleted',
                 'tbl_trees.is_active',
                 'tbl_trees.created_at',
-                'tbl_trees.updated_at',
+                'tbl_trees.updated_at'
             )
             ->orderBy('tbl_trees.id', 'desc')
             ->get();  
@@ -201,7 +201,7 @@ class TressRepository  {
             $data = Tress::find($request); 
 
             if ($data) {
-                $is_active = $data->is_active === 1 ? 0 : 1;
+                $is_active = $data->is_active === '1' ? '0' : '1';
                 $data->is_active = $is_active;
                 $data->save();
 

@@ -28,7 +28,7 @@ class FlowersRepository  {
                 'tbl_flowers.is_deleted',
                 'tbl_flowers.is_active',
                 'tbl_flowers.created_at',
-                'tbl_flowers.updated_at',
+                'tbl_flowers.updated_at'
             )
             ->orderBy('tbl_flowers.id', 'desc')
             ->get();
@@ -210,7 +210,7 @@ class FlowersRepository  {
             $data = Flowers::find($request); 
 
             if ($data) {
-                $is_active = $data->is_active === 1 ? 0 : 1;
+                $is_active = $data->is_active === '1' ? '0' : '1';
                 $data->is_active = $is_active;
                 $data->save();
 
