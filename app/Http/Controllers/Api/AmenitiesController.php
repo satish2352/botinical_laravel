@@ -209,6 +209,14 @@ class AmenitiesController extends Controller
                 $query->where('tbl_amenities.id', $amenities_id); 
             });
 
+           // Sort the amenities alphabetically by name (language-dependent)
+            if ($language == 'hindi') {
+                $basic_query_object->orderBy('tbl_amenities.hindi_name', 'asc');  // Sort Hindi Name
+            } else {
+                $basic_query_object->orderBy('tbl_amenities.english_name', 'asc');  // Sort English Name
+            }
+
+
             $totalRecords = $basic_query_object->select('tbl_amenities.id')->get()->count();
 
             if ($language == 'hindi') {
@@ -296,6 +304,13 @@ class AmenitiesController extends Controller
                 $query->where('tbl_amenities.id', $amenities_id); 
             });
 
+             // Sort the amenities alphabetically by name (language-dependent)
+             if ($language == 'hindi') {
+                $basic_query_object->orderBy('tbl_amenities.hindi_name', 'asc');  // Sort Hindi Name
+            } else {
+                $basic_query_object->orderBy('tbl_amenities.english_name', 'asc');  // Sort English Name
+            }
+            
             $totalRecords = $basic_query_object->select('tbl_amenities.id')->get()->count();
 
             if ($language == 'hindi') {

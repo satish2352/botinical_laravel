@@ -150,7 +150,8 @@ class TressController extends Controller
                 'tbl_trees.hindi_video_upload as video_upload',
                 'tbl_trees.image',
                 'tbl_trees.latitude',
-                'tbl_trees.longitude', 'tbl_tree_plant.hindi_botnical_name as botnical_name','tbl_tree_plant.hindi_common_name as common_name','tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type','tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five');
+                'tbl_trees.longitude', 'tbl_tree_plant.hindi_botnical_name as botnical_name','tbl_tree_plant.hindi_common_name as common_name','tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type','tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five')
+                ->orderBy('tbl_tree_plant.hindi_name', 'asc');
             } else {
                 $data_output = $basic_query_object->select('tbl_trees.id', 'tbl_tree_plant.english_name as name',
                 'tbl_trees.english_description as description',
@@ -158,7 +159,8 @@ class TressController extends Controller
                 'tbl_trees.english_video_upload as video_upload',
                 'tbl_trees.image',
                 'tbl_trees.latitude',
-                'tbl_trees.longitude', 'tbl_tree_plant.english_botnical_name as botnical_name', 'tbl_tree_plant.english_common_name as common_name','tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type','tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five');
+                'tbl_trees.longitude', 'tbl_tree_plant.english_botnical_name as botnical_name', 'tbl_tree_plant.english_common_name as common_name','tbl_trees.height','tbl_trees.height_type', 'tbl_trees.canopy', 'tbl_trees.canopy_type','tbl_trees.girth','tbl_trees.girth_type','tbl_trees.image_two', 'tbl_trees.image_three', 'tbl_trees.image_four', 'tbl_trees.image_five')
+                ->orderBy('tbl_tree_plant.english_name', 'asc');
             }
 
             $data_output =  $basic_query_object->skip($start)
