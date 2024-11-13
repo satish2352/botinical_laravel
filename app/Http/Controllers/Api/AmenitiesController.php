@@ -310,8 +310,8 @@ class AmenitiesController extends Controller
             } else {
                 $basic_query_object->orderBy('tbl_amenities.english_name', 'asc');  // Sort English Name
             }
-            
-            $totalRecords = $basic_query_object->select('tbl_amenities.id')->get()->count();
+
+            $totalRecords = $basic_query_object->select('tbl_amenities.id')->where('tbl_amenities.is_active', true)->get()->count();
 
             if ($language == 'hindi') {
                 $data_output = $basic_query_object->leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
