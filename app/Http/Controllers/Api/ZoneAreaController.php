@@ -19,14 +19,18 @@ class ZoneAreaController extends Controller
     public function getZoneArea(Request $request) {
         try {
             $language = $request->input('language', 'english');
-    
             $zone_id = $request->input('zone_id');
+            $search_name = $request->input('name'); 
 
             $basic_query_object = ZonesArea::where('is_active', true)
             ->when($zone_id, function ($query) use ($zone_id) {
                 $query->where('id', $zone_id);
-            });                 
-    
+            })                 
+            ->when($search_name, function ($query) use ($search_name, $language) {
+                // Adjust column name based on language
+                $column = $language == 'hindi' ? 'tbl_zones_area.hindi_name' : 'tbl_zones_area.english_name';
+                $query->where($column, 'like', '%' . $search_name . '%');  // Add the like condition
+            });
             if ($language == 'hindi') {
                 $data_output = $basic_query_object->select('id','hindi_name as name', 'hindi_description as description', 'hindi_audio_link as audio_link', 'hindi_video_upload as video_upload', 'image', 'latitude', 'longitude','image_two', 'image_three', 'image_four', 'image_five')->orderBy('hindi_name', 'asc');
             } else {
