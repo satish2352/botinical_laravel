@@ -197,6 +197,7 @@ class AmenitiesController extends Controller
             $language = $request->input('language', 'english');
             $category_id = $request->input('amenities_category_id');
             $amenities_id = $request->input('amenities_id');
+            $search_name = $request->input('name'); 
 
             $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
             $rowperpage = DEFAULT_LENGTH;
@@ -207,8 +208,12 @@ class AmenitiesController extends Controller
             ->where('tbl_amenities.id', '!=', 1) 
             ->when($amenities_id, function ($query) use ($amenities_id) {
                 $query->where('tbl_amenities.id', $amenities_id); 
+            })
+            ->when($search_name, function ($query) use ($search_name, $language) {
+                // Adjust column name based on language
+                $column = $language == 'hindi' ? 'tbl_amenities.hindi_name' : 'tbl_amenities.english_name';
+                $query->where($column, 'like', '%' . $search_name . '%');  // Add the like condition
             });
-
            // Sort the amenities alphabetically by name (language-dependent)
             if ($language == 'hindi') {
                 $basic_query_object->orderBy('tbl_amenities.hindi_name', 'asc');  // Sort Hindi Name
@@ -291,8 +296,9 @@ class AmenitiesController extends Controller
     public function getAllARVRAmenitiesList(Request $request){
         try {
             $language = $request->input('language', 'english');
-            // $category_id = $request->input('amenities_category_id');
             $amenities_id = $request->input('amenities_id');
+            $search_name = $request->input('name');
+
             $category_id = 1;
             $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
             $rowperpage = DEFAULT_LENGTH;
@@ -302,6 +308,11 @@ class AmenitiesController extends Controller
             $basic_query_object = Amenities::where('tbl_amenities.is_active', true)
             ->when($amenities_id, function ($query) use ($amenities_id) {
                 $query->where('tbl_amenities.id', $amenities_id); 
+            })
+            ->when($search_name, function ($query) use ($search_name, $language) {
+                // Adjust column name based on language
+                $column = $language == 'hindi' ? 'tbl_amenities.hindi_name' : 'tbl_amenities.english_name';
+                $query->where($column, 'like', '%' . $search_name . '%');  // Add the like condition
             });
 
              // Sort the amenities alphabetically by name (language-dependent)

@@ -392,7 +392,8 @@ class MappingController extends Controller
             $tress_id = $request->input('tress_id');
             $flowers_id = $request->input('flowers_id');
             $amenities_id = $request->input('amenities_id');
-    
+            $search_name = $request->input('name');
+
             $treesData = [];
             $flowersData = [];
             $amenitiesData = [];
@@ -404,7 +405,9 @@ class MappingController extends Controller
             if ($tress_id) {
                 $basic_query_object_trees->where('tbl_trees.id', $tress_id);
             }
-    
+            if ($search_name) {
+                    $basic_query_object_trees->where('tbl_tree_plant.' . $language . '_name', 'LIKE', '%' . $search_name . '%');
+            }
             $data_output_trees = $basic_query_object_trees
                 ->leftJoin('icon_master', 'tbl_trees.icon_id', '=', 'icon_master.id')
                 ->select('tbl_trees.id as id', 'tbl_trees.icon_id', 'icon_master.name as icon_name',
@@ -447,7 +450,9 @@ class MappingController extends Controller
             if ($flowers_id) {
                 $basic_query_object_flowers->where('tbl_flowers.id', $flowers_id);
             }
-    
+            if ($search_name) {
+                $basic_query_object_flowers->where('tbl_tree_plant.' . $language . '_name', 'LIKE', '%' . $search_name . '%');
+            }
             $data_output_flowers = $basic_query_object_flowers
                 ->leftJoin('icon_master', 'tbl_flowers.icon_id', '=', 'icon_master.id')
                 ->select('tbl_flowers.id as id', 'tbl_flowers.icon_id', 'icon_master.name as icon_name',
@@ -489,7 +494,9 @@ class MappingController extends Controller
             if ($amenities_id) {
                 $basic_query_object_amenities->where('tbl_amenities.id', $amenities_id);
             }
-    
+            if ($search_name) {
+                $basic_query_object_amenities->where('tbl_amenities.' . $language . '_name', 'LIKE', '%' . $search_name . '%');
+            }
             $data_output_amenities = $basic_query_object_amenities
                 ->leftJoin('icon_master', 'tbl_amenities.icon_id', '=', 'icon_master.id')
                 ->select('tbl_amenities.id as id', 'tbl_amenities.icon_id', 'icon_master.name as icon_name',

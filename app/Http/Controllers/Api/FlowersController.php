@@ -514,8 +514,8 @@ public function updateTreePlantAminities(Request $request)
     public function getFlowersList( Request $request ) {
         try {
             $language = $request->input( 'language', 'english' );
-            
             $flowers_id = $request->input( 'flowers_id' );
+            $search_name = $request->input('name'); 
 
             $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
             $rowperpage = DEFAULT_LENGTH;
@@ -526,6 +526,11 @@ public function updateTreePlantAminities(Request $request)
             ->where('tbl_flowers.is_active', true)
             ->when($flowers_id, function ($query) use ($flowers_id) {
                 $query->where('tbl_flowers.id', $flowers_id);
+            })
+            ->when($search_name, function ($query) use ($search_name, $language) {
+                // Adjust column name based on language
+                $column = $language == 'hindi' ? 'tbl_tree_plant.hindi_name' : 'tbl_tree_plant.english_name';
+                $query->where($column, 'like', '%' . $search_name . '%');  // Add the like condition
             });
 
             $totalRecords = $basic_query_object->select('tbl_flowers.id')->get()->count();

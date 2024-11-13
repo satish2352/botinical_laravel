@@ -129,8 +129,8 @@ class TressController extends Controller
     public function getTressList(Request $request) {
         try {
             $language = $request->input('language', 'english'); 
-
             $tress_id = $request->input( 'tress_id' );
+            $search_name = $request->input('name'); 
 
             $page = isset( $request[ 'start' ] ) ? $request[ 'start' ] : Config::get( 'DocumentConstant.DEFAULT_START' ) ;
             $rowperpage = DEFAULT_LENGTH;
@@ -140,6 +140,11 @@ class TressController extends Controller
             ->where('tbl_tree_plant.is_active', true)
             ->when($tress_id, function ($query) use ($tress_id) {
                 $query->where('tbl_trees.id', $tress_id);
+            })
+            ->when($search_name, function ($query) use ($search_name, $language) {
+                // Adjust column name based on language
+                $column = $language == 'hindi' ? 'tbl_tree_plant.hindi_name' : 'tbl_tree_plant.english_name';
+                $query->where($column, 'like', '%' . $search_name . '%');  // Add the like condition
             });
              $totalRecords = $basic_query_object->select( 'tbl_trees.id' )->get()->count();                
                             
