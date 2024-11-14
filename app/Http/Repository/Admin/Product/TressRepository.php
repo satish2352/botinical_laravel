@@ -19,6 +19,7 @@ class TressRepository  {
                 'tbl_trees.id',
                 'tbl_trees.english_description', 
                 'tbl_trees.hindi_description', 
+                'tbl_trees.order_number',
                 'tbl_tree_plant.english_name',
                 'tbl_tree_plant.hindi_name',
                 'tbl_tree_plant.english_botnical_name',
