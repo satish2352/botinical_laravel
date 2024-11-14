@@ -80,7 +80,7 @@
                                                 <th>वानस्पतिक नाम </th>
                                                 <th>Common Name </th>
                                                 <th>साधारण नाम </th>
-                                                <th>Set Order Number</th>
+                                                {{-- <th>Set Order Number</th> --}}
 
                                                 {{-- <th>Image </th> --}}
                                                 <th>Status </th>
@@ -99,7 +99,7 @@
                                                     <td>{{ strip_tags($item->hindi_botnical_name) }}</td>
                                                     <td>{{ strip_tags($item->english_common_name) }}</td>
                                                     <td>{{ strip_tags($item->hindi_common_name) }}</td>
-                                                    <td>
+                                                    {{-- <td>
                                                         <input class="form-control mb-2 order-input" 
                                                                name="order_number"
                                                                id="order_number_{{ $item->id }}" 
@@ -113,7 +113,7 @@
                                                         @if ($errors->has('order_number'))
                                                             <span class="red-text">{{ $errors->first('order_number') }}</span>
                                                         @endif
-                                                    </td>
+                                                    </td> --}}
                                                     
                                                     
                                                     {{-- <td> <img class="img-size"

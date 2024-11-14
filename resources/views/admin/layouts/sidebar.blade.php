@@ -149,13 +149,6 @@
                                     <span class="mini-click-non">Plant Management</span>
                                 </a>
                             </li> 
-                            <li class="{{ Request::is('list-map-common-data') ? 'active' : '' }}">
-                                <a class="has-arrow" href="{{ route('list-map-common-data') }}" aria-expanded="false">
-                                    <i class="fa fa-tree icon-wrap"></i>
-                                    <span class="mini-click-non">Common Map Data Order Number</span>
-                                </a>
-                            </li> 
-
                         </ul>
                     </li>
                     <li class="{{ Request::is('list-zone-co-ordinate') ? 'active' : '' }}">

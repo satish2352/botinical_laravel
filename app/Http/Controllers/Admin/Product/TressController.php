@@ -370,16 +370,6 @@ public function getTreeData($id)
         }
     }
     
-
-    public function listMapCommonData() {
-        try {
-            $tress = $this->service->getAll();
-            return view( 'admin.pages.product.tress.list-common-map-data', compact( 'tress' ) );
-        } catch ( \Exception $e ) {
-            return $e;
-        }
-    }
-
     public function checkOrderNumber(Request $request)
     {
         $exists = Tress::where('order_number', $request->order_number)
