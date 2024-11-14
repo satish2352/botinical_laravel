@@ -130,6 +130,12 @@ Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\
     Route::post('/delete-tress', ['as' => 'delete-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@destroy']);
     Route::post('/update-active-tress', ['as' => 'update-active-tress', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@updateOne']);
 
+    Route::post('/check-order-numbers', ['as' => 'check-order-numbers', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@checkOrderNumber']);
+    Route::post('/update-order-number', ['as' => 'update-order-number', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@updateOrderNumber']);
+
+    Route::any('/list-map-common-data', ['as' => 'list-map-common-data', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@listMapCommonData']);
+
+
     Route::get('/search-tree/{id}', ['as' => 'search-tree', 'uses' => 'App\Http\Controllers\Admin\Product\TressController@getTreeData']);
 
     // Route::get('/tree-data/{id}', [TreeController::class, 'getTreeData'])->name('get-tree-data');

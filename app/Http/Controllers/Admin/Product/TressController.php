@@ -349,6 +349,7 @@ public function getTreeData($id)
             return $e;
         }
     }
+    
 
     public function destroy( Request $request ) {
         try {
@@ -368,5 +369,36 @@ public function getTreeData($id)
             return $e;
         }
     }
+    
 
+    public function listMapCommonData() {
+        try {
+            $tress = $this->service->getAll();
+            return view( 'admin.pages.product.tress.list-common-map-data', compact( 'tress' ) );
+        } catch ( \Exception $e ) {
+            return $e;
+        }
+    }
+
+    public function checkOrderNumber(Request $request)
+    {
+        $exists = Tress::where('order_number', $request->order_number)
+                      ->where('id', '!=', $request->id)
+                      ->exists();
+    
+        return response()->json(['exists' => $exists]);
+    }
+    
+    public function updateOrderNumber(Request $request)
+    {
+        $request->validate([
+            'order_number' => 'required|integer|unique:tbl_trees,order_number,' . $request->id,
+        ]);
+    
+        $tree = Tress::findOrFail($request->id);
+        $tree->order_number = $request->order_number;
+        $tree->save();
+    
+        return response()->json(['success' => true]);
+    }
 }
