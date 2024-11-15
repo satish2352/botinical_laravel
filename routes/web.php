@@ -175,6 +175,8 @@ Route::post('/update-one-role', ['as' => 'update-one-role', 'uses' => 'App\Http\
     Route::post('/delete-amenities', ['as' => 'delete-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@destroy']);
     Route::post('/update-active-amenities', ['as' => 'update-active-amenities', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@updateOne']);
 
+    Route::post('/check-order-numbers', ['as' => 'check-order-numbers', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@checkOrderNumber']);
+    Route::post('/update-order-number', ['as' => 'update-order-number', 'uses' => 'App\Http\Controllers\Admin\Product\AmenitiesController@updateOrderNumber']);
 
     Route::any('/list-ticket', ['as' => 'list-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@index']);
     Route::any('/add-ticket', ['as' => 'add-ticket', 'uses' => 'App\Http\Controllers\Admin\Ticket\TicketController@add']);

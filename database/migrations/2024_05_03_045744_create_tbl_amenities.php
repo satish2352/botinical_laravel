@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('close_time_first');
             $table->string('open_time_second')->nullable();
             $table->string('close_time_second')->nullable();
+            $table->string('order_number')->default(false);
             $table->string('is_deleted')->default(false);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

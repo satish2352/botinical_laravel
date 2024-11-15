@@ -48,6 +48,7 @@ class AmenitiesRepository  {
                 'tbl_amenities.image_five', 
                 'tbl_amenities_category.english_name',
                 'tbl_amenities_category.hindi_name',
+                'tbl_amenities.order_number', 
                 'tbl_amenities.id',
                 'tbl_amenities.is_deleted',
                 'tbl_amenities.is_active',

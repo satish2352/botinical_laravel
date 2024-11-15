@@ -10,7 +10,8 @@ use Illuminate\Validation\Rule;
 use Config;
 use App\Models\ {
     CategoryAmenities,
-    IconMaster
+    IconMaster,
+    Amenities
 }
 ;
 
@@ -342,4 +343,25 @@ class AmenitiesController extends Controller {
         }
     }
 
+    public function checkOrderNumber(Request $request)
+    {
+        $exists = Amenities::where('order_number', $request->order_number)
+                      ->where('id', '!=', $request->id)
+                      ->exists();
+    
+        return response()->json(['exists' => $exists]);
+    }
+    
+    public function updateOrderNumber(Request $request)
+    {
+        $request->validate([
+            'order_number' => 'required|integer|unique:tbl_trees,order_number,' . $request->id,
+        ]);
+    
+        $tree = Amenities::findOrFail($request->id);
+        $tree->order_number = $request->order_number;
+        $tree->save();
+    
+        return response()->json(['success' => true]);
+    }
 }

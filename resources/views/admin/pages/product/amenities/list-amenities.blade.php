@@ -78,6 +78,7 @@
                                                 <th>Description </th>
                                                 <th>वर्णन </th>
                                                 <th>Image </th>
+                                                <th>Set Order Number</th>
                                                 {{-- <th>Status </th> --}}
                                                 <th> Action </th>
                                             </tr>
@@ -95,6 +96,21 @@
                                                     <td> <img class="img-size"
                                                             src="{{ Config::get('DocumentConstant.AMENITIES_VIEW') }}{{ $item->image }}"
                                                             alt=" {{ strip_tags($item['english_name']) }} Image" style="width:100px; height:100px;" />
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control mb-2 order-input" 
+                                                               name="order_number"
+                                                               id="order_number_{{ $item->id }}" 
+                                                               placeholder="Enter the Order Number"
+                                                               value="{{ $item->order_number }}">
+                                                        <button class="btn btn-sm bg-success text-white btn-outline-success update-order-btn" 
+                                                                data-id="{{ $item->id }}">
+                                                               
+                                                            Update
+                                                        </button>
+                                                        @if ($errors->has('order_number'))
+                                                            <span class="red-text">{{ $errors->first('order_number') }}</span>
+                                                        @endif
                                                     </td>
                                                     {{-- <td>
                                                         <label class="switch">
@@ -139,19 +155,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     <form method="POST" action="{{ url('/delete-amenities') }}" id="deleteform">
         @csrf
         <input type="hidden" name="delete_id" id="delete_id" value="">
@@ -173,8 +176,9 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $('.delete-btn').click(function(e) {
     
@@ -218,5 +222,63 @@
             $("#active_id").val($(this).attr("data-id"));
             $("#activeform").submit();
         })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.update-order-btn').on('click', function() {
+                var treeId = $(this).data('id');
+                
+               
+                var orderNumber = $('#order_number_' + treeId).val();
+                console.log('AJAX request successful. Response:', orderNumber);
+                // Validate the order number
+                $.ajax({
+                   
+                    url: "{{ route('check-order-numbers') }}",
+                    method: "POST",
+    
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        order_number: orderNumber,
+                        id: treeId
+                    },
+                    
+                    success: function(response) {
+                        
+    
+                        if (response.exists) {
+                            alert('Order number already exists!');
+                        } else {
+                            updateOrderNumber(treeId, orderNumber);
+                        }
+                    },
+                    error: function() {
+                        alert('Error occurred while checking order number.');
+                    }
+                });
+            });
+    
+            function updateOrderNumber(treeId, orderNumber) {
+                $.ajax({
+                    url: "{{ route('update-order-number') }}",
+                    method: "POST",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        order_number: orderNumber,
+                        id: treeId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Order number updated successfully.');
+                        } else {
+                            alert('Failed to update order number.');
+                        }
+                    },
+                    error: function() {
+                        alert('Error occurred while updating order number.');
+                    }
+                });
+            }
+        });
     </script>
 @endsection

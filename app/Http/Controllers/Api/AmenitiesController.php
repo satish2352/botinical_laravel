@@ -393,6 +393,111 @@ class AmenitiesController extends Controller
         }
     }
 
+    public function getAllAmenitiesOrderNumberList(Request $request)
+    {
+        try {
+            $language = $request->input('language', 'english');
+            $category_id = $request->input('amenities_category_id');
+            $amenities_id = $request->input('order_number_id');
+            $search_name = $request->input('name'); 
+    
+            $page = $request->input('start', Config::get('DocumentConstant.DEFAULT_START'));
+            $rowperpage = DEFAULT_LENGTH;
+            $start = ($page - 1) * $rowperpage;
+    
+            // Base query
+            $basic_query_object = Amenities::where('tbl_amenities.is_active', true)
+                ->where('tbl_amenities.id', '!=', 1)
+                ->where('tbl_amenities.order_number', '>', 0)
+                ->when($amenities_id, function ($query) use ($amenities_id) {
+                    $query->where('tbl_amenities.order_number', $amenities_id);
+                })
+                ->when($search_name, function ($query) use ($search_name, $language) {
+                    $column = $language == 'hindi' ? 'tbl_amenities.hindi_name' : 'tbl_amenities.english_name';
+                    $query->where($column, 'like', '%' . $search_name . '%');
+                })
+                ->orderBy('tbl_amenities.order_number', 'asc') // Primary sorting by order_number
+                ->when($language == 'hindi', function ($query) {
+                    $query->orderBy('tbl_amenities.hindi_name', 'asc'); // Secondary sorting by Hindi name
+                }, function ($query) {
+                    $query->orderBy('tbl_amenities.english_name', 'asc'); // Secondary sorting by English name
+                });
+    
+            // Total record count
+            $totalRecords = $basic_query_object->count();
+    
+            // Fetch paginated data
+            $data_output = $basic_query_object
+                ->leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
+                ->select(
+                    'tbl_amenities.id as id',
+                    $language == 'hindi' ? 'tbl_amenities_category.hindi_name as category_name' : 'tbl_amenities_category.english_name as category_name',
+                    $language == 'hindi' ? 'tbl_amenities.hindi_name as name' : 'tbl_amenities.english_name as name',
+                    'tbl_amenities.amenities_category_id',
+                    $language == 'hindi' ? 'tbl_amenities.hindi_description as description' : 'tbl_amenities.english_description as description',
+                    $language == 'hindi' ? 'tbl_amenities.hindi_audio_link as audio_link' : 'tbl_amenities.english_audio_link as audio_link',
+                    $language == 'hindi' ? 'tbl_amenities.hindi_video_upload as video_upload' : 'tbl_amenities.english_video_upload as video_upload',
+                   'tbl_amenities.order_number',
+                    'tbl_amenities.image',
+                    'tbl_amenities.open_time_first',
+                    'tbl_amenities.close_time_first',
+                    'tbl_amenities.open_time_second',
+                    'tbl_amenities.close_time_second',
+                    'tbl_amenities.image_two',
+                    'tbl_amenities.image_three',
+                    'tbl_amenities.image_four',
+                    'tbl_amenities.image_five',
+                    'tbl_amenities.latitude',
+                    'tbl_amenities.longitude'
+                   
+                )
+                ->when($category_id, function ($query) use ($category_id) {
+                    $query->where('tbl_amenities_category.id', $category_id);
+                })
+                ->skip($start)
+                ->take($rowperpage)
+                ->get()
+                ->toArray();
+    
+            // Format image and media URLs
+            foreach ($data_output as &$amenity) {
+                $amenity['image'] = Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image'];
+                $amenity['image_two'] = $amenity['image_two'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_two'] : null;
+                $amenity['image_three'] = $amenity['image_three'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_three'] : null;
+                $amenity['image_four'] = $amenity['image_four'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_four'] : null;
+                $amenity['image_five'] = $amenity['image_five'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['image_five'] : null;
+    
+                $amenity['audio_link'] = $amenity['audio_link'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['audio_link'] : null;
+                $amenity['video_upload'] = $amenity['video_upload'] ? Config::get('DocumentConstant.AMENITIES_VIEW') . $amenity['video_upload'] : null;
+            }
+    
+            // Calculate total pages
+            $totalPages = $totalRecords > 0 ? ceil($totalRecords / $rowperpage) : 0;
+    
+            // Return success response
+            return response()->json([
+                'status' => 'true',
+                'message' => 'All data retrieved successfully',
+                'totalRecords' => $totalRecords,
+                'totalPages' => $totalPages,
+                'page_no_to_hilight' => $page,
+                'data' => $data_output
+            ], 200);
+        } catch (\Exception $e) {
+            // Return error response
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Amenities List Failed',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+    
+
+    // =====================
+    
+    // =================
+
     public function getParticularAmenitiesAudio( Request $request ) {
         try {
             $language = $request->input( 'language', 'english' );

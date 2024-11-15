@@ -65,6 +65,9 @@ Route::group([
         Route::post('/get-amenities-category', [AmenitiesController::class, 'getAmenitiesCategory']);
         Route::post('/get-amenities-list', [AmenitiesController::class, 'getAllAmenitiesList']);
         Route::post('/get-ar-vr-amenities-list', [AmenitiesController::class, 'getAllARVRAmenitiesList']);
+        Route::post('/get-order-number-amenities-list', [AmenitiesController::class, 'getAllAmenitiesOrderNumberList']);
+
+        
         Route::post('/get-amenities-audio', [AmenitiesController::class, 'getParticularAmenitiesAudio']);
         Route::post('/get-amenities-video', [AmenitiesController::class, 'getParticularAmenitiesVideo']);
          // =========Tress===================
