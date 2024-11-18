@@ -224,6 +224,7 @@ class TressRepository  {
         }
     }
 
+
     public function deleteById($id){
         try {
             $data_output = Tress::find($id);
@@ -253,5 +254,35 @@ class TressRepository  {
             return $e;
         }
     }
+
+    // public function deleteById($id){
+    //     try {
+    //         $data_output = Tress::find($id);
+    
+    //         if ($data_output) {
+    //             $imageFields = [ 'image_two', 'image_three', 'image_four', 'image_five'];
+    //             foreach ($imageFields as $field) {
+    //                 if (!empty($data_output->$field) && file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->$field)) {
+    //                     removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->$field);
+    //                 }
+    //             }
+              
+    //             $audioVideoFields = ['image','english_audio_link', 'hindi_audio_link', 'english_video_upload', 'hindi_video_upload'];
+    //             foreach ($audioVideoFields as $field) {
+    //                 if (!empty($data_output->$field) && file_exists_view(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->$field)) {
+    //                     removeImage(Config::get('DocumentConstant.TRESS_DELETE') . $data_output->$field);
+    //                 }
+    //             }
+    
+    //             $data_output->delete();
+                
+    //             return $data_output;
+    //         } else {
+    //             return null;
+    //         }
+    //     } catch (\Exception $e) {
+    //         return $e;
+    //     }
+    // }
     
 }
