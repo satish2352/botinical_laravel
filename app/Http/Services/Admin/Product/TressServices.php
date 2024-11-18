@@ -364,7 +364,11 @@ class TressServices
     }
     
     public function updateOne($id){
-        return $this->repo->updateOne($id);
+        $data_output = $this->repo->updateOne($id);
+        // dd($data_output);
+        // die();
+        return  $data_output;
+
     }
 
    

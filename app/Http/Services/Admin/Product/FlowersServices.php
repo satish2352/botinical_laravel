@@ -228,8 +228,8 @@ class FlowersServices
     {
         try {
             $delete = $this->repo->deleteById($id);
-            dd($delete);
-                die();
+            // dd($delete);
+            //     die();
             if ($delete) {
                 return ['status' => 'success', 'msg' => 'Deleted Successfully.'];
             } else {
