@@ -148,7 +148,9 @@
         @csrf
         <input type="hidden" name="active_id" id="active_id" value="">
     </form>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $('.delete-btn').click(function(e) {
