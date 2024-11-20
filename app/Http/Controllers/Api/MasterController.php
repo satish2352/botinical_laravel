@@ -127,7 +127,7 @@ class MasterController extends Controller
             'amenities' => $amenitiesCount,
             'zones' => $zoneCount,
             'ARVR' => $ARVRCount,
-            'order_number' => $orderNumberCount,
+            'orderNumber' => $orderNumberCount,
         ], 200);
 
     } catch (\Exception $e) {
