@@ -10,7 +10,11 @@ use Validator;
 use App\Models\ {
     TreePlantMaster,
     IconMaster,
-    Roles
+    Roles,
+    Tress,
+    Flowers,
+    Amenities,
+    ZonesArea
 };
 
 
@@ -87,5 +91,58 @@ class MasterController extends Controller
             ], 500);
         }
     }
+
+
+    public function countTressPlantAminitiesZoneOrderNumberARVR(Request $request)
+{
+    try {
+        // Example setup for language (this can be replaced with actual logic)
+        $language = $request->input('language', 'english'); // Default language is English
+        $category_id = 1;
+
+        // Fetch counts for different entities
+        $treesCount = Tress::where('is_active', true)->count();
+        $plantCount = Flowers::where('is_active', true)->count();
+        $amenitiesCount = Amenities::where('is_active', true)->count();
+        $zoneCount = ZonesArea::where('is_active', true)->count();
+
+        // Calculate ARVR Count
+        $ARVRCount = Amenities::leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
+            ->where('tbl_amenities.is_active', true) 
+            ->where('tbl_amenities_category.id', $category_id)
+            ->count();
+
+        // Calculate the Order Number Count
+        $orderNumberCount = Amenities::where('id', '!=', 1)
+            ->where('order_number', '>', 0)
+            ->where('is_active', true)
+            ->count();
+
+        // Return the counts in the response
+        return response()->json([
+            'status' => true,
+            'message' => 'Counts retrieved successfully',
+            'trees' => $treesCount,
+            'plants' => $plantCount,
+            'amenities' => $amenitiesCount,
+            'zones' => $zoneCount,
+            'ARVR' => $ARVRCount,
+            'order_number' => $orderNumberCount,
+        ], 200);
+
+    } catch (\Exception $e) {
+        // Return error if any exception occurs
+        return response()->json([
+            'status' => false,
+            'message' => 'Counts retrieval failed',
+            'error' => $e->getMessage(),
+        ], 500);
+    }
+}
+
+
+
+
+
  
 }

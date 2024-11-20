@@ -32,6 +32,8 @@ Route::post('/get-aboutus-element-list', [AboutUsListController::class, 'getAllA
 Route::post('/add-contactus-form', [ContactInformationController::class, 'addContactUs']);
 Route::post('/get-contact-information', [ContactInformationController::class, 'getContactInformation']);
 Route::post('/get-role', [MasterController::class, 'getRole']);
+Route::post('/total-count', [MasterController::class, 'countTressPlantAminitiesZoneOrderNumberARVR']);
+
 // Route::post('login', 'AuthController@login')->middleware('api');
 Route::post('/reset-password-byemail', [UserController::class, 'resetPasswordEmailBased']);
 // In routes/api.php
