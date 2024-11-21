@@ -14,7 +14,8 @@ use App\Models\ {
     Tress,
     Flowers,
     Amenities,
-    ZonesArea
+    ZonesArea,
+    Ticket
 };
 
 
@@ -103,9 +104,16 @@ class MasterController extends Controller
         // Fetch counts for different entities
         $treesCount = Tress::where('is_active', true)->count();
         $plantCount = Flowers::where('is_active', true)->count();
-        $amenitiesCount = Amenities::where('is_active', true)->count();
-        $zoneCount = ZonesArea::where('is_active', true)->count();
+        // $amenitiesCount = Amenities::where('is_active', true)->count();
+        //Fetch counts for different entities aminities zone
+        $amenitiesCount = Amenities::leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
+        ->where('tbl_amenities.is_active', true) 
+        ->where('tbl_amenities.is_active', true) 
+        ->where('tbl_amenities_category.id', 6)
+        ->count();
 
+        $zoneCount = ZonesArea::where('is_active', true)->count();
+        $typeoftickets = Ticket::where('is_active', true)->count();
         // Calculate ARVR Count
         $ARVRCount = Amenities::leftJoin('tbl_amenities_category', 'tbl_amenities.amenities_category_id', '=', 'tbl_amenities_category.id')
             ->where('tbl_amenities.is_active', true) 
@@ -128,6 +136,7 @@ class MasterController extends Controller
             'zones' => $zoneCount,
             'ARVR' => $ARVRCount,
             'orderNumber' => $orderNumberCount,
+            'typeoftickets'=>$typeoftickets
         ], 200);
 
     } catch (\Exception $e) {
