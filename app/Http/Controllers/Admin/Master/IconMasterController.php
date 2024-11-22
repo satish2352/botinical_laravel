@@ -93,9 +93,16 @@ class IconMasterController extends Controller
 
 
 public function update(Request $request){
-    $id = $request->edit_id;
+    $id = $request->id;  // Ensure $id is coming correctly from the request
+// dd($id);
+// die();
     $rules = [
-        'name' => ['required', 'max:255','regex:/^[a-zA-Z\s]+$/u', Rule::unique('icon_master', 'name')->ignore($id, 'id')],
+        'name' => [
+            'required', 
+            'max:255', 
+            'regex:/^[a-zA-Z\s]+$/u', 
+            Rule::unique('icon_master')->ignore($id)  // This will ignore the record with $id
+        ],
     ];
 
     if($request->has('image')) {
