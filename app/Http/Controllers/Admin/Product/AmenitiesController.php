@@ -354,8 +354,9 @@ class AmenitiesController extends Controller {
     
     public function updateOrderNumber(Request $request)
     {
+       
         $request->validate([
-            'order_number' => 'required|integer|unique:tbl_trees,order_number,' . $request->id,
+            'order_number' => 'required|integer|unique:tbl_amenities,order_number,' . $request->id,
         ]);
     
         $tree = Amenities::findOrFail($request->id);
@@ -364,4 +365,15 @@ class AmenitiesController extends Controller {
     
         return response()->json(['success' => true]);
     }
+    public function resetOrderNumbers(Request $request)
+    {
+        $tree = Amenities::findOrFail($request->id);
+        $tree->order_number = 0; // Set the value to null (or empty string if preferred)
+        $tree->save();
+    
+        return response()->json(['success' => true]);
+    }
+    
+    
+
 }
