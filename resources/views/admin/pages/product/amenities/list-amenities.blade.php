@@ -228,70 +228,149 @@
         })
     </script>
     <script>
-        $(document).ready(function() {
-            $('.update-order-btn').on('click', function() {
-                var treeId = $(this).data('id');
+        // $(document).ready(function() {
+        //     $('.update-order-btn').on('click', function() {
+        //         var treeId = $(this).data('id');
                 
                
-                var orderNumber = $('#order_number_' + treeId).val();
-                console.log('AJAX request successful. Response:', orderNumber);
-                // Validate the order number
-                $.ajax({
+        //         var orderNumber = $('#order_number_' + treeId).val();
+        //         console.log('AJAX request successful. Response:', orderNumber);
+        //         // Validate the order number
+        //         $.ajax({
                    
-                    url: "{{ route('check-order-numbers') }}",
-                    method: "POST",
+        //             url: "{{ route('check-order-numbers') }}",
+        //             method: "POST",
     
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        order_number: orderNumber,
-                        id: treeId
-                    },
+        //             data: {
+        //                 _token: '{{ csrf_token() }}',
+        //                 order_number: orderNumber,
+        //                 id: treeId
+        //             },
                     
-                    success: function(response) {
+        //             success: function(response) {
                         
     
-                        if (response.exists) {
-                            alert('Order number already exists!');
-                        } else {
-                            updateOrderNumber(treeId, orderNumber);
-                        }
-                    },
-                    error: function() {
-                        alert('Error occurred while checking order number.');
-                    }
-                });
-            });
+        //                 if (response.exists) {
+        //                     alert('Order number already exists!');
+        //                 } else {
+        //                     updateOrderNumber(treeId, orderNumber);
+        //                 }
+        //             },
+        //             error: function() {
+        //                 alert('Error occurred while checking order number.');
+        //             }
+        //         });
+        //     });
     
-            function updateOrderNumber(treeId, orderNumber) {
-                $.ajax({
-                    url: "{{ route('update-order-number') }}",
-                    method: "POST",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        order_number: orderNumber,
-                        id: treeId
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert('Order number updated successfully.');
-                        } else {
-                            alert('Failed to update order number.');
-                        }
-                    },
-                    error: function() {
-                        alert('Error occurred while updating order number.');
-                    }
-                });
-            }
-        });
+        //     function updateOrderNumber(treeId, orderNumber) {
+        //         $.ajax({
+        //             url: "{{ route('update-order-number') }}",
+        //             method: "POST",
+        //             data: {
+        //                 _token: '{{ csrf_token() }}',
+        //                 order_number: orderNumber,
+        //                 id: treeId
+        //             },
+        //             success: function(response) {
+        //                 if (response.success) {
+        //                     alert('Order number updated successfully.');
+        //                 } else {
+        //                     alert('Failed to update order number.');
+        //                 }
+        //             },
+        //             error: function() {
+        //                 alert('Error occurred while updating order number.');
+        //             }
+        //         });
+        //     }
+        // });
     </script>
    
     <script>
-        $(document).ready(function() {
-    $('.reset-order-btn').on('click', function() {
+//         $(document).ready(function() {
+//     $('.reset-order-btn').on('click', function() {
+//         var treeId = $(this).data('id');
+//         var confirmed = confirm("Are you sure you want to reset the order number?");
+//         if (confirmed) {
+//             $.ajax({
+//                 url: "{{ route('reset-order-number') }}",
+//                 method: "POST",
+//                 data: {
+//                     _token: '{{ csrf_token() }}',
+//                     id: treeId
+//                 },
+//                 success: function(response) {
+//                     if (response.success) {
+//                         $('#order_number_' + treeId).val(''); // Clear the input field
+//                         alert('Order number reset successfully.');
+//                     } else {
+//                         alert('Failed to reset order number.');
+//                     }
+//                 },
+//                 error: function() {
+//                     alert('Error occurred while resetting order number.');
+//                 }
+//             });
+//         }
+//     });
+// });
+
+
+$(document).ready(function() {
+    // Handle Update Order Number
+    $(document).on('click', '.update-order-btn', function() {
         var treeId = $(this).data('id');
-        var confirmed = confirm("Are you sure you want to reset the order number?");
-        if (confirmed) {
+        var orderNumber = $('#order_number_' + treeId).val();
+
+        // AJAX to check if the order number exists
+        $.ajax({
+            url: "{{ route('check-order-numbers') }}",
+            method: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                order_number: orderNumber,
+                id: treeId
+            },
+            success: function(response) {
+                if (response.exists) {
+                    alert('Order number already exists!');
+                } else {
+                    // If not exists, proceed to update
+                    updateOrderNumber(treeId, orderNumber);
+                }
+            },
+            error: function() {
+                alert('Error occurred while checking order number.');
+            }
+        });
+    });
+
+    function updateOrderNumber(treeId, orderNumber) {
+        $.ajax({
+            url: "{{ route('update-order-number') }}",
+            method: "POST",
+            data: {
+                _token: '{{ csrf_token() }}',
+                order_number: orderNumber,
+                id: treeId
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Order number updated successfully.');
+                } else {
+                    alert('Failed to update order number.');
+                }
+            },
+            error: function() {
+                alert('Error occurred while updating order number.');
+            }
+        });
+    }
+
+    // Handle Reset Order Number
+    $(document).on('click', '.reset-order-btn', function() {
+        var treeId = $(this).data('id');
+        if (confirm("Are you sure you want to reset the order number?")) {
             $.ajax({
                 url: "{{ route('reset-order-number') }}",
                 method: "POST",
@@ -312,6 +391,60 @@
                 }
             });
         }
+    });
+
+    // Ensure all records, including filtered rows, are updated or reset
+    $('#table').on('post-body.bs.table', function() {
+        // Attach event listeners dynamically after table renders or updates
+        $('.update-order-btn').off('click').on('click', function() {
+            var treeId = $(this).data('id');
+            var orderNumber = $('#order_number_' + treeId).val();
+
+            $.ajax({
+                url: "{{ route('check-order-numbers') }}",
+                method: "POST",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    order_number: orderNumber,
+                    id: treeId
+                },
+                success: function(response) {
+                    if (response.exists) {
+                        alert('Order number already exists!');
+                    } else {
+                        updateOrderNumber(treeId, orderNumber);
+                    }
+                },
+                error: function() {
+                    alert('Error occurred while checking order number.');
+                }
+            });
+        });
+
+        $('.reset-order-btn').off('click').on('click', function() {
+            var treeId = $(this).data('id');
+            if (confirm("Are you sure you want to reset the order number?")) {
+                $.ajax({
+                    url: "{{ route('reset-order-number') }}",
+                    method: "POST",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: treeId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#order_number_' + treeId).val(''); // Clear the input field
+                            alert('Order number reset successfully.');
+                        } else {
+                            alert('Failed to reset order number.');
+                        }
+                    },
+                    error: function() {
+                        alert('Error occurred while resetting order number.');
+                    }
+                });
+            }
+        });
     });
 });
 
