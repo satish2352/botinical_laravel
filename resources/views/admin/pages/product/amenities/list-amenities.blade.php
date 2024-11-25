@@ -421,30 +421,30 @@ $(document).ready(function() {
             });
         });
 
-        $('.reset-order-btn').off('click').on('click', function() {
-            var treeId = $(this).data('id');
-            if (confirm("Are you sure you want to reset the order number?")) {
-                $.ajax({
-                    url: "{{ route('reset-order-number') }}",
-                    method: "POST",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: treeId
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            $('#order_number_' + treeId).val(''); // Clear the input field
-                            alert('Order number reset successfully.');
-                        } else {
-                            alert('Failed to reset order number.');
-                        }
-                    },
-                    error: function() {
-                        alert('Error occurred while resetting order number.');
-                    }
-                });
-            }
-        });
+        // $('.reset-order-btn').off('click').on('click', function() {
+        //     var treeId = $(this).data('id');
+        //     if (confirm("Are you sure you want to reset the order number?")) {
+        //         $.ajax({
+        //             url: "{{ route('reset-order-number') }}",
+        //             method: "POST",
+        //             data: {
+        //                 _token: '{{ csrf_token() }}',
+        //                 id: treeId
+        //             },
+        //             success: function(response) {
+        //                 if (response.success) {
+        //                     $('#order_number_' + treeId).val(''); // Clear the input field
+        //                     alert('Order number reset successfully.');
+        //                 } else {
+        //                     alert('Failed to reset order number.');
+        //                 }
+        //             },
+        //             error: function() {
+        //                 alert('Error occurred while resetting order number.');
+        //             }
+        //         });
+        //     }
+        // });
     });
 });
 
