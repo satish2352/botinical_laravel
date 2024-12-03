@@ -317,7 +317,9 @@ public function __construct()
             return response()->json( [
                 'access_token' => $token,
                 'token_type' => 'bearer',
-                'expires_in' => auth()->factory()->getTTL() * 60
+                // 'expires_in' => auth()->factory()->getTTL() * 60
+                'expires_in' => auth()->factory()->setTTL(5 * 60)->getTTL() * 60
+                
             ] );
         }
     }
