@@ -77,7 +77,9 @@ public function __construct()
             'data' => $user,
             'token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            // 'expires_in' => auth()->factory()->getTTL() * 
+            'expires_in' => auth()->factory()->setTTL(5 * 60)->getTTL() * 60
+
             // 'expires_in' => auth()->factory()->getTTL() * 60 * 24 * 365 * 10, // 10 years
         ]);
 
