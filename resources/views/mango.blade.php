@@ -52,7 +52,7 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-12 col-md-6">
       <div class="mt-3 text-end mb-3">
         <a href="{{ url('/plants') }}" class="btn text-white" style="background-color:#1e775b">
           Back <i class="bi bi-arrow-right ms-1"></i>
