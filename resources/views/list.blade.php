@@ -71,7 +71,7 @@
         <div class="facility-body">
           <img src="./public/assets/static-images/1.jpg" alt="Nature’s Hub Food Court">
           <div class="facility-content">
-            <p>Mangifera indica, commonly known as mango, is a species of flowering plant in the family Anacardiaceae. It is a large fruit tree, capable of growing to a height of 30 metres. There are two distinct genetic populations in modern mangoes – the "Indian type" and the "Southeast Asian type.</p>
+            <p>Mangifera indica, commonly known as mango, is a species of flowering plant in the family Anacardiaceae. It is a large fruit tree, capable of growing to a height of 30 metres. </p>
             <h6 class="facility-title">Botnical Name : Mangifera indica</h6>
             <a href="{{ url('/mango') }}" class="btn btn-sm btn-outline-success mt-2">Read More</a>
 
@@ -86,7 +86,7 @@
         <h5 class="facility-title">Apple</h5>
         <div class="facility-body">
           <div class="facility-content">
-            <p>Malus is a genus of about 32–57 species of small deciduous trees or shrubs in the family Rosaceae, including the domesticated orchard apple, crab apples and wild apples. The genus is native to the temperate zone of the Northern Hemisphere.</p>
+            <p>Malus is a genus of about 32–57 species of small deciduous trees or shrubs in the family Rosaceae, including the domesticated orchard apple, crab apples and wild apples.</p>
             <h6 class="facility-title">Botnical Name : Malus</h6>
             <a href="{{ url('/apple') }}" class="btn btn-sm btn-outline-success mt-2">Read More</a>
           </div>
@@ -113,7 +113,7 @@
         <h5 class="facility-title">Banana</h5>
         <div class="facility-body">
           <div class="facility-content">
-            <p>Musa is one of three genera in the family Musaceae. The genus includes 83 species of flowering plants producing edible bananas and plantains. Though they grow as high as trees, banana and plantain plants are not woody and their apparent "stem" is made up of the bases of the huge leaf stalks.</p>
+            <p>Musa is one of three genera in the family Musaceae. The genus includes 83 species of flowering plants producing edible bananas and plantains. Though they grow as high as trees, banana and plantain plants are not woody....</p>
             <h6 class="facility-title">Botnical Name : Musa</h6>
             <a href="{{ url('/banana') }}" class="btn btn-sm btn-outline-success mt-2">Read More</a>
           </div>

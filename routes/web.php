@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('admin.login');
 });
 
-Route::get('/facilities', [StaticListController::class, 'index']);
+Route::get('/plants', [StaticListController::class, 'index']);
 Route::get('/mango', [StaticListController::class, 'mango']);
 Route::get('/chickoo', [StaticListController::class, 'chickoo']);
 Route::get('/banana', [StaticListController::class, 'banana']);
