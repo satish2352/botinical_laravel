@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-
+use App\Http\Controllers\StaticListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +23,11 @@ Route::get('/', function () {
     return view('admin.login');
 });
 
+Route::get('/facilities', [StaticListController::class, 'index']);
+Route::get('/mango', [StaticListController::class, 'mango']);
+Route::get('/chickoo', [StaticListController::class, 'chickoo']);
+Route::get('/banana', [StaticListController::class, 'banana']);
+Route::get('/apple', [StaticListController::class, 'apple']);
 
 Route::get('/clear', function () {
     $exitCode = Artisan::call('cache:clear');
