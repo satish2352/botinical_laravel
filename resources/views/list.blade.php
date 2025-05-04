@@ -59,13 +59,16 @@
     <img src="./public/assets/static-images/LANSCAPE LOG.png" alt="Nature’s Hub Food Court" style="width: 251px;
     height: auto;">
   </div>
+  <h5 class="facility-title">Explore Our Plants </h5>
   <div class="row mb-4">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 d-flex align-items-center gap-2">
       <input type="text" id="searchInput" class="form-control" placeholder="Search plant by name...">
+      <a href="" class="btn text-white" style="background-color:#1e775b">Search <i class="bi bi-arrow-right ms-1"></i></a>
     </div>
   </div>
+  
   <div class="row">
-    <h5 class="facility-title">Explore Our Plants</h5>
+  
     <div class="col-lg-6 col-md-6 col-md-6">
       <div class="facility-card">
         <h5 class="facility-title">Mango</h5>
