@@ -39,6 +39,7 @@
     margin: 0;
     font-size: 0.95rem;
     color: #444;
+    text-align: justify;
   }
 
   .read-more-content {
@@ -60,7 +61,7 @@
   </div>
   <div class="row mb-4">
     <div class="col-md-6 offset-md-3">
-      <input type="text" id="searchInput" class="form-control" placeholder="Search facility by name...">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search plant by name...">
     </div>
   </div>
   <div class="row">
