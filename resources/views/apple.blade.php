@@ -68,6 +68,11 @@
           </p>
           <div class="botanical-name">Botanical Name: Malus</div>
         </div>
+        <div class="mt-3 text-center mb-3">
+          <a href="{{ url('/plants') }}" class="btn text-white" style="background-color:#1e775b">
+            Direction <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>

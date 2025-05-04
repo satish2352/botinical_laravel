@@ -39,7 +39,7 @@
     margin: 0;
     font-size: 0.95rem;
     color: #444;
-    text-align: justify;
+    /* text-align: justify; */
   }
 
   .read-more-content {
